@@ -30,6 +30,10 @@ ccp_fecha_ingreso timestamp NOT NULL,
 ccp_fecha_actualizacion timestamp with time zone,
 ccp_usuario varchar(25) NOT NULL,
 ccp_terminal varchar(25) NOT NULL	
+CONSTRAINT PK_EMPRESA
+FOREIGN KEY (ccp_empresa) 
+REFERENCES "CUENTAS".tb_empresa(e_id_empresa)
+
 )
 
 --INSERT TABLA CUENTAS CONTABLES PADRES
