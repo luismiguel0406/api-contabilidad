@@ -29,7 +29,7 @@ ccp_estado bit NOT NULL,
 ccp_fecha_ingreso timestamp NOT NULL,
 ccp_fecha_actualizacion timestamp with time zone,
 ccp_usuario varchar(25) NOT NULL,
-ccp_terminal varchar(25) NOT NULL	
+ccp_terminal varchar(25) NOT NULL,	
 CONSTRAINT PK_EMPRESA
 FOREIGN KEY (ccp_empresa) 
 REFERENCES "CUENTAS".tb_empresa(e_id_empresa)
@@ -53,15 +53,15 @@ VALUES
 
  (10,'ACTIVOS CORRIENTES',1,1,'1',NOW(),NULL,'SA','SA'),--2
 
- (101,'CUENTAS POR COBRAR',2,1,'1',NOW(),NULL,'SA','SA'),--3
+ (11,'CUENTAS POR COBRAR',1,1,'1',NOW(),NULL,'SA','SA'),--3
 
- (11,'INVERSIONES',1,1,'1',NOW(),NULL,'SA','SA'),--4
+ (12,'INVERSIONES',1,1,'1',NOW(),NULL,'SA','SA'),--4
 													
- (12,'ACTIVOS FIJOS',1,1,'1',NOW(),NULL,'SA','SA'),--5
+ (13,'ACTIVOS FIJOS',1,1,'1',NOW(),NULL,'SA','SA'),--5
 
- (13,'ACTIVOS DIFERIDOS',1,1,'1',NOW(),NULL,'SA','SA'),--6
+ (14,'ACTIVOS DIFERIDOS',1,1,'1',NOW(),NULL,'SA','SA'),--6
 													
- (14,'OTROS ACTIVOS',1,1,'1',NOW(),NULL,'SA','SA'),--7
+ (15,'OTROS ACTIVOS',1,1,'1',NOW(),NULL,'SA','SA'),--7
 
  (2,'PASIVOS',0,1,'1',NOW(),NULL,'SA','SA'),--8
 
@@ -95,3 +95,4 @@ VALUES
 
  (7,'RESUMENES',0,1,'1',NOW(),NULL,'SA','SA')--23
 RETURNING *
+
