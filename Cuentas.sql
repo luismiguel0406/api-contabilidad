@@ -24,14 +24,14 @@ ccp_id SERIAL PRIMARY KEY NOT NULL,
 ccp_no_cuenta int NOT NULL,
 ccp_descripcion varchar(50) NOT NULL,
 ccp_cuenta_padre int not null default 0,
-ccp_empresa int NOT NULL,
+ccp_id_empresa int NOT NULL,
 ccp_estado bit NOT NULL,
 ccp_fecha_ingreso timestamp NOT NULL,
 ccp_fecha_actualizacion timestamp with time zone,
 ccp_usuario varchar(25) NOT NULL,
 ccp_terminal varchar(25) NOT NULL,	
 CONSTRAINT PK_EMPRESA
-FOREIGN KEY (ccp_empresa) 
+FOREIGN KEY (ccp_id_empresa) 
 REFERENCES "CUENTAS".tb_empresa(e_id_empresa)
 
 )
@@ -41,7 +41,7 @@ INSERT INTO "CUENTAS".tb_cuentas_contables_padres (
 	ccp_no_cuenta, 
 	ccp_descripcion, 
 	ccp_cuenta_padre, 
-	ccp_empresa, 
+	ccp_id_empresa, 
 	ccp_estado, 
 	ccp_fecha_ingreso, 
 	ccp_fecha_actualizacion, 
