@@ -10,13 +10,26 @@ i_fecha_actualizacion TIMESTAMP WITH TIME ZONE,
 i_usuario VARCHAR(25) NOT NULL,
 i_terminal VARCHAR(25) NOT NULL
 )
+--INSERT TIPO ITEMS
+
+INSERT INTO "INVENTARIO".tb_tipo_item
+(
+ti_descripcion,
+i_estado,
+i_fecha_ingreso ,
+i_fecha_actualizacion,
+i_usuario ,
+i_terminal)
+VALUES
+('BIENES','1',NOW(),NULL,'SA','SA'),
+('SERVICIOS','1',NOW(),NULL,'SA','SA')
 
 -- TABLA ITEMS
 
 CREATE TABLE "INVENTARIO".tb_items(
 i_id_item SERIAL PRIMARY KEY NOT NULL,
 i_id_tipo_item INT NOT NULL,
-i_descripcion_Item VARCHAR(50) NOT NULL,
+i_descripcion_item VARCHAR(50) NOT NULL,
 i_precio_compra DECIMAL(18,4) DEFAULT 0.00,
 i_precio_venta DECIMAL(18,4) DEFAULT 0.00,
 i_precio_minimo DECIMAL(18,4),	
