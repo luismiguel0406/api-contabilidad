@@ -1,3 +1,6 @@
+
+--TABLA TIPO CLIENTES
+
 CREATE TABLE "CLIENTES".tb_tipos_clientes(
    tc_id_tipo_cliente SERIAL PRIMARY KEY NOT NULL,
    tc_tipo_cliente VARCHAR(25) NOT NULL,
@@ -7,6 +10,8 @@ CREATE TABLE "CLIENTES".tb_tipos_clientes(
    tc_usuario VARCHAR(25) NOT NULL,
    tc_terminal VARCHAR(25) NOT NULL		
 )
+
+--TABLA CLIENTES
 
 CREATE TABLE "CLIENTES".tb_clientes(
 
@@ -25,6 +30,7 @@ CREATE TABLE "CLIENTES".tb_clientes(
 	REFERENCES "CLIENTES".tb_tipos_clientes(tc_id_tipo_cliente)
 )
 
+--TABLA CORREOS
 
 CREATE TABLE "CLIENTES".tb_correos(
    c_id_correo	SERIAL PRIMARY KEY NOT NULL,
@@ -40,6 +46,7 @@ CREATE TABLE "CLIENTES".tb_correos(
    REFERENCES "CLIENTES".tb_clientes(c_id_cliente)
    
 )
+--TABLA TELEFONOS
 
 CREATE TABLE "CLIENTES".tb_telefonos(
    t_id_telefono SERIAL PRIMARY KEY NOT NULL,
@@ -54,6 +61,7 @@ CREATE TABLE "CLIENTES".tb_telefonos(
    FOREIGN KEY (t_id_cliente)
    REFERENCES "CLIENTES".tb_clientes(c_id_cliente)	
 )
+--TABLA DIRECCIONES
 
 CREATE TABLE "CLIENTES".tb_direcciones(
    d_id_direccion SERIAL PRIMARY KEY NOT NULL,
