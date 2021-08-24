@@ -3,15 +3,15 @@
 CREATE TABLE "CUENTAS".tb_cuentas_contables_padres
 (
 ccp_id SERIAL PRIMARY KEY NOT NULL,
-ccp_no_cuenta int NOT NULL,
-ccp_descripcion varchar(50) NOT NULL,
-ccp_cuenta_padre int not null default 0,
-ccp_id_empresa int NOT NULL,
-ccp_estado bit NOT NULL,
-ccp_fecha_ingreso timestamp with time zone NOT NULL,
-ccp_fecha_actualizacion timestamp with time zone,
-ccp_usuario varchar(25) NOT NULL,
-ccp_terminal varchar(25) NOT NULL,	
+ccp_no_cuenta INT NOT NULL,
+ccp_descripcion VARCHAR(50) NOT NULL,
+ccp_cuenta_padre INT NOT NULL DEFAULT 0,
+ccp_id_empresa INT NOT NULL,
+ccp_estado BIT NOT NULL,
+ccp_fecha_ingreso TIMESTAMP WITH TIME ZONE NOT NULL,
+ccp_fecha_actualizacion TIMESTAMP WITH TIME ZONE,
+ccp_usuario VARCHAR(25) NOT NULL,
+ccp_terminal VARCHAR(25) NOT NULL,	
 CONSTRAINT PK_EMPRESA
 FOREIGN KEY (ccp_id_empresa) 
 REFERENCES "EMPRESA".tb_empresa(e_id_empresa)

@@ -7,9 +7,9 @@ CREATE TABLE "EMPRESA".tb_empresa
 	e_iniciales_empresa VARCHAR(20),
     e_rnc VARCHAR(20),
     e_sucursal INT ,
-    e_estado bit(1) NOT NULL,
-    e_fecha_ingreso timestamp with time zone NOT NULL,
-    e_fecha_actualizacion timestamp with time zone 
+    e_estado BIT NOT NULL,
+    e_fecha_ingreso TIMESTAMP WITH TIME ZONE NOT NULL,
+    e_fecha_actualizacion TIMESTAMP WITH TIME ZONE,
     e_direccion VARCHAR (100),
     e_telefono VARCHAR (20),
     e_correo VARCHAR (50),

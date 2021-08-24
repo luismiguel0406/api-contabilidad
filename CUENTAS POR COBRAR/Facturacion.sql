@@ -28,8 +28,8 @@ tv_terminal
 VALUES
 ('VENTAS DE BIENES CON VALOR FISCAL',1,'1',NOW(),NULL,'SA','SA'),
 ('VENTAS DE BIENES DE CONSUMO',1,'1',NOW(),NULL,'SA','SA'),
-('VENTAS COMPROBANTE',2,'1',NOW(),NULL,'SA','SA'),
-('VENTAS DE CONSUMO',2,'1',NOW(),NULL,'SA','SA'),
+('VENTAS SERVICIOS COMPROBANTE',2,'1',NOW(),NULL,'SA','SA'),
+('VENTAS SERVICIO CONSUMO',2,'1',NOW(),NULL,'SA','SA'),
 ('VENTAS AL ESTADO',2,'1',NOW(),NULL,'SA','SA'),
 ('VENTAS DE REGIMENES ESPECIALES',2,'1',NOW(),NULL,'SA','SA'),
 ('VENTAS AL EXTERIOR',2,'1',NOW(),NULL,'SA','SA')
@@ -77,7 +77,7 @@ CREATE TABLE "FACTURACION".tb_impuestos(
 i_id_impuesto SERIAL PRIMARY KEY NOT NULL,
 i_nombre VARCHAR(50),
 i_alias VARCHAR(15),
-i_porcentaje DECIMAL(18,2) DEFAULT 0,
+i_porcentaje DECIMAL(18,2) DEFAULT 0.00,
 i_estado BIT NOT NULL,
 i_fecha_ingreso TIMESTAMP WITH TIME ZONE NOT NULL,
 i_fecha_actualizacion TIMESTAMP WITH TIME ZONE,
@@ -98,8 +98,8 @@ i_terminal
 )VALUES
 ('ITBIS FACTURADO','ITBIS',0.18,'1',NOW(),NULL,'SA','SA'),
 ('IMPUESTO SELECTIVO AL CONSUMO','ISC',0,'1',NOW(),NULL,'SA','SA'),
-('ITBIS RETENIDO','ITB RET',0,'1',NOW(),NULL,'SA','SA'),
-('ITBIS SUPUESTO A PORPORCIONALIDAD','ISP',0,'1',NOW(),NULL,'SA','SA'),
+('ITBIS RETENIDO','ITB RET',0,'1',NOW(),NULL,'SA','SA'),-- ITBIS TIENE TRATAMIENTO ESPECIAL ,OJO 
+('ITBIS SUJETO A PORPORCIONALIDAD','ISP',0,'1',NOW(),NULL,'SA','SA'),
 ('ITBIS LLEVADO AL COSTO','ILC',0,'1',NOW(),NULL,'SA','SA'),
 ('ITBIS POR ADELANTAR','ITBPA',0,'1',NOW(),NULL,'SA','SA'),
 ('ITBIS COMPRAS','ITBC',0,'1',NOW(),NULL,'SA','SA'),
@@ -113,24 +113,40 @@ i_terminal
 CREATE TABLE "FACTURACION".tb_moneda(
 m_id_moneda SERIAL PRIMARY KEY NOT NULL,
 m_descripcion VARCHAR(25),
+m_simbolo VARCHAR(25),
 m_estado BIT NOT NULL,
 m_fecha_ingreso TIMESTAMP WITH TIME ZONE NOT NULL,
 m_fecha_actualizacion TIMESTAMP WITH TIME ZONE,
 m_usuario VARCHAR(25) NOT NULL,
 m_terminal VARCHAR(25) NOT NULL	
 )
+
+INSERT INTO "FACTURACION".tb_moneda(
+m_descripcion,
+m_simbolo,
+m_estado,
+m_fecha_ingreso,
+m_fecha_actualizacion,
+m_usuario,
+m_terminal 
+)
+VALUES
+('DOP','RD$','1',NOW(),NULL,'SA','SA'),
+('US','US$','1',NOW(),NULL,'SA','SA'),
+('EUR','€$','1',NOW(),NULL,'SA','SA')
+
 --TABLA FACTURAS
 
 CREATE TABLE "FACTURACION".tb_factura(
 f_id_factura SERIAL PRIMARY KEY NOT NULL,
-f_numero INT NOT NULL,
-f_ncf VARCHAR(25),
+f_numero INT NOT NULL,--AUTO GENERA POR EMPRESA
+f_ncf VARCHAR(25),--SE AUTOGENERA POR QUIEN INGRESA 
 f_ncf_modificado VARCHAR(25),
 f_id_empresa INT NOT NULL,
 f_id_cliente INT NOT NULL,
 f_id_moneda INT,	
-f_subtotal DECIMAL(18,4),
-f_descuento DECIMAL(18,4),
+f_subtotal DECIMAL(18,2),
+f_descuento DECIMAL(18,2),
 f_id_impuesto INT ,
 f_total DECIMAL(18,2),
 f_comentario VARCHAR(100),
