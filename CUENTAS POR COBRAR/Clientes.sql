@@ -63,7 +63,7 @@ CREATE TABLE "CLIENTES".tb_telefonos(
 )
 --TABLA DIRECCIONES
 
-CREATE TABLE "CLIENTES".tb_direcciones(
+CREATE TABLE "CLIENTES".tb_direcciones(  
    d_id_direccion SERIAL PRIMARY KEY NOT NULL,
    d_id_cliente  INT NOT NULL,
    d_direccion VARCHAR(100) NOT NULL,
