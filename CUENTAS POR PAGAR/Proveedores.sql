@@ -38,7 +38,6 @@ p_terminal VARCHAR(25) NOT NULL	,
 CONSTRAINT PK_ID_TIPO_PROVEEDOR
 FOREIGN KEY (p_id_tipo_proveedor)
 REFERENCES "PROVEEDORES".tb_tipo_proveedores(tp_id_tipo_proveedor)	
-
 --REVISAR
 )
 

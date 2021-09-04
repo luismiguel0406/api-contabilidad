@@ -18,6 +18,7 @@ CREATE TABLE "CLIENTES".tb_clientes(
 	c_id_cliente SERIAL PRIMARY KEY NOT NULL,
 	c_nombre VARCHAR(100) NOT NULL,
 	c_rnc VARCHAR(25),
+   c_direccion VARCHAR(100),
    c_tipo_cliente INT,
 	c_paga_itbis BIT NOT NULL,
 	c_estado BIT NOT NULL,
@@ -61,8 +62,8 @@ CREATE TABLE "CLIENTES".tb_telefonos(
    FOREIGN KEY (t_id_cliente)
    REFERENCES "CLIENTES".tb_clientes(c_id_cliente)	
 )
---TABLA DIRECCIONES
-
+--TABLA DIRECCIONES --A SER BORRADA TENTATIVAMENTE
+/*
 CREATE TABLE "CLIENTES".tb_direcciones(  
    d_id_direccion SERIAL PRIMARY KEY NOT NULL,
    d_id_cliente  INT NOT NULL,
@@ -75,4 +76,4 @@ CREATE TABLE "CLIENTES".tb_direcciones(
    CONSTRAINT PK_ID_CLIENTE
    FOREIGN KEY (d_id_cliente)
    REFERENCES "CLIENTES".tb_clientes(c_id_cliente)
-)
+)*/
