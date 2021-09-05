@@ -144,7 +144,8 @@ f_ncf VARCHAR(25),--SE AUTOGENERA POR QUIEN INGRESA
 f_ncf_modificado VARCHAR(25),
 f_id_empresa INT NOT NULL,
 f_id_cliente INT NOT NULL,
-f_id_moneda INT,	
+f_id_moneda INT,
+f_id_medio_de_pago INT,	
 f_subtotal DECIMAL(18,2),
 f_descuento DECIMAL(18,2),
 f_id_impuesto INT ,
@@ -172,7 +173,16 @@ f_terminal VARCHAR(25) NOT NULL,
 	
 	CONSTRAINT PK_ID_IMPUESTO
 	FOREIGN KEY(f_id_impuesto)
-	REFERENCES "FACTURACION".tb_impuestos(i_id_impuesto)
+	REFERENCES "FACTURACION".tb_impuestos(i_id_impuesto),
+
+	CONSTRAINT PK_ID_MEDIO_DE_PAGO
+	FOREIGN KEY(f_id_medio_de_pago)
+	REFERENCES "FACTURACION".tb_medios_de_pago(mp_id_medio_de_pago)
 
 )
+
+
+
+
+
 

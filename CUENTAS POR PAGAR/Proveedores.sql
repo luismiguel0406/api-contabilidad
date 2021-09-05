@@ -18,7 +18,8 @@ tp_usuario,
 tp_terminal
 )
 VALUES('LOCAL','1',NOW(),NULL,'SA','SA'),
-      ('EXTRANJERO','1',NOW(),NULL,'SA','SA')
+      ('EXTRANJERO','1',NOW(),NULL,'SA','SA'),
+      ('INFORMAL','1',NOW(),NULL,'SA','SA')
 
 --PROVEEDORES
 
@@ -44,18 +45,17 @@ REFERENCES "PROVEEDORES".tb_tipo_proveedores(tp_id_tipo_proveedor)
 --INSERT PROVEEDORES
 INSERT INTO "PROVEEDORES".tb_proveedores(
 p_id_tipo_proveedor,	
-p_nombre, 
-p_rnc,
-p_cedula,
-p_direccion ,
-p_estado ,
+p_nombre, --RAZON SOCIAL
+p_rnc_cedula,
+p_direccion,
+p_estado,
 p_fecha_ingreso,
 p_fecha_actualizacion, 
-p_usuario ,
+p_usuario,
 p_terminal
 	
-)VALUES(2,'PROVEEDOR EXTRANJERO EJEMPLO',345,NULL,NULL,'1',NOW(),NULL,'SA','SA'),
-       (1,'PROVEEDOR LOCAL EJEMPLO',123,NULL,NULL,'1',NOW(),NULL,'SA','SA')
+)VALUES(2,'PROVEEDOR EXTRANJERO EJEMPLO',345,NULL,'1',NOW(),NULL,'SA','SA'),
+       (1,'PROVEEDOR LOCAL EJEMPLO',123,NULL,'1',NOW(),NULL,'SA','SA')
 
 --CORREOS PROVEEDORES      
 
