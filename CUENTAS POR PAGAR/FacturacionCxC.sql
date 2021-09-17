@@ -57,21 +57,21 @@ VALUES('GASTO','1',NOW(),NULL,'SA','SA'),
 
  CREATE TABLE "FACTURACION".tb_facturas_por_pagar(
 fp_id_factura SERIAL PRIMARY KEY NOT NULL,
-fp_id_tipo_factura INT,
+fp_id_tipo_factura INT NOT NULL,
 fp_numero VARCHAR(25),
 fp_ncf VARCHAR(25) ,
 fp_ncf_modificado VARCHAR(25),
 fp_id_empresa INT,
 fp_id_proveedor INT,
 fp_id_moneda INT,
-fp_id_medio_de_pago INT,
+fp_id_medio_de_pago INT NOT NULL,
 fp_subtotal DECIMAL (18,2),
 fp_id_impuesto INT,
 fp_descuento DECIMAL (18,2),
 fp_total DECIMAL (18,2),
 fp_comentario VARCHAR(250),
 fp_fecha_factura TIMESTAMP WITH TIME ZONE NOT NULL,
---fp_id_cheque INT,
+fp_id_cheque INT,
 fp_fecha_limite_pago TIMESTAMP WITH TIME ZONE, 
 fp_estado VARCHAR(10),
 fp_fecha_de_ingreso TIMESTAMP WITH TIME ZONE NOT NULL,
@@ -102,11 +102,32 @@ fp_terminal VARCHAR(25) NOT NULL,
 	CONSTRAINT PK_ID_IMPUESTO
 	FOREIGN KEY (fp_id_impuesto)
 	REFERENCES "FACTURACION".tb_impuestos(i_id_impuesto)
-	
-	/*CONSTRAINT PK_ID_CHEQUE
+		
+	CONSTRAINT PK_ID_CHEQUE
 	FOREIGN KEY (fp_id_cheque)
-	REFERENCES "FACTURACION".tb_cheques(ch_id_cheque)*/
+	REFERENCES "FACTURACION".tb_cheques(ch_id_cheque)
+	
 )     
+
+--CHEQUES 
+CREATE TABLE "FACTURACION".tb_cheques(
+ch_id_cheque SERIAL PRIMARY KEY NOT NULL,
+ch_numeracion INT NOT NULL,
+ch_beneficiario VARCHAR(100) NOT NULL,
+ch_valor DECIMAL(18,2) NOT NULL,
+ch_concepto VARCHAR(100) NOT NULL,
+ch_id_empresa INT,
+ch_estado VARCHAR(10),
+ch_fecha_de_ingreso TIMESTAMP WITH TIME ZONE NOT NULL,
+ch_fecha_actualizacion TIMESTAMP WITH TIME ZONE,
+ch_usuario VARCHAR(25) NOT NULL,
+ch_terminal VARCHAR(25) NOT NULL,
+
+CONSTRAINT PK_ID_EMPRESA
+FOREIGN KEY (ch_id_empresa)
+REFERENCES "EMPRESA".tb_empresa(e_id_empresa)
+)
+
 
 --MEDIOS DE PAGO
 
