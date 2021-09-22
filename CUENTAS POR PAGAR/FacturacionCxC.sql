@@ -30,7 +30,7 @@ VALUES ('00-NO ESPECIFICADO','1',NOW(),NULL,'SA','SA'),
 	   ('09-COMPRAS Y GASTOS QUE FORMAN PARTE DEL COSTO DE VENTA','1',NOW(),NULL,'SA','SA'),
 	   ('10-ADQUISICIONES DE ACTIVOS','1',NOW(),NULL,'SA','SA'),
 	   ('11-GASTOS DE SEGUROS','1',NOW(),NULL,'SA','SA')
-       -- PREGUNTA: LAS VENTAS SOLO GENERAN ITBIS ,NINGUN OTRO IMPUESTO?
+       
 
 --TIPO FACTURAS POR PAGAR
 CREATE TABLE "FACTURACION".tb_tipo_factura_por_pagar(
@@ -67,6 +67,7 @@ fp_id_moneda INT,
 fp_id_medio_de_pago INT NOT NULL,
 fp_subtotal DECIMAL (18,2),
 fp_id_impuesto INT,
+fp_id_tipo_gasto INT,
 fp_descuento DECIMAL (18,2),
 fp_total DECIMAL (18,2),
 fp_comentario VARCHAR(250),
@@ -101,14 +102,17 @@ fp_terminal VARCHAR(25) NOT NULL,
 	
 	CONSTRAINT PK_ID_IMPUESTO
 	FOREIGN KEY (fp_id_impuesto)
-	REFERENCES "FACTURACION".tb_impuestos(i_id_impuesto)
+	REFERENCES "FACTURACION".tb_impuestos(i_id_impuesto),
+	
+	CONSTRAINT PK_ID_TIPO_GASTO
+	FOREIGN KEY (fp_id_tipo_gasto)
+	REFERENCES "FACTURACION".tb_tipos_gastos(g_id_gasto),
 		
 	CONSTRAINT PK_ID_CHEQUE
 	FOREIGN KEY (fp_id_cheque)
 	REFERENCES "FACTURACION".tb_cheques(ch_id_cheque)
 	
 )     
-
 --CHEQUES 
 CREATE TABLE "FACTURACION".tb_cheques(
 ch_id_cheque SERIAL PRIMARY KEY NOT NULL,
