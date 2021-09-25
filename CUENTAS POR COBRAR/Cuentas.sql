@@ -79,9 +79,39 @@ VALUES
 RETURNING *
 
 --VER TODAS LAS CUENTAS
+
 SELECT  
 C.CCP_NO_CUENTA   AS NUMERO_CUENTA ,
 C.CCP_DESCRIPCION AS DESCRIPCION ,
 COALESCE((SELECT CC.CCP_DESCRIPCION FROM "CUENTAS".tb_cuentas_contables_padres AS CC 
  WHERE C.CCP_CUENTA_PADRE = CC.CCP_ID ),'RAIZ') AS CUENTA_PADRE 
 FROM "CUENTAS".tb_cuentas_contables_padres AS C
+
+--CATALOGO CUENTAS
+
+CREATE TABLE "CUENTAS".tb_cuentas_contables(
+cc_id_cta SERIAL PRIMARY KEY NOT NULL,
+cc_cuenta VARCHAR(25)NOT NULL,
+cc_id_cuenta_padre INT,
+cc_descripcion VARCHAR(50) NOT NULL,
+cc_id_empresa INT,
+cc_id_moneda INT,
+cc_estado BIT NOT NULL,
+cc_fecha_de_ingreso TIMESTAMP WITH TIME ZONE NOT NULL,
+cc_fecha_actualizacion TIMESTAMP WITH TIME ZONE,
+cc_usuario VARCHAR(25) NOT NULL,
+cc_terminal VARCHAR(25) NOT NULL,
+	
+	CONSTRAINT PK_ID_EMPRESA
+	FOREIGN KEY (cc_id_empresa)
+	REFERENCES "EMPRESA".tb_empresa(e_id_empresa),
+
+	CONSTRAINT PK_ID_MONEDA
+    FOREIGN KEY (cc_id_moneda)
+    REFERENCES  "FACTURACION".tb_moneda(m_id_moneda),
+	
+	CONSTRAINT PK_ID_CUENTA_PADRE
+	FOREIGN KEY (cc_id_cuenta_padre)
+	REFERENCES "CUENTAS".tb_cuentas_contables_padres(ccp_id)
+)
+--
