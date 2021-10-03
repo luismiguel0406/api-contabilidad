@@ -1,19 +1,36 @@
 --TABLA EMPRESAS
 
-CREATE TABLE "EMPRESA".tb_empresa
+CREATE TABLE "EMPRESA".empresa
 (
-    e_id_empresa SERIAL PRIMARY KEY NOT NULL ,
-    e_nombre VARCHAR(50) NOT NULL,
-	e_iniciales_empresa VARCHAR(20),
-    e_rnc VARCHAR(20),
-    e_sucursal INT ,
-    e_estado BIT NOT NULL,
-    e_fecha_ingreso TIMESTAMP WITH TIME ZONE NOT NULL,
-    e_fecha_actualizacion TIMESTAMP WITH TIME ZONE,
-    e_direccion VARCHAR (100),
-    e_telefono VARCHAR (20),
-    e_correo VARCHAR (50),
-    e_usuario VARCHAR(25) NOT NULL,
-    e_termial VARCHAR (25) NOT NULL 
+    id SERIAL PRIMARY KEY NOT NULL ,
+    nombre VARCHAR(50) NOT NULL,
+	"inicialesEmpresa" VARCHAR(20),
+    rnc VARCHAR(20),
+    sucursal INT ,
+    estado BIT NOT NULL,
+    "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL,
+    "updatedAt" TIMESTAMP WITH TIME ZONE,
+    direccion VARCHAR (100),
+    telefono VARCHAR (20),
+    correo VARCHAR (50),
+    usuario VARCHAR(25) NOT NULL,
+    termial VARCHAR (25) NOT NULL 
 )
+--INSERT EMPRESA EJEMPLO
+INSERT INTO "EMPRESA".empresa(
+    nombre,
+	inicialesEmpresa,
+    rnc,
+    sucursal,
+    estado,
+    createdAt,
+    updatedAt,
+    direccion,
+    telefono,
+    correo,
+    usuario,
+    termial  
+)
+VALUES
+('EMPRESA CACTUS','CA','123456','1','1',NOW(),NULL,'CALLE 1RA','809-555-5555','CORREO@EMAIL.COM','SA','SA')
 -- SUCURSAL AGREGAR CAMPO

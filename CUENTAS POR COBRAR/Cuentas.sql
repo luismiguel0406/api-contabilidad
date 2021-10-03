@@ -1,34 +1,34 @@
 -- ESQUEMA *CUENTAS*
---TABLA CUENTAS CONABLES PADRES
-CREATE TABLE "CUENTAS".tb_cuentas_contables_padres
+--TABLA CUENTAS CONTABLES PADRES
+CREATE TABLE "CUENTAS"."cuentasContablesPadres"
 (
-ccp_id SERIAL PRIMARY KEY NOT NULL,
-ccp_no_cuenta INT NOT NULL,
-ccp_descripcion VARCHAR(50) NOT NULL,
-ccp_cuenta_padre INT NOT NULL DEFAULT 0,
-ccp_id_empresa INT NOT NULL,
-ccp_estado BIT NOT NULL,
-ccp_fecha_ingreso TIMESTAMP WITH TIME ZONE NOT NULL,
-ccp_fecha_actualizacion TIMESTAMP WITH TIME ZONE,
-ccp_usuario VARCHAR(25) NOT NULL,
-ccp_terminal VARCHAR(25) NOT NULL,	
+id SERIAL PRIMARY KEY NOT NULL,
+"noCuenta" INT NOT NULL,
+descripcion VARCHAR(50) NOT NULL,
+"cuentaPadre" INT NOT NULL DEFAULT 0,
+"idEmpresa" INT NOT NULL,
+estado BIT NOT NULL,
+"createdAt" TIMESTAMP,
+"updatedAt" TIMESTAMP ,
+usuario VARCHAR(25) NOT NULL,
+terminal VARCHAR(25) NOT NULL,	
 CONSTRAINT PK_EMPRESA
-FOREIGN KEY (ccp_id_empresa) 
-REFERENCES "EMPRESA".tb_empresa(e_id_empresa)
+FOREIGN KEY ("idEmpresa") 
+REFERENCES "EMPRESA".empresas(id)
 
 )
 
 --INSERT TABLA CUENTAS CONTABLES PADRES
-INSERT INTO "CUENTAS".tb_cuentas_contables_padres (
-	ccp_no_cuenta, 
-	ccp_descripcion, 
-	ccp_cuenta_padre, 
-	ccp_id_empresa, 
-	ccp_estado, 
-	ccp_fecha_ingreso, 
-	ccp_fecha_actualizacion, 
-	ccp_usuario, 
-	ccp_terminal
+INSERT INTO "CUENTAS"."cuentasContablesPadres" (
+	"noCuenta", 
+	descripcion, 
+	"cuentaPadre", 
+	"idEmpresa", 
+	estado, 
+	"createdAt", 
+	"updatedAt", 
+	usuario, 
+	terminal
 		) 
 VALUES 
  (1,'ACTIVOS',0,1,'1',NOW(),NULL,'SA','SA'), --1
@@ -81,37 +81,37 @@ RETURNING *
 --VER TODAS LAS CUENTAS
 
 SELECT  
-C.CCP_NO_CUENTA   AS NUMERO_CUENTA ,
-C.CCP_DESCRIPCION AS DESCRIPCION ,
-COALESCE((SELECT CC.CCP_DESCRIPCION FROM "CUENTAS".tb_cuentas_contables_padres AS CC 
- WHERE C.CCP_CUENTA_PADRE = CC.CCP_ID ),'RAIZ') AS CUENTA_PADRE 
-FROM "CUENTAS".tb_cuentas_contables_padres AS C
+C."noCuenta"   AS NUMERO_CUENTA ,
+C.descripcion AS DESCRIPCION ,
+COALESCE((SELECT CC.descripcion FROM "CUENTAS"."cuentasContablesPadres" AS CC 
+ WHERE C."cuentaPadre" = CC.id ),'RAIZ') AS CUENTA_PADRE 
+FROM "CUENTAS"."cuentasContablesPadres" AS C
 
 --CATALOGO CUENTAS
 
-CREATE TABLE "CUENTAS".tb_cuentas_contables(
-cc_id_cta SERIAL PRIMARY KEY NOT NULL,
-cc_cuenta VARCHAR(25)NOT NULL,
-cc_id_cuenta_padre INT,
-cc_descripcion VARCHAR(50) NOT NULL,
-cc_id_empresa INT,
-cc_id_moneda INT,
-cc_estado BIT NOT NULL,
-cc_fecha_de_ingreso TIMESTAMP WITH TIME ZONE NOT NULL,
-cc_fecha_actualizacion TIMESTAMP WITH TIME ZONE,
-cc_usuario VARCHAR(25) NOT NULL,
-cc_terminal VARCHAR(25) NOT NULL,
+CREATE TABLE "CUENTAS"."cuentasContables"(
+id SERIAL PRIMARY KEY NOT NULL,
+cuenta VARCHAR(25)NOT NULL,
+"idCuentaPadre" INT,
+descripcion VARCHAR(50) NOT NULL,
+"idEmpresa" INT,
+"idMoneda" INT,
+estado BIT NOT NULL,
+"createdAt" TIMESTAMP WITH TIME ZONE NOT NULL,
+"updateAt" TIMESTAMP WITH TIME ZONE,
+usuario VARCHAR(25) NOT NULL,
+terminal VARCHAR(25) NOT NULL,
 	
 	CONSTRAINT PK_ID_EMPRESA
-	FOREIGN KEY (cc_id_empresa)
-	REFERENCES "EMPRESA".tb_empresa(e_id_empresa),
+	FOREIGN KEY ("idEmpresa")
+	REFERENCES "EMPRESA".empresas(id),
 
 	CONSTRAINT PK_ID_MONEDA
-    FOREIGN KEY (cc_id_moneda)
-    REFERENCES  "FACTURACION".tb_moneda(m_id_moneda),
+    FOREIGN KEY ("idMoneda")
+    REFERENCES  "FACTURACION".monedas(id),
 	
 	CONSTRAINT PK_ID_CUENTA_PADRE
-	FOREIGN KEY (cc_id_cuenta_padre)
-	REFERENCES "CUENTAS".tb_cuentas_contables_padres(ccp_id)
+	FOREIGN KEY ("idCuentaPadre")
+	REFERENCES "CUENTAS"."cuentasContablesPadres"(id)
 )
 --
