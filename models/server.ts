@@ -1,5 +1,6 @@
 import express, { Application, query } from "express";
-import CuentasRoutes from "../routes/cuentas.route";
+import CuentasRoutes from "../routes/cuentas/cuentas.route";
+import monedaRoutes from "../routes/facturacion/moneda.route";
 import cors from "cors";
 import https from "https";
 import db from "../Database/connectionDB";
@@ -12,6 +13,7 @@ class Server {
 
   private apiPath = {
     CuentasPadre: '/api/CuentasPadre',
+    Facturacion :'/api/moneda'
   };
 
   constructor() {
@@ -46,6 +48,7 @@ class Server {
   /* RUTAS PARA CONSULTA */
   routes() {
     this.app.use(this.apiPath.CuentasPadre, CuentasRoutes);
+    this.app.use(this.apiPath.Facturacion, monedaRoutes)
   }
 }
 export default Server;

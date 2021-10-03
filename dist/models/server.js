@@ -13,7 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const cuentas_route_1 = __importDefault(require("../routes/cuentas.route"));
+const cuentas_route_1 = __importDefault(require("../routes/cuentas/cuentas.route"));
+const moneda_route_1 = __importDefault(require("../routes/facturacion/moneda.route"));
 const cors_1 = __importDefault(require("cors"));
 const connectionDB_1 = __importDefault(require("../Database/connectionDB"));
 require("dotenv").config();
@@ -22,6 +23,7 @@ class Server {
     constructor() {
         this.apiPath = {
             CuentasPadre: '/api/CuentasPadre',
+            Facturacion: '/api/moneda'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || "3000";
@@ -53,6 +55,7 @@ class Server {
     /* RUTAS PARA CONSULTA */
     routes() {
         this.app.use(this.apiPath.CuentasPadre, cuentas_route_1.default);
+        this.app.use(this.apiPath.Facturacion, moneda_route_1.default);
     }
 }
 exports.default = Server;
