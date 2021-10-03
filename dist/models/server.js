@@ -13,15 +13,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const cuentas_routes_1 = __importDefault(require("../routes/cuentas.routes"));
+const cuentas_route_1 = __importDefault(require("../routes/cuentas.route"));
 const cors_1 = __importDefault(require("cors"));
 const connectionDB_1 = __importDefault(require("../Database/connectionDB"));
-require('dotenv').config();
+require("dotenv").config();
 /*INICIALIZO EL SERVIDOR*/
 class Server {
     constructor() {
         this.apiPath = {
-            CuentasPadre: "Api/CuentasPadre",
+            CuentasPadre: '/api/CuentasPadre',
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || "3000";
@@ -38,7 +38,7 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield connectionDB_1.default.authenticate();
-                console.log('Database CACTUS Online');
+                console.log("Database CACTUS Online");
             }
             catch (error) {
                 console.log(`Error${error}`);
@@ -46,16 +46,13 @@ class Server {
         });
     }
     listen() {
-        /*https.createServer({}, this.app).listen(this.port, () => {
-          console.log(`Server con Https escuchando en el puerto ${this.port}`);
-        });*/
         this.app.listen(this.port, () => {
             console.log(`Server escuchando en el puerto ${this.port}`);
         });
     }
     /* RUTAS PARA CONSULTA */
     routes() {
-        this.app.use(this.apiPath.CuentasPadre, cuentas_routes_1.default);
+        this.app.use(this.apiPath.CuentasPadre, cuentas_route_1.default);
     }
 }
 exports.default = Server;

@@ -1,7 +1,15 @@
-import { Response, Request } from "express"
+import { Response, Request } from "express";
+import cuentasContables from "../models/CuentasContablesPadres.model";
 
-export const getCuentasPadre = (req:Request , res:Response)=>{
+export const getCuentasPadre = async (req: Request, res: Response) => {
+  try {
 
-    res.json({message:'Todas las cuentas'})
+    //await cuentas.sync({ alter: true })
+    const CuentasResultado = await cuentasContables.findAll();
 
-}
+    res.status(200).json(CuentasResultado);
+  } catch (error) {
+    console.log(error);
+  }
+  
+};

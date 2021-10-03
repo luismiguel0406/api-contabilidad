@@ -1,9 +1,9 @@
 import express, { Application, query } from "express";
-import CuentasRoutes from "../routes/cuentas.routes";
+import CuentasRoutes from "../routes/cuentas.route";
 import cors from "cors";
 import https from "https";
 import db from "../Database/connectionDB";
-require('dotenv').config();
+require("dotenv").config();
 
 /*INICIALIZO EL SERVIDOR*/
 class Server {
@@ -11,7 +11,7 @@ class Server {
   private port: String;
 
   private apiPath = {
-    CuentasPadre: "Api/CuentasPadre",
+    CuentasPadre: '/api/CuentasPadre',
   };
 
   constructor() {
@@ -32,21 +32,16 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
-      console.log('Database CACTUS Online');
+      console.log("Database CACTUS Online");
     } catch (error) {
       console.log(`Error${error}`);
     }
   }
 
   listen() {
-    /*https.createServer({}, this.app).listen(this.port, () => {
-      console.log(`Server con Https escuchando en el puerto ${this.port}`);
-    });*/
-     
-       this.app.listen(this.port, () => {
+    this.app.listen(this.port, () => {
       console.log(`Server escuchando en el puerto ${this.port}`);
     });
-   
   }
   /* RUTAS PARA CONSULTA */
   routes() {

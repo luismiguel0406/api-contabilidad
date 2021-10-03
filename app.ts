@@ -1,7 +1,6 @@
-
 import Server from "./models/server";
 
 
-const ser = new Server;
+const server = new Server;
 
-ser.listen()
+server.listen()
