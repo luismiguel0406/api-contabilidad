@@ -110,25 +110,25 @@ i_terminal
 
 --TABLA MONEDA
 
-CREATE TABLE "FACTURACION".tb_moneda(
-m_id_moneda SERIAL PRIMARY KEY NOT NULL,
-m_descripcion VARCHAR(25),
-m_simbolo VARCHAR(25),
-m_estado BIT NOT NULL,
-m_fecha_ingreso TIMESTAMP WITH TIME ZONE NOT NULL,
-m_fecha_actualizacion TIMESTAMP WITH TIME ZONE,
-m_usuario VARCHAR(25) NOT NULL,
-m_terminal VARCHAR(25) NOT NULL	
+CREATE TABLE "FACTURACION".monedas(
+id SERIAL PRIMARY KEY NOT NULL,
+descripcion VARCHAR(25),
+simbolo VARCHAR(25),
+estado BIT NOT NULL,
+createdAt TIMESTAMP WITH TIME ZONE NOT NULL,
+updatedAt TIMESTAMP WITH TIME ZONE,
+usuario VARCHAR(25) NOT NULL,
+terminal VARCHAR(25) NOT NULL	
 )
 
-INSERT INTO "FACTURACION".tb_moneda(
-m_descripcion,
-m_simbolo,
-m_estado,
-m_fecha_ingreso,
-m_fecha_actualizacion,
-m_usuario,
-m_terminal 
+INSERT INTO "FACTURACION".monedas(
+descripcion,
+simbolo,
+estado,
+createdAt,
+updatedAt,
+usuario,
+terminal 
 )
 VALUES
 ('DOP','RD$','1',NOW(),NULL,'SA','SA'),
