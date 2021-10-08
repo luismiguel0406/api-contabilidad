@@ -14,7 +14,7 @@ CREATE TABLE "EMPRESA".empresa
     telefono VARCHAR (20),
     correo VARCHAR (50),
     usuario VARCHAR(25) NOT NULL,
-    termial VARCHAR (25) NOT NULL 
+    terminal VARCHAR (25) NOT NULL 
 )
 --INSERT EMPRESA EJEMPLO
 INSERT INTO "EMPRESA".empresa(
@@ -29,7 +29,7 @@ INSERT INTO "EMPRESA".empresa(
     telefono,
     correo,
     usuario,
-    termial  
+    terminal  
 )
 VALUES
 ('EMPRESA CACTUS','CA','123456','1','1',NOW(),NULL,'CALLE 1RA','809-555-5555','CORREO@EMAIL.COM','SA','SA')
