@@ -32,7 +32,10 @@ const getCuentaContablePadre = (req, res, next) => __awaiter(void 0, void 0, voi
     try {
         const { noCuenta } = req.params;
         const cuentas_service = new cuentasContables_service_1.default();
-        const cuenta = yield cuentas_service.getCuenta(parseInt(noCuenta));
+        const cuenta = yield cuentas_service.getCuenta(noCuenta);
+        if (cuenta === null) {
+            return res.status(204).json({ Message: 'No content' });
+        }
         res.status(200).json(cuenta);
     }
     catch (error) {

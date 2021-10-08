@@ -5,8 +5,8 @@ export default class cuentasContablesService {
     const cuentasContables = await cuentasContablesPadresModel.findAll();
     return cuentasContables;
   }
-  
-  async getCuenta(noCuenta: number) {
+
+  async getCuenta(noCuenta: string) {
     const cuentContable = await cuentasContablesPadresModel.findAll({
       where: {
         noCuenta,
