@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import conexion from "./../Database/connectionDB";
 
-const cuentasContables = conexion.define(
+const cuentasContablesPadres = conexion.define(
   "cuentasContablesPadres",
   {
     noCuenta: {
@@ -38,4 +38,4 @@ const cuentasContables = conexion.define(
   { schema: "CUENTAS" }
 );
 
-export default cuentasContables;
+export default cuentasContablesPadres;

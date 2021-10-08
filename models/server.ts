@@ -1,24 +1,21 @@
-import express, { Application, query } from "express";
+import express, { Application} from "express";
 import CuentasRoutes from "../routes/cuentas/cuentas.route";
 import monedaRoutes from "../routes/facturacion/moneda.route";
+import empresaRoutes from "../routes/empresa/empresa.route";
 import cors from "cors";
 import https from "https";
+import variablesEnv from "../config/index";
 import db from "../Database/connectionDB";
-require("dotenv").config();
+
 
 /*INICIALIZO EL SERVIDOR*/
 class Server {
   private app: Application;
   private port: String;
 
-  private apiPath = {
-    CuentasPadre: '/api/CuentasPadre',
-    Facturacion :'/api/moneda'
-  };
-
   constructor() {
     this.app = express();
-    this.port = process.env.PORT || "3000";
+    this.port = variablesEnv.PORT || '';
 
     this.dbConnection();
     this.middlewares();
@@ -47,8 +44,9 @@ class Server {
   }
   /* RUTAS PARA CONSULTA */
   routes() {
-    this.app.use(this.apiPath.CuentasPadre, CuentasRoutes);
-    this.app.use(this.apiPath.Facturacion, monedaRoutes)
+    this.app.use(CuentasRoutes);
+    this.app.use(monedaRoutes);
+    this.app.use(empresaRoutes);
   }
 }
 export default Server;

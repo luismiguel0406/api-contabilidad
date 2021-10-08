@@ -12,21 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMoneda = void 0;
-const monedas_service_1 = __importDefault(require("../services/facturacion/monedas.service"));
-const getMoneda = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { id } = req.params;
-        const moneda_Service = new monedas_service_1.default();
-        const monedaResult = yield moneda_Service.getMoneda(id);
-        if (monedaResult === null) {
-            return res.status(204).json({ Message: "No content" });
-        }
-        res.status(200).json({ Monedas: monedaResult });
+const moneda_model_1 = __importDefault(require("../../models/moneda.model"));
+const sequelize_1 = require("sequelize");
+class monedaService {
+    getMoneda(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const MonedaResult = yield moneda_model_1.default.findAll({
+                where: {
+                    [sequelize_1.Op.or]: [{ id }, { id: null }],
+                },
+            });
+            return MonedaResult;
+        });
     }
-    catch (error) {
-        res.status(404).json({ Message: "Ha ocurrido un error ", error });
-    }
-});
-exports.getMoneda = getMoneda;
-//# sourceMappingURL=moneda.controller.js.map
+}
+exports.default = monedaService;
+//# sourceMappingURL=monedas.service.js.map

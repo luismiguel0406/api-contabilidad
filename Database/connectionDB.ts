@@ -1,11 +1,8 @@
 import { Sequelize } from "sequelize";
-import { config } from "dotenv";
+import variablesEnv from "../config/index";
 
-config();
 
-let DataBaseUrl = process.env.DATABASE_URL;
-
-const db = new Sequelize(DataBaseUrl || "", {
+const db = new Sequelize(variablesEnv.DATABASE_URL || '', {
   dialect: "postgres",
   dialectOptions: {
     ssl: {

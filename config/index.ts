@@ -1,11 +1,11 @@
 import dotenv from "dotenv";
 
-//dotenv.config();
+dotenv.config();
 
-module.exports = {
+export default  {
   NODE_ENV: process.env.NODE_ENV,
-  PORT: process.env.PORT || 3000,
-  HOST:process.env.HOST || '127.0.0.1',
+  PORT: process.env.PORT,
+  HOST:process.env.HOST,
   HOST_DB:process.env.HOST_DB,
   USER_DB:process.env.USER_DB,
   DATABASE_NAME:process.env.DATABASE_NAME,

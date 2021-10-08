@@ -1,15 +1,23 @@
 import { DataTypes } from "sequelize";
 import conexion from "../Database/connectionDB";
 
-const moneda = conexion.define(
-  "moneda",
+const empresa = conexion.define(
+  "empresa",
   {
-    descripcion: {
+    nombre: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    simbolo: {
+    inicialesEmpresa: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    rnc: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    sucursal: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     estado: {
@@ -23,6 +31,18 @@ const moneda = conexion.define(
     updatedAt: {
       type: DataTypes.DATE,
     },
+    direccion: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    telefono: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    correo: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     usuario: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -32,7 +52,6 @@ const moneda = conexion.define(
       allowNull: false,
     },
   },
-  { schema: "FACTURACION"}
+  { schema: "EMPRESA" }
 );
-
-export default moneda;
+export default empresa;

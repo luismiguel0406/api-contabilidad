@@ -12,17 +12,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCuentasPadre = void 0;
-const CuentasContablesPadres_model_1 = __importDefault(require("../models/CuentasContablesPadres.model"));
-const getCuentasPadre = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getCuentaContablePadre = exports.getCuentasContablesPadre = void 0;
+const cuentasContables_service_1 = __importDefault(require("../services/cuentas/cuentasContables.service"));
+const getCuentasContablesPadre = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        //await cuentas.sync({ alter: true })
-        const CuentasResultado = yield CuentasContablesPadres_model_1.default.findAll();
-        res.status(200).json(CuentasResultado);
+        const cuentas_service = new cuentasContables_service_1.default();
+        const cuentas = yield cuentas_service.getCuentas();
+        if (cuentas === null) {
+            return res.status(204).json({ Message: 'No content' });
+        }
+        res.status(200).json(cuentas);
     }
     catch (error) {
-        console.log(error);
+        res.status(500).json({ Message: "El recurso que esta buscando no existe", error });
     }
 });
-exports.getCuentasPadre = getCuentasPadre;
+exports.getCuentasContablesPadre = getCuentasContablesPadre;
+const getCuentaContablePadre = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { noCuenta } = req.params;
+        const cuentas_service = new cuentasContables_service_1.default();
+        const cuenta = yield cuentas_service.getCuenta(parseInt(noCuenta));
+        res.status(200).json(cuenta);
+    }
+    catch (error) {
+        res.status(500).json({ Message: "El recurso que esta buscando no existe", error });
+    }
+});
+exports.getCuentaContablePadre = getCuentaContablePadre;
 //# sourceMappingURL=cuentas.controller.js.map

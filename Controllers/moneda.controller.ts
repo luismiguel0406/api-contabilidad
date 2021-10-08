@@ -1,11 +1,17 @@
 import { Response, Request } from "express";
-import moneda from "../models/moneda.model";
+import monedaService from "../services/facturacion/monedas.service";
 
 export const getMoneda = async (req: Request, res: Response) => {
   try {
-    const monedaResultado = await moneda.findAll();
-    res.status(200).json(monedaResultado);
+    const { id } = req.params;
+    const moneda_Service = new monedaService();
+    const monedaResult = await moneda_Service.getMoneda(id);
+
+    if (monedaResult === null) {
+      return res.status(204).json({ Message: "No content" });
+    }
+    res.status(200).json({ Monedas: monedaResult });
   } catch (error) {
-    res.status(404).json({ Message: "No hay cuentas", error });
+    res.status(404).json({ Message: "Ha ocurrido un error ", error });
   }
 };
