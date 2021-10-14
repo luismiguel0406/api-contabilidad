@@ -16,8 +16,27 @@ const empresa_model_1 = __importDefault(require("../../models/empresa.model"));
 class empresaService {
     getEmpresa(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const empresa = yield empresa_model_1.default.findAll({});
+            const empresa = yield empresa_model_1.default.findAll({
+                where: {
+                    estado: "1"
+                }
+            });
             return empresa;
+        });
+    }
+    AddEmpresa(body) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const empresa = empresa_model_1.default.create(body);
+            (yield empresa).save();
+        });
+    }
+    deleteEmpresa(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield empresa_model_1.default.update({ estado: "0" }, {
+                where: {
+                    id,
+                },
+            });
         });
     }
 }

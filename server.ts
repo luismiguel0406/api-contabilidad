@@ -1,11 +1,12 @@
 import express, { Application} from "express";
-import CuentasRoutes from "../routes/cuentas/cuentas.route";
-import monedaRoutes from "../routes/facturacion/moneda.route";
-import empresaRoutes from "../routes/empresa/empresa.route";
+import CuentasRoutes from "./routes/cuentas/cuentas.route";
+import monedaRoutes from "./routes/facturacion/moneda.route";
+import empresaRoutes from "./routes/empresa/empresa.route";
 import cors from "cors";
 import https from "https";
-import variablesEnv from "../config/index";
-import db from "../Database/connectionDB";
+import variablesEnv from "./config/index";
+import db from "./Database/connectionDB";
+import helmet from "helmet";
 
 
 /*INICIALIZO EL SERVIDOR*/
@@ -23,6 +24,7 @@ class Server {
   }
 
   middlewares() {
+    this.app.use(helmet());
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.static("public"));
