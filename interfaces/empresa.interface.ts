@@ -6,7 +6,7 @@ export interface empresa {
   sucursal: number;
   estado: boolean;
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt: Date | null;
   direccion: string;
   telefono: string;
   correo: string;

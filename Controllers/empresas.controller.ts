@@ -59,4 +59,22 @@ try {
     res.status(statusCode).json({ Message: msg ,error});
 }
 
+};
+
+export const updateEmpresa = async (req:Request, res:Response , next :NextFunction)=>{
+ 
+ const {body}= req;
+ const {id} = req.params
+
+try {
+  
+  await empresa.updateEmpresa(body, id);
+  const {statusCode, msg} = MsgRespuesta.Success
+  res.status(statusCode).json({Message :msg})
+  
+} catch (error) {
+  const { msg, statusCode } = MsgRespuesta.internalError;
+    res.status(statusCode).json({ Message: msg ,error});
 }
+
+};

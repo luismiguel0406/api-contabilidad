@@ -4,9 +4,9 @@ import empresasModel from "../../models/empresa.model";
 export default class empresaService {
   async getEmpresa(id: string) {
     const empresa = await empresasModel.findAll({
-      where:{
-        estado: "1"
-      }
+      where: {
+        estado: "1",
+      },
     });
     return empresa;
   }
@@ -16,8 +16,8 @@ export default class empresaService {
     (await empresa).save();
   }
 
-  async deleteEmpresa(id:string) {
-   await empresasModel.update(
+  async deleteEmpresa(id: string) {
+    await empresasModel.update(
       { estado: "0" },
       {
         where: {
@@ -25,5 +25,14 @@ export default class empresaService {
         },
       }
     );
+  }
+
+  async updateEmpresa(body: empresa, id: string) {
+    await empresasModel.update(body, {
+      where: {
+        id,
+        estado: "1",
+      },
+    });
   }
 }

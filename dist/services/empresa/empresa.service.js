@@ -18,8 +18,8 @@ class empresaService {
         return __awaiter(this, void 0, void 0, function* () {
             const empresa = yield empresa_model_1.default.findAll({
                 where: {
-                    estado: "1"
-                }
+                    estado: "1",
+                },
             });
             return empresa;
         });
@@ -35,6 +35,16 @@ class empresaService {
             yield empresa_model_1.default.update({ estado: "0" }, {
                 where: {
                     id,
+                },
+            });
+        });
+    }
+    updateEmpresa(body, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield empresa_model_1.default.update(body, {
+                where: {
+                    id,
+                    estado: "1",
                 },
             });
         });

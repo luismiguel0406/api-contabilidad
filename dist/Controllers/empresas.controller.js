@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteEmpresa = exports.postEmpresa = exports.getEmpresa = void 0;
+exports.updateEmpresa = exports.deleteEmpresa = exports.postEmpresa = exports.getEmpresa = void 0;
 const empresa_service_1 = __importDefault(require("../services/empresa/empresa.service"));
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const empresa = new empresa_service_1.default();
@@ -58,4 +58,18 @@ const deleteEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.deleteEmpresa = deleteEmpresa;
+const updateEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { body } = req;
+    const { id } = req.params;
+    try {
+        yield empresa.updateEmpresa(body, id);
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        res.status(statusCode).json({ Message: msg });
+    }
+    catch (error) {
+        const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.internalError;
+        res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.updateEmpresa = updateEmpresa;
 //# sourceMappingURL=empresas.controller.js.map

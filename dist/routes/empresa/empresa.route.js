@@ -7,5 +7,6 @@ const endPointEmpresas = '/api/empresa';
 router.get(`${endPointEmpresas}`, empresas_controller_1.getEmpresa); //filtrar por id
 router.post(`${endPointEmpresas}`, empresas_controller_1.postEmpresa);
 router.put(`${endPointEmpresas}/deleteEmpresa/:id`, empresas_controller_1.deleteEmpresa);
+router.put(`${endPointEmpresas}/updateEmpresa/:id`, empresas_controller_1.updateEmpresa);
 exports.default = router;
 //# sourceMappingURL=empresa.route.js.map
