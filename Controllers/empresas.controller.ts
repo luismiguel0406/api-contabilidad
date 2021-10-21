@@ -63,10 +63,9 @@ try {
 
 export const updateEmpresa = async (req:Request, res:Response , next :NextFunction)=>{
  
- const {body}= req;
- const {id} = req.params
-
 try {
+  const {body}= req;
+  const {id} = req.params
   
   await empresa.updateEmpresa(body, id);
   const {statusCode, msg} = MsgRespuesta.Success

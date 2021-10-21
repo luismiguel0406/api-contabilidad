@@ -59,9 +59,9 @@ const deleteEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, func
 });
 exports.deleteEmpresa = deleteEmpresa;
 const updateEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { body } = req;
-    const { id } = req.params;
     try {
+        const { body } = req;
+        const { id } = req.params;
         yield empresa.updateEmpresa(body, id);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
         res.status(statusCode).json({ Message: msg });

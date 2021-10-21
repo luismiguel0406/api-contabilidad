@@ -25,6 +25,7 @@ class cuentasContablesService {
             const cuentContable = yield CuentasContablesPadres_model_1.default.findAll({
                 where: {
                     noCuenta,
+                    estado: "1"
                 },
             });
             return cuentContable;

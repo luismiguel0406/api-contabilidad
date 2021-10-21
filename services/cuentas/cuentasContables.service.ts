@@ -10,6 +10,7 @@ export default class cuentasContablesService {
     const cuentContable = await cuentasContablesPadresModel.findAll({
       where: {
         noCuenta,
+        estado : "1"
       },
     });
 

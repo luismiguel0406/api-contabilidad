@@ -12,21 +12,64 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMoneda = void 0;
+exports.deleteMoneda = exports.updateMoneda = exports.postMoneda = exports.getMoneda = void 0;
+const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const monedas_service_1 = __importDefault(require("../services/facturacion/monedas.service"));
+const moneda_Service = new monedas_service_1.default();
 const getMoneda = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const moneda_Service = new monedas_service_1.default();
         const monedaResult = yield moneda_Service.getMoneda(id);
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
         if (monedaResult === null) {
-            return res.status(204).json({ Message: "No content" });
+            return res.status(statusCode).json({ Message: msg });
         }
         res.status(200).json({ Monedas: monedaResult });
     }
     catch (error) {
-        res.status(404).json({ Message: "Ha ocurrido un error ", error });
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.internalError;
+        res.status(statusCode).json({ Message: msg, error });
     }
 });
 exports.getMoneda = getMoneda;
+const postMoneda = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { body } = req;
+        yield moneda_Service.addMoneda(body);
+        const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.created;
+        res.status(statusCode).json({ Message: msg });
+    }
+    catch (error) {
+        const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.internalError;
+        res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.postMoneda = postMoneda;
+const updateMoneda = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const { body } = req;
+        yield moneda_Service.updateMoneda(id, body);
+        const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        res.status(statusCode).json({ Message: msg });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.internalError;
+        res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.updateMoneda = updateMoneda;
+const deleteMoneda = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        yield moneda_Service.deleteMoneda(id);
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        res.status(statusCode).json({ Message: msg });
+    }
+    catch (error) {
+        const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.internalError;
+        res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.deleteMoneda = deleteMoneda;
 //# sourceMappingURL=moneda.controller.js.map

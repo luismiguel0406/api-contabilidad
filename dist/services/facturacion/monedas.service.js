@@ -19,10 +19,37 @@ class monedaService {
         return __awaiter(this, void 0, void 0, function* () {
             const MonedaResult = yield moneda_model_1.default.findAll({
                 where: {
-                    [sequelize_1.Op.or]: [{ id }, { id: null }],
+                    id: {
+                        [sequelize_1.Op.or]: {
+                            [sequelize_1.Op.eq]: id,
+                            [sequelize_1.Op.not]: null,
+                        },
+                    },
                 },
             });
             return MonedaResult;
+        });
+    }
+    updateMoneda(id, body) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield moneda_model_1.default.update(body, {
+                where: {
+                    id,
+                    estado: "1",
+                },
+            });
+        });
+    }
+    deleteMoneda(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield moneda_model_1.default.update({ estado: "0" }, {
+                where: { id },
+            });
+        });
+    }
+    addMoneda(body) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield moneda_model_1.default.create(body);
         });
     }
 }
