@@ -1,19 +1,13 @@
 import monedaModel from "../../models/moneda.model";
-import { Op } from "sequelize";
 import { Moneda } from "../../interfaces/moneda.interface";
 
 export default class monedaService {
-  async getMoneda(id: any) {
-    const MonedaResult = await monedaModel.findAll({
-      where: {
-        id: {
-          [Op.or]: {
-            [Op.eq]: id,
-            [Op.not]: null,
-          },
-        },
-      },
-    });
+  async getMoneda(id: any = null) {
+    const MonedaResult =
+      id === null
+        ? await monedaModel.findAll({ where: { estado: "1" } })
+        : await monedaModel.findOne({ where: { id, estado: "1" } });
+
     return MonedaResult;
   }
 

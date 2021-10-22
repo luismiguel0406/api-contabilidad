@@ -13,20 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const moneda_model_1 = __importDefault(require("../../models/moneda.model"));
-const sequelize_1 = require("sequelize");
 class monedaService {
-    getMoneda(id) {
+    getMoneda(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            const MonedaResult = yield moneda_model_1.default.findAll({
-                where: {
-                    id: {
-                        [sequelize_1.Op.or]: {
-                            [sequelize_1.Op.eq]: id,
-                            [sequelize_1.Op.not]: null,
-                        },
-                    },
-                },
-            });
+            const MonedaResult = id === null
+                ? yield moneda_model_1.default.findAll({ where: { estado: "1" } })
+                : yield moneda_model_1.default.findOne({ where: { id, estado: "1" } });
             return MonedaResult;
         });
     }

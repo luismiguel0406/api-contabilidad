@@ -20,8 +20,7 @@ export const getMoneda = async (req: Request, res: Response) => {
     res.status(statusCode).json({ Message: msg, error });
   }
 };
-export const postMoneda = async (req: Request, res: Response)=>{
-
+export const postMoneda = async (req: Request, res: Response) => {
   try {
     const { body } = req;
     await moneda_Service.addMoneda(body);
@@ -29,10 +28,8 @@ export const postMoneda = async (req: Request, res: Response)=>{
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
     const { msg, statusCode } = MsgRespuesta.internalError;
-    res.status(statusCode).json({ Message: msg ,error});
+    res.status(statusCode).json({ Message: msg, error });
   }
-
-
 };
 
 export const updateMoneda = async (req: Request, res: Response) => {
