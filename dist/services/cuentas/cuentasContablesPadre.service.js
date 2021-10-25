@@ -12,14 +12,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const CuentasContables_model_1 = __importDefault(require("../../models/CuentasContables.model"));
-class cuentasContables {
-    addCuentaContable(cuenta) {
+const CuentasContablesPadres_model_1 = __importDefault(require("../../models/CuentasContablesPadres.model"));
+class cuentasContablesPadreService {
+    getCuentas() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(cuenta);
-            yield CuentasContables_model_1.default.create(cuenta);
+            const cuentasContables = yield CuentasContablesPadres_model_1.default.findAll();
+            return cuentasContables;
+        });
+    }
+    getCuenta(noCuenta) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const cuentContable = yield CuentasContablesPadres_model_1.default.findAll({
+                where: {
+                    noCuenta,
+                    estado: "1"
+                },
+            });
+            return cuentContable;
         });
     }
 }
-exports.default = cuentasContables;
-//# sourceMappingURL=cuentasContables.service.js.map
+exports.default = cuentasContablesPadreService;
+//# sourceMappingURL=cuentasContablesPadre.service.js.map

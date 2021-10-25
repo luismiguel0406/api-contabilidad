@@ -13,10 +13,12 @@
   "license": "ISC",
   "dependencies": {
     "@types/helmet": "^4.0.0",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
+    "joi": "^17.4.2",
     "mysql2": "^2.3.0",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",

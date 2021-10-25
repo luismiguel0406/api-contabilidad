@@ -21,7 +21,7 @@ export const getEmpresa = async (
     res.status(200).json({ Empresas: empresaResultado });
   } catch (error) {
     const { msg, statusCode } = MsgRespuesta.internalError;
-    res.status(statusCode).json({ Message: msg ,error});
+    res.status(statusCode).json({ Message: msg, error });
   }
 };
 
@@ -38,42 +38,40 @@ export const postEmpresa = async (
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
     const { msg, statusCode } = MsgRespuesta.internalError;
-    res.status(statusCode).json({ Message: msg ,error});
+    res.status(statusCode).json({ Message: msg, error });
   }
 };
 
 export const deleteEmpresa = async (
-  req:Request, 
-  res:Response , 
-  next:NextFunction
-  )=>{
-
-try {
-   const {id} = req.params;
-   await empresa.deleteEmpresa(id);
-   const {statusCode, msg} = MsgRespuesta.Success
-   res.status(statusCode).json({Message: msg})
-
-} catch (error) {
-   const { msg, statusCode } = MsgRespuesta.internalError;
-    res.status(statusCode).json({ Message: msg ,error});
-}
-
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+    await empresa.deleteEmpresa(id);
+    const { statusCode, msg } = MsgRespuesta.Success;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { msg, statusCode } = MsgRespuesta.internalError;
+    res.status(statusCode).json({ Message: msg, error });
+  }
 };
 
-export const updateEmpresa = async (req:Request, res:Response , next :NextFunction)=>{
- 
-try {
-  const {body}= req;
-  const {id} = req.params
-  
-  await empresa.updateEmpresa(body, id);
-  const {statusCode, msg} = MsgRespuesta.Success
-  res.status(statusCode).json({Message :msg})
-  
-} catch (error) {
-  const { msg, statusCode } = MsgRespuesta.internalError;
-    res.status(statusCode).json({ Message: msg ,error});
-}
+export const updateEmpresa = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { body } = req;
+    const { id } = req.params;
 
+    await empresa.updateEmpresa(body, id);
+    const { statusCode, msg } = MsgRespuesta.Success;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { msg, statusCode } = MsgRespuesta.internalError;
+    res.status(statusCode).json({ Message: msg, error });
+  }
 };

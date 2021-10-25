@@ -1,5 +1,6 @@
 import express, { Application} from "express";
-import CuentasRoutes from "./routes/cuentas/cuentas.route";
+import CuentasRoutes from "./routes/cuentasPadre/cuentas.route";
+import CuentasHijasRoutes from "./routes/cuentasHijas/cuentas.route";
 import monedaRoutes from "./routes/facturacion/moneda.route";
 import empresaRoutes from "./routes/empresa/empresa.route";
 import cors from "cors";
@@ -47,8 +48,10 @@ class Server {
   /* RUTAS PARA CONSULTA */
   routes() {
     this.app.use(CuentasRoutes);
+    this.app.use(CuentasHijasRoutes);
     this.app.use(monedaRoutes);
     this.app.use(empresaRoutes);
+    
   }
 }
 export default Server;

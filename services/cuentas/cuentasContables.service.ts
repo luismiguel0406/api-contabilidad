@@ -1,19 +1,9 @@
-import cuentasContablesPadresModel from "../../models/CuentasContablesPadres.model";
+import { cuentaContable } from "../../interfaces/cuentaContable.interface";
+import cuentaContableModel from "../../models/CuentasContables.model";
 
-export default class cuentasContablesService {
-  async getCuentas() {
-    const cuentasContables = await cuentasContablesPadresModel.findAll();
-    return cuentasContables;
-  }
-
-  async getCuenta(noCuenta: string) {
-    const cuentContable = await cuentasContablesPadresModel.findAll({
-      where: {
-        noCuenta,
-        estado : "1"
-      },
-    });
-
-    return cuentContable;
+export default class cuentasContables {
+  async addCuentaContable(cuenta: cuentaContable) {
+      console.log(cuenta);
+    await cuentaContableModel.create(cuenta);
   }
 }

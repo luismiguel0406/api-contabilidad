@@ -13,7 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const cuentas_route_1 = __importDefault(require("./routes/cuentas/cuentas.route"));
+const cuentas_route_1 = __importDefault(require("./routes/cuentasPadre/cuentas.route"));
+const cuentas_route_2 = __importDefault(require("./routes/cuentasHijas/cuentas.route"));
 const moneda_route_1 = __importDefault(require("./routes/facturacion/moneda.route"));
 const empresa_route_1 = __importDefault(require("./routes/empresa/empresa.route"));
 const cors_1 = __importDefault(require("cors"));
@@ -54,6 +55,7 @@ class Server {
     /* RUTAS PARA CONSULTA */
     routes() {
         this.app.use(cuentas_route_1.default);
+        this.app.use(cuentas_route_2.default);
         this.app.use(moneda_route_1.default);
         this.app.use(empresa_route_1.default);
     }
