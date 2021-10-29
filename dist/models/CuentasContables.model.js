@@ -35,7 +35,7 @@ const cuentaContable = connectionDB_1.default.define("cuentasContable", {
         allowNull: false,
     },
     updatedAt: {
-        type: sequelize_1.DataTypes.DATE,
+        type: sequelize_1.DataTypes.DATE
     },
     usuario: {
         type: sequelize_1.DataTypes.STRING,

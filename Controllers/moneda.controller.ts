@@ -48,10 +48,13 @@ export const updateMoneda = async (req: Request, res: Response) => {
 
 export const deleteMoneda = async (req: Request, res: Response) => {
   try {
+    
     const { id } = req.params;
     await moneda_Service.deleteMoneda(id);
+
     const { statusCode, msg } = MsgRespuesta.Success;
     res.status(statusCode).json({ Message: msg });
+
   } catch (error) {
     const { msg, statusCode } = MsgRespuesta.internalError;
     res.status(statusCode).json({ Message: msg, error });

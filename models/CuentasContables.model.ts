@@ -33,7 +33,7 @@ const cuentaContable = conexion.define(
       allowNull: false,
     },
     updatedAt: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATE
     },
     usuario: {
       type: DataTypes.STRING,

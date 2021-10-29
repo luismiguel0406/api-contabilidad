@@ -14,14 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const empresa_model_1 = __importDefault(require("../../models/empresa.model"));
 class empresaService {
-    getEmpresa(id) {
+    getEmpresa(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            const empresa = yield empresa_model_1.default.findAll({
-                where: {
-                    estado: "1",
-                },
-            });
-            return empresa;
+            const empresaResult = id === null
+                ? yield empresa_model_1.default.findAll({ where: { estado: "1" } })
+                : yield empresa_model_1.default.findOne({ where: { id, estado: "1" } });
+            return empresaResult;
         });
     }
     AddEmpresa(body) {

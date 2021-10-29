@@ -4,7 +4,7 @@ import { deleteEmpresa, getEmpresa , postEmpresa, updateEmpresa} from '../../Con
 const router  = Router();
 const endPointEmpresas = '/api/empresa'
 
-router.get(`${endPointEmpresas}`,getEmpresa); //filtrar por id
+router.get(`${endPointEmpresas}/:id?`,getEmpresa); 
 router.post(`${endPointEmpresas}`,postEmpresa);
 router.put(`${endPointEmpresas}/deleteEmpresa/:id`,deleteEmpresa);
 router.put(`${endPointEmpresas}/updateEmpresa/:id`,updateEmpresa)

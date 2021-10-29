@@ -13,13 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateEmpresa = exports.deleteEmpresa = exports.postEmpresa = exports.getEmpresa = void 0;
-const empresa_service_1 = __importDefault(require("../services/empresa/empresa.service"));
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
-const empresa = new empresa_service_1.default();
+const empresa_service_1 = __importDefault(require("../services/empresa/empresa.service"));
+const empresa_service = new empresa_service_1.default();
 const getEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const empresaResultado = yield empresa.getEmpresa(id);
+        const empresaResultado = yield empresa_service.getEmpresa(id);
         if (empresaResultado === null) {
             const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
             return res.status(statusCode).json({ Message: msg });
@@ -35,7 +35,7 @@ exports.getEmpresa = getEmpresa;
 const postEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { body } = req;
-        yield empresa.AddEmpresa(body);
+        yield empresa_service.AddEmpresa(body);
         const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.created;
         res.status(statusCode).json({ Message: msg });
     }
@@ -48,7 +48,7 @@ exports.postEmpresa = postEmpresa;
 const deleteEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        yield empresa.deleteEmpresa(id);
+        yield empresa_service.deleteEmpresa(id);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
         res.status(statusCode).json({ Message: msg });
     }
@@ -62,7 +62,7 @@ const updateEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, func
     try {
         const { body } = req;
         const { id } = req.params;
-        yield empresa.updateEmpresa(body, id);
+        yield empresa_service.updateEmpresa(body, id);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
         res.status(statusCode).json({ Message: msg });
     }

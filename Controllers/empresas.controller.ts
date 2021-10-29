@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import empresaService from "../services/empresa/empresa.service";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
+import empresaService from "../services/empresa/empresa.service";
 
-const empresa = new empresaService();
+const empresa_service = new empresaService();
 
 export const getEmpresa = async (
   req: Request,
@@ -12,7 +12,7 @@ export const getEmpresa = async (
   try {
     const { id } = req.params;
 
-    const empresaResultado = await empresa.getEmpresa(id);
+    const empresaResultado = await empresa_service.getEmpresa(id);
     if (empresaResultado === null) {
       const { msg, statusCode } = MsgRespuesta.noContent;
       return res.status(statusCode).json({ Message: msg });
@@ -32,7 +32,7 @@ export const postEmpresa = async (
 ) => {
   try {
     const { body } = req;
-    await empresa.AddEmpresa(body);
+    await empresa_service.AddEmpresa(body);
 
     const { msg, statusCode } = MsgRespuesta.created;
     res.status(statusCode).json({ Message: msg });
@@ -49,7 +49,7 @@ export const deleteEmpresa = async (
 ) => {
   try {
     const { id } = req.params;
-    await empresa.deleteEmpresa(id);
+    await empresa_service.deleteEmpresa(id);
     const { statusCode, msg } = MsgRespuesta.Success;
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
@@ -67,7 +67,7 @@ export const updateEmpresa = async (
     const { body } = req;
     const { id } = req.params;
 
-    await empresa.updateEmpresa(body, id);
+    await empresa_service.updateEmpresa(body, id);
     const { statusCode, msg } = MsgRespuesta.Success;
     res.status(statusCode).json({ Message: msg });
   } catch (error) {

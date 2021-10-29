@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postCuentaContable = void 0;
+exports.deleteCuentasContables = exports.updateCuentasContables = exports.getCuentasContables = exports.postCuentaContable = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const cuentasContables_service_1 = __importDefault(require("../services/cuentas/cuentasContables.service"));
 const cuentaContable_service = new cuentasContables_service_1.default();
@@ -29,4 +29,49 @@ const postCuentaContable = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.postCuentaContable = postCuentaContable;
+const getCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        const { id } = req.params;
+        const cuentaResult = yield cuentaContable_service.getCuentasContables(id);
+        if (cuentaResult === null) {
+            return res.status(statusCode).json({ Message: msg });
+        }
+        res.status(statusCode).json({ Cuentas: cuentaResult });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.getCuentasContables = getCuentasContables;
+const updateCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const { body } = req;
+        yield cuentaContable_service.updateCuentaContable(body, id);
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        console.log(body);
+        console.log(id);
+        res.status(statusCode).json({ Message: msg });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.updateCuentasContables = updateCuentasContables;
+const deleteCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        yield cuentaContable_service.deleteCuentaContable(id);
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        res.status(statusCode).json({ Message: msg });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.deleteCuentasContables = deleteCuentasContables;
 //# sourceMappingURL=cuentaContable.controller.js.map

@@ -4,7 +4,7 @@ const express_1 = require("express");
 const empresas_controller_1 = require("../../Controllers/empresas.controller");
 const router = (0, express_1.Router)();
 const endPointEmpresas = '/api/empresa';
-router.get(`${endPointEmpresas}`, empresas_controller_1.getEmpresa); //filtrar por id
+router.get(`${endPointEmpresas}/:id?`, empresas_controller_1.getEmpresa);
 router.post(`${endPointEmpresas}`, empresas_controller_1.postEmpresa);
 router.put(`${endPointEmpresas}/deleteEmpresa/:id`, empresas_controller_1.deleteEmpresa);
 router.put(`${endPointEmpresas}/updateEmpresa/:id`, empresas_controller_1.updateEmpresa);
