@@ -17,10 +17,10 @@ const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRes
 const cuentasContables_service_1 = __importDefault(require("../services/cuentas/cuentasContables.service"));
 const cuentaContable_service = new cuentasContables_service_1.default();
 const postCuentaContable = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
     try {
         const { body } = req;
         yield cuentaContable_service.addCuentaContable(body);
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
         res.status(statusCode).json({ Message: msg });
     }
     catch (error) {
@@ -35,9 +35,10 @@ const getCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, func
         const { id } = req.params;
         const cuentaResult = yield cuentaContable_service.getCuentasContables(id);
         if (cuentaResult === null) {
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }
-        res.status(statusCode).json({ Cuentas: cuentaResult });
+        res.status(statusCode).json({ Cuentas: cuentaResult, Message: msg });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
@@ -51,8 +52,6 @@ const updateCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, f
         const { body } = req;
         yield cuentaContable_service.updateCuentaContable(body, id);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
-        console.log(body);
-        console.log(id);
         res.status(statusCode).json({ Message: msg });
     }
     catch (error) {

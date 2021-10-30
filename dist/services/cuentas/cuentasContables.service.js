@@ -17,7 +17,10 @@ class cuentasContables {
     getCuentasContables(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const cuentaResult = id === null
-                ? yield CuentasContables_model_1.default.findAll({ where: { estado: "1" } })
+                ? yield CuentasContables_model_1.default.findAll({
+                    where: { estado: "1" },
+                    order: ["cuenta"]
+                })
                 : yield CuentasContables_model_1.default.findOne({ where: { id, estado: "1" } });
             return cuentaResult;
         });
@@ -34,9 +37,10 @@ class cuentasContables {
     }
     updateCuentaContable(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield CuentasContables_model_1.default.update({ body }, { where: { id, estado: "1" } });
+            yield CuentasContables_model_1.default.update(body, { where: { id, estado: "1" } });
         });
     }
 }
 exports.default = cuentasContables;
+;
 //# sourceMappingURL=cuentasContables.service.js.map
