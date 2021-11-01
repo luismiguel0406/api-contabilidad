@@ -1,10 +1,9 @@
 import { Router } from "express";
-import { getCuentaContablePadre, getCuentasContablesPadre } from "../../Controllers/cuentas.controller";
+import { getCuentasContablesPadre } from "../../Controllers/cuentas.controller";
 
 const router = Router();
 const endPointCuentas = '/api/cuentaspadres'
 
-router.get(`${endPointCuentas}`,getCuentasContablesPadre);
-router.get(`${endPointCuentas}/:noCuenta`,getCuentaContablePadre);
+router.get(`${endPointCuentas}/:noCuenta`,getCuentasContablesPadre);
 
 export default router;

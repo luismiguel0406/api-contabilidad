@@ -1,8 +1,8 @@
 import { Response, Request } from "express";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
-import cuentasContables from "../services/cuentas/cuentasContables.service";
+import CuentasContables from "../services/cuentas/cuentasContables.service";
 
-const cuentaContable_service = new cuentasContables();
+const cuentaContable_service = new CuentasContables();
 
 export const postCuentaContable = async (req: Request, res: Response) => {
   try {

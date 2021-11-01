@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const empresa_model_1 = __importDefault(require("../../models/empresa.model"));
-class empresaService {
+class EmpresaService {
     getEmpresa(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const empresaResult = id === null
@@ -48,5 +48,5 @@ class empresaService {
         });
     }
 }
-exports.default = empresaService;
+exports.default = EmpresaService;
 //# sourceMappingURL=empresa.service.js.map

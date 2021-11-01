@@ -1,19 +1,17 @@
+
 import cuentasContablesPadresModel from "../../models/CuentasContablesPadres.model";
 
-export default class cuentasContablesPadreService {
-  async getCuentas() {
-    const cuentasContables = await cuentasContablesPadresModel.findAll();
-    return cuentasContables;
-  }
+export default class CuentasContablesPadreService {
 
-  async getCuenta(noCuenta: string) {
-    const cuentContable = await cuentasContablesPadresModel.findAll({
-      where: {
-        noCuenta,
-        estado : "1"
-      },
-    });
+  async getCuenta(noCuenta: any = null) {
+    
+    const cuentasContablePadres = noCuenta === null 
+    ? await cuentasContablesPadresModel.findAll({
+      where: { estado : "1" },
+      order: ["id"]
+    })
+    : await cuentasContablesPadresModel.findOne({where: { noCuenta, estado: "1" } })
 
-    return cuentContable;
+    return cuentasContablePadres;
   }
 }
