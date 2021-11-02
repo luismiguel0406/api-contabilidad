@@ -2,30 +2,31 @@
 --TABLA TIPO CLIENTES
 
 CREATE TABLE "CLIENTES".tb_tipos_clientes(
-   tc_id_tipo_cliente SERIAL PRIMARY KEY NOT NULL,
-   tc_tipo_cliente VARCHAR(25) NOT NULL,
-   tc_estado BIT NOT NULL,
-   tc_fecha_ingreso TIMESTAMP WITH TIME ZONE NOT NULL,
-   tc_fecha_actualizacion TIMESTAMP WITH TIME ZONE,
-   tc_usuario VARCHAR(25) NOT NULL,
-   tc_terminal VARCHAR(25) NOT NULL		
+   id SERIAL PRIMARY KEY NOT NULL,
+   descripcion VARCHAR(25) NOT NULL,
+   estado BIT NOT NULL,
+   "createAt" TIMESTAMP WITH TIME ZONE NOT NULL,
+   "updateAt" TIMESTAMP WITH TIME ZONE,
+   usuario VARCHAR(25) NOT NULL,
+   terminal VARCHAR(25) NOT NULL		
 )
 
 --TABLA CLIENTES
 
 CREATE TABLE "CLIENTES".tb_clientes(
 
-	c_id_cliente SERIAL PRIMARY KEY NOT NULL,
-	c_nombre VARCHAR(100) NOT NULL,
-	c_rnc VARCHAR(25),
-   c_direccion VARCHAR(100),
-   c_tipo_cliente INT,
-	c_paga_itbis BIT NOT NULL,
-	c_estado BIT NOT NULL,
-   c_fecha_ingreso TIMESTAMP WITH TIME ZONE NOT NULL,
-   c_fecha_actualizacion TIMESTAMP WITH TIME ZONE,
-   c_usuario VARCHAR(25) NOT NULL,
-   c_terminal VARCHAR(25) NOT NULL,
+	id SERIAL PRIMARY KEY NOT NULL,
+	nombre VARCHAR(100) NOT NULL,
+	RNC VARCHAR(25),
+   direccion VARCHAR(100),
+   "tipoCliente" INT,
+	"pagaItbis" BIT NOT NULL,
+	estado BIT NOT NULL,
+   "createAt" TIMESTAMP WITH TIME ZONE NOT NULL,
+   "udatedAt" TIMESTAMP WITH TIME ZONE,
+   usuario VARCHAR(25) NOT NULL,
+   terminal VARCHAR(25) NOT NULL,
+   
 	CONSTRAINT PK_ID_TIPO_CLIENTE
 	FOREIGN KEY (c_tipo_cliente)
 	REFERENCES "CLIENTES".tb_tipos_clientes(tc_id_tipo_cliente)
