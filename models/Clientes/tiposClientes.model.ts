@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
-import conexion from "../Database/connectionDB";
+import conexion from "../../Database/connectionDB";
+
 
 const tiposClientes = conexion.define(
     "tipoCliente",
@@ -10,7 +11,7 @@ const tiposClientes = conexion.define(
   },
   createdAt:{
       type:DataTypes.DATE,
-      allowNull:false
+     allowNull:false
   },
   updatedAt:{
       type:DataTypes.DATE   
@@ -28,11 +29,9 @@ const tiposClientes = conexion.define(
   }
 },
 {
- schema:"CLIENTES",
- tableName:"tb_tipos_clientes"
+ schema:"CLIENTES"
+ 
 });
-
-tiposClientes.sync({ alter: true })
 
 
 export default tiposClientes;

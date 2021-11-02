@@ -40,8 +40,8 @@ const cuentaContable = conexion.define(
       allowNull: false,
     },
     terminal: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.STRING
+    
     },
   },
   { schema: "CUENTAS" }

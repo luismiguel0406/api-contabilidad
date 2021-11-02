@@ -4,27 +4,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const connectionDB_1 = __importDefault(require("../Database/connectionDB"));
-const cuentaContable = connectionDB_1.default.define("cuentasContable", {
-    cuenta: {
+const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
+const tiposClientes_model_1 = __importDefault(require("./tiposClientes.model"));
+const clientes = connectionDB_1.default.define("cliente", {
+    nombre: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    idCuentaPadre: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
-    descripcion: {
+    RNC: {
         type: sequelize_1.DataTypes.STRING,
+        unique: true,
         allowNull: false,
     },
-    idEmpresa: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
+    direccion: {
+        type: sequelize_1.DataTypes.STRING,
     },
-    idMoneda: {
-        type: sequelize_1.DataTypes.INTEGER,
+    pagaItbis: {
+        type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: "1",
     },
     estado: {
         type: sequelize_1.DataTypes.BOOLEAN,
@@ -35,15 +33,20 @@ const cuentaContable = connectionDB_1.default.define("cuentasContable", {
         allowNull: false,
     },
     updatedAt: {
-        type: sequelize_1.DataTypes.DATE
+        type: sequelize_1.DataTypes.DATE,
     },
     usuario: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     terminal: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
-}, { schema: "CUENTAS" });
-exports.default = cuentaContable;
-//# sourceMappingURL=CuentasContables.model.js.map
+}, { schema: "CLIENTES",
+    tableName: "clientes" });
+clientes.sync({ force: true });
+clientes.hasOne(tiposClientes_model_1.default, {
+    foreignKey: 'tipoClienteId',
+});
+exports.default = clientes;
+//# sourceMappingURL=Cliente.model.js.map

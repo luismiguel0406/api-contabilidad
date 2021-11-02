@@ -1,8 +1,9 @@
 import express, { Application} from "express";
-import CuentasRoutes from "./routes/cuentasPadre/cuentas.route";
-import CuentasHijasRoutes from "./routes/cuentasHijas/cuentas.route";
-import monedaRoutes from "./routes/facturacion/moneda.route";
-import empresaRoutes from "./routes/empresa/empresa.route";
+import CuentasRoutes from "./routes/Cuentas Contables/cuentasPadre/cuentas.route";
+import CuentasHijasRoutes from "./routes/Cuentas Contables/cuentasHijas/cuentas.route";
+import monedaRoutes from "./routes/Facturacion/moneda.route";
+import empresaRoutes from "./routes/Empresa/empresa.route";
+import clientesRoutes from "./routes/Clientes/clientes.route";
 import cors from "cors";
 import https from "https";
 import variablesEnv from "./config/index";
@@ -51,6 +52,7 @@ class Server {
     this.app.use(CuentasHijasRoutes);
     this.app.use(monedaRoutes);
     this.app.use(empresaRoutes);
+    this.app.use(clientesRoutes);
     
   }
 }
