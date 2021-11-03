@@ -1,5 +1,8 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
+import correos from "../Contacto/Correos.model";
+import direcciones from "../Contacto/Direcciones.model";
+import telefonos from "../Contacto/telefono.model";
 import tiposClientes from "./tiposClientes.model";
 
 const clientes = conexion.define(
@@ -41,14 +44,22 @@ const clientes = conexion.define(
       type: DataTypes.STRING,
     },
   },
-  { schema: "CLIENTES" ,
-   tableName:"clientes"}
-
+  { schema: "CLIENTES", tableName: "clientes" }
 );
 
-clientes.sync({force:true})
-clientes.hasOne(tiposClientes,{
-    foreignKey:'tipoClienteId',   
-})
+clientes.sync();
+
+clientes.hasMany(tiposClientes, {
+  foreignKey: "tipoClienteId",
+});
+clientes.hasMany(correos, {
+  foreignKey: "contactoId",
+});
+clientes.hasMany(telefonos, {
+  foreignKey: "contactoId",
+});
+clientes.hasMany(direcciones, {
+  foreignKey: "contactoId",
+});
 
 export default clientes;

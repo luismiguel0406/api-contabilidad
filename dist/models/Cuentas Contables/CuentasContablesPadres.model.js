@@ -5,21 +5,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const tiposClientes = connectionDB_1.default.define("tipoCliente", {
+const cuentasContablesPadres = connectionDB_1.default.define("cuentasContablesPadres", {
+    noCuenta: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
     descripcion: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    createdAt: {
-        type: sequelize_1.DataTypes.DATE,
+    idEmpresa: {
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
-    },
-    updatedAt: {
-        type: sequelize_1.DataTypes.DATE,
     },
     estado: {
         type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
+    },
+    createdAt: {
+        type: sequelize_1.DataTypes.DATE
+    },
+    updatedAt: {
+        type: sequelize_1.DataTypes.DATE
     },
     usuario: {
         type: sequelize_1.DataTypes.STRING,
@@ -27,11 +34,8 @@ const tiposClientes = connectionDB_1.default.define("tipoCliente", {
     },
     terminal: {
         type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
     },
-}, {
-    schema: "CLIENTES",
-    tableName: "tipoClientes",
-});
-tiposClientes.sync();
-exports.default = tiposClientes;
-//# sourceMappingURL=tiposClientes.model.js.map
+}, { schema: "CUENTAS" });
+exports.default = cuentasContablesPadres;
+//# sourceMappingURL=CuentasContablesPadres.model.js.map

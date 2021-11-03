@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const empresa_model_1 = __importDefault(require("../../models/empresa.model"));
+const empresa_model_1 = __importDefault(require("../../models/Empresa/empresa.model"));
 class EmpresaService {
     getEmpresa(id = null) {
         return __awaiter(this, void 0, void 0, function* () {

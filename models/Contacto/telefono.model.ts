@@ -1,19 +1,11 @@
 import { DataTypes } from "sequelize";
-import conexion from "../Database/connectionDB";
+import conexion from "../../Database/connectionDB";
 
-const moneda = conexion.define(
-  "moneda",
+const telefonos = conexion.define(
+  "telefono",
   {
-    descripcion: {
+    telefono: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    simbolo: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    estado: {
-      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     createdAt: {
@@ -23,16 +15,20 @@ const moneda = conexion.define(
     updatedAt: {
       type: DataTypes.DATE,
     },
+    estado: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
     usuario: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     terminal: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
   },
-  { schema: "FACTURACION"}
+  { schema: "CONTACTOS", tableName: "telefonos" }
 );
 
-export default moneda;
+telefonos.sync();
+export default telefonos;

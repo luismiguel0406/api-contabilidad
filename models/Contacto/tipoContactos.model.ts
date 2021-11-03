@@ -1,10 +1,10 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
 
-const tiposClientes = conexion.define(
-  "tipoCliente",
+const tiposContactos = conexion.define(
+  "tipoContactos",
   {
-    descripcion: {
+    tipoContacto: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -27,11 +27,10 @@ const tiposClientes = conexion.define(
       type: DataTypes.STRING,
     },
   },
-  {
-    schema: "CLIENTES",
-    tableName: "tipoClientes",
-  }
+  { schema: "CONTACTOS", tableName: "tiposContactos" }
+
 );
 
-tiposClientes.sync();
-export default tiposClientes;
+tiposContactos.sync();
+
+export default tiposContactos;

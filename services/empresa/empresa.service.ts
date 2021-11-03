@@ -1,5 +1,5 @@
 import { empresa } from "../../interfaces/empresa.interface";
-import empresasModel from "../../models/empresa.model";
+import empresasModel from "../../models/Empresa/empresa.model";
 
 export default class EmpresaService {
   async getEmpresa(id: any = null) {

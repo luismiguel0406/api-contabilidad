@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const CuentasContables_model_1 = __importDefault(require("../../models/CuentasContables.model"));
+const CuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/CuentasContables.model"));
 class CuentasContables {
     getCuentasContables(id = null) {
         return __awaiter(this, void 0, void 0, function* () {

@@ -1,19 +1,15 @@
 import { DataTypes } from "sequelize";
-import conexion from "./../Database/connectionDB";
+import conexion from "../../Database/connectionDB";
 
-const cuentasContablesPadres = conexion.define(
-  "cuentasContablesPadres",
+const moneda = conexion.define(
+  "moneda",
   {
-    noCuenta: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    idEmpresa: {
-      type: DataTypes.INTEGER,
+    simbolo: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     estado: {
@@ -21,10 +17,11 @@ const cuentasContablesPadres = conexion.define(
       allowNull: false,
     },
     createdAt: {
-      type: DataTypes.DATE  
+      type: DataTypes.DATE,
+      allowNull: false,
     },
     updatedAt: {
-      type: DataTypes.DATE    
+      type: DataTypes.DATE,
     },
     usuario: {
       type: DataTypes.STRING,
@@ -35,7 +32,7 @@ const cuentasContablesPadres = conexion.define(
       allowNull: false,
     },
   },
-  { schema: "CUENTAS" }
+  { schema: "FACTURACION"}
 );
 
-export default cuentasContablesPadres;
+export default moneda;

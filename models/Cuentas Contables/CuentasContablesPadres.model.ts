@@ -1,23 +1,30 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
 
-const tiposClientes = conexion.define(
-  "tipoCliente",
+const cuentasContablesPadres = conexion.define(
+  "cuentasContablesPadres",
   {
+    noCuenta: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    createdAt: {
-      type: DataTypes.DATE,
+    idEmpresa: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
     },
     estado: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE  
+    },
+    updatedAt: {
+      type: DataTypes.DATE    
     },
     usuario: {
       type: DataTypes.STRING,
@@ -25,13 +32,10 @@ const tiposClientes = conexion.define(
     },
     terminal: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
   },
-  {
-    schema: "CLIENTES",
-    tableName: "tipoClientes",
-  }
+  { schema: "CUENTAS" }
 );
 
-tiposClientes.sync();
-export default tiposClientes;
+export default cuentasContablesPadres;

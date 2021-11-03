@@ -1,5 +1,5 @@
 import { cuentaContable } from "../../interfaces/cuentaContable.interface";
-import cuentaContableModel from "../../models/CuentasContables.model";
+import cuentaContableModel from "../../models/Cuentas Contables/CuentasContables.model";
 
 export default class CuentasContables {
   async getCuentasContables(id: any = null) {

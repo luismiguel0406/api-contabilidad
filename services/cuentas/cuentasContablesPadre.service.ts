@@ -1,5 +1,5 @@
 
-import cuentasContablesPadresModel from "../../models/CuentasContablesPadres.model";
+import cuentasContablesPadresModel from "../../models/Cuentas Contables/CuentasContablesPadres.model";
 
 export default class CuentasContablesPadreService {
 
