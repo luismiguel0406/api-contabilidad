@@ -14,7 +14,7 @@ const clientes = connectionDB_1.default.define("cliente", {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    RNC: {
+    RNC_Cedula: {
         type: sequelize_1.DataTypes.STRING,
         unique: true,
         allowNull: false,

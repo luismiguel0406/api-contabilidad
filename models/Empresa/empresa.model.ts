@@ -12,9 +12,10 @@ const empresa = conexion.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    rnc: {
+    RNC: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique:true
     },
     sucursal: {
       type: DataTypes.INTEGER,
@@ -54,4 +55,6 @@ const empresa = conexion.define(
   },
   { schema: "EMPRESA" }
 );
+empresa.sync();
+empresa.sync({alter:true})
 export default empresa;

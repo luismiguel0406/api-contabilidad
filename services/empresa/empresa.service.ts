@@ -12,8 +12,7 @@ export default class EmpresaService {
   }
 
   async AddEmpresa(body: empresa) {
-    const empresa = empresasModel.create(body);
-    (await empresa).save();
+    await empresasModel.create(body);
   }
 
   async deleteEmpresa(id: string) {

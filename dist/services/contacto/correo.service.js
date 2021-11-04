@@ -12,33 +12,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const empresa_model_1 = __importDefault(require("../../models/Empresa/empresa.model"));
-class EmpresaService {
-    getEmpresa(id = null) {
+const Correos_model_1 = __importDefault(require("../../models/Contacto/Correos.model"));
+class CorreoService {
+    getCorreos(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            const empresaResult = id === null
-                ? yield empresa_model_1.default.findAll({ where: { estado: "1" } })
-                : yield empresa_model_1.default.findOne({ where: { id, estado: "1" } });
-            return empresaResult;
+            const correo = id === null
+                ? yield Correos_model_1.default.findAll({ where: { estado: "1" } })
+                : yield Correos_model_1.default.findOne({ where: { id, estado: "1" } });
+            return correo;
         });
     }
-    AddEmpresa(body) {
+    ;
+    AddCorreo(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield empresa_model_1.default.create(body);
+            yield Correos_model_1.default.create(body);
         });
     }
-    deleteEmpresa(id) {
+    ;
+    deleteCorreo(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield empresa_model_1.default.update({ estado: "0" }, {
+            yield Correos_model_1.default.update({ estado: "0" }, {
                 where: {
                     id,
                 },
             });
         });
     }
+    ;
     updateEmpresa(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield empresa_model_1.default.update(body, {
+            yield Correos_model_1.default.update(body, {
                 where: {
                     id,
                     estado: "1",
@@ -46,6 +49,8 @@ class EmpresaService {
             });
         });
     }
+    ;
 }
-exports.default = EmpresaService;
-//# sourceMappingURL=empresa.service.js.map
+exports.default = CorreoService;
+;
+//# sourceMappingURL=correo.service.js.map

@@ -12,7 +12,7 @@ const clientes = conexion.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    RNC: {
+    RNC_Cedula: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
