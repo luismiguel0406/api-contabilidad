@@ -9,7 +9,7 @@ export default class monedaService {
         : await monedaModel.findOne({ where: { id, estado: "1" } });
 
     return MonedaResult;
-  }
+  };
 
   async updateMoneda(id: string, body: Moneda) {
     await monedaModel.update(body, {
@@ -18,7 +18,7 @@ export default class monedaService {
         estado: "1",
       },
     });
-  }
+  };
 
   async deleteMoneda(id: string) {
     await monedaModel.update(
@@ -27,9 +27,9 @@ export default class monedaService {
         where: { id },
       }
     );
-  }
+  };
 
   async addMoneda(body: Moneda) {
     await monedaModel.create(body);
-  }
+  };
 }

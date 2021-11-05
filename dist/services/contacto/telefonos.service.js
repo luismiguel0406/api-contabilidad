@@ -12,33 +12,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Correos_model_1 = __importDefault(require("../../models/Contacto/Correos.model"));
-class CorreoService {
-    getCorreos(id = null) {
+const telefono_model_1 = __importDefault(require("../../models/Contacto/telefono.model"));
+class TelefonoService {
+    getTelefonos(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            const correo = id === null
-                ? yield Correos_model_1.default.findAll({ where: { estado: "1" } })
-                : yield Correos_model_1.default.findOne({ where: { id, estado: "1" } });
-            return correo;
+            const telefono = id === null
+                ? yield telefono_model_1.default.findAll({ where: { estado: "1" } })
+                : yield telefono_model_1.default.findOne({ where: { id, estado: "1" } });
+            return telefono;
         });
     }
-    AddCorreo(body) {
+    AddTelefono(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Correos_model_1.default.create(body);
+            yield telefono_model_1.default.create(body);
         });
     }
-    deleteCorreo(id) {
+    deleteTelefono(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Correos_model_1.default.update({ estado: "0" }, {
+            yield telefono_model_1.default.update({ estado: "0" }, {
                 where: {
                     id,
                 },
             });
         });
     }
-    updateCorreo(body, id) {
+    updateTelefono(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Correos_model_1.default.update(body, {
+            yield telefono_model_1.default.update(body, {
                 where: {
                     id,
                     estado: "1",
@@ -47,5 +47,5 @@ class CorreoService {
         });
     }
 }
-exports.default = CorreoService;
-//# sourceMappingURL=correo.service.js.map
+exports.default = TelefonoService;
+//# sourceMappingURL=telefonos.service.js.map

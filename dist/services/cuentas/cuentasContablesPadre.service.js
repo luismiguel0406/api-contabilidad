@@ -19,9 +19,11 @@ class CuentasContablesPadreService {
             const cuentasContablePadres = noCuenta === null
                 ? yield CuentasContablesPadres_model_1.default.findAll({
                     where: { estado: "1" },
-                    order: ["id"]
+                    order: ["id"],
                 })
-                : yield CuentasContablesPadres_model_1.default.findOne({ where: { noCuenta, estado: "1" } });
+                : yield CuentasContablesPadres_model_1.default.findOne({
+                    where: { noCuenta, estado: "1" },
+                });
             return cuentasContablePadres;
         });
     }

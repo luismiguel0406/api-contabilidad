@@ -31,7 +31,7 @@ const correos = connectionDB_1.default.define("correo", {
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
-}, { schema: "CONTACTOS", tableName: "correos" });
+}, { schema: "CONTACTOS" });
 correos.sync();
 exports.default = correos;
 //# sourceMappingURL=Correos.model.js.map

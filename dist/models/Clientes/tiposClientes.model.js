@@ -29,8 +29,7 @@ const tiposClientes = connectionDB_1.default.define("tipoCliente", {
         type: sequelize_1.DataTypes.STRING,
     },
 }, {
-    schema: "CLIENTES",
-    tableName: "tipoClientes",
+    schema: "CLIENTES"
 });
 tiposClientes.sync();
 exports.default = tiposClientes;

@@ -28,8 +28,8 @@ const tiposClientes = conexion.define(
     },
   },
   {
-    schema: "CLIENTES",
-    tableName: "tipoClientes",
+    schema: "CLIENTES"
+   
   }
 );
 

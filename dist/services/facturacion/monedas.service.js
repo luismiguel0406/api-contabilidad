@@ -22,6 +22,7 @@ class monedaService {
             return MonedaResult;
         });
     }
+    ;
     updateMoneda(id, body) {
         return __awaiter(this, void 0, void 0, function* () {
             yield moneda_model_1.default.update(body, {
@@ -32,6 +33,7 @@ class monedaService {
             });
         });
     }
+    ;
     deleteMoneda(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield moneda_model_1.default.update({ estado: "0" }, {
@@ -39,11 +41,13 @@ class monedaService {
             });
         });
     }
+    ;
     addMoneda(body) {
         return __awaiter(this, void 0, void 0, function* () {
             yield moneda_model_1.default.create(body);
         });
     }
+    ;
 }
 exports.default = monedaService;
 //# sourceMappingURL=monedas.service.js.map

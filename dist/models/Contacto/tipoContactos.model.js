@@ -28,7 +28,7 @@ const tiposContactos = connectionDB_1.default.define("tipoContactos", {
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
-}, { schema: "CONTACTOS", tableName: "tiposContactos" });
+}, { schema: "CONTACTOS" });
 tiposContactos.sync();
 exports.default = tiposContactos;
 //# sourceMappingURL=tipoContactos.model.js.map

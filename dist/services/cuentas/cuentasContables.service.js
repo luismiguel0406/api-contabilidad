@@ -19,7 +19,7 @@ class CuentasContables {
             const cuentaResult = id === null
                 ? yield CuentasContables_model_1.default.findAll({
                     where: { estado: "1" },
-                    order: ["cuenta"]
+                    order: ["cuenta"],
                 })
                 : yield CuentasContables_model_1.default.findOne({ where: { id, estado: "1" } });
             return cuentaResult;
@@ -42,5 +42,4 @@ class CuentasContables {
     }
 }
 exports.default = CuentasContables;
-;
 //# sourceMappingURL=cuentasContables.service.js.map

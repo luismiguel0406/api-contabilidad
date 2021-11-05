@@ -27,7 +27,7 @@ const tiposContactos = conexion.define(
       type: DataTypes.STRING,
     },
   },
-  { schema: "CONTACTOS", tableName: "tiposContactos" }
+  { schema: "CONTACTOS" }
 
 );
 

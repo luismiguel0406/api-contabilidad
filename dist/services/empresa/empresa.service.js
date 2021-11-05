@@ -22,11 +22,13 @@ class EmpresaService {
             return empresaResult;
         });
     }
+    ;
     AddEmpresa(body) {
         return __awaiter(this, void 0, void 0, function* () {
             yield empresa_model_1.default.create(body);
         });
     }
+    ;
     deleteEmpresa(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield empresa_model_1.default.update({ estado: "0" }, {
@@ -36,6 +38,7 @@ class EmpresaService {
             });
         });
     }
+    ;
     updateEmpresa(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield empresa_model_1.default.update(body, {
@@ -46,6 +49,8 @@ class EmpresaService {
             });
         });
     }
+    ;
 }
 exports.default = EmpresaService;
+;
 //# sourceMappingURL=empresa.service.js.map

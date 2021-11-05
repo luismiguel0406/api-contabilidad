@@ -45,9 +45,9 @@ const clientes = connectionDB_1.default.define("cliente", {
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
-}, { schema: "CLIENTES", tableName: "clientes" });
+}, { schema: "CLIENTES" });
 clientes.sync();
-clientes.hasMany(tiposClientes_model_1.default, {
+clientes.hasOne(tiposClientes_model_1.default, {
     foreignKey: "tipoClienteId",
 });
 clientes.hasMany(Correos_model_1.default, {

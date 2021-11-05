@@ -8,12 +8,11 @@ export default class CorreoService {
         : await correosModel.findOne({ where: { id, estado: "1" } });
 
     return correo;
-  };
+  }
 
-  async AddCorreo(body:any) {
+  async AddCorreo(body: any) {
     await correosModel.create(body);
-    
-  };
+  }
 
   async deleteCorreo(id: string) {
     await correosModel.update(
@@ -24,15 +23,14 @@ export default class CorreoService {
         },
       }
     );
-  };
+  }
 
-  async updateEmpresa(body: any, id: string) {
+  async updateCorreo(body: any, id: string) {
     await correosModel.update(body, {
       where: {
         id,
         estado: "1",
       },
     });
-  };
-};
-
+  }
+}

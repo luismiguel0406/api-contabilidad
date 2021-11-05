@@ -30,7 +30,7 @@ const correos = conexion.define(
       type: DataTypes.STRING,
     },
   },
-  { schema: "CONTACTOS", tableName: "correos" }
+  { schema: "CONTACTOS"}
 );
 
 correos.sync();

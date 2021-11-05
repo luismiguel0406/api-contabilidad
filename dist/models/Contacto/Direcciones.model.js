@@ -28,7 +28,7 @@ const direcciones = connectionDB_1.default.define("direccion", {
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
-}, { schema: "CONTACTOS", tableName: "Direcciones" });
+}, { schema: "CONTACTOS" });
 direcciones.sync();
 exports.default = direcciones;
 //# sourceMappingURL=Direcciones.model.js.map

@@ -23,4 +23,6 @@ export default class ClientesService {
   async addCliente(cliente: cliente) {
     await clientesModel.create(cliente);
   }
+
+  // demas codigo aqui de cliente
 }

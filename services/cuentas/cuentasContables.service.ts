@@ -7,7 +7,7 @@ export default class CuentasContables {
       id === null
         ? await cuentaContableModel.findAll({
             where: { estado: "1" },
-            order: ["cuenta"]
+            order: ["cuenta"],
           })
         : await cuentaContableModel.findOne({ where: { id, estado: "1" } });
     return cuentaResult;
@@ -24,4 +24,4 @@ export default class CuentasContables {
   async updateCuentaContable(body: cuentaContable, id: string) {
     await cuentaContableModel.update(body, { where: { id, estado: "1" } });
   }
-};
+}

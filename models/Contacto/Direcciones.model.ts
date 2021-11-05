@@ -27,7 +27,7 @@ const direcciones = conexion.define(
       type: DataTypes.STRING,
     },
   },
-  { schema: "CONTACTOS", tableName: "Direcciones" }
+  { schema: "CONTACTOS" }
 );
 
 direcciones.sync();

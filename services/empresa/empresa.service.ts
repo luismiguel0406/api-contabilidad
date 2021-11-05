@@ -3,17 +3,16 @@ import empresasModel from "../../models/Empresa/empresa.model";
 
 export default class EmpresaService {
   async getEmpresa(id: any = null) {
-    
-    
-    const empresaResult =  id === null 
-          ? await empresasModel.findAll({ where: { estado: "1"} })
-          : await empresasModel.findOne({ where: { id, estado : "1"} })
+    const empresaResult =
+      id === null
+        ? await empresasModel.findAll({ where: { estado: "1" } })
+        : await empresasModel.findOne({ where: { id, estado: "1" } });
     return empresaResult;
-  }
+  };
 
   async AddEmpresa(body: empresa) {
     await empresasModel.create(body);
-  }
+  };
 
   async deleteEmpresa(id: string) {
     await empresasModel.update(
@@ -24,7 +23,7 @@ export default class EmpresaService {
         },
       }
     );
-  }
+  };
 
   async updateEmpresa(body: empresa, id: string) {
     await empresasModel.update(body, {
@@ -33,5 +32,5 @@ export default class EmpresaService {
         estado: "1",
       },
     });
-  }
-}
+  };
+};

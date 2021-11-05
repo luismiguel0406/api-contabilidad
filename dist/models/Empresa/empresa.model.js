@@ -14,7 +14,7 @@ const empresa = connectionDB_1.default.define("empresa", {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    RNC: {
+    rnc: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
         unique: true
@@ -56,6 +56,5 @@ const empresa = connectionDB_1.default.define("empresa", {
     },
 }, { schema: "EMPRESA" });
 empresa.sync();
-empresa.sync({ alter: true });
 exports.default = empresa;
 //# sourceMappingURL=empresa.model.js.map

@@ -44,12 +44,12 @@ const clientes = conexion.define(
       type: DataTypes.STRING,
     },
   },
-  { schema: "CLIENTES", tableName: "clientes" }
+  { schema: "CLIENTES" }
 );
 
 clientes.sync();
 
-clientes.hasMany(tiposClientes, {
+clientes.hasOne(tiposClientes, {
   foreignKey: "tipoClienteId",
 });
 clientes.hasMany(correos, {
