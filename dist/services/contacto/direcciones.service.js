@@ -12,38 +12,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda.model"));
-class monedaService {
-    getMoneda(id = null) {
+exports.DireccionesService = void 0;
+const Direcciones_model_1 = __importDefault(require("../../models/Contacto/Direcciones.model"));
+class DireccionesService {
+    getDirecciones(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            const MonedaResult = id === null
-                ? yield moneda_model_1.default.findAll({ where: { estado: "1" } })
-                : yield moneda_model_1.default.findOne({ where: { id, estado: "1" } });
-            return MonedaResult;
+            const direccionesResult = id === null
+                ? yield Direcciones_model_1.default.findAll({ where: { estado: "1" } })
+                : yield Direcciones_model_1.default.findOne({ where: { id, estado: "1" } });
+            return direccionesResult;
         });
     }
-    updateMoneda(id, body) {
+    addDirecciones(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield moneda_model_1.default.update(body, {
-                where: {
-                    id,
-                    estado: "1",
-                },
+            yield Direcciones_model_1.default.create(body);
+        });
+    }
+    updateDirecciones(body, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield Direcciones_model_1.default.update(body, {
+                where: { id, estado: "1" }
             });
         });
     }
-    deleteMoneda(id) {
+    deleteDirecciones(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield moneda_model_1.default.update({ estado: "0" }, {
-                where: { id },
+            yield Direcciones_model_1.default.update({ estado: "0" }, { where: { id }
             });
-        });
-    }
-    addMoneda(body) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield moneda_model_1.default.create(body);
         });
     }
 }
-exports.default = monedaService;
-//# sourceMappingURL=monedas.service.js.map
+exports.DireccionesService = DireccionesService;
+//# sourceMappingURL=direcciones.service.js.map
