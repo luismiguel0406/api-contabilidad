@@ -4,32 +4,24 @@ import empresaService from "../services/empresa/empresa.service";
 
 const empresa_service = new empresaService();
 
-export const getEmpresa = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const getEmpresa = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
     const empresaResultado = await empresa_service.getEmpresa(id);
     if (empresaResultado === null) {
-      const { msg, statusCode } = MsgRespuesta.noContent;
+      const { msg, statusCode } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
-
-    res.status(200).json({ Empresas: empresaResultado });
+    const { msg, statusCode } = MsgRespuesta.Success;
+    res.status(statusCode).json({ Empresas: empresaResultado, Message: msg });
   } catch (error) {
     const { msg, statusCode } = MsgRespuesta.internalError;
     res.status(statusCode).json({ Message: msg, error });
   }
 };
 
-export const postEmpresa = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const postEmpresa = async (req: Request, res: Response) => {
   try {
     const { body } = req;
     await empresa_service.AddEmpresa(body);
@@ -42,15 +34,11 @@ export const postEmpresa = async (
   }
 };
 
-export const deleteEmpresa = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const deleteEmpresa = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     await empresa_service.deleteEmpresa(id);
-    const { statusCode, msg } = MsgRespuesta.Success;
+    const { statusCode, msg } = MsgRespuesta.noContent;
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
     const { msg, statusCode } = MsgRespuesta.internalError;
@@ -58,11 +46,7 @@ export const deleteEmpresa = async (
   }
 };
 
-export const updateEmpresa = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const updateEmpresa = async (req: Request, res: Response) => {
   try {
     const { body } = req;
     const { id } = req.params;

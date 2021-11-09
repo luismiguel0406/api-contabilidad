@@ -7,7 +7,7 @@ exports.MsgRespuesta = {
         statusCode: 200,
     },
     noContent: {
-        msg: "Sin contenido que mostrar",
+        msg: "Respuesta exitosa, Sin contenido que mostrar",
         statusCode: 204,
     },
     created: {

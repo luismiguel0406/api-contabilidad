@@ -20,11 +20,12 @@ const getMoneda = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
         const monedaResult = yield moneda_Service.getMoneda(id);
-        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
         if (monedaResult === null) {
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }
-        res.status(200).json({ Monedas: monedaResult });
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        res.status(statusCode).json({ Monedas: monedaResult, Message: msg });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.internalError;
@@ -63,7 +64,7 @@ const deleteMoneda = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     try {
         const { id } = req.params;
         yield moneda_Service.deleteMoneda(id);
-        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
         res.status(statusCode).json({ Message: msg });
     }
     catch (error) {

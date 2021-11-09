@@ -11,7 +11,7 @@ export const getCuentasContablesPadre = async (req: Request,  res: Response) => 
     const cuentasResult = await cuentas_service.getCuenta(noCuenta);
 
     if (cuentasResult === null) {
-      const { statusCode, msg } = MsgRespuesta.noContent;
+      const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
     const { statusCode, msg } = MsgRespuesta.Success;

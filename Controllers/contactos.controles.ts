@@ -54,7 +54,7 @@ export const deleteCorreos = async (req: Request, res: Response) => {
     const { id } = req.params;
     await correo_service.deleteCorreo(id);
 
-    const { statusCode, msg } = MsgRespuesta.Success;
+    const { statusCode, msg } = MsgRespuesta.noContent;
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
@@ -116,7 +116,7 @@ export const postTelefonos = async (req: Request, res: Response) => {
      const { id } = req.params;
      await telefono_Service.deleteTelefono(id);
  
-     const { statusCode, msg } = MsgRespuesta.Success;
+     const { statusCode, msg } = MsgRespuesta.noContent;
      res.status(statusCode).json({ Message: msg });
    } catch (error) {
      const { statusCode, msg } = MsgRespuesta.badRequest;

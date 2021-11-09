@@ -10,11 +10,12 @@ export const getMoneda = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     const monedaResult = await moneda_Service.getMoneda(id);
-    const { statusCode, msg } = MsgRespuesta.noContent;
     if (monedaResult === null) {
+      const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
-    res.status(200).json({ Monedas: monedaResult });
+    const { statusCode, msg } = MsgRespuesta.Success;
+    res.status(statusCode).json({ Monedas: monedaResult, Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.internalError;
     res.status(statusCode).json({ Message: msg, error });
@@ -48,13 +49,11 @@ export const updateMoneda = async (req: Request, res: Response) => {
 
 export const deleteMoneda = async (req: Request, res: Response) => {
   try {
-    
     const { id } = req.params;
     await moneda_Service.deleteMoneda(id);
 
-    const { statusCode, msg } = MsgRespuesta.Success;
+    const { statusCode, msg } = MsgRespuesta.noContent;
     res.status(statusCode).json({ Message: msg });
-
   } catch (error) {
     const { msg, statusCode } = MsgRespuesta.internalError;
     res.status(statusCode).json({ Message: msg, error });

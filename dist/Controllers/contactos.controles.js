@@ -66,7 +66,7 @@ const deleteCorreos = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const { id } = req.params;
         yield correo_service.deleteCorreo(id);
-        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
         res.status(statusCode).json({ Message: msg });
     }
     catch (error) {
@@ -125,7 +125,7 @@ const deleteTelefonos = (req, res) => __awaiter(void 0, void 0, void 0, function
     try {
         const { id } = req.params;
         yield telefono_Service.deleteTelefono(id);
-        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
         res.status(statusCode).json({ Message: msg });
     }
     catch (error) {

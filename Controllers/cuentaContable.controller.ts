@@ -18,7 +18,7 @@ export const postCuentaContable = async (req: Request, res: Response) => {
 
 export const getCuentasContables = async (req: Request, res: Response) => {
   try {
-    const { statusCode, msg } = MsgRespuesta.Success;
+    
     const { id } = req.params;
 
     const cuentaResult = await cuentaContable_service.getCuentasContables(id);
@@ -27,6 +27,7 @@ export const getCuentasContables = async (req: Request, res: Response) => {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
+    const { statusCode, msg } = MsgRespuesta.Success;
     res.status(statusCode).json({ Cuentas: cuentaResult, Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
@@ -53,7 +54,7 @@ export const deleteCuentasContables = async (req: Request, res: Response) => {
     const { id } = req.params;
     await cuentaContable_service.deleteCuentaContable(id);
 
-    const { statusCode, msg } = MsgRespuesta.Success;
+    const { statusCode, msg } = MsgRespuesta.noContent;
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;

@@ -31,13 +31,13 @@ const postCuentaContable = (req, res) => __awaiter(void 0, void 0, void 0, funct
 exports.postCuentaContable = postCuentaContable;
 const getCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
         const { id } = req.params;
         const cuentaResult = yield cuentaContable_service.getCuentasContables(id);
         if (cuentaResult === null) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
         res.status(statusCode).json({ Cuentas: cuentaResult, Message: msg });
     }
     catch (error) {
@@ -64,7 +64,7 @@ const deleteCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, f
     try {
         const { id } = req.params;
         yield cuentaContable_service.deleteCuentaContable(id);
-        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
         res.status(statusCode).json({ Message: msg });
     }
     catch (error) {

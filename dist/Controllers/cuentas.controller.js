@@ -21,7 +21,7 @@ const getCuentasContablesPadre = (req, res) => __awaiter(void 0, void 0, void 0,
         const { noCuenta } = req.params;
         const cuentasResult = yield cuentas_service.getCuenta(noCuenta);
         if (cuentasResult === null) {
-            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;

@@ -16,15 +16,16 @@ exports.updateEmpresa = exports.deleteEmpresa = exports.postEmpresa = exports.ge
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const empresa_service_1 = __importDefault(require("../services/empresa/empresa.service"));
 const empresa_service = new empresa_service_1.default();
-const getEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const getEmpresa = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
         const empresaResultado = yield empresa_service.getEmpresa(id);
         if (empresaResultado === null) {
-            const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
+            const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }
-        res.status(200).json({ Empresas: empresaResultado });
+        const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        res.status(statusCode).json({ Empresas: empresaResultado, Message: msg });
     }
     catch (error) {
         const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.internalError;
@@ -32,7 +33,7 @@ const getEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getEmpresa = getEmpresa;
-const postEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const postEmpresa = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { body } = req;
         yield empresa_service.AddEmpresa(body);
@@ -45,11 +46,11 @@ const postEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.postEmpresa = postEmpresa;
-const deleteEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteEmpresa = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
         yield empresa_service.deleteEmpresa(id);
-        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
         res.status(statusCode).json({ Message: msg });
     }
     catch (error) {
@@ -58,7 +59,7 @@ const deleteEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.deleteEmpresa = deleteEmpresa;
-const updateEmpresa = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const updateEmpresa = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { body } = req;
         const { id } = req.params;
