@@ -12,9 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTelefonos = exports.updateTelefonos = exports.postTelefonos = exports.getTelefonos = exports.deleteCorreos = exports.updateCorreos = exports.postCorreos = exports.getCorreos = void 0;
+exports.deleteDirecciones = exports.updateDirecciones = exports.postDirecciones = exports.getDirecciones = exports.deleteTelefonos = exports.updateTelefonos = exports.postTelefonos = exports.getTelefonos = exports.deleteCorreos = exports.updateCorreos = exports.postCorreos = exports.getCorreos = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const correos_service_1 = __importDefault(require("../services/contacto/correos.service"));
+const direcciones_service_1 = require("../services/contacto/direcciones.service");
 const telefonos_service_1 = __importDefault(require("../services/contacto/telefonos.service"));
 //CORREOS
 const correo_service = new correos_service_1.default();
@@ -135,5 +136,64 @@ const deleteTelefonos = (req, res) => __awaiter(void 0, void 0, void 0, function
 });
 exports.deleteTelefonos = deleteTelefonos;
 // DIRECCIONES
-//CODES HERE
+const direcciones_service = new direcciones_service_1.DireccionesService();
+const getDirecciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const direccionesResult = yield direcciones_service.getDirecciones(id);
+        if (direccionesResult === null) {
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            return res.status(statusCode).json({ Message: msg });
+        }
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        res
+            .status(statusCode)
+            .json({ Direcciones: direccionesResult, Message: msg });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ message: msg, error });
+    }
+});
+exports.getDirecciones = getDirecciones;
+const postDirecciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { body } = req;
+        yield direcciones_service.addDirecciones(body);
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
+        res.status(statusCode).json({ Message: msg });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ message: msg, error });
+    }
+});
+exports.postDirecciones = postDirecciones;
+const updateDirecciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const { body } = req;
+        yield direcciones_service.updateDirecciones(body, id);
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        res.status(statusCode).json({ Message: msg });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ message: msg, error });
+    }
+});
+exports.updateDirecciones = updateDirecciones;
+const deleteDirecciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        yield direcciones_service.deleteDirecciones(id);
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
+        res.status(statusCode).json({ Message: msg });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ message: msg, error });
+    }
+});
+exports.deleteDirecciones = deleteDirecciones;
 //# sourceMappingURL=contactos.controles.js.map

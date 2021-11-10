@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 import CorreoService from "../services/contacto/correos.service";
+import { DireccionesService } from "../services/contacto/direcciones.service";
 import TelefonoService from "../services/contacto/telefonos.service";
 
 //CORREOS
@@ -66,64 +67,120 @@ export const deleteCorreos = async (req: Request, res: Response) => {
 
 const telefono_Service = new TelefonoService();
 
-export const getTelefonos = async(req:Request, res:Response)=>{
+export const getTelefonos = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
 
-   try {
-      const { id } = req.params;
-  
-      const telefonoResult = await telefono_Service.getTelefonos(id);
-      if (telefonoResult === null) {
-        const { statusCode, msg } = MsgRespuesta.notFound;
-        return res.status(statusCode).json({ Message: msg });
-      }
-      const { statusCode, msg } = MsgRespuesta.Success;
-      res.status(statusCode).json({ Telefono: telefonoResult, Message: msg });
-    } catch (error) {
-      const { statusCode, msg } = MsgRespuesta.badRequest;
-      res.status(statusCode).json({ message: msg, error });
+    const telefonoResult = await telefono_Service.getTelefonos(id);
+    if (telefonoResult === null) {
+      const { statusCode, msg } = MsgRespuesta.notFound;
+      return res.status(statusCode).json({ Message: msg });
     }
-
+    const { statusCode, msg } = MsgRespuesta.Success;
+    res.status(statusCode).json({ Telefono: telefonoResult, Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ message: msg, error });
+  }
 };
 
 export const postTelefonos = async (req: Request, res: Response) => {
-   try {
-     const { body } = req;
-     await telefono_Service.AddTelefono(body);
- 
-     const { statusCode, msg } = MsgRespuesta.created;
-     res.status(statusCode).json({ Message: msg });
-   } catch (error) {
-     const { statusCode, msg } = MsgRespuesta.badRequest;
-     res.status(statusCode).json({ message: msg, error });
-   }
- };
+  try {
+    const { body } = req;
+    await telefono_Service.AddTelefono(body);
 
- export const updateTelefonos = async (req: Request, res: Response) => {
-   try {
-     const { id } = req.params;
-     const { body } = req;
-     await telefono_Service.updateTelefono(body, id);
-     const { statusCode, msg } = MsgRespuesta.Success;
-     res.status(statusCode).json({ Message: msg });
-   } catch (error) {
-     const { statusCode, msg } = MsgRespuesta.badRequest;
-     res.status(statusCode).json({ message: msg, error });
-   }
- };
+    const { statusCode, msg } = MsgRespuesta.created;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ message: msg, error });
+  }
+};
 
- export const deleteTelefonos = async (req: Request, res: Response) => {
-   try {
-     const { id } = req.params;
-     await telefono_Service.deleteTelefono(id);
- 
-     const { statusCode, msg } = MsgRespuesta.noContent;
-     res.status(statusCode).json({ Message: msg });
-   } catch (error) {
-     const { statusCode, msg } = MsgRespuesta.badRequest;
-     res.status(statusCode).json({ message: msg, error });
-   }
- };
+export const updateTelefonos = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { body } = req;
+    await telefono_Service.updateTelefono(body, id);
+    const { statusCode, msg } = MsgRespuesta.Success;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ message: msg, error });
+  }
+};
 
- // DIRECCIONES
+export const deleteTelefonos = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    await telefono_Service.deleteTelefono(id);
 
- //CODES HERE
+    const { statusCode, msg } = MsgRespuesta.noContent;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ message: msg, error });
+  }
+};
+
+// DIRECCIONES
+const direcciones_service = new DireccionesService();
+
+export const getDirecciones = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const direccionesResult = await direcciones_service.getDirecciones(id);
+
+    if (direccionesResult === null) {
+      const { statusCode, msg } = MsgRespuesta.notFound;
+      return res.status(statusCode).json({ Message: msg });
+    }
+    const { statusCode, msg } = MsgRespuesta.Success;
+    res
+      .status(statusCode)
+      .json({ Direcciones: direccionesResult, Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ message: msg, error });
+  }
+};
+
+export const postDirecciones = async (req: Request, res: Response) => {
+  try {
+    const { body } = req;
+    await direcciones_service.addDirecciones(body);
+    const { statusCode, msg } = MsgRespuesta.created;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ message: msg, error });
+  }
+};
+
+export const updateDirecciones = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { body } = req;
+    await direcciones_service.updateDirecciones(body, id);
+
+    const { statusCode, msg } = MsgRespuesta.Success;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ message: msg, error });
+  }
+};
+
+export const deleteDirecciones = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    await direcciones_service.deleteDirecciones(id);
+
+    const { statusCode, msg } = MsgRespuesta.noContent;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ message: msg, error });
+  }
+};
