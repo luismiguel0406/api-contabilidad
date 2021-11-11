@@ -18,6 +18,7 @@ const cuentas_route_2 = __importDefault(require("./routes/Cuentas Contables/cuen
 const moneda_route_1 = __importDefault(require("./routes/Facturacion/moneda.route"));
 const empresa_route_1 = __importDefault(require("./routes/Empresa/empresa.route"));
 const clientes_route_1 = __importDefault(require("./routes/Clientes/clientes.route"));
+const contactos_route_1 = __importDefault(require("./routes/Contactos/contactos.route"));
 const cors_1 = __importDefault(require("cors"));
 const index_1 = __importDefault(require("./config/index"));
 const connectionDB_1 = __importDefault(require("./Database/connectionDB"));
@@ -60,6 +61,7 @@ class Server {
         this.app.use(moneda_route_1.default);
         this.app.use(empresa_route_1.default);
         this.app.use(clientes_route_1.default);
+        this.app.use(contactos_route_1.default);
     }
 }
 exports.default = Server;

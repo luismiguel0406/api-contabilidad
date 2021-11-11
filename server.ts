@@ -4,6 +4,7 @@ import CuentasHijasRoutes from "./routes/Cuentas Contables/cuentasHijas/cuentas.
 import monedaRoutes from "./routes/Facturacion/moneda.route";
 import empresaRoutes from "./routes/Empresa/empresa.route";
 import clientesRoutes from "./routes/Clientes/clientes.route";
+import contactosRoutes from "./routes/Contactos/contactos.route";
 import cors from "cors";
 import https from "https";
 import variablesEnv from "./config/index";
@@ -53,6 +54,7 @@ class Server {
     this.app.use(monedaRoutes);
     this.app.use(empresaRoutes);
     this.app.use(clientesRoutes);
+    this.app.use(contactosRoutes);
     
   }
 }
