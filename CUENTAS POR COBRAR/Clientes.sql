@@ -26,6 +26,7 @@ CREATE TABLE "CLIENTES".clientes(
    "udatedAt" TIMESTAMP WITH TIME ZONE,
    usuario VARCHAR(25) NOT NULL,
    terminal VARCHAR(25) NOT NULL,
+   empresaId INT NOT NULL
 
 	/*
    CONSTRAINT PK_ID_TIPO_CLIENTE
@@ -44,7 +45,7 @@ CREATE TABLE "CONTACTOS".correos(
    "udatedAt" TIMESTAMP WITH TIME ZONE,
    usuario VARCHAR(25) NOT NULL,
    terminal VARCHAR(25) NOT NULL,
-
+   empresaId INT NOT NULL
   /* 
    CONSTRAINT PK_ID_CLIENTE
    FOREIGN KEY (c_id_cliente)
@@ -62,6 +63,7 @@ CREATE TABLE "CONTACTOS".telefonos(
    "udatedAt" TIMESTAMP WITH TIME ZONE,
    usuario VARCHAR(25) NOT NULL,
    terminal VARCHAR(25) NOT NULL,
+   empresaId INT NOT NULL
    /*
    CONSTRAINT PK_ID_CLIENTE
    FOREIGN KEY (t_id_cliente)
@@ -77,6 +79,7 @@ CREATE TABLE "CONTACTOS".direcciones(
    "udatedAt" TIMESTAMP WITH TIME ZONE,
    usuario VARCHAR(25) NOT NULL,
    terminal VARCHAR(25) NOT NULL,
+   empresaId INT NOT NULL
    /*
    CONSTRAINT PK_ID_CLIENTE
    FOREIGN KEY (t_id_cliente)
