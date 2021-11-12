@@ -1,6 +1,6 @@
 import direccionesModel from "../../models/Contacto/Direcciones.model";
 
-export class DireccionesService {
+export default class DireccionesService {
   async getDirecciones(id: any = null) {
     const direccionesResult =
       id === null

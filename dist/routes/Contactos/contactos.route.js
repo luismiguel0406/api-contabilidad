@@ -7,6 +7,7 @@ const endPointContactos = "/api/Contactos/";
 const Correos = "Correos";
 const Direcciones = "Direcciones";
 const Telefonos = "Telefonos";
+const Tipo = "tipoContactos";
 //CORREOS
 router.get(`${endPointContactos}${Correos}/:id?`, contactos_controller_1.getCorreos);
 router.post(`${endPointContactos}${Correos}`, contactos_controller_1.postCorreos);
@@ -22,5 +23,10 @@ router.get(`${endPointContactos}${Telefonos}/:id?`, contactos_controller_1.getTe
 router.post(`${endPointContactos}${Telefonos}`, contactos_controller_1.postTelefonos);
 router.put(`${endPointContactos}${Telefonos}/:id`, contactos_controller_1.updateTelefonos);
 router.delete(`${endPointContactos}${Telefonos}/:id`, contactos_controller_1.deleteTelefonos);
+//TIPOS CONTACTOS
+router.get(`${endPointContactos}${Tipo}/:id?`, contactos_controller_1.getTipoContactos);
+router.post(`${endPointContactos}${Tipo}`, contactos_controller_1.postTipoContactos);
+router.put(`${endPointContactos}${Tipo}/:id?`, contactos_controller_1.updateTipoContactos);
+router.delete(`${endPointContactos}${Tipo}/:id?`, contactos_controller_1.deleteTipoContactos);
 exports.default = router;
 //# sourceMappingURL=contactos.route.js.map

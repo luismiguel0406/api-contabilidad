@@ -12,34 +12,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Direcciones_model_1 = __importDefault(require("../../models/Contacto/Direcciones.model"));
-class DireccionesService {
-    getDirecciones(id = null) {
+const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
+class TipoContactosService {
+    getTipoContactos(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            const direccionesResult = id === null
-                ? yield Direcciones_model_1.default.findAll({ where: { estado: "1" } })
-                : yield Direcciones_model_1.default.findOne({ where: { id, estado: "1" } });
-            return direccionesResult;
+            const tipoContacto = id === null
+                ? yield tipoContactos_model_1.default.findAll({ where: { estado: "1" } })
+                : yield tipoContactos_model_1.default.findOne({ where: { id, estado: "1" } });
+            return tipoContacto;
         });
     }
-    addDirecciones(body) {
+    AddTipoContacto(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Direcciones_model_1.default.create(body);
+            yield tipoContactos_model_1.default.create(body);
         });
     }
-    updateDirecciones(body, id) {
+    deleteTipoContacto(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Direcciones_model_1.default.update(body, {
-                where: { id, estado: "1" }
+            yield tipoContactos_model_1.default.update({ estado: "0" }, {
+                where: {
+                    id,
+                },
             });
         });
     }
-    deleteDirecciones(id) {
+    updateTipoContacto(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Direcciones_model_1.default.update({ estado: "0" }, { where: { id }
+            yield tipoContactos_model_1.default.update(body, {
+                where: {
+                    id,
+                    estado: "1",
+                },
             });
         });
     }
 }
-exports.default = DireccionesService;
-//# sourceMappingURL=direcciones.service.js.map
+exports.default = TipoContactosService;
+//# sourceMappingURL=tipoContacto.service.js.map

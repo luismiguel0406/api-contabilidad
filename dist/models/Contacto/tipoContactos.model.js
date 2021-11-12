@@ -27,7 +27,7 @@ const tiposContactos = connectionDB_1.default.define("tipoContactos", {
     },
     terminal: {
         type: sequelize_1.DataTypes.STRING,
-    },
+    }
 }, { schema: "CONTACTOS" });
 tiposContactos.sync();
 exports.default = tiposContactos;

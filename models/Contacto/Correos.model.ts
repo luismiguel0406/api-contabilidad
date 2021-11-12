@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
+import empresa from "../Empresa/empresa.model";
 
 const correos = conexion.define(
   "correo",
@@ -28,10 +29,14 @@ const correos = conexion.define(
     },
     terminal: {
       type: DataTypes.STRING,
-    },
+    },  
+    empresa : {
+        type:DataTypes.INTEGER
+      }   
   },
   { schema: "CONTACTOS"}
 );
 
 correos.sync();
+correos.hasMany(empresa);
 export default correos;

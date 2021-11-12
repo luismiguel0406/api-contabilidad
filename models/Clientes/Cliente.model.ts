@@ -47,7 +47,7 @@ const clientes = conexion.define(
   { schema: "CLIENTES" }
 );
 
-clientes.sync();
+clientes.sync({force : true});
 
 clientes.hasOne(tiposClientes, {
   foreignKey: "tipoClienteId",

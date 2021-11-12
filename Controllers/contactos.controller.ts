@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 import CorreoService from "../services/contacto/correos.service";
-import { DireccionesService } from "../services/contacto/direcciones.service";
+import  DireccionesService  from "../services/contacto/direcciones.service";
 import TelefonoService from "../services/contacto/telefonos.service";
+import TipoContactosService from "../services/contacto/tipoContacto.service";
 
-//CORREOS
+//------------------------CORREOS--------------------------------//
+
 const correo_service = new CorreoService();
 
 export const getCorreos = async (req: Request, res: Response) => {
@@ -63,7 +65,7 @@ export const deleteCorreos = async (req: Request, res: Response) => {
   }
 };
 
-//TELEFONOS
+//--------------------TELEFONOS-----------------------------//
 
 const telefono_Service = new TelefonoService();
 
@@ -123,7 +125,8 @@ export const deleteTelefonos = async (req: Request, res: Response) => {
   }
 };
 
-// DIRECCIONES
+//---------------------- DIRECCIONES---------------------//
+
 const direcciones_service = new DireccionesService();
 
 export const getDirecciones = async (req: Request, res: Response) => {
@@ -176,6 +179,69 @@ export const deleteDirecciones = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     await direcciones_service.deleteDirecciones(id);
+
+    const { statusCode, msg } = MsgRespuesta.noContent;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ message: msg, error });
+  }
+};
+
+//--------------------TIPOS CONTACTOS------------------------//
+
+const tipoContacto_Service=new TipoContactosService();
+
+export const getTipoContactos = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const tipoContactoResult = await tipoContacto_Service.getTipoContactos(id);
+
+    if (tipoContactoResult === null) {
+      const { statusCode, msg } = MsgRespuesta.notFound;
+      return res.status(statusCode).json({ Message: msg });
+    }
+    const { statusCode, msg } = MsgRespuesta.Success;
+    res
+      .status(statusCode)
+      .json({ tipoContactos: tipoContactoResult, Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ message: msg, error });
+  }
+};
+
+export const postTipoContactos = async (req: Request, res: Response) => {
+  try {
+    const { body } = req;
+    await tipoContacto_Service.AddTipoContacto(body);
+    const { statusCode, msg } = MsgRespuesta.created;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ message: msg, error });
+  }
+};
+
+export const updateTipoContactos = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { body } = req;
+    await tipoContacto_Service.updateTipoContacto(body, id);
+
+    const { statusCode, msg } = MsgRespuesta.Success;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ message: msg, error });
+  }
+};
+
+export const deleteTipoContactos = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    await tipoContacto_Service.deleteTipoContacto(id);
 
     const { statusCode, msg } = MsgRespuesta.noContent;
     res.status(statusCode).json({ Message: msg });

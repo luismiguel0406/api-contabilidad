@@ -25,7 +25,7 @@ const tiposContactos = conexion.define(
     },
     terminal: {
       type: DataTypes.STRING,
-    },
+    }
   },
   { schema: "CONTACTOS" }
 
