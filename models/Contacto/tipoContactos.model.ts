@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
+import clientes from "../Clientes/Cliente.model";
 
 const tiposContactos = conexion.define(
   "tipoContactos",
@@ -32,5 +33,12 @@ const tiposContactos = conexion.define(
 );
 
 tiposContactos.sync();
+
+
+tiposContactos.hasMany(clientes,
+  {foreignKey:'tipoContactoId'});
+  clientes.belongsTo(tiposContactos);
+
+  
 
 export default tiposContactos;

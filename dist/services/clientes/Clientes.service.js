@@ -15,7 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Cliente_model_1 = __importDefault(require("../../models/Clientes/Cliente.model"));
 const tiposClientes_model_1 = __importDefault(require("../../models/Clientes/tiposClientes.model"));
 class ClientesService {
-    getTipoClientes(id = null) {
+    //----------------TIPO CLIENTE------------------//
+    getTipoCliente(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const tipoClienteResult = id === null
                 ? yield tiposClientes_model_1.default.findAll({ where: { estado: "1" } })
@@ -23,6 +24,28 @@ class ClientesService {
             return tipoClienteResult;
         });
     }
+    ;
+    addTipoCliente(body) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield Cliente_model_1.default.create(body);
+        });
+    }
+    ;
+    updateTipoCliente(body, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield Cliente_model_1.default.update(body, { where: { id }
+            });
+        });
+    }
+    ;
+    deleteTipoCliente(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield Cliente_model_1.default.update({ estadao: "0" }, { where: { id }
+            });
+        });
+    }
+    ;
+    //--------------------CLIENTES--------------------------//
     getClientes(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const clientesResult = id === null
@@ -31,11 +54,25 @@ class ClientesService {
             return clientesResult;
         });
     }
-    addCliente(cliente) {
+    ;
+    addCliente(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Cliente_model_1.default.create(cliente);
+            yield Cliente_model_1.default.create(body);
         });
     }
+    ;
+    updateCliente(body, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield Cliente_model_1.default.update(body, { where: { id, estado: "1" } });
+        });
+    }
+    ;
+    deleteCliente(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield Cliente_model_1.default.update({ estado: "0" }, { where: { id } });
+        });
+    }
+    ;
 }
 exports.default = ClientesService;
 //# sourceMappingURL=Clientes.service.js.map

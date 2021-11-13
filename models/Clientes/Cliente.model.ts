@@ -6,7 +6,7 @@ import telefonos from "../Contacto/telefono.model";
 import tiposClientes from "./tiposClientes.model";
 
 const clientes = conexion.define(
-  "cliente",
+  "clientes",
   {
     nombre: {
       type: DataTypes.STRING,
@@ -47,19 +47,21 @@ const clientes = conexion.define(
   { schema: "CLIENTES" }
 );
 
-clientes.sync({force : true});
+clientes.sync();
 
-clientes.hasOne(tiposClientes, {
-  foreignKey: "tipoClienteId",
-});
 clientes.hasMany(correos, {
   foreignKey: "contactoId",
 });
+correos.belongsTo(clientes);
+//-----------------------------------//
 clientes.hasMany(telefonos, {
   foreignKey: "contactoId",
 });
+telefonos.belongsTo(clientes);
+//------------------------------------//
 clientes.hasMany(direcciones, {
   foreignKey: "contactoId",
 });
+direcciones.belongsTo(clientes);
 
 export default clientes;

@@ -10,5 +10,6 @@ createdAt:Date;
 updateAt:Date | null;
 usuario: string;
 terminal: string;
+//completar
 
 }
