@@ -1,15 +1,13 @@
-export interface cliente {
-
-nombre:string;
-RNC:string;
-direccion:string;
-tipoCliente:number;
-pagaItbis:boolean;
-estado:boolean;
-createdAt:Date;
-updateAt:Date | null;
-usuario: string;
-terminal: string;
-//completar
-
+export interface Icliente {
+  nombre: string;
+  RNC_Cedula: string;
+  direccion: string;
+  pagaItbis: boolean;
+  estado: boolean;
+  createdAt: Date;
+  updatedAt: Date | null;
+  usuario: string;
+  terminal: string;
+  tipoContactoId: number;
+  tipoClienteId: number;
 }

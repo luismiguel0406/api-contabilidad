@@ -29,6 +29,9 @@ const correos = conexion.define(
     },
     terminal: {
       type: DataTypes.STRING,
+    },
+     contactoId:{
+      type:DataTypes.INTEGER
     }
   },
   { schema: "CONTACTOS"}

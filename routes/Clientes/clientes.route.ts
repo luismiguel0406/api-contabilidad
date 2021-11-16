@@ -13,7 +13,7 @@ import {
 const router = Router();
 
 const endPointClientes = "/api/clientes";
-const tiposClientes = "/tipoCliente";
+const tiposClientes = "tipoCliente";
 
 router.get(`${endPointClientes}/:id?`, getClientes);
 router.post(`${endPointClientes}`, postCliente);

@@ -49,16 +49,16 @@ clientes.sync();
 clientes.hasMany(Correos_model_1.default, {
     foreignKey: "contactoId",
 });
-Correos_model_1.default.belongsTo(clientes);
+//correos.belongsTo(clientes);
 //-----------------------------------//
 clientes.hasMany(telefono_model_1.default, {
     foreignKey: "contactoId",
 });
-telefono_model_1.default.belongsTo(clientes);
+//telefonos.belongsTo(clientes);
 //------------------------------------//
 clientes.hasMany(Direcciones_model_1.default, {
     foreignKey: "contactoId",
 });
-Direcciones_model_1.default.belongsTo(clientes);
+//direcciones.belongsTo(clientes);
 exports.default = clientes;
 //# sourceMappingURL=Cliente.model.js.map

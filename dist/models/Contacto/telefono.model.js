@@ -28,6 +28,9 @@ const telefonos = connectionDB_1.default.define("telefono", {
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
+    contactoId: {
+        type: sequelize_1.DataTypes.INTEGER
+    }
 }, { schema: "CONTACTOS" });
 telefonos.sync();
 exports.default = telefonos;

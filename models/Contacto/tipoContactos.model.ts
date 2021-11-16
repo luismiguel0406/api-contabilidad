@@ -37,8 +37,6 @@ tiposContactos.sync();
 
 tiposContactos.hasMany(clientes,
   {foreignKey:'tipoContactoId'});
-  clientes.belongsTo(tiposContactos);
-
   
 
 export default tiposContactos;

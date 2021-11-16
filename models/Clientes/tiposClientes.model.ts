@@ -38,7 +38,7 @@ tipoCliente.sync();
 
 tipoCliente.hasMany(clientes,{
   foreignKey:'tipoClienteId'
+  
 });
-clientes.belongsTo(tipoCliente);
 
 export default tipoCliente;

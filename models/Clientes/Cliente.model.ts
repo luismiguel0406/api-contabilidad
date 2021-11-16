@@ -3,7 +3,7 @@ import conexion from "../../Database/connectionDB";
 import correos from "../Contacto/Correos.model";
 import direcciones from "../Contacto/Direcciones.model";
 import telefonos from "../Contacto/telefono.model";
-import tiposClientes from "./tiposClientes.model";
+
 
 const clientes = conexion.define(
   "clientes",
@@ -52,16 +52,16 @@ clientes.sync();
 clientes.hasMany(correos, {
   foreignKey: "contactoId",
 });
-correos.belongsTo(clientes);
+//correos.belongsTo(clientes);
 //-----------------------------------//
 clientes.hasMany(telefonos, {
   foreignKey: "contactoId",
 });
-telefonos.belongsTo(clientes);
+//telefonos.belongsTo(clientes);
 //------------------------------------//
 clientes.hasMany(direcciones, {
   foreignKey: "contactoId",
 });
-direcciones.belongsTo(clientes);
+//direcciones.belongsTo(clientes);
 
 export default clientes;

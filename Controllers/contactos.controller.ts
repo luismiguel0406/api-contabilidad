@@ -14,7 +14,7 @@ export const getCorreos = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     const correoResult = await correo_service.getCorreos(id);
-    if (correoResult === null) {
+    if (correoResult === []) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }

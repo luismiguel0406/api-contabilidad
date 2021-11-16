@@ -36,6 +36,5 @@ tipoCliente.sync();
 tipoCliente.hasMany(Cliente_model_1.default, {
     foreignKey: 'tipoClienteId'
 });
-Cliente_model_1.default.belongsTo(tipoCliente);
 exports.default = tipoCliente;
 //# sourceMappingURL=tiposClientes.model.js.map

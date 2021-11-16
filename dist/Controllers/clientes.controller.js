@@ -26,11 +26,11 @@ const getClientes = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             return res.status(statusCode).json({ Message: msg });
         }
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
-        res.status(statusCode).json({ TipoCliente: clientesResult, Message: msg });
+        res.status(statusCode).json({ Clientes: clientesResult, Message: msg }); // VER ESTO
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
-        res.status(statusCode).json({ Message: msg });
+        res.status(statusCode).json({ Message: msg, error });
     }
 });
 exports.getClientes = getClientes;
@@ -43,7 +43,7 @@ const postCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
-        res.status(statusCode).json({ Message: msg });
+        res.status(statusCode).json({ Message: msg, error });
     }
 });
 exports.postCliente = postCliente;
@@ -57,7 +57,7 @@ const updateCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
-        res.status(statusCode).json({ Message: msg });
+        res.status(statusCode).json({ Message: msg, error });
     }
 });
 exports.updateCliente = updateCliente;
@@ -70,7 +70,7 @@ const deleteCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
-        res.status(statusCode).json({ Message: msg });
+        res.status(statusCode).json({ Message: msg, error });
     }
 });
 exports.deleteCliente = deleteCliente;
@@ -88,7 +88,7 @@ const getTiposClientes = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
-        res.status(statusCode).json({ Message: msg });
+        res.status(statusCode).json({ Message: msg, error });
     }
 });
 exports.getTiposClientes = getTiposClientes;
@@ -101,7 +101,7 @@ const postTipoCliente = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
-        res.status(statusCode).json({ Message: msg });
+        res.status(statusCode).json({ Message: msg, error });
     }
 });
 exports.postTipoCliente = postTipoCliente;
@@ -115,7 +115,7 @@ const updateTipoCliente = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
-        res.status(statusCode).json({ Message: msg });
+        res.status(statusCode).json({ Message: msg, error });
     }
 });
 exports.updateTipoCliente = updateTipoCliente;
@@ -128,7 +128,7 @@ const deleteTipoCliente = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
-        res.status(statusCode).json({ Message: msg });
+        res.status(statusCode).json({ Message: msg, error });
     }
 });
 exports.deleteTipoCliente = deleteTipoCliente;

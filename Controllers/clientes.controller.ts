@@ -18,10 +18,10 @@ export const getClientes = async (req: Request, res: Response) => {
     }
 
     const { statusCode, msg } = MsgRespuesta.Success;
-    res.status(statusCode).json({ TipoCliente: clientesResult, Message: msg });
+    res.status(statusCode).json({ Clientes: clientesResult, Message: msg }); // VER ESTO
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
-    res.status(statusCode).json({ Message: msg });
+    res.status(statusCode).json({ Message: msg ,error});
   }
 };
 
@@ -34,7 +34,7 @@ export const postCliente = async (req: Request, res: Response) => {
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
-    res.status(statusCode).json({ Message: msg });
+    res.status(statusCode).json({ Message: msg, error });
   }
 };
 
@@ -50,7 +50,7 @@ export const updateCliente = async (req: Request, res: Response) => {
 
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
-    res.status(statusCode).json({ Message: msg });
+    res.status(statusCode).json({ Message: msg, error });
   }
 };
 
@@ -65,7 +65,7 @@ export const deleteCliente = async (req: Request, res: Response) => {
 
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
-    res.status(statusCode).json({ Message: msg });
+    res.status(statusCode).json({ Message: msg, error });
   }
 };
 
@@ -84,7 +84,7 @@ export const getTiposClientes = async (req: Request, res: Response) => {
     res.status(statusCode).json({ TipoClientes: tipoClientesResult, Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
-    res.status(statusCode).json({ Message: msg });
+    res.status(statusCode).json({ Message: msg, error });
   }
 };
 
@@ -98,7 +98,7 @@ export const postTipoCliente = async (req: Request, res: Response) => {
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
-    res.status(statusCode).json({ Message: msg });
+    res.status(statusCode).json({ Message: msg, error });
   }
 };
 
@@ -114,7 +114,7 @@ export const updateTipoCliente = async (req: Request, res: Response) => {
 
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
-    res.status(statusCode).json({ Message: msg });
+    res.status(statusCode).json({ Message: msg, error });
   }
 };
 
@@ -129,7 +129,7 @@ export const deleteTipoCliente = async (req: Request, res: Response) => {
 
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
-    res.status(statusCode).json({ Message: msg });
+    res.status(statusCode).json({ Message: msg, error });
   }
 };
 

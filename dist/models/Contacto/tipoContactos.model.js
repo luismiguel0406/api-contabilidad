@@ -32,6 +32,5 @@ const tiposContactos = connectionDB_1.default.define("tipoContactos", {
 }, { schema: "CONTACTOS" });
 tiposContactos.sync();
 tiposContactos.hasMany(Cliente_model_1.default, { foreignKey: 'tipoContactoId' });
-Cliente_model_1.default.belongsTo(tiposContactos);
 exports.default = tiposContactos;
 //# sourceMappingURL=tipoContactos.model.js.map

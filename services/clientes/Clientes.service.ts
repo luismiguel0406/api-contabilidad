@@ -1,4 +1,4 @@
-import { cliente } from "../../interfaces/cliente.interface";
+import { Icliente } from "../../interfaces/cliente.interface";
 import clientesModel from "../../models/Clientes/Cliente.model";
 import tiposClientesModel from "../../models/Clientes/tiposClientes.model";
 
@@ -15,11 +15,11 @@ export default class ClientesService {
     return tipoClienteResult;
   };
 
-  async addTipoCliente(body: cliente) {
+  async addTipoCliente(body: any) {
     await clientesModel.create(body);
   };
 
-  async updateTipoCliente(body: cliente, id: string) {
+  async updateTipoCliente(body: Icliente, id: string) {
     await clientesModel.update(body, { where: { id }
     });
   };
@@ -39,11 +39,11 @@ export default class ClientesService {
     return clientesResult;
   };
 
-  async addCliente(body: cliente) {
+  async addCliente(body: Icliente) {
     await clientesModel.create(body);
   };
 
-  async updateCliente(body: cliente, id: string) {
+  async updateCliente(body: Icliente, id: string) {
     await clientesModel.update(body, { where: { id, estado: "1" } });
   };
 

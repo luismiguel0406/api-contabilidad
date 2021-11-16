@@ -28,6 +28,9 @@ const direcciones = connectionDB_1.default.define("direccion", {
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
+    contactoId: {
+        type: sequelize_1.DataTypes.INTEGER
+    }
 }, { schema: "CONTACTOS" });
 direcciones.sync();
 exports.default = direcciones;

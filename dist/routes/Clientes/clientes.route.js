@@ -4,7 +4,7 @@ const express_1 = require("express");
 const clientes_controller_1 = require("../../Controllers/clientes.controller");
 const router = (0, express_1.Router)();
 const endPointClientes = "/api/clientes";
-const tiposClientes = "/tipoCliente";
+const tiposClientes = "tipoCliente";
 router.get(`${endPointClientes}/:id?`, clientes_controller_1.getClientes);
 router.post(`${endPointClientes}`, clientes_controller_1.postCliente);
 router.put(`${endPointClientes}/:id`, clientes_controller_1.updateCliente);
