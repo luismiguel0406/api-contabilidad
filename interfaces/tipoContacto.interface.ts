@@ -1,5 +1,4 @@
-export interface tipoContacto {
- 
+export interface ItipoContacto {
   tipoContacto: string;
   createdAt: Date;
   updatedAt: Date | null;

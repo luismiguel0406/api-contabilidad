@@ -1,3 +1,4 @@
+import { ICorreo } from "../../interfaces/contactos.interface";
 import correosModel from "../../models/Contacto/Correos.model";
 
 export default class CorreoService {
@@ -10,8 +11,10 @@ export default class CorreoService {
     return correo;
   }
 
-  async AddCorreo(body: any) {
-    await correosModel.create(body);
+  async AddCorreo(body:ICorreo) {
+  
+   await  correosModel.create(body);  
+    
   }
 
   async deleteCorreo(id: string) {
@@ -25,7 +28,7 @@ export default class CorreoService {
     );
   }
 
-  async updateCorreo(body: any, id: string) {
+  async updateCorreo(body: ICorreo, id: string) {
     await correosModel.update(body, {
       where: {
         id,

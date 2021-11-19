@@ -1,3 +1,4 @@
+import { ItipoContacto } from "../../interfaces/tipoContacto.interface";
 import tiposContactosModel from "../../models/Contacto/tipoContactos.model";
 
 export default class TipoContactosService {
@@ -10,7 +11,7 @@ export default class TipoContactosService {
     return tipoContacto;
   }
 
-  async AddTipoContacto(body: any) {
+  async AddTipoContacto(body: ItipoContacto) {
     await tiposContactosModel.create(body);
   }
 
@@ -25,7 +26,7 @@ export default class TipoContactosService {
     );
   }
 
-  async updateTipoContacto(body: any, id: string) {
+  async updateTipoContacto(body: ItipoContacto, id: string) {
     await tiposContactosModel.update(body, {
       where: {
         id,

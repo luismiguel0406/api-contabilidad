@@ -34,11 +34,9 @@ const tipoCliente = conexion.define(
   }
 );
 
-tipoCliente.sync();
-
 tipoCliente.hasMany(clientes,{
-  foreignKey:'tipoClienteId'
-  
+  foreignKey:'tipoClienteId' 
 });
+clientes.belongsTo(tipoCliente,{as:"tipoCliente"});
 
 export default tipoCliente;

@@ -30,8 +30,10 @@ const telefonos = connectionDB_1.default.define("telefono", {
     },
     contactoId: {
         type: sequelize_1.DataTypes.INTEGER
+    },
+    tipoContactoId: {
+        type: sequelize_1.DataTypes.INTEGER
     }
 }, { schema: "CONTACTOS" });
-telefonos.sync();
 exports.default = telefonos;
 //# sourceMappingURL=telefono.model.js.map

@@ -1,9 +1,9 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
+import TipoContactosService from "../../services/contacto/tipoContacto.service";
 import correos from "../Contacto/Correos.model";
 import direcciones from "../Contacto/Direcciones.model";
 import telefonos from "../Contacto/telefono.model";
-
 
 const clientes = conexion.define(
   "clientes",
@@ -43,25 +43,29 @@ const clientes = conexion.define(
     terminal: {
       type: DataTypes.STRING,
     },
+    tipoContactoId: {
+      type: DataTypes.INTEGER,
+    },
+    tipoClienteId: {
+      type: DataTypes.INTEGER,
+    },
   },
   { schema: "CLIENTES" }
 );
 
-clientes.sync();
-
 clientes.hasMany(correos, {
   foreignKey: "contactoId",
 });
-//correos.belongsTo(clientes);
+correos.belongsTo(clientes , {as: "contacto"});
 //-----------------------------------//
 clientes.hasMany(telefonos, {
   foreignKey: "contactoId",
 });
-//telefonos.belongsTo(clientes);
+telefonos.belongsTo(clientes,{as: "contacto"});
 //------------------------------------//
 clientes.hasMany(direcciones, {
   foreignKey: "contactoId",
 });
-//direcciones.belongsTo(clientes);
+direcciones.belongsTo(clientes,{as: "contacto"});
 
 export default clientes;

@@ -32,11 +32,12 @@ const correos = conexion.define(
     },
      contactoId:{
       type:DataTypes.INTEGER
+    },
+    tipoContactoId:{
+      type:DataTypes.INTEGER
     }
   },
   { schema: "CONTACTOS"}
 );
-
-correos.sync();
 
 export default correos;

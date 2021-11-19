@@ -28,10 +28,12 @@ const telefonos = conexion.define(
     },
     contactoId:{
       type:DataTypes.INTEGER
+    },
+    tipoContactoId:{
+      type:DataTypes.INTEGER
     }
   },
   { schema: "CONTACTOS"}
 );
 
-telefonos.sync();
 export default telefonos;

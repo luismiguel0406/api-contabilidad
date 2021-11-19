@@ -1,6 +1,9 @@
-import { DataTypes } from "sequelize";
+import { BelongsTo, DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
 import clientes from "../Clientes/Cliente.model";
+import correos from "./Correos.model";
+import direcciones from "./Direcciones.model";
+import telefonos from "./telefono.model";
 
 const tiposContactos = conexion.define(
   "tipoContactos",
@@ -32,11 +35,20 @@ const tiposContactos = conexion.define(
 
 );
 
-tiposContactos.sync();
 
+//--------- ASOCIACIONES ---------//
 
-tiposContactos.hasMany(clientes,
-  {foreignKey:'tipoContactoId'});
-  
+tiposContactos.hasMany(clientes, { foreignKey: "tipoContactoId" });
+clientes.belongsTo(tiposContactos,{as: "tipoContacto"});
+
+tiposContactos.hasMany(correos, { foreignKey: "tipoContactoId" });
+correos.belongsTo(tiposContactos, {as: "tipoContacto"});
+
+tiposContactos.hasMany(direcciones, {foreignKey:"tipoContactoId"});
+direcciones.belongsTo(tiposContactos, {as: "tipoContacto"});
+
+tiposContactos.hasMany(telefonos,{foreignKey: "tipoContactoId"});
+telefonos.belongsTo(tiposContactos, {as: "tipoContacto"})
+
 
 export default tiposContactos;

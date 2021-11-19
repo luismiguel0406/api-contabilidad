@@ -30,8 +30,10 @@ const direcciones = connectionDB_1.default.define("direccion", {
     },
     contactoId: {
         type: sequelize_1.DataTypes.INTEGER
+    },
+    tipoContactoId: {
+        type: sequelize_1.DataTypes.INTEGER
     }
 }, { schema: "CONTACTOS" });
-direcciones.sync();
 exports.default = direcciones;
 //# sourceMappingURL=Direcciones.model.js.map

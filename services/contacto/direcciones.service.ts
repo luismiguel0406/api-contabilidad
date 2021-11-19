@@ -1,3 +1,4 @@
+import { IDireccion } from "../../interfaces/contactos.interface";
 import direccionesModel from "../../models/Contacto/Direcciones.model";
 
 export default class DireccionesService {
@@ -10,11 +11,11 @@ export default class DireccionesService {
     return direccionesResult;
   }
 
-  async addDirecciones(body: any) {
+  async addDirecciones(body: IDireccion) {
     await direccionesModel.create(body);
   }
 
-  async updateDirecciones(body: any, id: string) {
+  async updateDirecciones(body: IDireccion, id: string) {
     await direccionesModel.update(
         body, 
         { 

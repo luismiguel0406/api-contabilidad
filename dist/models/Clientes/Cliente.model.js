@@ -44,21 +44,26 @@ const clientes = connectionDB_1.default.define("clientes", {
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
+    tipoContactoId: {
+        type: sequelize_1.DataTypes.INTEGER,
+    },
+    tipoClienteId: {
+        type: sequelize_1.DataTypes.INTEGER,
+    },
 }, { schema: "CLIENTES" });
-clientes.sync();
 clientes.hasMany(Correos_model_1.default, {
     foreignKey: "contactoId",
 });
-//correos.belongsTo(clientes);
+Correos_model_1.default.belongsTo(clientes, { as: "contacto" });
 //-----------------------------------//
 clientes.hasMany(telefono_model_1.default, {
     foreignKey: "contactoId",
 });
-//telefonos.belongsTo(clientes);
+telefono_model_1.default.belongsTo(clientes, { as: "contacto" });
 //------------------------------------//
 clientes.hasMany(Direcciones_model_1.default, {
     foreignKey: "contactoId",
 });
-//direcciones.belongsTo(clientes);
+Direcciones_model_1.default.belongsTo(clientes, { as: "contacto" });
 exports.default = clientes;
 //# sourceMappingURL=Cliente.model.js.map

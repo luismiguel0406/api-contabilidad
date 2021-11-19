@@ -11,3 +11,12 @@ export interface Icliente {
   tipoContactoId: number;
   tipoClienteId: number;
 }
+
+export interface ITipoCliente {
+  descripcion: string;
+  estado: boolean;
+  createdAt: Date;
+  updatedAt: Date | null;
+  usuario: string;
+  terminal: string;
+}

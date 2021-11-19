@@ -19,7 +19,7 @@ export default class ClientesService {
     await clientesModel.create(body);
   };
 
-  async updateTipoCliente(body: Icliente, id: string) {
+  async updateTipoCliente(body: any, id: string) {
     await clientesModel.update(body, { where: { id }
     });
   };
@@ -39,8 +39,10 @@ export default class ClientesService {
     return clientesResult;
   };
 
-  async addCliente(body: Icliente) {
+  async addCliente(body:Icliente ) {
+   
     await clientesModel.create(body);
+    
   };
 
   async updateCliente(body: Icliente, id: string) {

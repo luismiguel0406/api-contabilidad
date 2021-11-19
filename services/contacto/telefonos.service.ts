@@ -1,3 +1,4 @@
+import { ITelefono } from "../../interfaces/contactos.interface";
 import telefonosModel from "../../models/Contacto/telefono.model";
 
 export default class TelefonoService {
@@ -10,7 +11,7 @@ export default class TelefonoService {
     return telefono;
   }
 
-  async AddTelefono(body: any) {
+  async AddTelefono(body: ITelefono) {
     await telefonosModel.create(body);
   }
 
@@ -25,7 +26,7 @@ export default class TelefonoService {
     );
   }
 
-  async updateTelefono(body: any, id: string) {
+  async updateTelefono(body: ITelefono, id: string) {
     await telefonosModel.update(body, {
       where: {
         id,
