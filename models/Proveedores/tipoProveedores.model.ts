@@ -2,7 +2,7 @@ import { date } from "joi";
 import { DataTypes } from "sequelize";
 import { now } from "sequelize/types/lib/utils";
 import conexion from "../../Database/connectionDB";
-import { tipoProveedores } from "../../helpers/Querys Iniciales/Querys";
+import { tipoProveedores as tipoProveedoresArray } from "../../helpers/Querys Iniciales/Querys";
 import Proveedores from "./Proveedores.model";
 
 const tipoProveedor = conexion.define(
@@ -44,7 +44,7 @@ Proveedores.belongsTo(tipoProveedor);
 
 tipoProveedor.afterSync("CreaTiposProveedores", () => {
   try {
-    tipoProveedores.forEach((tipo) => {
+    tipoProveedoresArray.forEach((tipo) => {
       tipoProveedor.create(tipo);
     });
   } catch (error) {
