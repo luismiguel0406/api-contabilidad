@@ -56,5 +56,5 @@ const empresa = conexion.define(
   { schema: "EMPRESA" }
 );
 
-empresa.sync();
+
 export default empresa;

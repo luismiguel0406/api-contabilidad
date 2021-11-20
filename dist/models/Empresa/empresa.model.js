@@ -55,6 +55,5 @@ const empresa = connectionDB_1.default.define("empresa", {
         allowNull: false,
     },
 }, { schema: "EMPRESA" });
-empresa.sync();
 exports.default = empresa;
 //# sourceMappingURL=empresa.model.js.map

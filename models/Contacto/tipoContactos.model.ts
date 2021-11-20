@@ -35,7 +35,6 @@ const tiposContactos = conexion.define(
 
 );
 
-
 //--------- ASOCIACIONES ---------//
 
 tiposContactos.hasMany(clientes, { foreignKey: "tipoContactoId" });

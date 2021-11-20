@@ -8,26 +8,13 @@ const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const Correos_model_1 = __importDefault(require("../Contacto/Correos.model"));
 const Direcciones_model_1 = __importDefault(require("../Contacto/Direcciones.model"));
 const telefono_model_1 = __importDefault(require("../Contacto/telefono.model"));
-const clientes = connectionDB_1.default.define("clientes", {
+const Proveedores = connectionDB_1.default.define("proveedor", {
     nombre: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     RNC_Cedula: {
         type: sequelize_1.DataTypes.STRING,
-        unique: true,
-        allowNull: false,
-    },
-    direccion: {
-        type: sequelize_1.DataTypes.STRING,
-    },
-    pagaItbis: {
-        type: sequelize_1.DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: "1",
-    },
-    estado: {
-        type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
     },
     createdAt: {
@@ -36,6 +23,10 @@ const clientes = connectionDB_1.default.define("clientes", {
     },
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
+    },
+    estado: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        allowNull: false,
     },
     usuario: {
         type: sequelize_1.DataTypes.STRING,
@@ -48,24 +39,18 @@ const clientes = connectionDB_1.default.define("clientes", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    tipoClienteId: {
+    tipoProveedorId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-}, { schema: "CLIENTES" });
-clientes.hasMany(Correos_model_1.default, {
-    foreignKey: "contactoId",
-});
-Correos_model_1.default.belongsTo(clientes, { as: "contacto" });
-//-----------------------------------//
-clientes.hasMany(telefono_model_1.default, {
-    foreignKey: "contactoId",
-});
-telefono_model_1.default.belongsTo(clientes, { as: "contacto" });
-//------------------------------------//
-clientes.hasMany(Direcciones_model_1.default, {
-    foreignKey: "contactoId",
-});
-Direcciones_model_1.default.belongsTo(clientes, { as: "contacto" });
-exports.default = clientes;
-//# sourceMappingURL=Cliente.model.js.map
+}, { schema: "PROVEEDORES" });
+Proveedores.sync({ force: true });
+//----------  ASOCIACIONES ------------//
+Proveedores.hasMany(Correos_model_1.default, { foreignKey: "contactoId" });
+Correos_model_1.default.belongsTo(Proveedores, { as: "contacto" });
+Proveedores.hasMany(telefono_model_1.default, { foreignKey: "contactoId" });
+telefono_model_1.default.belongsTo(Proveedores, { as: "contacto" });
+Proveedores.hasMany(Direcciones_model_1.default, { foreignKey: "contactoId" });
+Direcciones_model_1.default.belongsTo(Proveedores, { as: "contacto" });
+exports.default = Proveedores;
+//# sourceMappingURL=Proveedores.model.js.map

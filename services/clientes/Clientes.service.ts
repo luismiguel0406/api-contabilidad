@@ -1,6 +1,6 @@
 import { Icliente } from "../../interfaces/cliente.interface";
 import clientesModel from "../../models/Clientes/Cliente.model";
-import tiposClientesModel from "../../models/Clientes/tiposClientes.model";
+import tiposClientesModel from "../../models/Clientes/tipoCliente.model";
 
 export default class ClientesService {
   

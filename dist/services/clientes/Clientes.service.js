@@ -13,14 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Cliente_model_1 = __importDefault(require("../../models/Clientes/Cliente.model"));
-const tiposClientes_model_1 = __importDefault(require("../../models/Clientes/tiposClientes.model"));
+const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 class ClientesService {
     //----------------TIPO CLIENTE------------------//
     getTipoCliente(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const tipoClienteResult = id === null
-                ? yield tiposClientes_model_1.default.findAll({ where: { estado: "1" } })
-                : yield tiposClientes_model_1.default.findOne({ where: { id, estado: "1" } });
+                ? yield tipoCliente_model_1.default.findAll({ where: { estado: "1" } })
+                : yield tipoCliente_model_1.default.findOne({ where: { id, estado: "1" } });
             return tipoClienteResult;
         });
     }
