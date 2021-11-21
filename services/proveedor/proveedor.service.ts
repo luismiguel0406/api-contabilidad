@@ -1,4 +1,8 @@
-import { ITipoPoveedor } from "../../interfaces/proveedor.interface";
+import {
+  IProveedor,
+  ITipoPoveedor,
+} from "../../interfaces/proveedor.interface";
+import ProveedoresModel from "../../models/Proveedores/Proveedores.model";
 import tipoProveedorModel from "../../models/Proveedores/tipoProveedores.model";
 
 export default class ProveedorService {
@@ -28,9 +32,26 @@ export default class ProveedorService {
     });
   }
 
-
   //--------- PROVEEDOR -----------//
 
+  async getProveedores(id: any = null) {
+    const proveedorResult =
+      id === null
+        ? await ProveedoresModel.findAll({ where: { estado: "1" } })
+        : await ProveedoresModel.findOne({ where: { id, estado: "1" } });
 
-  
+    return proveedorResult;
+  }
+
+  async addProveedores(body: IProveedor) {
+    await ProveedoresModel.create(body);
+  }
+
+  async updateProveedor(body: IProveedor, id: string) {
+    await ProveedoresModel.update(body, { where: { id, estado: "1" } });
+  }
+
+  async deleteProveedor(id: string) {
+    await ProveedoresModel.update({ estado: "0" }, { where: { id } });
+  }
 }
