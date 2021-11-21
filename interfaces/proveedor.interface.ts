@@ -1,22 +1,20 @@
-export interface ICliente {
+export interface IProveedor {
   nombre: string;
   RNC_Cedula: string;
-  direccion: string;
-  pagaItbis: boolean;
-  estado: boolean;
   createdAt: Date;
   updatedAt: Date | null;
+  estado: boolean;
   usuario: string;
   terminal: string;
   tipoContactoId: number;
-  tipoClienteId: number;
+  tipoProveedorId: number;
 }
 
-export interface ITipoCliente {
-  descripcion: string;
-  estado: boolean;
+export interface ITipoPoveedor {
+  tipoProveedor: string;
   createdAt: Date;
   updatedAt: Date | null;
+  estado: boolean;
   usuario: string;
   terminal: string;
 }

@@ -1,7 +1,7 @@
 import { IDireccion } from "../../interfaces/contactos.interface";
 import direccionesModel from "../../models/Contacto/Direcciones.model";
 
-export default class DireccionesService {
+export default class DireccionService {
   async getDirecciones(id: any = null) {
     const direccionesResult =
       id === null

@@ -16,10 +16,10 @@ const Correos_model_1 = __importDefault(require("../../models/Contacto/Correos.m
 class CorreoService {
     getCorreos(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            const correo = id === null
+            const correoResult = id === null
                 ? yield Correos_model_1.default.findAll({ where: { estado: "1" } })
                 : yield Correos_model_1.default.findOne({ where: { id, estado: "1" } });
-            return correo;
+            return correoResult;
         });
     }
     AddCorreo(body) {

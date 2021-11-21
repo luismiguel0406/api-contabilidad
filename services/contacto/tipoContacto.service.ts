@@ -1,4 +1,4 @@
-import { ItipoContacto } from "../../interfaces/tipoContacto.interface";
+import { ItipoContacto } from "../../interfaces/contactos.interface";
 import tiposContactosModel from "../../models/Contacto/tipoContactos.model";
 
 export default class TipoContactosService {

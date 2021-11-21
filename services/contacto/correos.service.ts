@@ -3,12 +3,12 @@ import correosModel from "../../models/Contacto/Correos.model";
 
 export default class CorreoService {
   async getCorreos(id: any = null) {
-    const correo =
+    const correoResult =
       id === null
         ? await correosModel.findAll({ where: { estado: "1" } })
         : await correosModel.findOne({ where: { id, estado: "1" } });
 
-    return correo;
+    return correoResult;
   }
 
   async AddCorreo(body:ICorreo) {

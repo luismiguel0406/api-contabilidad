@@ -3,12 +3,12 @@ import telefonosModel from "../../models/Contacto/telefono.model";
 
 export default class TelefonoService {
   async getTelefonos(id: any = null) {
-    const telefono =
+    const telefonoResult =
       id === null
         ? await telefonosModel.findAll({ where: { estado: "1" } })
         : await telefonosModel.findOne({ where: { id, estado: "1" } });
 
-    return telefono;
+    return telefonoResult;
   }
 
   async AddTelefono(body: ITelefono) {
