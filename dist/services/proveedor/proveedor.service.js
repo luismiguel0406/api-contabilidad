@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const Proveedores_model_1 = __importDefault(require("../../models/Proveedores/Proveedores.model"));
 const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedores/tipoProveedores.model"));
 class ProveedorService {
     //-------- TIPO PROVEEDOR --------//
@@ -41,6 +42,30 @@ class ProveedorService {
                     estado: "1",
                 },
             });
+        });
+    }
+    //--------- PROVEEDOR -----------//
+    getProveedores(id = null) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const proveedorResult = id === null
+                ? yield Proveedores_model_1.default.findAll({ where: { estado: "1" } })
+                : yield Proveedores_model_1.default.findOne({ where: { id, estado: "1" } });
+            return proveedorResult;
+        });
+    }
+    addProveedores(body) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield Proveedores_model_1.default.create(body);
+        });
+    }
+    updateProveedor(body, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield Proveedores_model_1.default.update(body, { where: { id, estado: "1" } });
+        });
+    }
+    deleteProveedor(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield Proveedores_model_1.default.update({ estado: "0" }, { where: { id } });
         });
     }
 }

@@ -1,7 +1,8 @@
 import { Sequelize } from "sequelize";
 import variablesEnv from "../config/index";
 
-const db = new Sequelize(variablesEnv.DATABASE_URL || "", {
+
+const db = new Sequelize(`${variablesEnv.DATABASE_URL}`, {
   dialect: "postgres",
   define: {
     freezeTableName: true,
@@ -14,3 +15,5 @@ const db = new Sequelize(variablesEnv.DATABASE_URL || "", {
 });
 
 export default db;
+
+
