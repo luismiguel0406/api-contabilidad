@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const Cliente_model_1 = __importDefault(require("../Clientes/Cliente.model"));
+const Proveedores_model_1 = __importDefault(require("../Proveedores/Proveedores.model"));
 const Correos_model_1 = __importDefault(require("./Correos.model"));
 const Direcciones_model_1 = __importDefault(require("./Direcciones.model"));
 const telefono_model_1 = __importDefault(require("./telefono.model"));
@@ -36,6 +37,8 @@ const tiposContactos = connectionDB_1.default.define("tipoContactos", {
 //--------- ASOCIACIONES ---------//
 tiposContactos.hasMany(Cliente_model_1.default, { foreignKey: "tipoContactoId" });
 Cliente_model_1.default.belongsTo(tiposContactos, { as: "tipoContacto" });
+tiposContactos.hasMany(Proveedores_model_1.default, { foreignKey: "tipoContactoId" });
+Proveedores_model_1.default.belongsTo(tiposContactos, { as: "tipoContacto" });
 tiposContactos.hasMany(Correos_model_1.default, { foreignKey: "tipoContactoId" });
 Correos_model_1.default.belongsTo(tiposContactos, { as: "tipoContacto" });
 tiposContactos.hasMany(Direcciones_model_1.default, { foreignKey: "tipoContactoId" });

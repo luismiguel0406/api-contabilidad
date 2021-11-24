@@ -1,6 +1,7 @@
 import { BelongsTo, DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
 import clientes from "../Clientes/Cliente.model";
+import Proveedores from "../Proveedores/Proveedores.model";
 import correos from "./Correos.model";
 import direcciones from "./Direcciones.model";
 import telefonos from "./telefono.model";
@@ -40,6 +41,9 @@ const tiposContactos = conexion.define(
 tiposContactos.hasMany(clientes, { foreignKey: "tipoContactoId" });
 clientes.belongsTo(tiposContactos,{as: "tipoContacto"});
 
+tiposContactos.hasMany(Proveedores,{foreignKey:"tipoContactoId"})
+Proveedores.belongsTo(tiposContactos,{as:"tipoContacto"})
+
 tiposContactos.hasMany(correos, { foreignKey: "tipoContactoId" });
 correos.belongsTo(tiposContactos, {as: "tipoContacto"});
 
@@ -48,6 +52,8 @@ direcciones.belongsTo(tiposContactos, {as: "tipoContacto"});
 
 tiposContactos.hasMany(telefonos,{foreignKey: "tipoContactoId"});
 telefonos.belongsTo(tiposContactos, {as: "tipoContacto"})
+
+
 
 
 export default tiposContactos;

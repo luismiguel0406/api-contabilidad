@@ -44,16 +44,16 @@ const Proveedores = conexion.define(
   },
   { schema: "PROVEEDORES" }
 );
-Proveedores.sync({force:true})
+
 //----------  ASOCIACIONES ------------//
 
 Proveedores.hasMany(correos, { foreignKey: "contactoId" });
-correos.belongsTo(Proveedores, { as: "contacto" });
+correos.belongsTo(Proveedores);
 
 Proveedores.hasMany(telefonos, { foreignKey: "contactoId" });
-telefonos.belongsTo(Proveedores, { as: "contacto" });
+telefonos.belongsTo(Proveedores);
 
 Proveedores.hasMany(direcciones, { foreignKey: "contactoId" });
-direcciones.belongsTo(Proveedores, { as: "contacto" });
+direcciones.belongsTo(Proveedores);
 
 export default Proveedores;

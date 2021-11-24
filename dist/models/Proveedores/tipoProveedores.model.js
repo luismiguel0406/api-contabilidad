@@ -31,11 +31,9 @@ const tipoProveedor = connectionDB_1.default.define("tipoProveedor", {
         type: sequelize_1.DataTypes.STRING,
     },
 }, { schema: "PROVEEDORES" });
-tipoProveedor.sync({ force: true });
-tipoProveedor.hasMany(Proveedores_model_1.default, {
-    foreignKey: "tipoProveedorId",
-});
+tipoProveedor.hasMany(Proveedores_model_1.default, { foreignKey: "tipoProveedorId" });
 Proveedores_model_1.default.belongsTo(tipoProveedor);
+// AGREGO TIPO AL INICIO DEL PROGRAMA //
 tipoProveedor.afterSync("CreaTiposProveedores", () => {
     try {
         Querys_1.tipoProveedores.forEach((tipo) => {

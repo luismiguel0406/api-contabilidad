@@ -44,13 +44,12 @@ const Proveedores = connectionDB_1.default.define("proveedor", {
         allowNull: false,
     },
 }, { schema: "PROVEEDORES" });
-Proveedores.sync({ force: true });
 //----------  ASOCIACIONES ------------//
 Proveedores.hasMany(Correos_model_1.default, { foreignKey: "contactoId" });
-Correos_model_1.default.belongsTo(Proveedores, { as: "contacto" });
+Correos_model_1.default.belongsTo(Proveedores);
 Proveedores.hasMany(telefono_model_1.default, { foreignKey: "contactoId" });
-telefono_model_1.default.belongsTo(Proveedores, { as: "contacto" });
+telefono_model_1.default.belongsTo(Proveedores);
 Proveedores.hasMany(Direcciones_model_1.default, { foreignKey: "contactoId" });
-Direcciones_model_1.default.belongsTo(Proveedores, { as: "contacto" });
+Direcciones_model_1.default.belongsTo(Proveedores);
 exports.default = Proveedores;
 //# sourceMappingURL=Proveedores.model.js.map
