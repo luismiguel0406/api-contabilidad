@@ -14,6 +14,7 @@ const Proveedores = conexion.define(
     RNC_Cedula: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique:true
     },
     createdAt: {
       type: DataTypes.DATE,

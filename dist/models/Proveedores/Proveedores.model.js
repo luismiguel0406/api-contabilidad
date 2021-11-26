@@ -16,6 +16,7 @@ const Proveedores = connectionDB_1.default.define("proveedor", {
     RNC_Cedula: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
+        unique: true
     },
     createdAt: {
         type: sequelize_1.DataTypes.DATE,

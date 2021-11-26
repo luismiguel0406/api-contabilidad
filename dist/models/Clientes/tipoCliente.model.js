@@ -35,6 +35,6 @@ const tipoCliente = connectionDB_1.default.define("tipoCliente", {
 tipoCliente.hasMany(Cliente_model_1.default, {
     foreignKey: 'tipoClienteId'
 });
-Cliente_model_1.default.belongsTo(tipoCliente, { as: "tipoCliente" });
+Cliente_model_1.default.belongsTo(tipoCliente);
 exports.default = tipoCliente;
 //# sourceMappingURL=tipoCliente.model.js.map

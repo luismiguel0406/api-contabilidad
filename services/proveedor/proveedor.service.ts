@@ -23,7 +23,7 @@ export default class ProveedorService {
     }
 
     
-    async deleteTipoProveedores(id: string) {
+    async deleteTipoProveedor(id: string) {
       await tipoProveedorModel.update({ estado: "0" }, { where: { id } });
     }
     async updateTipoProveedor(body: ITipoPoveedor, id: string) {
@@ -46,7 +46,7 @@ export default class ProveedorService {
       return proveedorResult;
     }
 
-    async addProveedores(body: IProveedor) {
+    async addProveedor(body: IProveedor) {
       await ProveedoresModel.create(body);
     }
 

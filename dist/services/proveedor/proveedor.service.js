@@ -29,7 +29,7 @@ class ProveedorService {
             yield tipoProveedores_model_1.default.create(body);
         });
     }
-    deleteTipoProveedores(id) {
+    deleteTipoProveedor(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield tipoProveedores_model_1.default.update({ estado: "0" }, { where: { id } });
         });
@@ -53,7 +53,7 @@ class ProveedorService {
             return proveedorResult;
         });
     }
-    addProveedores(body) {
+    addProveedor(body) {
         return __awaiter(this, void 0, void 0, function* () {
             yield Proveedores_model_1.default.create(body);
         });

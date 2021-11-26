@@ -5,8 +5,8 @@ import monedaRoutes from "./routes/Facturacion/moneda.route";
 import empresaRoutes from "./routes/Empresa/empresa.route";
 import clientesRoutes from "./routes/Clientes/clientes.route";
 import contactosRoutes from "./routes/Contactos/contactos.route";
+import proveedoresRoutes from "./routes/Proveedores/proveedores.route";
 import cors from "cors";
-import https from "https";
 import variablesEnv from "./config/index";
 import db from "./Database/connectionDB";
 import helmet from "helmet";
@@ -56,6 +56,7 @@ class Server {
     this.app.use(empresaRoutes);
     this.app.use(clientesRoutes);
     this.app.use(contactosRoutes);
+    this.app.use(proveedoresRoutes);
     
   }
 }
