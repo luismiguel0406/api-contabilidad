@@ -41,9 +41,8 @@ Proveedores.belongsTo(tipoProveedor);
 
 tipoProveedor.afterSync("CreaTiposProveedores", () => {
   try {
-    tipoProveedoresArray.forEach((tipo) => {
-      tipoProveedor.create(tipo);
-    });
+     tipoProveedor.bulkCreate(tipoProveedoresArray)
+     
   } catch (error) {
     console.error(error, "Error insertando tipos proveedores");
   }

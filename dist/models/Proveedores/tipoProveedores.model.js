@@ -36,9 +36,7 @@ Proveedores_model_1.default.belongsTo(tipoProveedor);
 // AGREGO TIPO AL INICIO DEL PROGRAMA //
 tipoProveedor.afterSync("CreaTiposProveedores", () => {
     try {
-        Querys_1.tipoProveedores.forEach((tipo) => {
-            tipoProveedor.create(tipo);
-        });
+        tipoProveedor.bulkCreate(Querys_1.tipoProveedores);
     }
     catch (error) {
         console.error(error, "Error insertando tipos proveedores");
