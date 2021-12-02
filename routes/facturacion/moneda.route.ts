@@ -8,6 +8,6 @@ const Moneda = "moneda";
 router.get(`${endPointFacturacion}/${Moneda}/:id?`,getMoneda);
 router.post(`${endPointFacturacion}/${Moneda}`,postMoneda);
 router.put(`${endPointFacturacion}/${Moneda}/:id`,updateMoneda);
-router.put(`${endPointFacturacion}/${Moneda}/:id`,deleteMoneda);
+router.delete(`${endPointFacturacion}/${Moneda}/:id`,deleteMoneda);
 
-export default router;
+export default router;//ve a arregalar empresa

@@ -8,6 +8,6 @@ const Moneda = "moneda";
 router.get(`${endPointFacturacion}/${Moneda}/:id?`, moneda_controller_1.getMoneda);
 router.post(`${endPointFacturacion}/${Moneda}`, moneda_controller_1.postMoneda);
 router.put(`${endPointFacturacion}/${Moneda}/:id`, moneda_controller_1.updateMoneda);
-router.put(`${endPointFacturacion}/${Moneda}/:id`, moneda_controller_1.deleteMoneda);
-exports.default = router;
+router.delete(`${endPointFacturacion}/${Moneda}/:id`, moneda_controller_1.deleteMoneda);
+exports.default = router; //ve a arregalar empresa
 //# sourceMappingURL=moneda.route.js.map
