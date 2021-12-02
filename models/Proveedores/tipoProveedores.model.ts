@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
-import { tipoProveedores, tipoProveedores as tipoProveedoresArray } from "../../helpers/Querys Iniciales/Querys";
 import Proveedores from "./Proveedores.model";
 
 const tipoProveedor = conexion.define(
@@ -37,15 +36,5 @@ const tipoProveedor = conexion.define(
 tipoProveedor.hasMany(Proveedores, { foreignKey: "tipoProveedorId"});
 Proveedores.belongsTo(tipoProveedor);
 
-// AGREGO TIPO AL INICIO DEL PROGRAMA //
-
-tipoProveedor.afterSync("CreaTiposProveedores", () => {
-  try {
-     tipoProveedor.bulkCreate(tipoProveedoresArray)
-     
-  } catch (error) {
-    console.error(error, "Error insertando tipos proveedores");
-  }
-});
 
 export default tipoProveedor;
