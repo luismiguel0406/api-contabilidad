@@ -1,5 +1,5 @@
 import monedaModel from "../../models/Facturacion/moneda.model";
-import { Moneda } from "../../interfaces/moneda.interface";
+import { IMoneda } from "../../interfaces/moneda.interface";
 
 export default class monedaService {
   async getMoneda(id: any = null) {
@@ -11,7 +11,7 @@ export default class monedaService {
     return MonedaResult;
   }
 
-  async updateMoneda(id: string, body: Moneda) {
+  async updateMoneda(id: string, body: IMoneda) {
     await monedaModel.update(body, {
       where: {
         id,
@@ -29,7 +29,7 @@ export default class monedaService {
     );
   }
 
-  async addMoneda(body: Moneda) {
+  async addMoneda(body: IMoneda) {
     await monedaModel.create(body);
   }
 }

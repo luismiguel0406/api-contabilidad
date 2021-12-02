@@ -1,4 +1,4 @@
-export interface Moneda{
+export interface IMoneda{
 
       descripcion:string;
       simbolo:string;

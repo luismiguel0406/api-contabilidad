@@ -1,8 +1,9 @@
 import express, { Application} from "express";
+import { Moneda, TiposClientes, TiposContactos, TiposProveedores } from "./helpers/Querys Iniciales/Querys";
 import CuentasRoutes from "./routes/Cuentas Contables/cuentasPadre/cuentas.route";
 import CuentasHijasRoutes from "./routes/Cuentas Contables/cuentasHijas/cuentas.route";
-import monedaRoutes from "./routes/Facturacion/moneda.route";
-import empresaRoutes from "./routes/Empresa/empresa.route";
+import MondedasRoutes from "./routes/facturacion/moneda.route";
+
 import clientesRoutes from "./routes/Clientes/clientes.route";
 import contactosRoutes from "./routes/Contactos/contactos.route";
 import proveedoresRoutes from "./routes/Proveedores/proveedores.route";
@@ -22,6 +23,7 @@ class Server {
     this.port = variablesEnv.PORT || '';
 
     this.dbConnection();
+    this.Inicio()
     this.middlewares();
     this.routes();
   }
@@ -36,10 +38,10 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
-     // await db.sync({force:false});
+      //await db.sync()
       console.log("Database CACTUS Online");
     } catch (error) {
-      console.log(`Error${error}`);
+      console.log(`Error ${error}`);
     }
   }
 
@@ -52,12 +54,26 @@ class Server {
   routes() {
     this.app.use(CuentasRoutes);
     this.app.use(CuentasHijasRoutes);
-    this.app.use(monedaRoutes);
-    this.app.use(empresaRoutes);
+    this.app.use(MondedasRoutes);
+    //this.app.use(empresaRoutes);
     this.app.use(clientesRoutes);
     this.app.use(contactosRoutes);
     this.app.use(proveedoresRoutes);
     
+  }
+
+  Inicio(){
+  
+    const tipoClientes = new TiposClientes;
+    const tipoContacto = new TiposContactos;
+    const tipoProveedor = new TiposProveedores;
+    const moneda = new Moneda;
+
+    tipoClientes.InsertarTipoClientes();
+    tipoContacto.InsertarTipoContactos();
+    tipoProveedor.InsertarTiposProveedores();
+    moneda.InsertarMonedas();
+     
   }
 }
 export default Server;

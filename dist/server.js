@@ -13,10 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const Querys_1 = require("./helpers/Querys Iniciales/Querys");
 const cuentas_route_1 = __importDefault(require("./routes/Cuentas Contables/cuentasPadre/cuentas.route"));
 const cuentas_route_2 = __importDefault(require("./routes/Cuentas Contables/cuentasHijas/cuentas.route"));
-const moneda_route_1 = __importDefault(require("./routes/Facturacion/moneda.route"));
-const empresa_route_1 = __importDefault(require("./routes/Empresa/empresa.route"));
+const moneda_route_1 = __importDefault(require("./routes/facturacion/moneda.route"));
 const clientes_route_1 = __importDefault(require("./routes/Clientes/clientes.route"));
 const contactos_route_1 = __importDefault(require("./routes/Contactos/contactos.route"));
 const proveedores_route_1 = __importDefault(require("./routes/Proveedores/proveedores.route"));
@@ -30,6 +30,7 @@ class Server {
         this.app = (0, express_1.default)();
         this.port = index_1.default.PORT || '';
         this.dbConnection();
+        this.Inicio();
         this.middlewares();
         this.routes();
     }
@@ -43,11 +44,11 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield connectionDB_1.default.authenticate();
-                // await db.sync({force:false});
+                //await db.sync()
                 console.log("Database CACTUS Online");
             }
             catch (error) {
-                console.log(`Error${error}`);
+                console.log(`Error ${error}`);
             }
         });
     }
@@ -61,10 +62,20 @@ class Server {
         this.app.use(cuentas_route_1.default);
         this.app.use(cuentas_route_2.default);
         this.app.use(moneda_route_1.default);
-        this.app.use(empresa_route_1.default);
+        //this.app.use(empresaRoutes);
         this.app.use(clientes_route_1.default);
         this.app.use(contactos_route_1.default);
         this.app.use(proveedores_route_1.default);
+    }
+    Inicio() {
+        const tipoClientes = new Querys_1.TiposClientes;
+        const tipoContacto = new Querys_1.TiposContactos;
+        const tipoProveedor = new Querys_1.TiposProveedores;
+        const moneda = new Querys_1.Moneda;
+        tipoClientes.InsertarTipoClientes();
+        tipoContacto.InsertarTipoContactos();
+        tipoProveedor.InsertarTiposProveedores();
+        moneda.InsertarMonedas();
     }
 }
 exports.default = Server;

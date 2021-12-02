@@ -1,6 +1,10 @@
+import { ITipoCliente } from "../../interfaces/cliente.interface";
 import { ItipoContacto } from "../../interfaces/contactos.interface";
+import { IMoneda } from "../../interfaces/moneda.interface";
 import { ITipoPoveedor } from "../../interfaces/proveedor.interface";
+import tipoCliente from "../../models/Clientes/tipoCliente.model";
 import tiposContactos from "../../models/Contacto/tipoContactos.model";
+import moneda from "../../models/Facturacion/moneda.model";
 import tipoProveedor from "../../models/Proveedores/tipoProveedores.model";
 
 export class TiposProveedores {
@@ -86,5 +90,76 @@ export class TiposContactos {
         console.error(error, "Error insertando tipos contactos");
       }
     });
+  }
+}
+
+export class TiposClientes {
+  private tipoClientesArray: Array<ITipoCliente>;
+
+  constructor() {
+    this.tipoClientesArray = [
+      {
+        descripcion: "FORMAL",
+        createdAt: new Date(),
+        updatedAt: null,
+        estado: true,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "INFORMAL",
+        createdAt: new Date(),
+        updatedAt: null,
+        estado: true,
+        usuario: "SA",
+        terminal: "SA",
+      },
+    ];
+  }
+  InsertarTipoClientes() {
+    try {
+      tipoCliente.afterSync("createTipoClientes", () => {
+        tipoCliente.bulkCreate(this.tipoClientesArray);
+      });
+    } catch (error) {
+      console.error(error, "Error insertando tipo Clientes");
+    }
+  }
+}
+
+export class Moneda {
+  private monedaArray: Array<IMoneda>;
+
+  constructor() {
+    this.monedaArray = [
+      {
+        descripcion: "PESOS",
+        simbolo: "RD$",
+        createdAt: new Date(),
+        updatedAt: null,
+        estado: true,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "DOLAR",
+        simbolo: "US$",
+        createdAt: new Date(),
+        updatedAt: null,
+        estado: true,
+        usuario: "SA",
+        terminal: "SA",
+      },
+    ];
+  }
+
+  InsertarMonedas() {
+    try {
+      moneda.afterSync("createMonedas", () => {
+        moneda.bulkCreate(this.monedaArray);
+      });
+    } catch (error) {
+      console.error(error, "Error insertando Monedas");
+    }
   }
 }
