@@ -18,7 +18,7 @@ export const getClientes = async (req: Request, res: Response) => {
     }
 
     const { statusCode, msg } = MsgRespuesta.Success;
-    res.status(statusCode).json({ Clientes: clientesResult, Message: msg }); // VER ESTO
+    res.status(statusCode).json({ Clientes: clientesResult, Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ Message: msg ,error});
