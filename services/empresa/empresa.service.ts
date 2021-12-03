@@ -1,4 +1,4 @@
-import { empresa } from "../../interfaces/empresa.interface";
+import { IEmpresa } from "../../interfaces/empresa.interface";
 import empresasModel from "../../models/Empresa/empresa.model";
 
 export default class EmpresaService {
@@ -10,7 +10,7 @@ export default class EmpresaService {
     return empresaResult;
   };
 
-  async AddEmpresa(body: empresa) {
+  async AddEmpresa(body: IEmpresa) {
     await empresasModel.create(body);
   };
 
@@ -25,7 +25,7 @@ export default class EmpresaService {
     );
   };
 
-  async updateEmpresa(body: empresa, id: string) {
+  async updateEmpresa(body: IEmpresa, id: string) {
     await empresasModel.update(body, {
       where: {
         id,

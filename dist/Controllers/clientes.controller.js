@@ -26,7 +26,7 @@ const getClientes = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             return res.status(statusCode).json({ Message: msg });
         }
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
-        res.status(statusCode).json({ Clientes: clientesResult, Message: msg }); // VER ESTO
+        res.status(statusCode).json({ Clientes: clientesResult, Message: msg });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

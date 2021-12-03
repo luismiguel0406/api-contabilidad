@@ -1,4 +1,4 @@
-import { cuentaContable } from "../../interfaces/cuentaContable.interface";
+import { ICuentaContable } from "../../interfaces/cuentaContable.interface";
 import cuentaContableModel from "../../models/Cuentas Contables/CuentasContables.model";
 
 export default class CuentasContables {
@@ -13,7 +13,7 @@ export default class CuentasContables {
     return cuentaResult;
   }
 
-  async addCuentaContable(body: cuentaContable) {
+  async addCuentaContable(body: ICuentaContable) {
     await cuentaContableModel.create(body);
   }
 
@@ -21,7 +21,7 @@ export default class CuentasContables {
     await cuentaContableModel.update({ estado: "0" }, { where: { id } });
   }
 
-  async updateCuentaContable(body: cuentaContable, id: string) {
+  async updateCuentaContable(body: ICuentaContable, id: string) {
     await cuentaContableModel.update(body, { where: { id, estado: "1" } });
   }
 }

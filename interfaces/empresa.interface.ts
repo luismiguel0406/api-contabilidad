@@ -1,4 +1,4 @@
-export interface empresa {
+export interface IEmpresa {
  
   nombre: string;
   inicialesEmpresa: string;

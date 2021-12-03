@@ -1,14 +1,14 @@
-export interface cuentaContable {
-  
+export interface ICuentaContable {
+ 
   cuenta: string;
-  idCuentaPadre: number;
+  cuentaPadreId: number | null;
   descripcion: string;
-  idEmpresa: number;
-  idMoneda: number;
   estado: boolean;
   createdAt: Date;
   updatedAt: Date | null;
   usuario: string;
   terminal: string;
+  empresaId: number;
+  monedaId: number;
   
 }
