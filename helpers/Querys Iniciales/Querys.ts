@@ -42,9 +42,9 @@ export class TiposProveedores {
     ];
   }
   InsertarTiposProveedores() {
-    tipoProveedor.afterSync("CreaTiposProveedores", () => {
+    tipoProveedor.afterSync("CreaTiposProveedores", async () => {
       try {
-        tipoProveedor.bulkCreate(this.tipoProveedoresArray);
+        await tipoProveedor.bulkCreate(this.tipoProveedoresArray);
       } catch (error) {
         console.error(error, "Error insertando tipos proveedores");
       }
@@ -85,9 +85,9 @@ export class TiposContactos {
   }
 
   InsertarTipoContactos() {
-    tiposContactos.afterSync("createTipoContactos", () => {
+    tiposContactos.afterSync("createTipoContactos", async () => {
       try {
-        tiposContactos.bulkCreate(this.tipoContactosArray);
+        await tiposContactos.bulkCreate(this.tipoContactosArray);
       } catch (error) {
         console.error(error, "Error insertando tipos contactos");
       }
@@ -120,8 +120,8 @@ export class TiposClientes {
   }
   InsertarTipoClientes() {
     try {
-      tipoCliente.afterSync("createTipoClientes", () => {
-        tipoCliente.bulkCreate(this.tipoClientesArray);
+      tipoCliente.afterSync("createTipoClientes", async () => {
+       await tipoCliente.bulkCreate(this.tipoClientesArray);
       });
     } catch (error) {
       console.error(error, "Error insertando tipo Clientes");
@@ -157,8 +157,8 @@ export class Moneda {
 
   InsertarMonedas() {
     try {
-      moneda.afterSync("createMonedas", () => {
-        moneda.bulkCreate(this.monedaArray);
+      moneda.afterSync("createMonedas", async () => {
+       await moneda.bulkCreate(this.monedaArray);
       });
     } catch (error) {
       console.error(error, "Error insertando Monedas");
@@ -451,8 +451,8 @@ export class CuentasContablesPadres {
   }
   InsertarCuentasContablesPadre() {
     try {
-      cuentaContable.afterSync("createCuentasContablesPadre", () => {
-        cuentaContable.bulkCreate(this.CuentaContableArray);
+      cuentaContable.afterSync("createCuentasContablesPadre", async () => {
+       await cuentaContable.bulkCreate(this.CuentaContableArray);
       });
     } catch (error) {
       console.error(error, "Error insertando Cuentas Contables");

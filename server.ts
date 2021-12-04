@@ -1,5 +1,10 @@
-import express, { Application} from "express";
-import { Moneda, TiposClientes, TiposContactos, TiposProveedores } from "./helpers/Querys Iniciales/Querys";
+import express, { Application } from "express";
+import {
+  Moneda,
+  TiposClientes,
+  TiposContactos,
+  TiposProveedores,
+} from "./helpers/Querys Iniciales/Querys";
 import CuentasRoutes from "./routes/Cuentas Contables/cuentasPadre/cuentas.route";
 import CuentasHijasRoutes from "./routes/Cuentas Contables/cuentasHijas/cuentas.route";
 import MondedasRoutes from "./routes/facturacion/moneda.route";
@@ -12,7 +17,6 @@ import variablesEnv from "./config/index";
 import db from "./Database/connectionDB";
 import helmet from "helmet";
 
-
 /*INICIALIZO EL SERVIDOR*/
 class Server {
   private app: Application;
@@ -20,10 +24,10 @@ class Server {
 
   constructor() {
     this.app = express();
-    this.port = variablesEnv.PORT || '';
+    this.port = variablesEnv.PORT || "";
 
     this.dbConnection();
-    this.Inicio()
+    this.Inicio();
     this.middlewares();
     this.routes();
   }
@@ -59,21 +63,22 @@ class Server {
     this.app.use(clientesRoutes);
     this.app.use(contactosRoutes);
     this.app.use(proveedoresRoutes);
-    
   }
 
-  Inicio(){
-  
-    const tipoClientes = new TiposClientes;
-    const tipoContacto = new TiposContactos;
-    const tipoProveedor = new TiposProveedores;
-    const moneda = new Moneda;
+  Inicio() {
+    try {
+      const tipoClientes = new TiposClientes();
+      const tipoContacto = new TiposContactos();
+      const tipoProveedor = new TiposProveedores();
+      const moneda = new Moneda();
 
-    tipoClientes.InsertarTipoClientes();
-    tipoContacto.InsertarTipoContactos();
-    tipoProveedor.InsertarTiposProveedores();
-    moneda.InsertarMonedas();
-     
+      tipoClientes.InsertarTipoClientes();
+      tipoContacto.InsertarTipoContactos();
+      tipoProveedor.InsertarTiposProveedores();
+      moneda.InsertarMonedas();
+    } catch (error) {
+      console.error(`Error Metodo Inicio ${error}`);
+    }
   }
 }
 export default Server;

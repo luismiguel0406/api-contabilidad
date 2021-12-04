@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -40,14 +49,14 @@ class TiposProveedores {
         ];
     }
     InsertarTiposProveedores() {
-        tipoProveedores_model_1.default.afterSync("CreaTiposProveedores", () => {
+        tipoProveedores_model_1.default.afterSync("CreaTiposProveedores", () => __awaiter(this, void 0, void 0, function* () {
             try {
-                tipoProveedores_model_1.default.bulkCreate(this.tipoProveedoresArray);
+                yield tipoProveedores_model_1.default.bulkCreate(this.tipoProveedoresArray);
             }
             catch (error) {
                 console.error(error, "Error insertando tipos proveedores");
             }
-        });
+        }));
     }
 }
 exports.TiposProveedores = TiposProveedores;
@@ -81,14 +90,14 @@ class TiposContactos {
         ];
     }
     InsertarTipoContactos() {
-        tipoContactos_model_1.default.afterSync("createTipoContactos", () => {
+        tipoContactos_model_1.default.afterSync("createTipoContactos", () => __awaiter(this, void 0, void 0, function* () {
             try {
-                tipoContactos_model_1.default.bulkCreate(this.tipoContactosArray);
+                yield tipoContactos_model_1.default.bulkCreate(this.tipoContactosArray);
             }
             catch (error) {
                 console.error(error, "Error insertando tipos contactos");
             }
-        });
+        }));
     }
 }
 exports.TiposContactos = TiposContactos;
@@ -115,9 +124,9 @@ class TiposClientes {
     }
     InsertarTipoClientes() {
         try {
-            tipoCliente_model_1.default.afterSync("createTipoClientes", () => {
-                tipoCliente_model_1.default.bulkCreate(this.tipoClientesArray);
-            });
+            tipoCliente_model_1.default.afterSync("createTipoClientes", () => __awaiter(this, void 0, void 0, function* () {
+                yield tipoCliente_model_1.default.bulkCreate(this.tipoClientesArray);
+            }));
         }
         catch (error) {
             console.error(error, "Error insertando tipo Clientes");
@@ -150,9 +159,9 @@ class Moneda {
     }
     InsertarMonedas() {
         try {
-            moneda_model_1.default.afterSync("createMonedas", () => {
-                moneda_model_1.default.bulkCreate(this.monedaArray);
-            });
+            moneda_model_1.default.afterSync("createMonedas", () => __awaiter(this, void 0, void 0, function* () {
+                yield moneda_model_1.default.bulkCreate(this.monedaArray);
+            }));
         }
         catch (error) {
             console.error(error, "Error insertando Monedas");
@@ -443,9 +452,9 @@ class CuentasContablesPadres {
     }
     InsertarCuentasContablesPadre() {
         try {
-            CuentasContables_model_1.default.afterSync("createCuentasContablesPadre", () => {
-                CuentasContables_model_1.default.bulkCreate(this.CuentaContableArray);
-            });
+            CuentasContables_model_1.default.afterSync("createCuentasContablesPadre", () => __awaiter(this, void 0, void 0, function* () {
+                yield CuentasContables_model_1.default.bulkCreate(this.CuentaContableArray);
+            }));
         }
         catch (error) {
             console.error(error, "Error insertando Cuentas Contables");

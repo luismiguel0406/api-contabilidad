@@ -28,7 +28,7 @@ const helmet_1 = __importDefault(require("helmet"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
-        this.port = index_1.default.PORT || '';
+        this.port = index_1.default.PORT || "";
         this.dbConnection();
         this.Inicio();
         this.middlewares();
@@ -68,14 +68,19 @@ class Server {
         this.app.use(proveedores_route_1.default);
     }
     Inicio() {
-        const tipoClientes = new Querys_1.TiposClientes;
-        const tipoContacto = new Querys_1.TiposContactos;
-        const tipoProveedor = new Querys_1.TiposProveedores;
-        const moneda = new Querys_1.Moneda;
-        tipoClientes.InsertarTipoClientes();
-        tipoContacto.InsertarTipoContactos();
-        tipoProveedor.InsertarTiposProveedores();
-        moneda.InsertarMonedas();
+        try {
+            const tipoClientes = new Querys_1.TiposClientes();
+            const tipoContacto = new Querys_1.TiposContactos();
+            const tipoProveedor = new Querys_1.TiposProveedores();
+            const moneda = new Querys_1.Moneda();
+            tipoClientes.InsertarTipoClientes();
+            tipoContacto.InsertarTipoContactos();
+            tipoProveedor.InsertarTiposProveedores();
+            moneda.InsertarMonedas();
+        }
+        catch (error) {
+            console.error(`Error Metodo Inicio ${error}`);
+        }
     }
 }
 exports.default = Server;
