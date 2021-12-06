@@ -166,10 +166,11 @@ export class Moneda {
   }
 }
 
+// VER ID EMPRESA
 export class CuentasContablesPadres {
   private CuentaContableArray: Array<ICuentaContable>;
 
-  constructor() {
+  constructor(empresaId:number) {
     this.CuentaContableArray = [
       {
         cuenta: "1",
@@ -180,7 +181,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -192,7 +193,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -204,7 +205,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -216,7 +217,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -228,7 +229,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -240,7 +241,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -252,7 +253,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -264,7 +265,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -276,7 +277,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -288,7 +289,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -300,7 +301,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -312,7 +313,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -324,7 +325,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -336,7 +337,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -348,7 +349,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -360,7 +361,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -372,7 +373,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -384,7 +385,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -396,7 +397,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -408,7 +409,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -420,7 +421,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -432,7 +433,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
       {
@@ -444,7 +445,7 @@ export class CuentasContablesPadres {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        empresaId: 1,
+        empresaId,
         monedaId: 1,
       },
     ];

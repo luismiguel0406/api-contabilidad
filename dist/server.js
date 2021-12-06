@@ -30,7 +30,7 @@ class Server {
         this.app = (0, express_1.default)();
         this.port = index_1.default.PORT || "";
         this.dbConnection();
-        this.Inicio();
+        this.InicioAplicacion();
         this.middlewares();
         this.routes();
     }
@@ -67,7 +67,7 @@ class Server {
         this.app.use(contactos_route_1.default);
         this.app.use(proveedores_route_1.default);
     }
-    Inicio() {
+    InicioAplicacion() {
         try {
             const tipoClientes = new Querys_1.TiposClientes();
             const tipoContacto = new Querys_1.TiposContactos();
@@ -79,7 +79,18 @@ class Server {
             moneda.InsertarMonedas();
         }
         catch (error) {
-            console.error(`Error Metodo Inicio ${error}`);
+            console.error(`Error Metodo InicioAplicacion ${error}`);
+        }
+    }
+    ;
+    InicioNuevaEmpresa() {
+        try {
+            const empresaId = 1; //VER AQUI
+            const cuentasContablesPadres = new Querys_1.CuentasContablesPadres(empresaId);
+            cuentasContablesPadres.InsertarCuentasContablesPadre();
+        }
+        catch (error) {
+            console.error(`Error Metodo InicioNuevaEmpresa ${error}`);
         }
     }
 }

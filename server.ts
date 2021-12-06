@@ -1,5 +1,6 @@
 import express, { Application } from "express";
 import {
+  CuentasContablesPadres,
   Moneda,
   TiposClientes,
   TiposContactos,
@@ -27,7 +28,7 @@ class Server {
     this.port = variablesEnv.PORT || "";
 
     this.dbConnection();
-    this.Inicio();
+    this.InicioAplicacion();
     this.middlewares();
     this.routes();
   }
@@ -65,7 +66,7 @@ class Server {
     this.app.use(proveedoresRoutes);
   }
 
-  Inicio() {
+  InicioAplicacion() {
     try {
       const tipoClientes = new TiposClientes();
       const tipoContacto = new TiposContactos();
@@ -77,7 +78,18 @@ class Server {
       tipoProveedor.InsertarTiposProveedores();
       moneda.InsertarMonedas();
     } catch (error) {
-      console.error(`Error Metodo Inicio ${error}`);
+      console.error(`Error Metodo InicioAplicacion ${error}`);
+    }
+  };
+
+  InicioNuevaEmpresa(){
+
+    try {
+      const empresaId = 1;//VER AQUI
+      const cuentasContablesPadres = new CuentasContablesPadres(empresaId);
+      cuentasContablesPadres.InsertarCuentasContablesPadre();
+    } catch (error) {
+      console.error(`Error Metodo InicioNuevaEmpresa ${error}`);
     }
   }
 }
