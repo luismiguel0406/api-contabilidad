@@ -1,4 +1,5 @@
 import { ITipoCliente } from "../../interfaces/cliente.interface";
+import { IComprobante } from "../../interfaces/comprobante.interface";
 import { ItipoContacto } from "../../interfaces/contactos.interface";
 import { ICuentaContable } from "../../interfaces/cuentaContable.interface";
 import { IMoneda } from "../../interfaces/moneda.interface";
@@ -6,6 +7,7 @@ import { ITipoPoveedor } from "../../interfaces/proveedor.interface";
 import tipoCliente from "../../models/Clientes/tipoCliente.model";
 import tiposContactos from "../../models/Contacto/tipoContactos.model";
 import cuentaContable from "../../models/Cuentas Contables/CuentasContables.model";
+import comprobantes from "../../models/Facturacion/comprobante.model";
 import moneda from "../../models/Facturacion/moneda.model";
 import tipoProveedor from "../../models/Proveedores/tipoProveedores.model";
 
@@ -121,7 +123,7 @@ export class TiposClientes {
   InsertarTipoClientes() {
     try {
       tipoCliente.afterSync("createTipoClientes", async () => {
-       await tipoCliente.bulkCreate(this.tipoClientesArray);
+        await tipoCliente.bulkCreate(this.tipoClientesArray);
       });
     } catch (error) {
       console.error(error, "Error insertando tipo Clientes");
@@ -158,7 +160,7 @@ export class Moneda {
   InsertarMonedas() {
     try {
       moneda.afterSync("createMonedas", async () => {
-       await moneda.bulkCreate(this.monedaArray);
+        await moneda.bulkCreate(this.monedaArray);
       });
     } catch (error) {
       console.error(error, "Error insertando Monedas");
@@ -170,7 +172,7 @@ export class Moneda {
 export class CuentasContablesPadres {
   private CuentaContableArray: Array<ICuentaContable>;
 
-  constructor(empresaId:number) {
+  constructor(empresaId: number) {
     this.CuentaContableArray = [
       {
         cuenta: "1",
@@ -453,10 +455,127 @@ export class CuentasContablesPadres {
   InsertarCuentasContablesPadre() {
     try {
       cuentaContable.afterSync("createCuentasContablesPadre", async () => {
-       await cuentaContable.bulkCreate(this.CuentaContableArray);
+        await cuentaContable.bulkCreate(this.CuentaContableArray);
       });
     } catch (error) {
       console.error(error, "Error insertando Cuentas Contables");
+    }
+  }
+}
+
+export class Comprobantes {
+  private comprobantesArray: Array<IComprobante>;
+
+  constructor() {
+    this.comprobantesArray = [
+      {
+        tipo: "B01",
+        descripcion: "FISCAL",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        tipo: "B02",
+        descripcion: "CONSUMO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        tipo: "B04",
+        descripcion: "NOTAS DE CREDITO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        tipo: "B11",
+        descripcion: "COMPRAS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        tipo: "B12",
+        descripcion: "REGISTRO UNICO DE INGRESOS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        tipo: "B13",
+        descripcion: "GASTOS MENORES",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        tipo: "B14",
+        descripcion: "REGIMEN ESPECIAL",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        tipo: "B15",
+        descripcion: "GUBERNAMENTAL",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        tipo: "B16",
+        descripcion: "EXPORTACIONES",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        tipo: "B17",
+        descripcion: "PAGOS AL EXTERIOR",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        tipo: "E-CF",
+        descripcion: "ELECTRONICO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+    ];
+  }
+  InsertarComprobantes() {
+    try {
+      comprobantes.afterSync("createComprobantes", async () => {
+        await comprobantes.bulkCreate(this.comprobantesArray);
+      });
+    } catch (error) {
+      console.error(error, "Error insertando comprobantes");
     }
   }
 }

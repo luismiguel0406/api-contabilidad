@@ -12,10 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
+exports.Comprobantes = exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
 const CuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/CuentasContables.model"));
+const comprobante_model_1 = __importDefault(require("../../models/Facturacion/comprobante.model"));
 const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda.model"));
 const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedores/tipoProveedores.model"));
 class TiposProveedores {
@@ -463,4 +464,120 @@ class CuentasContablesPadres {
     }
 }
 exports.CuentasContablesPadres = CuentasContablesPadres;
+class Comprobantes {
+    constructor() {
+        this.comprobantesArray = [
+            {
+                tipo: "B01",
+                descripcion: "FISCAL",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                tipo: "B02",
+                descripcion: "CONSUMO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                tipo: "B04",
+                descripcion: "NOTAS DE CREDITO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                tipo: "B11",
+                descripcion: "COMPRAS",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                tipo: "B12",
+                descripcion: "REGISTRO UNICO DE INGRESOS",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                tipo: "B13",
+                descripcion: "GASTOS MENORES",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                tipo: "B14",
+                descripcion: "REGIMEN ESPECIAL",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                tipo: "B15",
+                descripcion: "GUBERNAMENTAL",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                tipo: "B16",
+                descripcion: "EXPORTACIONES",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                tipo: "B17",
+                descripcion: "PAGOS AL EXTERIOR",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                tipo: "E-CF",
+                descripcion: "ELECTRONICO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+        ];
+    }
+    InsertarComprobantes() {
+        try {
+            comprobante_model_1.default.afterSync("createComprobantes", () => __awaiter(this, void 0, void 0, function* () {
+                yield comprobante_model_1.default.bulkCreate(this.comprobantesArray);
+            }));
+        }
+        catch (error) {
+            console.error(error, "Error insertando comprobantes");
+        }
+    }
+}
+exports.Comprobantes = Comprobantes;
 //# sourceMappingURL=Querys.js.map
