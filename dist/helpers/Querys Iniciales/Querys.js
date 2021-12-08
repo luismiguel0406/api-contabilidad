@@ -12,12 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Comprobantes = exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
+exports.TiposItem = exports.Comprobantes = exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
 const CuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/CuentasContables.model"));
 const comprobante_model_1 = __importDefault(require("../../models/Facturacion/comprobante.model"));
 const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda.model"));
+const tipoItem_model_1 = __importDefault(require("../../models/Inventario/tipoItem.model"));
 const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedores/tipoProveedores.model"));
 class TiposProveedores {
     // AGREGO TIPO AL INICIO DEL PROGRAMA //
@@ -580,4 +581,37 @@ class Comprobantes {
     }
 }
 exports.Comprobantes = Comprobantes;
+class TiposItem {
+    constructor() {
+        this.tipoItemArray = [
+            {
+                descripcion: "BIENES",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                descripcion: "SERVICIOS",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+        ];
+    }
+    InsertarTipoItem() {
+        try {
+            tipoItem_model_1.default.afterSync("createTipoItem", () => __awaiter(this, void 0, void 0, function* () {
+                yield tipoItem_model_1.default.bulkCreate(this.tipoItemArray);
+            }));
+        }
+        catch (error) {
+            console.error("Error insertando Tipos item");
+        }
+    }
+}
+exports.TiposItem = TiposItem;
 //# sourceMappingURL=Querys.js.map

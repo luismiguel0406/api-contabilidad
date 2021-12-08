@@ -4,11 +4,13 @@ import { ItipoContacto } from "../../interfaces/contactos.interface";
 import { ICuentaContable } from "../../interfaces/cuentaContable.interface";
 import { IMoneda } from "../../interfaces/moneda.interface";
 import { ITipoPoveedor } from "../../interfaces/proveedor.interface";
+import { ITipoItem } from "../../interfaces/tipoItem.interface";
 import tipoCliente from "../../models/Clientes/tipoCliente.model";
 import tiposContactos from "../../models/Contacto/tipoContactos.model";
 import cuentaContable from "../../models/Cuentas Contables/CuentasContables.model";
 import comprobantes from "../../models/Facturacion/comprobante.model";
 import moneda from "../../models/Facturacion/moneda.model";
+import tiposItem from "../../models/Inventario/tipoItem.model";
 import tipoProveedor from "../../models/Proveedores/tipoProveedores.model";
 
 export class TiposProveedores {
@@ -576,6 +578,41 @@ export class Comprobantes {
       });
     } catch (error) {
       console.error(error, "Error insertando comprobantes");
+    }
+  }
+}
+
+export class TiposItem {
+  private tipoItemArray: Array<ITipoItem>;
+
+  constructor() {
+    this.tipoItemArray = [
+      {
+        descripcion: "BIENES",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "SERVICIOS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+    ];
+  }
+
+  InsertarTipoItem() {
+    try {
+      tiposItem.afterSync("createTipoItem", async () => {
+        await tiposItem.bulkCreate(this.tipoItemArray);
+      });
+    } catch (error) {
+      console.error("Error insertando Tipos item");
     }
   }
 }
