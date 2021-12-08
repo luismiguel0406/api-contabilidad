@@ -14,7 +14,7 @@ const cuentasContablesPadres = connectionDB_1.default.define("cuentasContablesPa
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    idEmpresa: {
+    EmpresaId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },

@@ -12,11 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TiposItem = exports.Comprobantes = exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
+exports.TiposItem = exports.TiposComprobantes = exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
 const CuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/CuentasContables.model"));
-const comprobante_model_1 = __importDefault(require("../../models/Facturacion/comprobante.model"));
+const tipoComprobante_model_1 = __importDefault(require("../../models/Facturacion/tipoComprobante.model"));
 const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda.model"));
 const tipoItem_model_1 = __importDefault(require("../../models/Inventario/tipoItem.model"));
 const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedores/tipoProveedores.model"));
@@ -66,7 +66,7 @@ class TiposContactos {
     constructor() {
         this.tipoContactosArray = [
             {
-                tipoContacto: "CLIENTE",
+                descripcion: "CLIENTE",
                 createdAt: new Date(),
                 updatedAt: null,
                 estado: true,
@@ -74,7 +74,7 @@ class TiposContactos {
                 terminal: "SA",
             },
             {
-                tipoContacto: "PROVEEDOR",
+                descripcion: "PROVEEDOR",
                 createdAt: new Date(),
                 updatedAt: null,
                 estado: true,
@@ -82,7 +82,15 @@ class TiposContactos {
                 terminal: "SA",
             },
             {
-                tipoContacto: "PERSONAL",
+                descripcion: "PERSONAL",
+                createdAt: new Date(),
+                updatedAt: null,
+                estado: true,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                descripcion: "OTROS",
                 createdAt: new Date(),
                 updatedAt: null,
                 estado: true,
@@ -176,8 +184,20 @@ class CuentasContablesPadres {
     constructor(empresaId) {
         this.CuentaContableArray = [
             {
+                cuenta: "0",
+                cuentaPadreId: 1,
+                descripcion: "RAIZ",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+                empresaId,
+                monedaId: 1,
+            },
+            {
                 cuenta: "1",
-                cuentaPadreId: null,
+                cuentaPadreId: 1,
                 descripcion: "ACTIVOS",
                 estado: true,
                 createdAt: new Date(),
@@ -189,7 +209,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "2",
-                cuentaPadreId: null,
+                cuentaPadreId: 1,
                 descripcion: "PASIVOS",
                 estado: true,
                 createdAt: new Date(),
@@ -201,7 +221,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "3",
-                cuentaPadreId: null,
+                cuentaPadreId: 1,
                 descripcion: "CAPITAL",
                 estado: true,
                 createdAt: new Date(),
@@ -213,7 +233,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "4",
-                cuentaPadreId: null,
+                cuentaPadreId: 1,
                 descripcion: "INGRESOS",
                 estado: true,
                 createdAt: new Date(),
@@ -225,7 +245,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "5",
-                cuentaPadreId: null,
+                cuentaPadreId: 1,
                 descripcion: "COSTOS",
                 estado: true,
                 createdAt: new Date(),
@@ -237,7 +257,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "6",
-                cuentaPadreId: null,
+                cuentaPadreId: 1,
                 descripcion: "GASTOS",
                 estado: true,
                 createdAt: new Date(),
@@ -249,7 +269,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "7",
-                cuentaPadreId: null,
+                cuentaPadreId: 1,
                 descripcion: "RESUMENES",
                 estado: true,
                 createdAt: new Date(),
@@ -261,7 +281,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "10",
-                cuentaPadreId: 1,
+                cuentaPadreId: 2,
                 descripcion: "ACTIVOS CORRIENTES",
                 estado: true,
                 createdAt: new Date(),
@@ -273,7 +293,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "11",
-                cuentaPadreId: 1,
+                cuentaPadreId: 2,
                 descripcion: "CUENTAS POR COBRAR",
                 estado: true,
                 createdAt: new Date(),
@@ -285,7 +305,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "12",
-                cuentaPadreId: 1,
+                cuentaPadreId: 2,
                 descripcion: "INVERSIONES",
                 estado: true,
                 createdAt: new Date(),
@@ -297,7 +317,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "13",
-                cuentaPadreId: 1,
+                cuentaPadreId: 2,
                 descripcion: "ACTIVOS FIJOS",
                 estado: true,
                 createdAt: new Date(),
@@ -309,8 +329,8 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "14",
-                cuentaPadreId: 1,
-                descripcion: "ACTIVOS DIRERIDOS",
+                cuentaPadreId: 2,
+                descripcion: "ACTIVOS DIFERIDOS",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
@@ -321,7 +341,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "15",
-                cuentaPadreId: 1,
+                cuentaPadreId: 2,
                 descripcion: "OTROS ACTIVOS",
                 estado: true,
                 createdAt: new Date(),
@@ -333,7 +353,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "20",
-                cuentaPadreId: 2,
+                cuentaPadreId: 3,
                 descripcion: "PASIVOS CORRIENTES",
                 estado: true,
                 createdAt: new Date(),
@@ -345,7 +365,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "200",
-                cuentaPadreId: 2,
+                cuentaPadreId: 3,
                 descripcion: "SOBREGIRO BANCARIO",
                 estado: true,
                 createdAt: new Date(),
@@ -357,7 +377,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "201",
-                cuentaPadreId: 2,
+                cuentaPadreId: 3,
                 descripcion: "CUENTAS POR PAGAR",
                 estado: true,
                 createdAt: new Date(),
@@ -369,7 +389,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "202",
-                cuentaPadreId: 2,
+                cuentaPadreId: 3,
                 descripcion: "PRESTAMOS POR PAGAR",
                 estado: true,
                 createdAt: new Date(),
@@ -381,7 +401,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "203",
-                cuentaPadreId: 2,
+                cuentaPadreId: 3,
                 descripcion: "IMPUESTOS SOBRE LA RENTA POR PAGAR",
                 estado: true,
                 createdAt: new Date(),
@@ -393,7 +413,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "204",
-                cuentaPadreId: 2,
+                cuentaPadreId: 3,
                 descripcion: "DIVIDENDOS DECLARADOS POR PAGAR",
                 estado: true,
                 createdAt: new Date(),
@@ -405,7 +425,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "205",
-                cuentaPadreId: 2,
+                cuentaPadreId: 3,
                 descripcion: "RETENCIONES Y ACUMULACIONES POR PAGAR",
                 estado: true,
                 createdAt: new Date(),
@@ -417,7 +437,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "60",
-                cuentaPadreId: 6,
+                cuentaPadreId: 7,
                 descripcion: "GASTOS GENERALES Y ADMINISTRATIVOS",
                 estado: true,
                 createdAt: new Date(),
@@ -429,7 +449,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "61",
-                cuentaPadreId: 6,
+                cuentaPadreId: 7,
                 descripcion: "MANTENIMIENTOS MOBILIARIOS Y EQUIPO DE OFICINA",
                 estado: true,
                 createdAt: new Date(),
@@ -441,7 +461,7 @@ class CuentasContablesPadres {
             },
             {
                 cuenta: "62",
-                cuentaPadreId: 6,
+                cuentaPadreId: 7,
                 descripcion: "GASTOS FINANCIAMIENTOS",
                 estado: true,
                 createdAt: new Date(),
@@ -465,9 +485,9 @@ class CuentasContablesPadres {
     }
 }
 exports.CuentasContablesPadres = CuentasContablesPadres;
-class Comprobantes {
+class TiposComprobantes {
     constructor() {
-        this.comprobantesArray = [
+        this.tipoComprobantesArray = [
             {
                 tipo: "B01",
                 descripcion: "FISCAL",
@@ -571,8 +591,8 @@ class Comprobantes {
     }
     InsertarComprobantes() {
         try {
-            comprobante_model_1.default.afterSync("createComprobantes", () => __awaiter(this, void 0, void 0, function* () {
-                yield comprobante_model_1.default.bulkCreate(this.comprobantesArray);
+            tipoComprobante_model_1.default.afterSync("createComprobantes", () => __awaiter(this, void 0, void 0, function* () {
+                yield tipoComprobante_model_1.default.bulkCreate(this.tipoComprobantesArray);
             }));
         }
         catch (error) {
@@ -580,7 +600,7 @@ class Comprobantes {
         }
     }
 }
-exports.Comprobantes = Comprobantes;
+exports.TiposComprobantes = TiposComprobantes;
 class TiposItem {
     constructor() {
         this.tipoItemArray = [

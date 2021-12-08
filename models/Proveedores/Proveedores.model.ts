@@ -48,13 +48,13 @@ const Proveedores = conexion.define(
 
 //----------  ASOCIACIONES ------------//
 
-Proveedores.hasMany(correos, { foreignKey: "contactoId" });
+Proveedores.hasMany(correos, { foreignKey: "proveedorId" });
 correos.belongsTo(Proveedores);
 
-Proveedores.hasMany(telefonos, { foreignKey: "contactoId" });
+Proveedores.hasMany(telefonos, { foreignKey: "proveedorId" });
 telefonos.belongsTo(Proveedores);
 
-Proveedores.hasMany(direcciones, { foreignKey: "contactoId" });
+Proveedores.hasMany(direcciones, { foreignKey: "proveedorId" });
 direcciones.belongsTo(Proveedores);
 
 export default Proveedores;

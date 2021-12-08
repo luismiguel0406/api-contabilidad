@@ -53,11 +53,11 @@ const clientes = connectionDB_1.default.define("clientes", {
         allowNull: false,
     },
 }, { schema: "CLIENTES" });
-clientes.hasMany(Correos_model_1.default, { foreignKey: "contactoId" });
+clientes.hasMany(Correos_model_1.default, { foreignKey: "clienteId" });
 Correos_model_1.default.belongsTo(clientes);
-clientes.hasMany(telefono_model_1.default, { foreignKey: "contactoId" });
+clientes.hasMany(telefono_model_1.default, { foreignKey: "clienteId" });
 telefono_model_1.default.belongsTo(clientes);
-clientes.hasMany(Direcciones_model_1.default, { foreignKey: "contactoId" });
+clientes.hasMany(Direcciones_model_1.default, { foreignKey: "clienteId" });
 Direcciones_model_1.default.belongsTo(clientes);
 exports.default = clientes;
 //# sourceMappingURL=Cliente.model.js.map

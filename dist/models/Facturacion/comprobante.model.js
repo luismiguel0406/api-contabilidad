@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const comprobantes = connectionDB_1.default.define("comprobantes", {
+const tipoComprobantes = connectionDB_1.default.define("tipoComprobantes", {
     tipo: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
@@ -33,5 +33,5 @@ const comprobantes = connectionDB_1.default.define("comprobantes", {
         type: sequelize_1.DataTypes.STRING,
     },
 }, { schema: "FACTURACION" });
-exports.default = comprobantes;
+exports.default = tipoComprobantes;
 //# sourceMappingURL=comprobante.model.js.map

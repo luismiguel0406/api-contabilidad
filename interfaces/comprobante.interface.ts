@@ -1,4 +1,4 @@
-export interface IComprobante {
+export interface ITipoComprobante {
   tipo: string;
   descripcion: string;
   estado: boolean;

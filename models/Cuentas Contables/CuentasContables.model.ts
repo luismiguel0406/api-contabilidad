@@ -8,7 +8,7 @@ const cuentaContable = conexion.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    idCuentaPadre: {
+     cuentaPadreId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -16,11 +16,11 @@ const cuentaContable = conexion.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    idEmpresa: {
+    empresaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    idMoneda: {
+    monedaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -47,4 +47,5 @@ const cuentaContable = conexion.define(
   { schema: "CUENTAS" }
 );
 
+cuentaContable.hasMany(cuentaContable,{foreignKey:"cuentaPadreId"})
 export default cuentaContable;

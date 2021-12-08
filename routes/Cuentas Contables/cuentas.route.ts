@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { deleteCuentasContables, getCuentasContables, postCuentaContable, updateCuentasContables } from "../../../Controllers/cuentaContable.controller";
+import { deleteCuentasContables, getCuentasContables, postCuentaContable, updateCuentasContables } from "../../Controllers/cuentaContable.controller";
 
 
 const router = Router();

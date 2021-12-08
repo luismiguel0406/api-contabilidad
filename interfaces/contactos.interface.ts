@@ -8,7 +8,8 @@ export interface ICorreo {
     updatedAt: Date | null;
     usuario: string;
     terminal: string;
-    contactoId:number;
+    clienteId:number;
+    proveedorId:number;
     tipoContactoId:number;
   }
 
@@ -19,7 +20,8 @@ export interface ICorreo {
     updatedAt: Date | null;
     usuario: string;
     terminal: string;
-    contactoId:number;
+    clienteId:number;
+    proveedorId:number;
     tipoContactoId:number;
   }
 
@@ -30,12 +32,13 @@ export interface ICorreo {
     updatedAt: Date | null;
     usuario: string;
     terminal: string;
-    contactoId:number;
+    clienteId:number;
+    proveedorId:number;
     tipoContactoId:number;
   }
 
   export interface ItipoContacto {
-    tipoContacto: string;
+    descripcion: string;
     createdAt: Date;
     updatedAt: Date | null;
     estado: boolean;

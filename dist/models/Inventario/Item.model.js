@@ -5,26 +5,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const cuentaContable = connectionDB_1.default.define("cuentasContable", {
-    cuenta: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    cuentaPadreId: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
+const item = connectionDB_1.default.define("item", {
     descripcion: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    empresaId: {
-        type: sequelize_1.DataTypes.INTEGER,
+    precioCompra: {
+        type: sequelize_1.DataTypes.DECIMAL,
         allowNull: false,
+        defaultValue: 0.0,
     },
-    monedaId: {
+    precioVenta: {
+        type: sequelize_1.DataTypes.DECIMAL,
+        allowNull: false,
+        defaultValue: 0.0,
+    },
+    margenGanancia: {
+        type: sequelize_1.DataTypes.DECIMAL,
+        allowNull: false,
+        defaultValue: 0.0,
+    },
+    cantidad: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0,
+    },
+    cantidadMinima: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+    },
+    ubicacion: {
+        type: sequelize_1.DataTypes.STRING,
     },
     estado: {
         type: sequelize_1.DataTypes.BOOLEAN,
@@ -35,16 +47,19 @@ const cuentaContable = connectionDB_1.default.define("cuentasContable", {
         allowNull: false,
     },
     updatedAt: {
-        type: sequelize_1.DataTypes.DATE
+        type: sequelize_1.DataTypes.DATE,
     },
     usuario: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     terminal: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
-}, { schema: "CUENTAS" });
-cuentaContable.hasMany(cuentaContable, { foreignKey: "cuentaPadreId" });
-exports.default = cuentaContable;
-//# sourceMappingURL=CuentasContables.model.js.map
+    tipoItemId: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+}, { schema: "INVENTARIO" });
+exports.default = item;
+//# sourceMappingURL=Item.model.js.map

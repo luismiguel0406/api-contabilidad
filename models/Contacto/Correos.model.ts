@@ -30,7 +30,10 @@ const correos = conexion.define(
     terminal: {
       type: DataTypes.STRING,
     },
-     contactoId:{
+    clienteId:{
+      type:DataTypes.INTEGER
+    },
+    proveedorId:{
       type:DataTypes.INTEGER
     },
     tipoContactoId:{

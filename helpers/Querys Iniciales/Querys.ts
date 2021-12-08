@@ -1,5 +1,5 @@
 import { ITipoCliente } from "../../interfaces/cliente.interface";
-import { IComprobante } from "../../interfaces/comprobante.interface";
+import { ITipoComprobante } from "../../interfaces/comprobante.interface";
 import { ItipoContacto } from "../../interfaces/contactos.interface";
 import { ICuentaContable } from "../../interfaces/cuentaContable.interface";
 import { IMoneda } from "../../interfaces/moneda.interface";
@@ -8,7 +8,7 @@ import { ITipoItem } from "../../interfaces/tipoItem.interface";
 import tipoCliente from "../../models/Clientes/tipoCliente.model";
 import tiposContactos from "../../models/Contacto/tipoContactos.model";
 import cuentaContable from "../../models/Cuentas Contables/CuentasContables.model";
-import comprobantes from "../../models/Facturacion/comprobante.model";
+import comprobantes from "../../models/Facturacion/tipoComprobante.model";
 import moneda from "../../models/Facturacion/moneda.model";
 import tiposItem from "../../models/Inventario/tipoItem.model";
 import tipoProveedor from "../../models/Proveedores/tipoProveedores.model";
@@ -62,7 +62,7 @@ export class TiposContactos {
   constructor() {
     this.tipoContactosArray = [
       {
-        tipoContacto: "CLIENTE",
+        descripcion: "CLIENTE",
         createdAt: new Date(),
         updatedAt: null,
         estado: true,
@@ -70,7 +70,7 @@ export class TiposContactos {
         terminal: "SA",
       },
       {
-        tipoContacto: "PROVEEDOR",
+        descripcion: "PROVEEDOR",
         createdAt: new Date(),
         updatedAt: null,
         estado: true,
@@ -78,7 +78,15 @@ export class TiposContactos {
         terminal: "SA",
       },
       {
-        tipoContacto: "PERSONAL",
+        descripcion: "PERSONAL",
+        createdAt: new Date(),
+        updatedAt: null,
+        estado: true,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "OTROS",
         createdAt: new Date(),
         updatedAt: null,
         estado: true,
@@ -177,8 +185,20 @@ export class CuentasContablesPadres {
   constructor(empresaId: number) {
     this.CuentaContableArray = [
       {
+        cuenta: "0",
+        cuentaPadreId: 1,
+        descripcion: "RAIZ",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+        empresaId,
+        monedaId: 1,
+      },
+      {
         cuenta: "1",
-        cuentaPadreId: null,
+        cuentaPadreId: 1,
         descripcion: "ACTIVOS",
         estado: true,
         createdAt: new Date(),
@@ -190,7 +210,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "2",
-        cuentaPadreId: null,
+        cuentaPadreId: 1,
         descripcion: "PASIVOS",
         estado: true,
         createdAt: new Date(),
@@ -202,7 +222,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "3",
-        cuentaPadreId: null,
+        cuentaPadreId: 1,
         descripcion: "CAPITAL",
         estado: true,
         createdAt: new Date(),
@@ -214,7 +234,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "4",
-        cuentaPadreId: null,
+        cuentaPadreId: 1,
         descripcion: "INGRESOS",
         estado: true,
         createdAt: new Date(),
@@ -226,7 +246,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "5",
-        cuentaPadreId: null,
+        cuentaPadreId: 1,
         descripcion: "COSTOS",
         estado: true,
         createdAt: new Date(),
@@ -238,7 +258,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "6",
-        cuentaPadreId: null,
+        cuentaPadreId: 1,
         descripcion: "GASTOS",
         estado: true,
         createdAt: new Date(),
@@ -250,7 +270,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "7",
-        cuentaPadreId: null,
+        cuentaPadreId: 1,
         descripcion: "RESUMENES",
         estado: true,
         createdAt: new Date(),
@@ -262,7 +282,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "10",
-        cuentaPadreId: 1,
+        cuentaPadreId: 2,
         descripcion: "ACTIVOS CORRIENTES",
         estado: true,
         createdAt: new Date(),
@@ -274,7 +294,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "11",
-        cuentaPadreId: 1,
+        cuentaPadreId: 2,
         descripcion: "CUENTAS POR COBRAR",
         estado: true,
         createdAt: new Date(),
@@ -286,7 +306,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "12",
-        cuentaPadreId: 1,
+        cuentaPadreId: 2,
         descripcion: "INVERSIONES",
         estado: true,
         createdAt: new Date(),
@@ -298,7 +318,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "13",
-        cuentaPadreId: 1,
+        cuentaPadreId: 2,
         descripcion: "ACTIVOS FIJOS",
         estado: true,
         createdAt: new Date(),
@@ -310,8 +330,8 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "14",
-        cuentaPadreId: 1,
-        descripcion: "ACTIVOS DIRERIDOS",
+        cuentaPadreId: 2,
+        descripcion: "ACTIVOS DIFERIDOS",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
@@ -322,7 +342,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "15",
-        cuentaPadreId: 1,
+        cuentaPadreId: 2,
         descripcion: "OTROS ACTIVOS",
         estado: true,
         createdAt: new Date(),
@@ -334,7 +354,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "20",
-        cuentaPadreId: 2,
+        cuentaPadreId: 3,
         descripcion: "PASIVOS CORRIENTES",
         estado: true,
         createdAt: new Date(),
@@ -346,7 +366,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "200",
-        cuentaPadreId: 2,
+        cuentaPadreId: 3,
         descripcion: "SOBREGIRO BANCARIO",
         estado: true,
         createdAt: new Date(),
@@ -358,7 +378,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "201",
-        cuentaPadreId: 2,
+        cuentaPadreId: 3,
         descripcion: "CUENTAS POR PAGAR",
         estado: true,
         createdAt: new Date(),
@@ -370,7 +390,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "202",
-        cuentaPadreId: 2,
+        cuentaPadreId: 3,
         descripcion: "PRESTAMOS POR PAGAR",
         estado: true,
         createdAt: new Date(),
@@ -382,7 +402,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "203",
-        cuentaPadreId: 2,
+        cuentaPadreId: 3,
         descripcion: "IMPUESTOS SOBRE LA RENTA POR PAGAR",
         estado: true,
         createdAt: new Date(),
@@ -394,7 +414,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "204",
-        cuentaPadreId: 2,
+        cuentaPadreId: 3,
         descripcion: "DIVIDENDOS DECLARADOS POR PAGAR",
         estado: true,
         createdAt: new Date(),
@@ -406,7 +426,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "205",
-        cuentaPadreId: 2,
+        cuentaPadreId: 3,
         descripcion: "RETENCIONES Y ACUMULACIONES POR PAGAR",
         estado: true,
         createdAt: new Date(),
@@ -418,7 +438,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "60",
-        cuentaPadreId: 6,
+        cuentaPadreId: 7,
         descripcion: "GASTOS GENERALES Y ADMINISTRATIVOS",
         estado: true,
         createdAt: new Date(),
@@ -430,7 +450,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "61",
-        cuentaPadreId: 6,
+        cuentaPadreId: 7,
         descripcion: "MANTENIMIENTOS MOBILIARIOS Y EQUIPO DE OFICINA",
         estado: true,
         createdAt: new Date(),
@@ -442,7 +462,7 @@ export class CuentasContablesPadres {
       },
       {
         cuenta: "62",
-        cuentaPadreId: 6,
+        cuentaPadreId: 7,
         descripcion: "GASTOS FINANCIAMIENTOS",
         estado: true,
         createdAt: new Date(),
@@ -465,11 +485,11 @@ export class CuentasContablesPadres {
   }
 }
 
-export class Comprobantes {
-  private comprobantesArray: Array<IComprobante>;
+export class TiposComprobantes {
+  private tipoComprobantesArray: Array<ITipoComprobante>;
 
   constructor() {
-    this.comprobantesArray = [
+    this.tipoComprobantesArray = [
       {
         tipo: "B01",
         descripcion: "FISCAL",
@@ -574,7 +594,7 @@ export class Comprobantes {
   InsertarComprobantes() {
     try {
       comprobantes.afterSync("createComprobantes", async () => {
-        await comprobantes.bulkCreate(this.comprobantesArray);
+        await comprobantes.bulkCreate(this.tipoComprobantesArray);
       });
     } catch (error) {
       console.error(error, "Error insertando comprobantes");

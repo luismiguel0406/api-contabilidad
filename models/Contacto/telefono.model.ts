@@ -26,14 +26,17 @@ const telefonos = conexion.define(
     terminal: {
       type: DataTypes.STRING,
     },
-    contactoId:{
+    clienteId:{
       type:DataTypes.INTEGER
     },
-    tipoContactoId:{
+    proveedorId:{
       type:DataTypes.INTEGER
-    }
+    },
+    tipoContactoId: {
+      type: DataTypes.INTEGER,
+    },
   },
-  { schema: "CONTACTOS"}
+  { schema: "CONTACTOS" }
 );
 
 export default telefonos;

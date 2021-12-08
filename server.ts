@@ -1,13 +1,14 @@
 import express, { Application } from "express";
 import {
+  TiposComprobantes,
   CuentasContablesPadres,
   Moneda,
   TiposClientes,
   TiposContactos,
+  TiposItem,
   TiposProveedores,
 } from "./helpers/Querys Iniciales/Querys";
-import CuentasRoutes from "./routes/Cuentas Contables/cuentasPadre/cuentas.route";
-import CuentasHijasRoutes from "./routes/Cuentas Contables/cuentasHijas/cuentas.route";
+import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
 import MondedasRoutes from "./routes/facturacion/moneda.route";
 
 import clientesRoutes from "./routes/Clientes/clientes.route";
@@ -29,6 +30,7 @@ class Server {
 
     this.dbConnection();
     this.InicioAplicacion();
+    this.InicioNuevaEmpresa();
     this.middlewares();
     this.routes();
   }
@@ -43,7 +45,7 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
-      //await db.sync()
+      await db.sync({force:true})
       console.log("Database CACTUS Online");
     } catch (error) {
       console.log(`Error ${error}`);
@@ -58,7 +60,6 @@ class Server {
   /* RUTAS PARA CONSULTA */
   routes() {
     this.app.use(CuentasRoutes);
-    this.app.use(CuentasHijasRoutes);
     this.app.use(MondedasRoutes);
     //this.app.use(empresaRoutes);
     this.app.use(clientesRoutes);
@@ -72,20 +73,23 @@ class Server {
       const tipoContacto = new TiposContactos();
       const tipoProveedor = new TiposProveedores();
       const moneda = new Moneda();
+      const comprobantes = new TiposComprobantes();
+      const tipoItem = new TiposItem();
 
       tipoClientes.InsertarTipoClientes();
       tipoContacto.InsertarTipoContactos();
       tipoProveedor.InsertarTiposProveedores();
       moneda.InsertarMonedas();
+      tipoItem.InsertarTipoItem();
+      comprobantes.InsertarComprobantes();
     } catch (error) {
-      console.error(`Error Metodo InicioAplicacion ${error}`);
+      console.error(`Error Metodo InicioAplicacion, ${error}`);
     }
-  };
+  }
 
-  InicioNuevaEmpresa(){
-
+  InicioNuevaEmpresa() {
     try {
-      const empresaId = 1;//VER AQUI
+      const empresaId = 1; //VER AQUI
       const cuentasContablesPadres = new CuentasContablesPadres(empresaId);
       cuentasContablesPadres.InsertarCuentasContablesPadre();
     } catch (error) {

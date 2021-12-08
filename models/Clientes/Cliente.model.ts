@@ -54,13 +54,13 @@ const clientes = conexion.define(
   { schema: "CLIENTES" }
 );
 
-clientes.hasMany(correos, { foreignKey: "contactoId"});
+clientes.hasMany(correos, { foreignKey: "clienteId"});
 correos.belongsTo(clientes);
 
-clientes.hasMany(telefonos, { foreignKey: "contactoId"});
+clientes.hasMany(telefonos, { foreignKey: "clienteId"});
 telefonos.belongsTo(clientes);
 
-clientes.hasMany(direcciones, { foreignKey: "contactoId"});
+clientes.hasMany(direcciones, { foreignKey: "clienteId"});
 direcciones.belongsTo(clientes);
 
 export default clientes;

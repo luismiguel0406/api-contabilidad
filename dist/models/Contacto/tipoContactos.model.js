@@ -11,7 +11,7 @@ const Correos_model_1 = __importDefault(require("./Correos.model"));
 const Direcciones_model_1 = __importDefault(require("./Direcciones.model"));
 const telefono_model_1 = __importDefault(require("./telefono.model"));
 const tiposContactos = connectionDB_1.default.define("tipoContactos", {
-    tipoContacto: {
+    descripcion: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
@@ -36,14 +36,14 @@ const tiposContactos = connectionDB_1.default.define("tipoContactos", {
 }, { schema: "CONTACTOS" });
 //--------- ASOCIACIONES ---------//
 tiposContactos.hasMany(Cliente_model_1.default, { foreignKey: "tipoContactoId" });
-Cliente_model_1.default.belongsTo(tiposContactos, { as: "tipoContacto" });
+Cliente_model_1.default.belongsTo(tiposContactos);
 tiposContactos.hasMany(Proveedores_model_1.default, { foreignKey: "tipoContactoId" });
-Proveedores_model_1.default.belongsTo(tiposContactos, { as: "tipoContacto" });
+Proveedores_model_1.default.belongsTo(tiposContactos);
 tiposContactos.hasMany(Correos_model_1.default, { foreignKey: "tipoContactoId" });
-Correos_model_1.default.belongsTo(tiposContactos, { as: "tipoContacto" });
+Correos_model_1.default.belongsTo(tiposContactos);
 tiposContactos.hasMany(Direcciones_model_1.default, { foreignKey: "tipoContactoId" });
-Direcciones_model_1.default.belongsTo(tiposContactos, { as: "tipoContacto" });
+Direcciones_model_1.default.belongsTo(tiposContactos);
 tiposContactos.hasMany(telefono_model_1.default, { foreignKey: "tipoContactoId" });
-telefono_model_1.default.belongsTo(tiposContactos, { as: "tipoContacto" });
+telefono_model_1.default.belongsTo(tiposContactos);
 exports.default = tiposContactos;
 //# sourceMappingURL=tipoContactos.model.js.map

@@ -9,7 +9,7 @@ import telefonos from "./telefono.model";
 const tiposContactos = conexion.define(
   "tipoContactos",
   {
-    tipoContacto: {
+    descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -39,19 +39,19 @@ const tiposContactos = conexion.define(
 //--------- ASOCIACIONES ---------//
 
 tiposContactos.hasMany(clientes, { foreignKey: "tipoContactoId" });
-clientes.belongsTo(tiposContactos,{as: "tipoContacto"});
+clientes.belongsTo(tiposContactos);
 
 tiposContactos.hasMany(Proveedores,{foreignKey:"tipoContactoId"})
-Proveedores.belongsTo(tiposContactos,{as:"tipoContacto"})
+Proveedores.belongsTo(tiposContactos)
 
 tiposContactos.hasMany(correos, { foreignKey: "tipoContactoId" });
-correos.belongsTo(tiposContactos, {as: "tipoContacto"});
+correos.belongsTo(tiposContactos);
 
 tiposContactos.hasMany(direcciones, {foreignKey:"tipoContactoId"});
-direcciones.belongsTo(tiposContactos, {as: "tipoContacto"});
+direcciones.belongsTo(tiposContactos);
 
 tiposContactos.hasMany(telefonos,{foreignKey: "tipoContactoId"});
-telefonos.belongsTo(tiposContactos, {as: "tipoContacto"})
+telefonos.belongsTo(tiposContactos)
 
 
 

@@ -5,13 +5,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const correos = connectionDB_1.default.define("correo", {
-    correo: {
+const tipoComprobantes = connectionDB_1.default.define("tipoComprobantes", {
+    tipo: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
-        validate: {
-            isEmail: true,
-        },
+    },
+    descripcion: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    estado: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        allowNull: false,
     },
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
@@ -20,10 +25,6 @@ const correos = connectionDB_1.default.define("correo", {
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
     },
-    estado: {
-        type: sequelize_1.DataTypes.BOOLEAN,
-        allowNull: false,
-    },
     usuario: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
@@ -31,15 +32,6 @@ const correos = connectionDB_1.default.define("correo", {
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
-    clienteId: {
-        type: sequelize_1.DataTypes.INTEGER
-    },
-    proveedorId: {
-        type: sequelize_1.DataTypes.INTEGER
-    },
-    tipoContactoId: {
-        type: sequelize_1.DataTypes.INTEGER
-    }
-}, { schema: "CONTACTOS" });
-exports.default = correos;
-//# sourceMappingURL=Correos.model.js.map
+}, { schema: "FACTURACION" });
+exports.default = tipoComprobantes;
+//# sourceMappingURL=tipoComprobante.model.js.map
