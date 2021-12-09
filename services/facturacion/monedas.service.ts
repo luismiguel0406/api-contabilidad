@@ -1,7 +1,7 @@
 import monedaModel from "../../models/Facturacion/moneda.model";
 import { IMoneda } from "../../interfaces/moneda.interface";
 
-export default class monedaService {
+export default class MonedaService {
   async getMoneda(id: any = null) {
     const MonedaResult =
       id === null

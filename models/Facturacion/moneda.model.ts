@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
+import cuentaContable from "../Cuentas Contables/CuentasContables.model";
 
 const moneda = conexion.define(
   "moneda",
@@ -34,5 +35,8 @@ const moneda = conexion.define(
   },
   { schema: "FACTURACION"}
 );
+
+moneda.hasMany(cuentaContable,{foreignKey:"monedaId"})
+cuentaContable.belongsTo(moneda);
 
 export default moneda;

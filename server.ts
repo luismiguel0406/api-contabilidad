@@ -9,8 +9,8 @@ import {
   TiposProveedores,
 } from "./helpers/Querys Iniciales/Querys";
 import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
-import MondedasRoutes from "./routes/facturacion/moneda.route";
-
+import MonedasRoutes from "./routes/facturacion/moneda.route";
+import ComprobantesRoutes from "./routes/facturacion/comprobante.route"
 import clientesRoutes from "./routes/Clientes/clientes.route";
 import contactosRoutes from "./routes/Contactos/contactos.route";
 import proveedoresRoutes from "./routes/Proveedores/proveedores.route";
@@ -45,7 +45,7 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
-      await db.sync({force:true})
+      //await db.sync({force:true})
       console.log("Database CACTUS Online");
     } catch (error) {
       console.log(`Error ${error}`);
@@ -60,7 +60,8 @@ class Server {
   /* RUTAS PARA CONSULTA */
   routes() {
     this.app.use(CuentasRoutes);
-    this.app.use(MondedasRoutes);
+    this.app.use(MonedasRoutes);
+    this.app.use(ComprobantesRoutes);
     //this.app.use(empresaRoutes);
     this.app.use(clientesRoutes);
     this.app.use(contactosRoutes);
@@ -93,7 +94,7 @@ class Server {
       const cuentasContablesPadres = new CuentasContablesPadres(empresaId);
       cuentasContablesPadres.InsertarCuentasContablesPadre();
     } catch (error) {
-      console.error(`Error Metodo InicioNuevaEmpresa ${error}`);
+      console.error(`Error Metodo InicioNuevaEmpresa, ${error}`);
     }
   }
 }

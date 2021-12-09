@@ -1,9 +1,9 @@
 import { Response, Request } from "express";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 
-import monedaService from "../services/facturacion/monedas.service";
+import MonedaService from "../services/facturacion/monedas.service";
 
-const moneda_Service = new monedaService();
+const moneda_Service = new MonedaService();
 
 export const getMoneda = async (req: Request, res: Response) => {
   try {

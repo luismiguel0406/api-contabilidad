@@ -12,19 +12,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda.model"));
-class MonedaService {
-    getMoneda(id = null) {
+const tipoComprobante_model_1 = __importDefault(require("../../models/Facturacion/tipoComprobante.model"));
+//----  TIPOS COMPROBANTES -----//
+class TipoComprobanteService {
+    getTipoComprobante(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            const MonedaResult = id === null
-                ? yield moneda_model_1.default.findAll({ where: { estado: "1" } })
-                : yield moneda_model_1.default.findOne({ where: { id, estado: "1" } });
-            return MonedaResult;
+            const tipoComprobanteResult = id === null
+                ? yield tipoComprobante_model_1.default.findAll({ where: { estado: "1" } })
+                : yield tipoComprobante_model_1.default.findOne({ where: { id, estado: "1" } });
+            return tipoComprobanteResult;
         });
     }
-    updateMoneda(id, body) {
+    ;
+    updateTipoComprobante(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield moneda_model_1.default.update(body, {
+            yield tipoComprobante_model_1.default.update(body, {
                 where: {
                     id,
                     estado: "1",
@@ -32,18 +34,19 @@ class MonedaService {
             });
         });
     }
-    deleteMoneda(id) {
+    ;
+    deleteTipoComprobante(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield moneda_model_1.default.update({ estado: "0" }, {
-                where: { id },
-            });
+            yield tipoComprobante_model_1.default.update({ estado: "0" }, { where: { id } });
         });
     }
-    addMoneda(body) {
+    ;
+    addTipoComprobante(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield moneda_model_1.default.create(body);
+            yield tipoComprobante_model_1.default.create(body);
         });
     }
+    ;
 }
-exports.default = MonedaService;
-//# sourceMappingURL=monedas.service.js.map
+exports.default = TipoComprobanteService;
+//# sourceMappingURL=comprobantes.service.js.map
