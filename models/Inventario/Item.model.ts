@@ -55,7 +55,7 @@ const item = conexion.define(
       type: DataTypes.STRING,
     },
     tipoItemId: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
   },

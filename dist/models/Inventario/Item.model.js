@@ -57,7 +57,7 @@ const item = connectionDB_1.default.define("item", {
         type: sequelize_1.DataTypes.STRING,
     },
     tipoItemId: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
 }, { schema: "INVENTARIO" });

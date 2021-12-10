@@ -4,7 +4,7 @@ import { ItipoContacto } from "../../interfaces/contactos.interface";
 import { ICuentaContable } from "../../interfaces/cuentaContable.interface";
 import { IMoneda } from "../../interfaces/moneda.interface";
 import { ITipoPoveedor } from "../../interfaces/proveedor.interface";
-import { ITipoItem } from "../../interfaces/tipoItem.interface";
+import { ITipoItem } from "../../interfaces/Item.interface";
 import tipoCliente from "../../models/Clientes/tipoCliente.model";
 import tiposContactos from "../../models/Contacto/tipoContactos.model";
 import cuentaContable from "../../models/Cuentas Contables/CuentasContables.model";
