@@ -3,7 +3,7 @@ import item from "../../models/Inventario/Item.model";
 import tiposItem from "../../models/Inventario/tipoItem.model";
 
 export default class ItemService {
-  //---------- ITEM SERVICE -----------//
+  //---------- TIPO ITEM -----------//
 
   async getTipoItem(id: any = null) {
     const tipoItemResult =

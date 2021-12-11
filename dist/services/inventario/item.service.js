@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Item_model_1 = __importDefault(require("../../models/Inventario/Item.model"));
 const tipoItem_model_1 = __importDefault(require("../../models/Inventario/tipoItem.model"));
 class ItemService {
-    //---------- ITEM SERVICE -----------//
+    //---------- TIPO ITEM -----------//
     getTipoItem(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const tipoItemResult = id === null

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteItem = exports.updateItem = exports.postItem = exports.getItem = void 0;
+exports.deleteTipoItem = exports.updateTipoItem = exports.postTipoItem = exports.getTipoItem = exports.deleteItem = exports.updateItem = exports.postItem = exports.getItem = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const item_service_1 = __importDefault(require("../services/inventario/item.service"));
 const item_service = new item_service_1.default();
@@ -72,7 +72,64 @@ const deleteItem = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
         res.status(statusCode).json({ Message: msg, error });
     }
-    //----------------- TIPO ITEM --------------------//
 });
 exports.deleteItem = deleteItem;
+//----------------- TIPO ITEM --------------------//
+const getTipoItem = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const tipoItemResult = yield item_service.getTipoItem(id);
+        if (tipoItemResult === null) {
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            return res.status(statusCode).json({ Message: msg });
+        }
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        res.status(statusCode).json({ tipoItem: tipoItemResult, Message: msg });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.getTipoItem = getTipoItem;
+const postTipoItem = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { body } = req;
+        yield item_service.addTipoItem(body);
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
+        res.status(statusCode).json({ Message: msg });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.postTipoItem = postTipoItem;
+const updateTipoItem = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const { body } = req;
+        yield item_service.updateTipoItem(body, id);
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        res.status(statusCode).json({ Message: msg });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.updateTipoItem = updateTipoItem;
+const deleteTipoItem = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        yield item_service.deleteTipoItem(id);
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
+        res.status(statusCode).json({ Message: msg });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.deleteTipoItem = deleteTipoItem;
 //# sourceMappingURL=item.controller.js.map

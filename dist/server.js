@@ -20,6 +20,7 @@ const comprobante_route_1 = __importDefault(require("./routes/facturacion/compro
 const clientes_route_1 = __importDefault(require("./routes/Clientes/clientes.route"));
 const contactos_route_1 = __importDefault(require("./routes/Contactos/contactos.route"));
 const proveedores_route_1 = __importDefault(require("./routes/Proveedores/proveedores.route"));
+const Item_route_1 = __importDefault(require("./routes/Inventario/Item.route"));
 const cors_1 = __importDefault(require("cors"));
 const index_1 = __importDefault(require("./config/index"));
 const connectionDB_1 = __importDefault(require("./Database/connectionDB"));
@@ -67,6 +68,7 @@ class Server {
         this.app.use(clientes_route_1.default);
         this.app.use(contactos_route_1.default);
         this.app.use(proveedores_route_1.default);
+        this.app.use(Item_route_1.default);
     }
     InicioAplicacion() {
         try {
