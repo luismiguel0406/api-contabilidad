@@ -8,8 +8,8 @@ import { ITipoItem } from "../../interfaces/Item.interface";
 import tipoCliente from "../../models/Clientes/tipoCliente.model";
 import tiposContactos from "../../models/Contacto/tipoContactos.model";
 import cuentaContable from "../../models/Cuentas Contables/CuentasContables.model";
-import comprobantes from "../../models/Facturacion/tipoComprobante.model";
-import moneda from "../../models/Facturacion/moneda.model";
+import comprobantes from "../../models/Facturacion/comprobantes/tipoComprobante.model";
+import moneda from "../../models/Facturacion/moneda/moneda.model";
 import tiposItem from "../../models/Inventario/tipoItem.model";
 import tipoProveedor from "../../models/Proveedores/tipoProveedores.model";
 

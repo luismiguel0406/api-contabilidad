@@ -3,10 +3,12 @@ import { deleteCuentasContables, getCuentasContables, postCuentaContable, update
 
 
 const router = Router();
-const endPointCuentas = '/api/cuentasContables';
-router.post(`${endPointCuentas}/addCuenta`,postCuentaContable);
-router.get(`${endPointCuentas}/:id?`,getCuentasContables);
-router.put(`${endPointCuentas}/updateCuenta/:id?`,updateCuentasContables);
-router.put(`${endPointCuentas}/deleteCuenta/:id?`,deleteCuentasContables);
+const endPointCuentas = '/api/cuentas';
+
+
+router.get(`${endPointCuentas}/:id?`,postCuentaContable);
+router.post(`${endPointCuentas}`,getCuentasContables);
+router.put(`${endPointCuentas}/:id`,updateCuentasContables);
+router.delete(`${endPointCuentas}/:id`,deleteCuentasContables);
 
 export default router;

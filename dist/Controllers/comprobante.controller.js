@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteTipoComprobante = exports.updateTipoComprobante = exports.postTipoComprobante = exports.getTipoComprobante = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
-const comprobantes_service_1 = __importDefault(require("../services/facturacion/comprobantes.service"));
+const comprobantes_service_1 = __importDefault(require("../services/facturacion/comprobantes/comprobantes.service"));
 const tipoComprobante_service = new comprobantes_service_1.default();
 const getTipoComprobante = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

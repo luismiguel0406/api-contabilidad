@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteMoneda = exports.updateMoneda = exports.postMoneda = exports.getMoneda = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
-const monedas_service_1 = __importDefault(require("../services/facturacion/monedas.service"));
+const monedas_service_1 = __importDefault(require("../services/facturacion/monedas/monedas.service"));
 const moneda_Service = new monedas_service_1.default();
 const getMoneda = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

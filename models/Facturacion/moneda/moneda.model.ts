@@ -1,14 +1,15 @@
 import { DataTypes } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../../Database/connectionDB";
+import cuentaContable from "../../Cuentas Contables/CuentasContables.model";
 
-const tipoComprobantes = conexion.define(
-  "tipoComprobantes",
+const moneda = conexion.define(
+  "moneda",
   {
-    tipo: {
+    descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    descripcion: {
+    simbolo: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -29,9 +30,13 @@ const tipoComprobantes = conexion.define(
     },
     terminal: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
   },
-  { schema: "FACTURACION" }
+  { schema: "FACTURACION"}
 );
 
-export default tipoComprobantes;
+moneda.hasMany(cuentaContable,{foreignKey:"monedaId"})
+cuentaContable.belongsTo(moneda);
+
+export default moneda;

@@ -16,8 +16,8 @@ exports.TiposItem = exports.TiposComprobantes = exports.CuentasContablesPadres =
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
 const CuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/CuentasContables.model"));
-const tipoComprobante_model_1 = __importDefault(require("../../models/Facturacion/tipoComprobante.model"));
-const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda.model"));
+const tipoComprobante_model_1 = __importDefault(require("../../models/Facturacion/comprobantes/tipoComprobante.model"));
+const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda/moneda.model"));
 const tipoItem_model_1 = __importDefault(require("../../models/Inventario/tipoItem.model"));
 const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedores/tipoProveedores.model"));
 class TiposProveedores {

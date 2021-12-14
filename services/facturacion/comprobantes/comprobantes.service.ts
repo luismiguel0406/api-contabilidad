@@ -1,5 +1,5 @@
-import { ITipoComprobante } from "../../interfaces/comprobante.interface";
-import tipoComprobantes from "../../models/Facturacion/tipoComprobante.model";
+import { ITipoComprobante } from "../../../interfaces/comprobante.interface";
+import tipoComprobantes from "../../../models/Facturacion/comprobantes/tipoComprobante.model";
 
 //----  TIPOS COMPROBANTES -----//
 export default class TipoComprobanteService {

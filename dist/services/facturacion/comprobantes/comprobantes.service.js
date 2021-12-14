@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const tipoComprobante_model_1 = __importDefault(require("../../models/Facturacion/comprobantes/tipoComprobante.model"));
+const tipoComprobante_model_1 = __importDefault(require("../../../models/Facturacion/comprobantes/tipoComprobante.model"));
 //----  TIPOS COMPROBANTES -----//
 class TipoComprobanteService {
     getTipoComprobante(id = null) {

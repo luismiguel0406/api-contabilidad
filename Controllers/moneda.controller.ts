@@ -1,7 +1,7 @@
 import { Response, Request } from "express";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 
-import MonedaService from "../services/facturacion/monedas.service";
+import MonedaService from "../services/facturacion/monedas/monedas.service";
 
 const moneda_Service = new MonedaService();
 

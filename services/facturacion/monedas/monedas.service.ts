@@ -1,5 +1,5 @@
-import monedaModel from "../../models/Facturacion/moneda.model";
-import { IMoneda } from "../../interfaces/moneda.interface";
+import monedaModel from "../../../models/Facturacion/moneda/moneda.model";
+import { IMoneda } from "../../../interfaces/moneda.interface";
 
 export default class MonedaService {
   async getMoneda(id: any = null) {

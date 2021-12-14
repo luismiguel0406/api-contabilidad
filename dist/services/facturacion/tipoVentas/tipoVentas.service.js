@@ -12,21 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const tipoComprobante_model_1 = __importDefault(require("../../models/Facturacion/comprobantes/tipoComprobante.model"));
-//----  TIPOS COMPROBANTES -----//
-class TipoComprobanteService {
-    getTipoComprobante(id = null) {
+exports.TipoVentasService = void 0;
+const tipoVentas_model_1 = __importDefault(require("../../../models/Facturacion/ventas/tipoVentas.model"));
+class TipoVentasService {
+    getTipoventas(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            const tipoComprobanteResult = id === null
-                ? yield tipoComprobante_model_1.default.findAll({ where: { estado: "1" } })
-                : yield tipoComprobante_model_1.default.findOne({ where: { id, estado: "1" } });
-            return tipoComprobanteResult;
+            const tipoVentasResult = id === null
+                ? yield tipoVentas_model_1.default.findAll({ where: { estado: "1" } })
+                : yield tipoVentas_model_1.default.findOne({ where: { id, estado: "1" } });
+            return tipoVentasResult;
         });
     }
-    ;
-    updateTipoComprobante(body, id) {
+    updateTipoVentas(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoComprobante_model_1.default.update(body, {
+            yield tipoVentas_model_1.default.update(body, {
                 where: {
                     id,
                     estado: "1",
@@ -34,19 +33,16 @@ class TipoComprobanteService {
             });
         });
     }
-    ;
-    deleteTipoComprobante(id) {
+    deleteTipoVentas(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoComprobante_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield tipoVentas_model_1.default.update({ estado: "0" }, { where: { id } });
         });
     }
-    ;
-    addTipoComprobante(body) {
+    addTipoVentas(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoComprobante_model_1.default.create(body);
+            yield tipoVentas_model_1.default.create(body);
         });
     }
-    ;
 }
-exports.default = TipoComprobanteService;
-//# sourceMappingURL=comprobantes.service.js.map
+exports.TipoVentasService = TipoVentasService;
+//# sourceMappingURL=tipoVentas.service.js.map

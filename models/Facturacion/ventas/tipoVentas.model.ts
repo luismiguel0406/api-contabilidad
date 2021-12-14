@@ -1,12 +1,10 @@
 import { DataTypes } from "sequelize";
-import conexion from "../../Database/connectionDB";
-import tipoVentas from "../Facturacion/ventas/tipoVentas.model";
-import item from "./Item.model";
+import conexion from "../../../Database/connectionDB";
 
-const tiposItem = conexion.define(
-  "tipoItem",
+const tipoVentas = conexion.define(
+  "tipoVenta",
   {
-     descripcion: {
+    descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -27,16 +25,12 @@ const tiposItem = conexion.define(
     },
     terminal: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    tipoItemId: {
+      type: DataTypes.INTEGER,
     },
   },
-  { schema: "INVENTARIO" }
+  { schema: "FACTURACION" }
 );
-
-
-tiposItem.hasMany(item,{foreignKey:"tipoItemId"});
-item.belongsTo(tiposItem);
-
-tiposItem.hasMany(tipoVentas,{foreignKey:"tipoItemId"});
-tipoVentas.belongsTo(tiposItem);
-
-export default tiposItem;
+export default tipoVentas;
