@@ -5,6 +5,7 @@ import { ICuentaContable } from "../../interfaces/cuentaContable.interface";
 import { IMoneda } from "../../interfaces/moneda.interface";
 import { ITipoPoveedor } from "../../interfaces/proveedor.interface";
 import { ITipoItem } from "../../interfaces/Item.interface";
+import { ITipoVentas } from "../../interfaces/tipoVentas.interface";
 import tipoCliente from "../../models/Clientes/tipoCliente.model";
 import tiposContactos from "../../models/Contacto/tipoContactos.model";
 import cuentaContable from "../../models/Cuentas Contables/CuentasContables.model";
@@ -12,6 +13,7 @@ import comprobantes from "../../models/Facturacion/comprobantes/tipoComprobante.
 import moneda from "../../models/Facturacion/moneda/moneda.model";
 import tiposItem from "../../models/Inventario/tipoItem.model";
 import tipoProveedor from "../../models/Proveedores/tipoProveedores.model";
+import tipoVentas from "../../models/Facturacion/ventas/tipoVentas.model";
 
 export class TiposProveedores {
   private tipoProveedoresArray: Array<ITipoPoveedor>;
@@ -633,6 +635,87 @@ export class TiposItem {
       });
     } catch (error) {
       console.error("Error insertando Tipos item");
+    }
+  }
+}
+
+export class TipoVenta {
+  private tipoVentaArray: Array<ITipoVentas>;
+
+  constructor() {
+    this.tipoVentaArray = [
+      {
+        descripcion: "VENTAS DE BIENES CON VALOR FISCAL",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+        tipoItemId: 1,
+      },
+      {
+        descripcion: "VENTAS DE BIENES DE CONSUMO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+        tipoItemId: 1,
+      },
+      {
+        descripcion: "VENTAS SERVICIOS COMPROBANTE",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+        tipoItemId: 2,
+      },
+      {
+        descripcion: "VENTAS SERVICIO CONSUMO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+        tipoItemId: 2,
+      },
+      {
+        descripcion: "VENTAS AL ESTADO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+        tipoItemId: 2,
+      },
+      {
+        descripcion: "VENTAS DE REGIMENES ESPECIALES",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+        tipoItemId: 2,
+      },
+      {
+        descripcion: "VENTAS AL EXTERIOR",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+        tipoItemId: 2,
+      },
+    ];
+  }
+  InsertarTipoVentas() {
+    try {
+      tipoVentas.afterSync("createTipoVenta", async () => {
+        await tiposItem.bulkCreate(this.tipoVentaArray);
+      });
+    } catch (error) {
+      console.error("Error insertando Tipos venta");
     }
   }
 }
