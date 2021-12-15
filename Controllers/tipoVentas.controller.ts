@@ -20,4 +20,41 @@ export const getTipoVentas = async (req: Request, res: Response) => {
   }
 };
 
-// SIGUIENTE CONTROLADOR
+export const postTipoVenta = async (req: Request, res: Response) => {
+  try {
+    const { body } = req;
+    await tipoVenta_service.addTipoVentas(body);
+    const { statusCode, msg } = MsgRespuesta.created;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    return res.status(statusCode).json({ Message: msg, error });
+  }
+};
+
+export const updateTipoVenta = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { body } = req;
+    await tipoVenta_service.updateTipoVentas(body, id);
+
+    const { statusCode, msg } = MsgRespuesta.Success;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    return res.status(statusCode).json({ Message: msg, error });
+  }
+};
+
+export const deleteTipoVenta = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    await tipoVenta_service.deleteTipoVentas(id);
+
+    const { statusCode, msg } = MsgRespuesta.noContent;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    return res.status(statusCode).json({ Message: msg, error });
+  }
+};

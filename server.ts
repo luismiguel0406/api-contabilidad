@@ -14,7 +14,8 @@ import ComprobantesRoutes from "./routes/facturacion/comprobante.route"
 import clientesRoutes from "./routes/Clientes/clientes.route";
 import contactosRoutes from "./routes/Contactos/contactos.route";
 import proveedoresRoutes from "./routes/Proveedores/proveedores.route";
-import itemRoutes from  "./routes/Inventario/Item.route"
+import itemRoutes from  "./routes/Inventario/Item.route";
+import tipoVentaRoutes from "./routes/facturacion/tipoVenta.route";
 import cors from "cors";
 import variablesEnv from "./config/index";
 import db from "./Database/connectionDB";
@@ -68,6 +69,7 @@ class Server {
     this.app.use(contactosRoutes);
     this.app.use(proveedoresRoutes);
     this.app.use(itemRoutes);
+    this.app.use(tipoVentaRoutes);
   }
 
   InicioAplicacion() {
