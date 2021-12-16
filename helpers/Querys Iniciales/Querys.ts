@@ -14,6 +14,8 @@ import moneda from "../../models/Facturacion/moneda/moneda.model";
 import tiposItem from "../../models/Inventario/tipoItem.model";
 import tipoProveedor from "../../models/Proveedores/tipoProveedores.model";
 import tipoVentas from "../../models/Facturacion/ventas/tipoVentas.model";
+import { IImpuestos } from "../../interfaces/impuestos.interface";
+import impuetos from "../../models/Facturacion/impuestos/impuestos.model";
 
 export class TiposProveedores {
   private tipoProveedoresArray: Array<ITipoPoveedor>;
@@ -716,6 +718,135 @@ export class TipoVenta {
       });
     } catch (error) {
       console.error("Error insertando Tipos venta");
+    }
+  }
+}
+
+export class Impuestos {
+  private impuestoArray: Array<IImpuestos>;
+
+  constructor() {
+    this.impuestoArray = [
+      {
+        nombre: "ITBIS FACTURADO",
+        alias: "ITBIS",
+        porcentaje: 0.18,
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        nombre: "IMPUESTO SELECTIVO AL CONSUMO",
+        alias: "ISC",
+        porcentaje: 0,
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+
+      {
+        nombre: "ITBIS RETENIDO",
+        alias: "ITB RET",
+        porcentaje: 0,
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        nombre: "ITBIS SUJETO A PROPORCIONALIDAD",
+        alias: "ISP",
+        porcentaje: 0,
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        nombre: "ITBIS LLEVADO AL COSTO",
+        alias: "ILC",
+        porcentaje: 0,
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        nombre: "ITBIS POR ADELANTAR",
+        alias: "ITBPA",
+        porcentaje: 0,
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        nombre: "ITBIS COMPRAS",
+        alias: "ITBC",
+        porcentaje: 0,
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        nombre: "IMPUESTOS SOBRE LA RENTA",
+        alias: "ISR",
+        porcentaje: 0,
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        nombre: "PROPINA LEGAL",
+        alias: "PL",
+        porcentaje: 0.1,
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        nombre: "OTROS/TASA",
+        alias: "OT",
+        porcentaje: 0,
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        nombre: "CDT",
+        alias: "CDT",
+        porcentaje: 0.02,
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+    ];
+  }
+  InsertarImpuestos() {
+    try {
+      impuetos.afterSync("createImpuestos", async () => {
+        await impuetos.bulkCreate(this.impuestoArray);
+      });
+    } catch (error) {
+      console.error("Error insertando impuestos");
     }
   }
 }

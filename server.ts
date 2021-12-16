@@ -8,15 +8,17 @@ import {
   TiposItem,
   TiposProveedores,
   TipoVenta,
+  Impuestos,
 } from "./helpers/Querys Iniciales/Querys";
 import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
 import MonedasRoutes from "./routes/facturacion/moneda.route";
-import ComprobantesRoutes from "./routes/facturacion/comprobante.route"
+import ComprobantesRoutes from "./routes/facturacion/comprobante.route";
 import clientesRoutes from "./routes/Clientes/clientes.route";
 import contactosRoutes from "./routes/Contactos/contactos.route";
 import proveedoresRoutes from "./routes/Proveedores/proveedores.route";
-import itemRoutes from  "./routes/Inventario/Item.route";
+import itemRoutes from "./routes/Inventario/Item.route";
 import tipoVentaRoutes from "./routes/facturacion/tipoVenta.route";
+import impuestosRoutes from "./routes/facturacion/impuestos.route";
 import cors from "cors";
 import variablesEnv from "./config/index";
 import db from "./Database/connectionDB";
@@ -71,6 +73,7 @@ class Server {
     this.app.use(proveedoresRoutes);
     this.app.use(itemRoutes);
     this.app.use(tipoVentaRoutes);
+    this.app.use(impuestosRoutes);
   }
 
   InicioAplicacion() {
@@ -82,6 +85,7 @@ class Server {
       const comprobantes = new TiposComprobantes();
       const tipoItem = new TiposItem();
       const tipoVenta = new TipoVenta();
+      const impuestos = new Impuestos();
 
       tipoClientes.InsertarTipoClientes();
       tipoContacto.InsertarTipoContactos();
@@ -90,6 +94,7 @@ class Server {
       tipoItem.InsertarTipoItem();
       comprobantes.InsertarComprobantes();
       tipoVenta.InsertarTipoVentas();
+      impuestos.InsertarImpuestos();
     } catch (error) {
       console.error(`Error Metodo InicioAplicacion, ${error}`);
     }
