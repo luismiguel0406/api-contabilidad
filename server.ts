@@ -19,6 +19,7 @@ import proveedoresRoutes from "./routes/Proveedores/proveedores.route";
 import itemRoutes from "./routes/Inventario/Item.route";
 import tipoVentaRoutes from "./routes/facturacion/tipoVenta.route";
 import impuestosRoutes from "./routes/facturacion/impuestos.route";
+import medioDePagoRoutes from "./routes/facturacion/medioDePagp.route";
 import cors from "cors";
 import variablesEnv from "./config/index";
 import db from "./Database/connectionDB";
@@ -74,6 +75,7 @@ class Server {
     this.app.use(itemRoutes);
     this.app.use(tipoVentaRoutes);
     this.app.use(impuestosRoutes);
+    this.app.use(medioDePagoRoutes);
   }
 
   InicioAplicacion() {
