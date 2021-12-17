@@ -1,17 +1,17 @@
 import { IImpuestos } from "../../../interfaces/impuestos.interface";
-import impuetos from "../../../models/Facturacion/impuestos/impuestos.model";
+import impuetosModel from "../../../models/Facturacion/impuestos/impuestos.model";
 
 export default class ImpuestoService {
   async getImpuestos(id: any = null) {
     const impuestosResult =
       id === null
-        ? await impuetos.findAll({ where: { estado: "1" } })
-        : await impuetos.findOne({ where: { id, estado: "1" } });
+        ? await impuetosModel.findAll({ where: { estado: "1" } })
+        : await impuetosModel.findOne({ where: { id, estado: "1" } });
     return impuestosResult;
   }
 
   async updateImpuesto(body: IImpuestos, id: string) {
-    await impuetos.update(body, {
+    await impuetosModel.update(body, {
       where: {
         id,
         estado: "1",
@@ -20,10 +20,10 @@ export default class ImpuestoService {
   }
 
   async deleteImpuesto(id: string) {
-    await impuetos.update({ estado: "0" }, { where: { id } });
+    await impuetosModel.update({ estado: "0" }, { where: { id } });
   }
 
   async addImpuesto(body: IImpuestos) {
-    await impuetos.create(body);
+    await impuetosModel.create(body);
   }
 }
