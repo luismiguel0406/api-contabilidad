@@ -9,6 +9,7 @@ import {
   TiposProveedores,
   TipoVenta,
   Impuestos,
+  MediosDePago,
 } from "./helpers/Querys Iniciales/Querys";
 import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
 import MonedasRoutes from "./routes/facturacion/moneda.route";
@@ -88,6 +89,7 @@ class Server {
       const tipoItem = new TiposItem();
       const tipoVenta = new TipoVenta();
       const impuestos = new Impuestos();
+      const mediosDePago = new MediosDePago();
 
       tipoClientes.InsertarTipoClientes();
       tipoContacto.InsertarTipoContactos();
@@ -97,6 +99,7 @@ class Server {
       comprobantes.InsertarComprobantes();
       tipoVenta.InsertarTipoVentas();
       impuestos.InsertarImpuestos();
+      mediosDePago.InsertarMediosDePago();
     } catch (error) {
       console.error(`Error Metodo InicioAplicacion, ${error}`);
     }

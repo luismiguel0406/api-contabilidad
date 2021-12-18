@@ -16,6 +16,8 @@ import tipoProveedor from "../../models/Proveedores/tipoProveedores.model";
 import tipoVentas from "../../models/Facturacion/ventas/tipoVentas.model";
 import { IImpuestos } from "../../interfaces/impuestos.interface";
 import impuetos from "../../models/Facturacion/impuestos/impuestos.model";
+import { IMedioDePago } from "../../interfaces/medioDePago.interface";
+import mediosDePago from "../../models/Facturacion/medioDePago/medioDePago.model";
 
 export class TiposProveedores {
   private tipoProveedoresArray: Array<ITipoPoveedor>;
@@ -847,6 +849,40 @@ export class Impuestos {
       });
     } catch (error) {
       console.error("Error insertando impuestos");
+    }
+  }
+}
+
+export class MediosDePago {
+  private medioDePagoArray: Array<IMedioDePago>;
+
+  constructor() {
+    this.medioDePagoArray = [
+      {
+        descripcion: "EFECTIVO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "TARJETA",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+    ];
+  }
+  InsertarMediosDePago() {
+    try {
+      mediosDePago.afterSync("createMediosDePago", async () => {
+        mediosDePago.bulkCreate(this.medioDePagoArray);
+      });
+    } catch (error) {
+      console.error("Error insertando medios de pago");
     }
   }
 }
