@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
+import facturas from "../Facturacion/facturas/factura.model";
 
 const empresa = conexion.define(
   "empresa",
@@ -56,5 +57,7 @@ const empresa = conexion.define(
   { schema: "EMPRESA" }
 );
 
+empresa.hasMany(facturas,{foreignKey:"empresaId"})
+facturas.belongsTo(empresa)
 
 export default empresa;

@@ -15,7 +15,7 @@ import tiposItem from "../../models/Inventario/tipoItem.model";
 import tipoProveedor from "../../models/Proveedores/tipoProveedores.model";
 import tipoVentas from "../../models/Facturacion/ventas/tipoVentas.model";
 import { IImpuestos } from "../../interfaces/impuestos.interface";
-import impuetos from "../../models/Facturacion/impuestos/impuestos.model";
+import impuestos from "../../models/Facturacion/impuestos/impuestos.model";
 import { IMedioDePago } from "../../interfaces/medioDePago.interface";
 import mediosDePago from "../../models/Facturacion/medioDePago/medioDePago.model";
 
@@ -844,8 +844,8 @@ export class Impuestos {
   }
   InsertarImpuestos() {
     try {
-      impuetos.afterSync("createImpuestos", async () => {
-        await impuetos.bulkCreate(this.impuestoArray);
+      impuestos.afterSync("createImpuestos", async () => {
+        await impuestos.bulkCreate(this.impuestoArray);
       });
     } catch (error) {
       console.error("Error insertando impuestos");

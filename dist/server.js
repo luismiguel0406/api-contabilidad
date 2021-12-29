@@ -21,6 +21,9 @@ const clientes_route_1 = __importDefault(require("./routes/Clientes/clientes.rou
 const contactos_route_1 = __importDefault(require("./routes/Contactos/contactos.route"));
 const proveedores_route_1 = __importDefault(require("./routes/Proveedores/proveedores.route"));
 const Item_route_1 = __importDefault(require("./routes/Inventario/Item.route"));
+const tipoVenta_route_1 = __importDefault(require("./routes/facturacion/tipoVenta.route"));
+const impuestos_route_1 = __importDefault(require("./routes/facturacion/impuestos.route"));
+const medioDePagp_route_1 = __importDefault(require("./routes/facturacion/medioDePagp.route"));
 const cors_1 = __importDefault(require("cors"));
 const index_1 = __importDefault(require("./config/index"));
 const connectionDB_1 = __importDefault(require("./Database/connectionDB"));
@@ -69,6 +72,9 @@ class Server {
         this.app.use(contactos_route_1.default);
         this.app.use(proveedores_route_1.default);
         this.app.use(Item_route_1.default);
+        this.app.use(tipoVenta_route_1.default);
+        this.app.use(impuestos_route_1.default);
+        this.app.use(medioDePagp_route_1.default);
     }
     InicioAplicacion() {
         try {
@@ -78,12 +84,18 @@ class Server {
             const moneda = new Querys_1.Moneda();
             const comprobantes = new Querys_1.TiposComprobantes();
             const tipoItem = new Querys_1.TiposItem();
+            const tipoVenta = new Querys_1.TipoVenta();
+            const impuestos = new Querys_1.Impuestos();
+            const mediosDePago = new Querys_1.MediosDePago();
             tipoClientes.InsertarTipoClientes();
             tipoContacto.InsertarTipoContactos();
             tipoProveedor.InsertarTiposProveedores();
             moneda.InsertarMonedas();
             tipoItem.InsertarTipoItem();
             comprobantes.InsertarComprobantes();
+            tipoVenta.InsertarTipoVentas();
+            impuestos.InsertarImpuestos();
+            mediosDePago.InsertarMediosDePago();
         }
         catch (error) {
             console.error(`Error Metodo InicioAplicacion, ${error}`);

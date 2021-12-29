@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TiposItem = exports.TiposComprobantes = exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
+exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
 const CuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/CuentasContables.model"));
@@ -20,6 +20,9 @@ const tipoComprobante_model_1 = __importDefault(require("../../models/Facturacio
 const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda/moneda.model"));
 const tipoItem_model_1 = __importDefault(require("../../models/Inventario/tipoItem.model"));
 const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedores/tipoProveedores.model"));
+const tipoVentas_model_1 = __importDefault(require("../../models/Facturacion/ventas/tipoVentas.model"));
+const impuestos_model_1 = __importDefault(require("../../models/Facturacion/impuestos/impuestos.model"));
+const medioDePago_model_1 = __importDefault(require("../../models/Facturacion/medioDePago/medioDePago.model"));
 class TiposProveedores {
     // AGREGO TIPO AL INICIO DEL PROGRAMA //
     constructor() {
@@ -634,4 +637,244 @@ class TiposItem {
     }
 }
 exports.TiposItem = TiposItem;
+class TipoVenta {
+    constructor() {
+        this.tipoVentaArray = [
+            {
+                descripcion: "VENTAS DE BIENES CON VALOR FISCAL",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+                tipoItemId: 1,
+            },
+            {
+                descripcion: "VENTAS DE BIENES DE CONSUMO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+                tipoItemId: 1,
+            },
+            {
+                descripcion: "VENTAS SERVICIOS COMPROBANTE",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+                tipoItemId: 2,
+            },
+            {
+                descripcion: "VENTAS SERVICIO CONSUMO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+                tipoItemId: 2,
+            },
+            {
+                descripcion: "VENTAS AL ESTADO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+                tipoItemId: 2,
+            },
+            {
+                descripcion: "VENTAS DE REGIMENES ESPECIALES",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+                tipoItemId: 2,
+            },
+            {
+                descripcion: "VENTAS AL EXTERIOR",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+                tipoItemId: 2,
+            },
+        ];
+    }
+    InsertarTipoVentas() {
+        try {
+            tipoVentas_model_1.default.afterSync("createTipoVenta", () => __awaiter(this, void 0, void 0, function* () {
+                yield tipoItem_model_1.default.bulkCreate(this.tipoVentaArray);
+            }));
+        }
+        catch (error) {
+            console.error("Error insertando Tipos venta");
+        }
+    }
+}
+exports.TipoVenta = TipoVenta;
+class Impuestos {
+    constructor() {
+        this.impuestoArray = [
+            {
+                nombre: "ITBIS FACTURADO",
+                alias: "ITBIS",
+                porcentaje: 0.18,
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                nombre: "IMPUESTO SELECTIVO AL CONSUMO",
+                alias: "ISC",
+                porcentaje: 0,
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                nombre: "ITBIS RETENIDO",
+                alias: "ITB RET",
+                porcentaje: 0,
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                nombre: "ITBIS SUJETO A PROPORCIONALIDAD",
+                alias: "ISP",
+                porcentaje: 0,
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                nombre: "ITBIS LLEVADO AL COSTO",
+                alias: "ILC",
+                porcentaje: 0,
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                nombre: "ITBIS POR ADELANTAR",
+                alias: "ITBPA",
+                porcentaje: 0,
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                nombre: "ITBIS COMPRAS",
+                alias: "ITBC",
+                porcentaje: 0,
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                nombre: "IMPUESTOS SOBRE LA RENTA",
+                alias: "ISR",
+                porcentaje: 0,
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                nombre: "PROPINA LEGAL",
+                alias: "PL",
+                porcentaje: 0.1,
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                nombre: "OTROS/TASA",
+                alias: "OT",
+                porcentaje: 0,
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                nombre: "CDT",
+                alias: "CDT",
+                porcentaje: 0.02,
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+        ];
+    }
+    InsertarImpuestos() {
+        try {
+            impuestos_model_1.default.afterSync("createImpuestos", () => __awaiter(this, void 0, void 0, function* () {
+                yield impuestos_model_1.default.bulkCreate(this.impuestoArray);
+            }));
+        }
+        catch (error) {
+            console.error("Error insertando impuestos");
+        }
+    }
+}
+exports.Impuestos = Impuestos;
+class MediosDePago {
+    constructor() {
+        this.medioDePagoArray = [
+            {
+                descripcion: "EFECTIVO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                descripcion: "TARJETA",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+        ];
+    }
+    InsertarMediosDePago() {
+        try {
+            medioDePago_model_1.default.afterSync("createMediosDePago", () => __awaiter(this, void 0, void 0, function* () {
+                medioDePago_model_1.default.bulkCreate(this.medioDePagoArray);
+            }));
+        }
+        catch (error) {
+            console.error("Error insertando medios de pago");
+        }
+    }
+}
+exports.MediosDePago = MediosDePago;
 //# sourceMappingURL=Querys.js.map

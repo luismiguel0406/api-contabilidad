@@ -1,7 +1,9 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../../Database/connectionDB";
 
-const impuetos = conexion.define(
+
+
+const impuestos = conexion.define(
   "impuesto",
   {
     nombre: {
@@ -37,4 +39,6 @@ const impuetos = conexion.define(
   },
   { schema: "FACTURACION" }
 );
-export default impuetos;
+
+
+export default impuestos;

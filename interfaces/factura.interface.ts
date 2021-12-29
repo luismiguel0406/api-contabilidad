@@ -16,7 +16,6 @@ export interface IFactura {
   empresaId: number;
   clienteId: number;
   monedaId: number;
-  medioDePagoId: number;
-  facturaImpuestoId: number;
+ 
 }
 

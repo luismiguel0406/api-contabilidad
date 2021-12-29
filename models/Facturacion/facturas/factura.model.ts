@@ -68,12 +68,6 @@ const facturas = conexion.define("factura", {
     type: DataTypes.NUMBER,
     allowNull: false,
   },
-  medioDePagoId: {
-    type: DataTypes.NUMBER,
-    allowNull: false,
-  },
-  facturaImpuestoId: {
-    type: DataTypes.NUMBER,
-  },
+
 });
 export default facturas;

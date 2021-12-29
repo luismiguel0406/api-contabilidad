@@ -5,15 +5,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../../Database/connectionDB"));
-const CuentasContables_model_1 = __importDefault(require("../../Cuentas Contables/CuentasContables.model"));
-const factura_model_1 = __importDefault(require("../facturas/factura.model"));
-const moneda = connectionDB_1.default.define("moneda", {
-    descripcion: {
+const impuestos = connectionDB_1.default.define("impuesto", {
+    nombre: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    simbolo: {
+    alias: {
         type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    porcentaje: {
+        type: sequelize_1.DataTypes.DECIMAL,
         allowNull: false,
     },
     estado: {
@@ -33,12 +35,7 @@ const moneda = connectionDB_1.default.define("moneda", {
     },
     terminal: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
     },
 }, { schema: "FACTURACION" });
-moneda.hasMany(CuentasContables_model_1.default, { foreignKey: "monedaId" });
-CuentasContables_model_1.default.belongsTo(moneda);
-moneda.hasMany(factura_model_1.default, { foreignKey: "monedaId" });
-factura_model_1.default.belongsTo(moneda);
-exports.default = moneda;
-//# sourceMappingURL=moneda.model.js.map
+exports.default = impuestos;
+//# sourceMappingURL=impuestos.model.js.map

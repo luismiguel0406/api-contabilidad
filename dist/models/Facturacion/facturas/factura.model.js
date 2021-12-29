@@ -4,24 +4,41 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const factura_model_1 = __importDefault(require("../Facturacion/facturas/factura.model"));
-const empresa = connectionDB_1.default.define("empresa", {
-    nombre: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    inicialesEmpresa: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    rnc: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-        unique: true
-    },
-    sucursal: {
+const connectionDB_1 = __importDefault(require("../../../Database/connectionDB"));
+const facturas = connectionDB_1.default.define("factura", {
+    numeroFactura: {
         type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
+    Ncf: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    NcfModificado: {
+        type: sequelize_1.DataTypes.STRING,
+    },
+    subTotal: {
+        type: sequelize_1.DataTypes.NUMBER,
+        allowNull: false,
+    },
+    descuento: {
+        type: sequelize_1.DataTypes.NUMBER,
+        allowNull: false,
+        defaultValue: 0,
+    },
+    total: {
+        type: sequelize_1.DataTypes.NUMBER,
+        allowNull: false,
+    },
+    comentario: {
+        type: sequelize_1.DataTypes.STRING,
+    },
+    fechaFactura: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+    },
+    fechaVencimiento: {
+        type: sequelize_1.DataTypes.DATE,
         allowNull: false,
     },
     estado: {
@@ -35,18 +52,6 @@ const empresa = connectionDB_1.default.define("empresa", {
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
     },
-    direccion: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    telefono: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    correo: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
     usuario: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
@@ -55,8 +60,18 @@ const empresa = connectionDB_1.default.define("empresa", {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-}, { schema: "EMPRESA" });
-empresa.hasMany(factura_model_1.default, { foreignKey: "empresaId" });
-factura_model_1.default.belongsTo(empresa);
-exports.default = empresa;
-//# sourceMappingURL=empresa.model.js.map
+    empresaId: {
+        type: sequelize_1.DataTypes.NUMBER,
+        allowNull: false,
+    },
+    clienteId: {
+        type: sequelize_1.DataTypes.NUMBER,
+        allowNull: false,
+    },
+    monedaId: {
+        type: sequelize_1.DataTypes.NUMBER,
+        allowNull: false,
+    },
+});
+exports.default = facturas;
+//# sourceMappingURL=factura.model.js.map
