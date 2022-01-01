@@ -1,8 +1,6 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../../Database/connectionDB";
 
-
-
 const impuestos = conexion.define(
   "impuesto",
   {

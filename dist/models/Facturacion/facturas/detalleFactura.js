@@ -5,19 +5,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../../Database/connectionDB"));
-const detalleFactura_1 = __importDefault(require("../facturas/detalleFactura"));
-const impuestos_model_1 = __importDefault(require("./impuestos.model"));
-const detallesImpuesto = connectionDB_1.default.define("detalleImpuesto", {
-    detalleFacturaId: {
+const Item_model_1 = __importDefault(require("../../Inventario/Item.model"));
+const factura_model_1 = __importDefault(require("./factura.model"));
+const detallesFactura = connectionDB_1.default.define("detalleFactura", {
+    facturaId: {
         type: sequelize_1.DataTypes.NUMBER,
         allowNull: false,
     },
-    impuestoId: {
+    itemId: {
+        type: sequelize_1.DataTypes.NUMBER,
+        allowNull: false,
+    },
+    cantidad: {
+        type: sequelize_1.DataTypes.NUMBER,
+        defaultValue: 1,
+    },
+    precioVenta: {
         type: sequelize_1.DataTypes.NUMBER,
     },
-    valor: {
+    descuento: {
         type: sequelize_1.DataTypes.NUMBER,
         defaultValue: 0,
+    },
+    total: {
+        type: sequelize_1.DataTypes.NUMBER,
     },
     estado: {
         type: sequelize_1.DataTypes.BOOLEAN,
@@ -38,10 +49,10 @@ const detallesImpuesto = connectionDB_1.default.define("detalleImpuesto", {
         type: sequelize_1.DataTypes.STRING,
     },
 }, { schema: "FACTURACION" });
-//--- ASOCIACIONES---// 
-detalleFactura_1.default.hasMany(detallesImpuesto, { foreignKey: "detalleFacturaId" });
-detallesImpuesto.belongsTo(detalleFactura_1.default);
-impuestos_model_1.default.hasMany(detallesImpuesto, { foreignKey: "impuestoId" });
-detallesImpuesto.belongsTo(impuestos_model_1.default);
-exports.default = detallesImpuesto;
-//# sourceMappingURL=detalleImpuestos.js.map
+//--- ASOCIACIONES---//
+Item_model_1.default.hasMany(detallesFactura, { foreignKey: "itemId" });
+detallesFactura.belongsTo(Item_model_1.default);
+factura_model_1.default.hasMany(detallesFactura, { foreignKey: "facturaId" });
+detallesFactura.belongsTo(factura_model_1.default);
+exports.default = detallesFactura;
+//# sourceMappingURL=detalleFactura.js.map

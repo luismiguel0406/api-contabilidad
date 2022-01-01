@@ -1,6 +1,9 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
-import empresa from "../Empresa/empresa.model";
+import clientes from "../Clientes/Cliente.model";
+import Proveedores from "../Proveedores/Proveedores.model";
+import tiposContactos from "./tipoContactos.model";
+
 
 const correos = conexion.define(
   "correo",
@@ -42,5 +45,14 @@ const correos = conexion.define(
   },
   { schema: "CONTACTOS"}
 );
+//--- ASOCIACIONES---// 
+clientes.hasMany(correos, { foreignKey: "clienteId"});
+correos.belongsTo(clientes);
+
+Proveedores.hasMany(correos, { foreignKey: "proveedorId" });
+correos.belongsTo(Proveedores);
+
+tiposContactos.hasMany(correos, { foreignKey: "tipoContactoId" });
+correos.belongsTo(tiposContactos);
 
 export default correos;

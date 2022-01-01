@@ -5,6 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
+const Cliente_model_1 = __importDefault(require("../Clientes/Cliente.model"));
+const Proveedores_model_1 = __importDefault(require("../Proveedores/Proveedores.model"));
+const tipoContactos_model_1 = __importDefault(require("./tipoContactos.model"));
 const correos = connectionDB_1.default.define("correo", {
     correo: {
         type: sequelize_1.DataTypes.STRING,
@@ -41,5 +44,12 @@ const correos = connectionDB_1.default.define("correo", {
         type: sequelize_1.DataTypes.INTEGER
     }
 }, { schema: "CONTACTOS" });
+//--- ASOCIACIONES---// 
+Cliente_model_1.default.hasMany(correos, { foreignKey: "clienteId" });
+correos.belongsTo(Cliente_model_1.default);
+Proveedores_model_1.default.hasMany(correos, { foreignKey: "proveedorId" });
+correos.belongsTo(Proveedores_model_1.default);
+tipoContactos_model_1.default.hasMany(correos, { foreignKey: "tipoContactoId" });
+correos.belongsTo(tipoContactos_model_1.default);
 exports.default = correos;
 //# sourceMappingURL=Correos.model.js.map

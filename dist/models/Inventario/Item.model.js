@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
+const tipoItem_model_1 = __importDefault(require("./tipoItem.model"));
 const item = connectionDB_1.default.define("item", {
     descripcion: {
         type: sequelize_1.DataTypes.STRING,
@@ -61,5 +62,8 @@ const item = connectionDB_1.default.define("item", {
         allowNull: false,
     },
 }, { schema: "INVENTARIO" });
+//--- ASOCIACIONES---// 
+tipoItem_model_1.default.hasMany(item, { foreignKey: "tipoItemId" });
+item.belongsTo(tipoItem_model_1.default);
 exports.default = item;
 //# sourceMappingURL=Item.model.js.map

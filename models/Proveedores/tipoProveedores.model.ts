@@ -32,9 +32,4 @@ const tipoProveedor = conexion.define(
  
 );
 
-
-tipoProveedor.hasMany(Proveedores, { foreignKey: "tipoProveedorId"});
-Proveedores.belongsTo(tipoProveedor);
-
-
 export default tipoProveedor;

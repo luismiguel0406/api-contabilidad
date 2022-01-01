@@ -5,10 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const Correos_model_1 = __importDefault(require("../Contacto/Correos.model"));
-const Direcciones_model_1 = __importDefault(require("../Contacto/Direcciones.model"));
-const telefono_model_1 = __importDefault(require("../Contacto/telefono.model"));
-const factura_model_1 = __importDefault(require("../Facturacion/facturas/factura.model"));
+const tipoCliente_model_1 = __importDefault(require("./tipoCliente.model"));
 const clientes = connectionDB_1.default.define("clientes", {
     nombre: {
         type: sequelize_1.DataTypes.STRING,
@@ -54,13 +51,8 @@ const clientes = connectionDB_1.default.define("clientes", {
         allowNull: false,
     },
 }, { schema: "CLIENTES" });
-clientes.hasMany(Correos_model_1.default, { foreignKey: "clienteId" });
-Correos_model_1.default.belongsTo(clientes);
-clientes.hasMany(telefono_model_1.default, { foreignKey: "clienteId" });
-telefono_model_1.default.belongsTo(clientes);
-clientes.hasMany(Direcciones_model_1.default, { foreignKey: "clienteId" });
-Direcciones_model_1.default.belongsTo(clientes);
-clientes.hasMany(factura_model_1.default, { foreignKey: "clienteId" });
-factura_model_1.default.belongsTo(clientes);
+//--- ASOCIACIONES---// 
+tipoCliente_model_1.default.hasMany(clientes, { foreignKey: 'tipoClienteId' });
+clientes.belongsTo(tipoCliente_model_1.default);
 exports.default = clientes;
 //# sourceMappingURL=Cliente.model.js.map

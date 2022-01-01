@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../../Database/connectionDB";
+import tiposItem from "../../Inventario/tipoItem.model";
 
 const tipoVentas = conexion.define(
   "tipoVenta",
@@ -33,4 +34,10 @@ const tipoVentas = conexion.define(
   },
   { schema: "FACTURACION" }
 );
+
+//--- ASOCIACIONES---// 
+
+tiposItem.hasMany(tipoVentas,{foreignKey:"tipoItemId"});
+tipoVentas.belongsTo(tiposItem);
+
 export default tipoVentas;

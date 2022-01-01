@@ -5,6 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../../Database/connectionDB"));
+const Cliente_model_1 = __importDefault(require("../../Clientes/Cliente.model"));
+const empresa_model_1 = __importDefault(require("../../Empresa/empresa.model"));
+const moneda_model_1 = __importDefault(require("../moneda/moneda.model"));
 const facturas = connectionDB_1.default.define("factura", {
     numeroFactura: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -26,6 +29,10 @@ const facturas = connectionDB_1.default.define("factura", {
         allowNull: false,
         defaultValue: 0,
     },
+    totalImpuestos: {
+        type: sequelize_1.DataTypes.NUMBER,
+        defaultValue: 0,
+    },
     total: {
         type: sequelize_1.DataTypes.NUMBER,
         allowNull: false,
@@ -33,7 +40,7 @@ const facturas = connectionDB_1.default.define("factura", {
     comentario: {
         type: sequelize_1.DataTypes.STRING,
     },
-    fechaFactura: {
+    fecha: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
     },
@@ -73,5 +80,12 @@ const facturas = connectionDB_1.default.define("factura", {
         allowNull: false,
     },
 });
+//--- ASOCIACIONES---//
+Cliente_model_1.default.hasMany(facturas, { foreignKey: "clienteId" });
+facturas.belongsTo(Cliente_model_1.default);
+moneda_model_1.default.hasMany(facturas, { foreignKey: "monedaId" });
+facturas.belongsTo(moneda_model_1.default);
+empresa_model_1.default.hasMany(facturas, { foreignKey: "empresaId" });
+facturas.belongsTo(empresa_model_1.default);
 exports.default = facturas;
 //# sourceMappingURL=factura.model.js.map

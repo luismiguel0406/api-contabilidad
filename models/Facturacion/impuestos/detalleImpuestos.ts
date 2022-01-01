@@ -1,40 +1,50 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../../Database/connectionDB";
-import facturas from "../facturas/factura.model";
+import detallesFactura from "../facturas/detalleFactura";
 import impuestos from "./impuestos.model";
 
-const detallesImpuesto = conexion.define("detalleImpuesto", {
-  facturaId: {
-    type: DataTypes.NUMBER,
+const detallesImpuesto = conexion.define(
+  "detalleImpuesto",
+  {
+    detalleFacturaId: {
+      type: DataTypes.NUMBER,
+      allowNull: false,
+    },
+    impuestoId: {
+      type: DataTypes.NUMBER,
+    },
+    valor: {
+      type: DataTypes.NUMBER,
+      defaultValue: 0,
+    },
+    estado: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+    },
+    usuario: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    terminal: {
+      type: DataTypes.STRING,
+    },
   },
-  impuestoId: {
-    type: DataTypes.NUMBER,
-  },
-  valor:{
-      type:DataTypes.NUMBER,
-      defaultValue: 0
-  },
-  estado: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-  },
-  usuario: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  terminal: {
-    type: DataTypes.STRING,
-  },
-});
+  { schema: "FACTURACION" }
+);
 
-impuestos.belongsToMany(facturas,{through:'detalleImpuesto'});
-facturas.belongsToMany(impuestos,{through:'detalleImpuesto'});
+//--- ASOCIACIONES---// 
+
+detallesFactura.hasMany(detallesImpuesto, { foreignKey: "detalleFacturaId" });
+detallesImpuesto.belongsTo(detallesFactura);
+
+impuestos.hasMany(detallesImpuesto, { foreignKey: "impuestoId" });
+detallesImpuesto.belongsTo(impuestos);
 
 export default detallesImpuesto;

@@ -4,9 +4,10 @@ export interface IFactura {
   NcfModificado: string;
   subTotal: number;
   descuento: number;
+  totalImpuestos:number
   total: number;
   comentario: string;
-  fechaFactura: Date;
+  fecha: Date;
   fechaVencimiento: Date | null;
   estado: boolean;
   createdAt: Date;

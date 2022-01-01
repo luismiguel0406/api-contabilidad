@@ -1,5 +1,8 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../../Database/connectionDB";
+import clientes from "../../Clientes/Cliente.model";
+import empresa from "../../Empresa/empresa.model";
+import moneda from "../moneda/moneda.model";
 
 const facturas = conexion.define("factura", {
   numeroFactura: {
@@ -22,6 +25,10 @@ const facturas = conexion.define("factura", {
     allowNull: false,
     defaultValue: 0,
   },
+  totalImpuestos: {
+    type: DataTypes.NUMBER,
+    defaultValue: 0,
+  },
   total: {
     type: DataTypes.NUMBER,
     allowNull: false,
@@ -29,7 +36,7 @@ const facturas = conexion.define("factura", {
   comentario: {
     type: DataTypes.STRING,
   },
-  fechaFactura: {
+  fecha: {
     type: DataTypes.DATE,
     allowNull: false,
   },
@@ -68,6 +75,17 @@ const facturas = conexion.define("factura", {
     type: DataTypes.NUMBER,
     allowNull: false,
   },
-
 });
+
+//--- ASOCIACIONES---//
+
+clientes.hasMany(facturas, { foreignKey: "clienteId" });
+facturas.belongsTo(clientes);
+
+moneda.hasMany(facturas, { foreignKey: "monedaId" });
+facturas.belongsTo(moneda);
+
+empresa.hasMany(facturas, { foreignKey: "empresaId" });
+facturas.belongsTo(empresa);
+
 export default facturas;

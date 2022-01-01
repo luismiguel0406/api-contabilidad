@@ -1,8 +1,6 @@
-import { DataTypes, ForeignKeyConstraintError } from "sequelize";
+import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
-import correos from "../Contacto/Correos.model";
-import direcciones from "../Contacto/Direcciones.model";
-import telefonos from "../Contacto/telefono.model";
+import tipoProveedor from "./tipoProveedores.model";
 
 const Proveedores = conexion.define(
   "proveedor",
@@ -46,15 +44,9 @@ const Proveedores = conexion.define(
   { schema: "PROVEEDORES" }
 );
 
-//----------  ASOCIACIONES ------------//
+//--- ASOCIACIONES---// 
 
-Proveedores.hasMany(correos, { foreignKey: "proveedorId" });
-correos.belongsTo(Proveedores);
-
-Proveedores.hasMany(telefonos, { foreignKey: "proveedorId" });
-telefonos.belongsTo(Proveedores);
-
-Proveedores.hasMany(direcciones, { foreignKey: "proveedorId" });
-direcciones.belongsTo(Proveedores);
+tipoProveedor.hasMany(Proveedores, { foreignKey: "tipoProveedorId"});
+Proveedores.belongsTo(tipoProveedor);
 
 export default Proveedores;

@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const Proveedores_model_1 = __importDefault(require("./Proveedores.model"));
 const tipoProveedor = connectionDB_1.default.define("tipoProveedor", {
     tipoProveedor: {
         type: sequelize_1.DataTypes.STRING,
@@ -30,7 +29,5 @@ const tipoProveedor = connectionDB_1.default.define("tipoProveedor", {
         type: sequelize_1.DataTypes.STRING,
     },
 }, { schema: "PROVEEDORES" });
-tipoProveedor.hasMany(Proveedores_model_1.default, { foreignKey: "tipoProveedorId" });
-Proveedores_model_1.default.belongsTo(tipoProveedor);
 exports.default = tipoProveedor;
 //# sourceMappingURL=tipoProveedores.model.js.map
