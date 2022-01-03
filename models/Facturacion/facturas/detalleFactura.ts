@@ -14,6 +14,10 @@ const detallesFactura = conexion.define(
       type: DataTypes.NUMBER,
       allowNull: false,
     },
+    descripcion: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     cantidad: {
       type: DataTypes.NUMBER,
       defaultValue: 1,
@@ -27,7 +31,7 @@ const detallesFactura = conexion.define(
     },
     total: {
       type: DataTypes.NUMBER,
-    },
+    },/*
     estado: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -45,7 +49,7 @@ const detallesFactura = conexion.define(
     },
     terminal: {
       type: DataTypes.STRING,
-    },
+    },*/
   },
   { schema: "FACTURACION" }
 );

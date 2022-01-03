@@ -29,8 +29,21 @@ export default class FacturasService {
               },
             ],
           })
-        : await facturas.findAll();
-        
+        : await facturas.findAll({
+            where: id,
+            include: [
+              {
+                model: detallesFactura,
+                required: true,
+                include: [{ model: detallesImpuesto, required: true }],
+              },
+            ],
+          });
+
     return facturasResult;
+  }
+
+  async updateFactura() {
+    return "Las facturas no se actualizan";
   }
 }

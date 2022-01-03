@@ -1,10 +1,12 @@
+
+
 export interface IFactura {
   numeroFactura: number;
   Ncf: string;
-  NcfModificado: string;
+  NcfModificado: string | null;
   subTotal: number;
   descuento: number;
-  totalImpuestos:number
+  totalImpuestos: number;
   total: number;
   comentario: string;
   fecha: Date;
@@ -17,5 +19,14 @@ export interface IFactura {
   empresaId: number;
   clienteId: number;
   monedaId: number;
- 
+}
+
+export interface IDetalleFactura {
+  facturaId: number;
+  itemId: number;
+  descripcion:number;
+  cantidad: number;
+  precioVenta: number;
+  descuento: number;
+  total: number;
 }

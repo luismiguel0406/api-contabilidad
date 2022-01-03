@@ -44,8 +44,22 @@ class FacturasService {
                         },
                     ],
                 })
-                : yield factura_model_1.default.findAll();
+                : yield factura_model_1.default.findAll({
+                    where: id,
+                    include: [
+                        {
+                            model: detalleFactura_1.default,
+                            required: true,
+                            include: [{ model: detalleImpuestos_1.default, required: true }],
+                        },
+                    ],
+                });
             return facturasResult;
+        });
+    }
+    updateFactura() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return "Las facturas no se actualizan";
         });
     }
 }

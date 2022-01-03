@@ -16,6 +16,10 @@ const detallesFactura = connectionDB_1.default.define("detalleFactura", {
         type: sequelize_1.DataTypes.NUMBER,
         allowNull: false,
     },
+    descripcion: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
     cantidad: {
         type: sequelize_1.DataTypes.NUMBER,
         defaultValue: 1,
@@ -29,25 +33,25 @@ const detallesFactura = connectionDB_1.default.define("detalleFactura", {
     },
     total: {
         type: sequelize_1.DataTypes.NUMBER,
-    },
+    }, /*
     estado: {
-        type: sequelize_1.DataTypes.BOOLEAN,
-        allowNull: false,
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
     createdAt: {
-        type: sequelize_1.DataTypes.DATE,
-        allowNull: false,
+      type: DataTypes.DATE,
+      allowNull: false,
     },
     updatedAt: {
-        type: sequelize_1.DataTypes.DATE,
+      type: DataTypes.DATE,
     },
     usuario: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     terminal: {
-        type: sequelize_1.DataTypes.STRING,
-    },
+      type: DataTypes.STRING,
+    },*/
 }, { schema: "FACTURACION" });
 //--- ASOCIACIONES---//
 Item_model_1.default.hasMany(detallesFactura, { foreignKey: "itemId" });
