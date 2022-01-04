@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const factura_model_1 = __importDefault(require("../Facturacion/facturas/factura.model"));
 const empresa = connectionDB_1.default.define("empresa", {
     nombre: {
         type: sequelize_1.DataTypes.STRING,
@@ -56,7 +55,5 @@ const empresa = connectionDB_1.default.define("empresa", {
         allowNull: false,
     },
 }, { schema: "EMPRESA" });
-empresa.hasMany(factura_model_1.default, { foreignKey: "empresaId" });
-factura_model_1.default.belongsTo(empresa);
 exports.default = empresa;
 //# sourceMappingURL=empresa.model.js.map

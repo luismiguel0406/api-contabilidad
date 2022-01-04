@@ -6,7 +6,7 @@ const router = (0, express_1.Router)();
 const endPointEmpresas = '/api/empresas';
 const empresa = 'empresa';
 router.get(`${endPointEmpresas}/${empresa}/:id?`, empresas_controller_1.getEmpresa);
-router.post(`${endPointEmpresas}`, empresas_controller_1.postEmpresa);
+router.post(`${endPointEmpresas}/${empresa}`, empresas_controller_1.postEmpresa);
 router.put(`${endPointEmpresas}/${empresa}/:id`, empresas_controller_1.updateEmpresa);
 router.delete(`${endPointEmpresas}/${empresa}/:id`, empresas_controller_1.deleteEmpresa);
 exports.default = router;

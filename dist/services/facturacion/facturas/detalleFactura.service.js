@@ -14,10 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const detalleFactura_1 = __importDefault(require("../../../models/Facturacion/facturas/detalleFactura"));
 class DetalleFacturaService {
-    addDetalleFactura(body) {
+    addDetalleFactura(body, facturaId) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const detalleFactura = yield detalleFactura_1.default.create(body);
+                const detalleFactura = yield detalleFactura_1.default.create({ body, facturaId });
                 return detalleFactura;
             }
             catch (error) {

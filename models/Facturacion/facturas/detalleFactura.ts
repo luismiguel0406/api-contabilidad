@@ -7,11 +7,11 @@ const detallesFactura = conexion.define(
   "detalleFactura",
   {
     facturaId: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     itemId: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     descripcion: {
@@ -19,18 +19,18 @@ const detallesFactura = conexion.define(
       allowNull: false,
     },
     cantidad: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       defaultValue: 1,
     },
     precioVenta: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.DECIMAL,
     },
     descuento: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.DECIMAL,
       defaultValue: 0,
     },
     total: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
     },/*
     estado: {
       type: DataTypes.BOOLEAN,

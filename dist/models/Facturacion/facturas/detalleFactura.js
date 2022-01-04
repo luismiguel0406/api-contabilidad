@@ -9,11 +9,11 @@ const Item_model_1 = __importDefault(require("../../Inventario/Item.model"));
 const factura_model_1 = __importDefault(require("./factura.model"));
 const detallesFactura = connectionDB_1.default.define("detalleFactura", {
     facturaId: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
     itemId: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
     descripcion: {
@@ -21,18 +21,18 @@ const detallesFactura = connectionDB_1.default.define("detalleFactura", {
         allowNull: false,
     },
     cantidad: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
         defaultValue: 1,
     },
     precioVenta: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.DECIMAL,
     },
     descuento: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.DECIMAL,
         defaultValue: 0,
     },
     total: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
     }, /*
     estado: {
       type: DataTypes.BOOLEAN,

@@ -17,6 +17,7 @@ const Querys_1 = require("./helpers/Querys Iniciales/Querys");
 const cuentas_route_1 = __importDefault(require("./routes/Cuentas Contables/cuentas.route"));
 const moneda_route_1 = __importDefault(require("./routes/facturacion/moneda.route"));
 const comprobante_route_1 = __importDefault(require("./routes/facturacion/comprobante.route"));
+const empresa_route_1 = __importDefault(require("./routes/empresa/empresa.route"));
 const clientes_route_1 = __importDefault(require("./routes/Clientes/clientes.route"));
 const contactos_route_1 = __importDefault(require("./routes/Contactos/contactos.route"));
 const proveedores_route_1 = __importDefault(require("./routes/Proveedores/proveedores.route"));
@@ -24,6 +25,7 @@ const Item_route_1 = __importDefault(require("./routes/Inventario/Item.route"));
 const tipoVenta_route_1 = __importDefault(require("./routes/facturacion/tipoVenta.route"));
 const impuestos_route_1 = __importDefault(require("./routes/facturacion/impuestos.route"));
 const medioDePagp_route_1 = __importDefault(require("./routes/facturacion/medioDePagp.route"));
+const factura_route_1 = __importDefault(require("./routes/facturacion/factura.route"));
 const cors_1 = __importDefault(require("cors"));
 const index_1 = __importDefault(require("./config/index"));
 const connectionDB_1 = __importDefault(require("./Database/connectionDB"));
@@ -67,7 +69,7 @@ class Server {
         this.app.use(cuentas_route_1.default);
         this.app.use(moneda_route_1.default);
         this.app.use(comprobante_route_1.default);
-        //this.app.use(empresaRoutes);
+        this.app.use(empresa_route_1.default);
         this.app.use(clientes_route_1.default);
         this.app.use(contactos_route_1.default);
         this.app.use(proveedores_route_1.default);
@@ -75,6 +77,7 @@ class Server {
         this.app.use(tipoVenta_route_1.default);
         this.app.use(impuestos_route_1.default);
         this.app.use(medioDePagp_route_1.default);
+        this.app.use(factura_route_1.default);
     }
     InicioAplicacion() {
         try {

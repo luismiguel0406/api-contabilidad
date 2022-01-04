@@ -57,7 +57,5 @@ const empresa = conexion.define(
   { schema: "EMPRESA" }
 );
 
-empresa.hasMany(facturas,{foreignKey:"empresaId"})
-facturas.belongsTo(empresa)
 
 export default empresa;

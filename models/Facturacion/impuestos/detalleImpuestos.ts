@@ -7,14 +7,14 @@ const detallesImpuesto = conexion.define(
   "detalleImpuesto",
   {
     detalleFacturaId: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     impuestoId: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
     },
     valor: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.DECIMAL,
       defaultValue: 0,
     },
     estado: {

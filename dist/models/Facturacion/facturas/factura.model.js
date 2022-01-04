@@ -21,20 +21,20 @@ const facturas = connectionDB_1.default.define("factura", {
         type: sequelize_1.DataTypes.STRING,
     },
     subTotal: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.DECIMAL,
         allowNull: false,
     },
     descuento: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.DECIMAL,
         allowNull: false,
-        defaultValue: 0,
+        defaultValue: 0.0,
     },
     totalImpuestos: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.DECIMAL,
         defaultValue: 0,
     },
     total: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.DECIMAL,
         allowNull: false,
     },
     comentario: {
@@ -68,18 +68,18 @@ const facturas = connectionDB_1.default.define("factura", {
         allowNull: false,
     },
     empresaId: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
     clienteId: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
     monedaId: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-});
+}, { schema: "FACTURACION" });
 //--- ASOCIACIONES---//
 Cliente_model_1.default.hasMany(facturas, { foreignKey: "clienteId" });
 facturas.belongsTo(Cliente_model_1.default);

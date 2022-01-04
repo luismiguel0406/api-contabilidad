@@ -19,12 +19,13 @@ export interface IFactura {
   empresaId: number;
   clienteId: number;
   monedaId: number;
+  detalleFactura:Array<IDetalleFactura>;
 }
 
 export interface IDetalleFactura {
   facturaId: number;
   itemId: number;
-  descripcion:number;
+  descripcion:string;
   cantidad: number;
   precioVenta: number;
   descuento: number;

@@ -9,14 +9,14 @@ const detalleFactura_1 = __importDefault(require("../facturas/detalleFactura"));
 const impuestos_model_1 = __importDefault(require("./impuestos.model"));
 const detallesImpuesto = connectionDB_1.default.define("detalleImpuesto", {
     detalleFacturaId: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
     impuestoId: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
     },
     valor: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.DECIMAL,
         defaultValue: 0,
     },
     estado: {

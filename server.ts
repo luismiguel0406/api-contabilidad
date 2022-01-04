@@ -14,6 +14,7 @@ import {
 import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
 import MonedasRoutes from "./routes/facturacion/moneda.route";
 import ComprobantesRoutes from "./routes/facturacion/comprobante.route";
+import empresaRoutes from "./routes/empresa/empresa.route";
 import clientesRoutes from "./routes/Clientes/clientes.route";
 import contactosRoutes from "./routes/Contactos/contactos.route";
 import proveedoresRoutes from "./routes/Proveedores/proveedores.route";
@@ -21,6 +22,7 @@ import itemRoutes from "./routes/Inventario/Item.route";
 import tipoVentaRoutes from "./routes/facturacion/tipoVenta.route";
 import impuestosRoutes from "./routes/facturacion/impuestos.route";
 import medioDePagoRoutes from "./routes/facturacion/medioDePagp.route";
+import facturasRoutes from "./routes/facturacion/factura.route";
 import cors from "cors";
 import variablesEnv from "./config/index";
 import db from "./Database/connectionDB";
@@ -69,7 +71,7 @@ class Server {
     this.app.use(CuentasRoutes);
     this.app.use(MonedasRoutes);
     this.app.use(ComprobantesRoutes);
-    //this.app.use(empresaRoutes);
+    this.app.use(empresaRoutes);
     this.app.use(clientesRoutes);
     this.app.use(contactosRoutes);
     this.app.use(proveedoresRoutes);
@@ -77,6 +79,7 @@ class Server {
     this.app.use(tipoVentaRoutes);
     this.app.use(impuestosRoutes);
     this.app.use(medioDePagoRoutes);
+    this.app.use(facturasRoutes);
   }
 
   InicioAplicacion() {

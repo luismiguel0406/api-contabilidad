@@ -6,7 +6,7 @@ const endPointEmpresas = '/api/empresas';
 const empresa = 'empresa';
 
 router.get(`${endPointEmpresas}/${empresa}/:id?`,getEmpresa); 
-router.post(`${endPointEmpresas}`,postEmpresa);
+router.post(`${endPointEmpresas}/${empresa}`,postEmpresa);
 router.put(`${endPointEmpresas}/${empresa}/:id`,updateEmpresa);
 router.delete(`${endPointEmpresas}/${empresa}/:id`,deleteEmpresa)
 
