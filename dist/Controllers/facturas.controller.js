@@ -25,12 +25,10 @@ exports.getFacturas = getFacturas;
 const addFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { body } = req;
-        const facturaResult = yield facturas_service.addFactura(body);
-        /* const { detalleFactura } = body;
-         const detalleFacturaResult = await detalleFactura_service.addDetalleFactura(
-           detalleFactura,
-           facturaResult);*/
-        return res.json({ FacturaResultante: facturaResult });
+        let facturaResult = yield facturas_service.addFactura(body);
+        let detalleFactura = (yield detalleFactura_service.addDetalleFactura(body.detalleFactura, facturaResult.id));
+        //ENVIAR ARREGLO DE DETALLE FACTURAS
+        return res.json({ FACTURA: facturaResult, DETALLE: detalleFactura });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

@@ -1,4 +1,5 @@
 import {
+    IDetalleFactura,
   IFactura
 } from "../../../interfaces/factura.interface";
 import detallesFactura from "../../../models/Facturacion/facturas/detalleFactura";
@@ -6,10 +7,9 @@ import facturas from "../../../models/Facturacion/facturas/factura.model";
 import detallesImpuesto from "../../../models/Facturacion/impuestos/detalleImpuestos";
 
 export default class FacturasService {
-  async addFactura(body: IFactura) {
+  async addFactura(body:IFactura) {
     try {
       const factura = await facturas.create(body);
-     
       return factura;
     } catch (error) {
       return error;

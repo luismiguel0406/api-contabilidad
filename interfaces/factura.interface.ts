@@ -23,11 +23,13 @@ export interface IFactura {
 }
 
 export interface IDetalleFactura {
-  facturaId: number;
+  facturaId: number|null;
   itemId: number;
   descripcion:string;
   cantidad: number;
   precioVenta: number;
   descuento: number;
   total: number;
+  createdAt: Date;
+  updatedAt: Date | null;
 }

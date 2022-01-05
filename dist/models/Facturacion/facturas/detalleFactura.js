@@ -10,15 +10,15 @@ const factura_model_1 = __importDefault(require("./factura.model"));
 const detallesFactura = connectionDB_1.default.define("detalleFactura", {
     facturaId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
+        //allowNull: false,
     },
     itemId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
+        //allowNull: false,
     },
     descripcion: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
+        //allowNull: false,
     },
     cantidad: {
         type: sequelize_1.DataTypes.INTEGER,

@@ -8,15 +8,15 @@ const detallesFactura = conexion.define(
   {
     facturaId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      //allowNull: false,
     },
     itemId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      //allowNull: false,
     },
     descripcion: {
       type: DataTypes.STRING,
-      allowNull: false,
+      //allowNull: false,
     },
     cantidad: {
       type: DataTypes.INTEGER,

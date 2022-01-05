@@ -13,15 +13,19 @@ export const getFacturas = async (req: Request, res: Response) => {
 export const addFactura = async (req: Request, res: Response) => {
   try {
     const { body } = req;
-    const facturaResult = await facturas_service.addFactura(body);
 
-   /* const { detalleFactura } = body;
-    const detalleFacturaResult = await detalleFactura_service.addDetalleFactura(
-      detalleFactura,
-      facturaResult);*/
-     return res.json({FacturaResultante :facturaResult})
-    } 
-   catch (error) {
+    let facturaResult: any = <any>await facturas_service.addFactura(body);
+
+    let detalleFactura: any = <any>(
+      await detalleFactura_service.addDetalleFactura(
+        body.detalleFactura,
+        facturaResult.id
+      )
+    );
+//ENVIAR ARREGLO DE DETALLE FACTURAS
+    return res.json({ FACTURA: facturaResult, DETALLE: detalleFactura });
+
+  } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ message: msg, error });
   }
