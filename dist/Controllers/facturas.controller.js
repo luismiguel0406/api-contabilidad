@@ -30,7 +30,7 @@ const addFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
          const detalleFacturaResult = await detalleFactura_service.addDetalleFactura(
            detalleFactura,
            facturaResult);*/
-        console.log(facturaResult);
+        return res.json({ FacturaResultante: facturaResult });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

@@ -9,7 +9,7 @@ export default class FacturasService {
   async addFactura(body: IFactura) {
     try {
       const factura = await facturas.create(body);
-
+     
       return factura;
     } catch (error) {
       return error;

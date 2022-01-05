@@ -19,7 +19,7 @@ export const addFactura = async (req: Request, res: Response) => {
     const detalleFacturaResult = await detalleFactura_service.addDetalleFactura(
       detalleFactura,
       facturaResult);*/
-      console.log( facturaResult);
+     return res.json({FacturaResultante :facturaResult})
     } 
    catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
