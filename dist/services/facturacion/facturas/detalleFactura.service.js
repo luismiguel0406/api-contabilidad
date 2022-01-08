@@ -17,7 +17,10 @@ class DetalleFacturaService {
     addDetalleFactura(body, facturaId) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const detalleFactura = yield detalleFactura_1.default.create(Object.assign(Object.assign({}, body), { facturaId }));
+                for (let detalle of body) {
+                    detalle.facturaId = facturaId;
+                }
+                const detalleFactura = yield detalleFactura_1.default.bulkCreate(body);
                 return detalleFactura;
             }
             catch (error) {

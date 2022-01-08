@@ -14,27 +14,27 @@ const facturas = connectionDB_1.default.define("factura", {
         allowNull: false,
     },
     Ncf: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING(20),
         allowNull: false,
     },
     NcfModificado: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING(20),
     },
     subTotal: {
-        type: sequelize_1.DataTypes.DECIMAL,
+        type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
     },
     descuento: {
-        type: sequelize_1.DataTypes.DECIMAL,
+        type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
         defaultValue: 0.0,
     },
     totalImpuestos: {
-        type: sequelize_1.DataTypes.DECIMAL,
+        type: sequelize_1.DataTypes.FLOAT,
         defaultValue: 0,
     },
     total: {
-        type: sequelize_1.DataTypes.DECIMAL,
+        type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
     },
     comentario: {
@@ -60,11 +60,11 @@ const facturas = connectionDB_1.default.define("factura", {
         type: sequelize_1.DataTypes.DATE,
     },
     usuario: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING(50),
         allowNull: false,
     },
     terminal: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING(50),
         allowNull: false,
     },
     empresaId: {

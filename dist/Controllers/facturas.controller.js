@@ -19,16 +19,27 @@ const facturas_service_1 = __importDefault(require("../services/facturacion/fact
 const facturas_service = new facturas_service_1.default();
 const detalleFactura_service = new detalleFactura_service_1.default();
 const getFacturas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    return res.json({ Message: " Invoice Works" });
+    try {
+        const { id } = req.params;
+        const facturaResult = yield facturas_service.getFacturas(id);
+        if (!facturaResult) {
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            return res.status(statusCode).json({ Message: msg });
+        }
+        res.json({ Facturas: facturaResult });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ message: msg, error });
+    }
 });
 exports.getFacturas = getFacturas;
 const addFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { body } = req;
-        let facturaResult = yield facturas_service.addFactura(body);
-        let detalleFactura = (yield detalleFactura_service.addDetalleFactura(body.detalleFactura, facturaResult.id));
-        //ENVIAR ARREGLO DE DETALLE FACTURAS
-        return res.json({ FACTURA: facturaResult, DETALLE: detalleFactura });
+        let Factura = yield facturas_service.addFactura(body);
+        let detalleFactura = (yield detalleFactura_service.addDetalleFactura(body.detalleFactura, Factura.id));
+        return res.json({ Factura, DetalleFactura: detalleFactura });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

@@ -8,30 +8,30 @@ const detallesFactura = conexion.define(
   {
     facturaId: {
       type: DataTypes.INTEGER,
-      //allowNull: false,
+      allowNull: false,
     },
     itemId: {
       type: DataTypes.INTEGER,
-      //allowNull: false,
+      allowNull: false,
     },
     descripcion: {
       type: DataTypes.STRING,
-      //allowNull: false,
+      allowNull: false,
     },
     cantidad: {
       type: DataTypes.INTEGER,
       defaultValue: 1,
     },
     precioVenta: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
     },
     descuento: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       defaultValue: 0,
     },
     total: {
-      type: DataTypes.INTEGER,
-    },/*
+      type: DataTypes.FLOAT,
+    },
     estado: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -40,18 +40,8 @@ const detallesFactura = conexion.define(
       type: DataTypes.DATE,
       allowNull: false,
     },
-    updatedAt: {
-      type: DataTypes.DATE,
-    },
-    usuario: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    terminal: {
-      type: DataTypes.STRING,
-    },*/
   },
-  { schema: "FACTURACION" }
+  { schema: "FACTURACION", timestamps: false }
 );
 
 //--- ASOCIACIONES---//

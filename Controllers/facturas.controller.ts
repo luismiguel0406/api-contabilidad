@@ -7,24 +7,34 @@ const facturas_service = new FacturasService();
 const detalleFactura_service = new DetalleFacturaService();
 
 export const getFacturas = async (req: Request, res: Response) => {
-  return res.json({ Message: " Invoice Works" });
+  try {
+    const { id } = req.params;
+    const facturaResult = await facturas_service.getFacturas(id);
+    
+    if (!facturaResult) {
+      const { statusCode, msg } = MsgRespuesta.notFound;
+      return res.status(statusCode).json({ Message: msg });
+    }
+    res.json({ Facturas: facturaResult });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ message: msg, error });
+  }
 };
 
 export const addFactura = async (req: Request, res: Response) => {
   try {
     const { body } = req;
 
-    let facturaResult: any = <any>await facturas_service.addFactura(body);
+    let Factura: any = <any>await facturas_service.addFactura(body);
 
     let detalleFactura: any = <any>(
       await detalleFactura_service.addDetalleFactura(
         body.detalleFactura,
-        facturaResult.id
+        Factura.id
       )
     );
-//ENVIAR ARREGLO DE DETALLE FACTURAS
-    return res.json({ FACTURA: facturaResult, DETALLE: detalleFactura });
-
+    return res.json({ Factura, DetalleFactura: detalleFactura });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ message: msg, error });

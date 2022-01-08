@@ -10,49 +10,39 @@ const factura_model_1 = __importDefault(require("./factura.model"));
 const detallesFactura = connectionDB_1.default.define("detalleFactura", {
     facturaId: {
         type: sequelize_1.DataTypes.INTEGER,
-        //allowNull: false,
+        allowNull: false,
     },
     itemId: {
         type: sequelize_1.DataTypes.INTEGER,
-        //allowNull: false,
+        allowNull: false,
     },
     descripcion: {
         type: sequelize_1.DataTypes.STRING,
-        //allowNull: false,
+        allowNull: false,
     },
     cantidad: {
         type: sequelize_1.DataTypes.INTEGER,
         defaultValue: 1,
     },
     precioVenta: {
-        type: sequelize_1.DataTypes.DECIMAL,
+        type: sequelize_1.DataTypes.FLOAT,
     },
     descuento: {
-        type: sequelize_1.DataTypes.DECIMAL,
+        type: sequelize_1.DataTypes.FLOAT,
         defaultValue: 0,
     },
     total: {
-        type: sequelize_1.DataTypes.INTEGER,
-    }, /*
+        type: sequelize_1.DataTypes.FLOAT,
+    },
     estado: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
+        type: sequelize_1.DataTypes.BOOLEAN,
+        allowNull: false,
     },
     createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
     },
-    updatedAt: {
-      type: DataTypes.DATE,
-    },
-    usuario: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    terminal: {
-      type: DataTypes.STRING,
-    },*/
-}, { schema: "FACTURACION" });
+}, { schema: "FACTURACION", timestamps: false });
 //--- ASOCIACIONES---//
 Item_model_1.default.hasMany(detallesFactura, { foreignKey: "itemId" });
 detallesFactura.belongsTo(Item_model_1.default);

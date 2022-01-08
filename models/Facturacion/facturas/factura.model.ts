@@ -12,27 +12,27 @@ const facturas = conexion.define(
       allowNull: false,
     },
     Ncf: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(20),
       allowNull: false,
     },
     NcfModificado: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(20),
     },
     subTotal: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     descuento: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: false,
       defaultValue: 0.0,
     },
     totalImpuestos: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       defaultValue: 0,
     },
     total: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     comentario: {
@@ -58,11 +58,11 @@ const facturas = conexion.define(
       type: DataTypes.DATE,
     },
     usuario: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       allowNull: false,
     },
     terminal: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       allowNull: false,
     },
     empresaId: {
