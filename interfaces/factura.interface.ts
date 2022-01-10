@@ -1,4 +1,4 @@
-import { IImpuestos } from "./impuestos.interface";
+import { IDetalleImpuestos } from "./impuestos.interface";
 
 export interface IFactura {
   numeroFactura: number;
@@ -32,5 +32,5 @@ export interface IDetalleFactura {
   total: number;
   estado: boolean;
   createdAt: Date;
-  detalleImpuesto: Array<any>; // ARRAY DE DETALLE IMPUESTOS
+  detalleImpuesto: Array<IDetalleImpuestos>; 
 }

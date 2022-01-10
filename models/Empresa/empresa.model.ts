@@ -1,26 +1,20 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
-import facturas from "../Facturacion/facturas/factura.model";
 
-const empresa = conexion.define(
+const empresas = conexion.define(
   "empresa",
   {
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    inicialesEmpresa: {
+    alias: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     rnc: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(25),
       allowNull: false,
-      unique:true
-    },
-    sucursal: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      unique: true,
     },
     estado: {
       type: DataTypes.BOOLEAN,
@@ -53,9 +47,12 @@ const empresa = conexion.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    sucursalId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   { schema: "EMPRESA" }
 );
 
-
-export default empresa;
+export default empresas;

@@ -2,6 +2,7 @@ import { DataTypes } from "sequelize";
 import conexion from "../../../Database/connectionDB";
 import clientes from "../../Clientes/Cliente.model";
 import empresa from "../../Empresa/empresa.model";
+import mediosDePago from "../medioDePago/medioDePago.model";
 import moneda from "../moneda/moneda.model";
 
 const facturas = conexion.define(
@@ -77,6 +78,11 @@ const facturas = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    medioPagoId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    },
   },
   { schema: "FACTURACION" }
 );
@@ -91,5 +97,8 @@ facturas.belongsTo(moneda);
 
 empresa.hasMany(facturas, { foreignKey: "empresaId" });
 facturas.belongsTo(empresa);
+
+mediosDePago.hasMany(facturas, { foreignKey: "medioPagoId" });
+facturas.belongsTo(mediosDePago);
 
 export default facturas;

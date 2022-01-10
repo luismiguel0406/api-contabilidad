@@ -12,12 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addFactura = exports.getFacturas = void 0;
+exports.deleteFactura = exports.addFactura = exports.getFacturas = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const detalleFactura_service_1 = __importDefault(require("../services/facturacion/facturas/detalleFactura.service"));
 const facturas_service_1 = __importDefault(require("../services/facturacion/facturas/facturas.service"));
+const detalleImpuesto_service_1 = __importDefault(require("../services/facturacion/impuestos/detalleImpuesto.service"));
 const facturas_service = new facturas_service_1.default();
 const detalleFactura_service = new detalleFactura_service_1.default();
+const detalleImpuesto_service = new detalleImpuesto_service_1.default();
 const getFacturas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
@@ -39,6 +41,7 @@ const addFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const { body } = req;
         let Factura = yield facturas_service.addFactura(body);
         let detalleFactura = (yield detalleFactura_service.addDetalleFactura(body.detalleFactura, Factura.id));
+        // await detalleImpuesto_service.addDetalleImpuesto(detalleFactura.dataValues);
         return res.json({ Factura, DetalleFactura: detalleFactura });
     }
     catch (error) {
@@ -47,4 +50,16 @@ const addFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.addFactura = addFactura;
+const deleteFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        return yield facturas_service.deleteFactura(id);
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ message: msg, error });
+    }
+});
+exports.deleteFactura = deleteFactura;
+//NO EXISTE METODO UPDATE PARA FACTURAS//
 //# sourceMappingURL=facturas.controller.js.map

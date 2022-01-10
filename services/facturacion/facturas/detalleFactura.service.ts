@@ -7,8 +7,10 @@ export default class DetalleFacturaService {
       for (let detalle of body) {
         detalle.facturaId = facturaId;
       }
-      const detalleFactura = await detallesFactura.bulkCreate(body);
+      const detalleFactura: any = <any> await detallesFactura.bulkCreate(body);
+
       return detalleFactura;
+      
     } catch (error) {
       return error;
     }

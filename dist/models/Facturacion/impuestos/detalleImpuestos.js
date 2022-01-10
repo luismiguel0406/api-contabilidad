@@ -14,9 +14,10 @@ const detallesImpuesto = connectionDB_1.default.define("detalleImpuesto", {
     },
     impuestoId: {
         type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
     },
     valor: {
-        type: sequelize_1.DataTypes.DECIMAL,
+        type: sequelize_1.DataTypes.FLOAT,
         defaultValue: 0,
     },
     estado: {
@@ -27,18 +28,8 @@ const detallesImpuesto = connectionDB_1.default.define("detalleImpuesto", {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
     },
-    updatedAt: {
-        type: sequelize_1.DataTypes.DATE,
-    },
-    usuario: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    terminal: {
-        type: sequelize_1.DataTypes.STRING,
-    },
 }, { schema: "FACTURACION" });
-//--- ASOCIACIONES---// 
+//--- ASOCIACIONES---//
 detalleFactura_1.default.hasMany(detallesImpuesto, { foreignKey: "detalleFacturaId" });
 detallesImpuesto.belongsTo(detalleFactura_1.default);
 impuestos_model_1.default.hasMany(detallesImpuesto, { foreignKey: "impuestoId" });

@@ -32,7 +32,7 @@ const detallesFactura = conexion.define(
     total: {
       type: DataTypes.FLOAT,
     },
-    estado: {
+    estado: {//  EVALUAR PARA QUITAR PROPIEDAD
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
@@ -40,8 +40,11 @@ const detallesFactura = conexion.define(
       type: DataTypes.DATE,
       allowNull: false,
     },
+     updatedAt: {
+      type: DataTypes.DATE,
+    },
   },
-  { schema: "FACTURACION", timestamps: false }
+  { schema: "FACTURACION" }
 );
 
 //--- ASOCIACIONES---//

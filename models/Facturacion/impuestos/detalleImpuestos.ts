@@ -12,9 +12,10 @@ const detallesImpuesto = conexion.define(
     },
     impuestoId: {
       type: DataTypes.INTEGER,
+      allowNull:false
     },
     valor: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       defaultValue: 0,
     },
     estado: {
@@ -25,21 +26,11 @@ const detallesImpuesto = conexion.define(
       type: DataTypes.DATE,
       allowNull: false,
     },
-    updatedAt: {
-      type: DataTypes.DATE,
-    },
-    usuario: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    terminal: {
-      type: DataTypes.STRING,
-    },
   },
   { schema: "FACTURACION" }
 );
 
-//--- ASOCIACIONES---// 
+//--- ASOCIACIONES---//
 
 detallesFactura.hasMany(detallesImpuesto, { foreignKey: "detalleFacturaId" });
 detallesImpuesto.belongsTo(detallesFactura);

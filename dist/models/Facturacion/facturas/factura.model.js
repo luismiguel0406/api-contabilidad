@@ -7,6 +7,7 @@ const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../../Database/connectionDB"));
 const Cliente_model_1 = __importDefault(require("../../Clientes/Cliente.model"));
 const empresa_model_1 = __importDefault(require("../../Empresa/empresa.model"));
+const medioDePago_model_1 = __importDefault(require("../medioDePago/medioDePago.model"));
 const moneda_model_1 = __importDefault(require("../moneda/moneda.model"));
 const facturas = connectionDB_1.default.define("factura", {
     numeroFactura: {
@@ -79,6 +80,11 @@ const facturas = connectionDB_1.default.define("factura", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
+    medioPagoId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 1,
+    },
 }, { schema: "FACTURACION" });
 //--- ASOCIACIONES---//
 Cliente_model_1.default.hasMany(facturas, { foreignKey: "clienteId" });
@@ -87,5 +93,7 @@ moneda_model_1.default.hasMany(facturas, { foreignKey: "monedaId" });
 facturas.belongsTo(moneda_model_1.default);
 empresa_model_1.default.hasMany(facturas, { foreignKey: "empresaId" });
 facturas.belongsTo(empresa_model_1.default);
+medioDePago_model_1.default.hasMany(facturas, { foreignKey: "medioPagoId" });
+facturas.belongsTo(medioDePago_model_1.default);
 exports.default = facturas;
 //# sourceMappingURL=factura.model.js.map
