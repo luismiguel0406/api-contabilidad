@@ -33,7 +33,10 @@ const usuarios = conexion.define(
     schema: "USUARIOS",
   }
 );
-
+/*usuarios.beforeCreate(async(data:any,options)=>{
+  const encryptada = await encryptar(data.contrasena);
+  data.contrasena = encryptada;
+})*/
 empresas.hasMany(usuarios, { foreignKey: "empresaId" });
 usuarios.belongsTo(empresas);
 
