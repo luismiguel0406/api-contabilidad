@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
+import { Hooks } from "sequelize/types/lib/hooks";
 import conexion from "../../Database/connectionDB";
+import { encryptar } from "../../lib/validaciones/encryptaPw";
 import empresas from "../Empresa/empresa.model";
 
 const usuarios = conexion.define(
@@ -22,7 +24,14 @@ const usuarios = conexion.define(
       allowNull: false,
     },
   },
-  { schema: "USUARIOS" }
+  {
+    hooks: {
+      beforeCreate: (data: any, options) => {
+        data.dataValues.contrasena = encryptar(data.dataValues.contrasena);
+      },
+    },
+    schema: "USUARIOS",
+  }
 );
 
 empresas.hasMany(usuarios, { foreignKey: "empresaId" });

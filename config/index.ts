@@ -9,7 +9,10 @@ export default  {
   DB_NAME :process.env.DB_NAME,
   USER: process.env.USER,
   PASSWORD: process.env.PASSWORD,
-  HOST: process.env.HOST
+  HOST: process.env.HOST,
+  SECRET_KEY:process.env.SECRET_KEY,
+  SALT_ROUND: process.env.SALT_ROUND
+
 };
 
 

@@ -1,4 +1,3 @@
-//codes here
 import { Response, Request } from "express";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 import ProveedorService from "../services/proveedor/proveedor.service";
