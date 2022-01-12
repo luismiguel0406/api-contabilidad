@@ -54,5 +54,5 @@ const empresas = conexion.define(
   },
   { schema: "EMPRESA" }
 );
-
+ 
 export default empresas;

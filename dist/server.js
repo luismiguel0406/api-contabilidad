@@ -26,6 +26,7 @@ const tipoVenta_route_1 = __importDefault(require("./routes/facturacion/tipoVent
 const impuestos_route_1 = __importDefault(require("./routes/facturacion/impuestos.route"));
 const medioDePagp_route_1 = __importDefault(require("./routes/facturacion/medioDePagp.route"));
 const factura_route_1 = __importDefault(require("./routes/facturacion/factura.route"));
+const usuarios_route_1 = __importDefault(require("./routes/Usuarios/usuarios.route"));
 const cors_1 = __importDefault(require("cors"));
 const index_1 = __importDefault(require("./config/index"));
 const connectionDB_1 = __importDefault(require("./Database/connectionDB"));
@@ -78,6 +79,7 @@ class Server {
         this.app.use(impuestos_route_1.default);
         this.app.use(medioDePagp_route_1.default);
         this.app.use(factura_route_1.default);
+        this.app.use(usuarios_route_1.default);
     }
     InicioAplicacion() {
         try {

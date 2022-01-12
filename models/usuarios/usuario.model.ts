@@ -1,7 +1,6 @@
 import { DataTypes } from "sequelize";
-import { Hooks } from "sequelize/types/lib/hooks";
 import conexion from "../../Database/connectionDB";
-import { encryptar } from "../../lib/validaciones/encryptaPw";
+import { Encryptar } from "../../lib/validaciones/encryptaPw";
 import empresas from "../Empresa/empresa.model";
 
 const usuarios = conexion.define(
@@ -19,24 +18,37 @@ const usuarios = conexion.define(
         isEmail: true,
       },
     },
+    estado: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+    },
     empresaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
   {
-    hooks: {
-      beforeCreate: (data: any, options) => {
-        data.dataValues.contrasena = encryptar(data.dataValues.contrasena);
-      },
-    },
     schema: "USUARIOS",
+    /*hooks: {
+      beforeCreate: async (data: any, options) => {
+        data.dataValues.contrasena = await encryptar(data.dataValues.contrasena);
+      },
+    },*/
   }
 );
-/*usuarios.beforeCreate(async(data:any,options)=>{
-  const encryptada = await encryptar(data.contrasena);
+
+
+  usuarios.beforeCreate(async(data:any,options)=>{
+  const encryptada = await Encryptar(data.contrasena);
   data.contrasena = encryptada;
-})*/
+})
 empresas.hasMany(usuarios, { foreignKey: "empresaId" });
 usuarios.belongsTo(empresas);
 

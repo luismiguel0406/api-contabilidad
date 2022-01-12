@@ -23,6 +23,7 @@ import tipoVentaRoutes from "./routes/facturacion/tipoVenta.route";
 import impuestosRoutes from "./routes/facturacion/impuestos.route";
 import medioDePagoRoutes from "./routes/facturacion/medioDePagp.route";
 import facturasRoutes from "./routes/facturacion/factura.route";
+import usuariosRoutes from "./routes/Usuarios/usuarios.route";
 import cors from "cors";
 import variablesEnv from "./config/index";
 import db from "./Database/connectionDB";
@@ -80,6 +81,7 @@ class Server {
     this.app.use(impuestosRoutes);
     this.app.use(medioDePagoRoutes);
     this.app.use(facturasRoutes);
+    this.app.use(usuariosRoutes);
   }
 
   InicioAplicacion() {
