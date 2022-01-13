@@ -9,8 +9,14 @@ export default class UsuariosService {
   async getUsuario(id: any = null) {
     const usuarioResult =
       id === null
-        ? await usuariosModel.findAll({ where: { estado: "1" } })
-        : await usuariosModel.findOne({ where: { id, estado: "1" } });
+        ? await usuariosModel.findAll({
+            attributes: [["nombreUsuario", "usuario"], "email", "empresaId"],
+            where: { estado: "1" },
+          })
+        : await usuariosModel.findOne({
+            attributes: [["nombreUsuario", "usuario"], "email", "empresaId"],
+            where: { id, estado: "1" },
+          });
 
     return usuarioResult;
   }
