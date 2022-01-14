@@ -6,16 +6,16 @@ export default class UsuariosService {
     return await usuariosModel.create(body);
   }
 
-  async getUsuario(email:string, empresaId: string) {
+  async getUsuario(email: string, contrasena: any = null, empresaId: string) {
     const usuarioResult = await usuariosModel.findAll({
-      attributes: {exclude:["contrasena"]},
-      where: { email, empresaId, estado: "1" },
+      attributes: { exclude: ["contrasena"] },
+      where: { email, contrasena, empresaId, estado: "1" },
     });
-    
+
     return usuarioResult;
   }
 
-  async updateUsuario(body: IUsuario, id: string, empresaId:string) {
+  async updateUsuario(body: IUsuario, id: string, empresaId: string) {
     await usuariosModel.update(body, {
       where: { id, empresaId, estado: "1" },
     });

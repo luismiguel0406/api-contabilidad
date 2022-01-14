@@ -3,11 +3,16 @@ import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente"
 import UsuariosService from "../services/usuarios/usuarios.service";
 
 const usuario_service = new UsuariosService();
+
 export const addUsuario = async (req: Request, res: Response) => {
   try {
     const { body } = req;
+    
+    const ExisteUsuario = await usuario_service.getUsuario(body.email, null,  body.empresaId)
+    if(ExisteUsuario) return res.json("Usuario o contraseña invalida")
+
     const usuarioCreado = await usuario_service.addUsuario(body);
-    return res.json({ NuevoUsuario: usuarioCreado });
+    res.json({ NuevoUsuario: usuarioCreado });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });
@@ -16,8 +21,8 @@ export const addUsuario = async (req: Request, res: Response) => {
 
 export const getUsuario = async (req: Request, res: Response) => {
   try {
-    const { id, empresaId } = req.params;
-    const usuario = await usuario_service.getUsuario(id, empresaId);
+    const { email, contrasena, empresaId } = req.params;
+    const usuario = await usuario_service.getUsuario(email, contrasena, empresaId);
     if (Object.entries(usuario).length == 0) return res.json("No hay usuarios");
     res.json({ usuario });
   } catch (error) {

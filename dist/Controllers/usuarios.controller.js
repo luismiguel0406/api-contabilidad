@@ -19,8 +19,11 @@ const usuario_service = new usuarios_service_1.default();
 const addUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { body } = req;
+        const ExisteUsuario = yield usuario_service.getUsuario(body.email, null, body.empresaId);
+        if (ExisteUsuario)
+            return res.json("Usuario o contraseña invalida");
         const usuarioCreado = yield usuario_service.addUsuario(body);
-        return res.json({ NuevoUsuario: usuarioCreado });
+        res.json({ NuevoUsuario: usuarioCreado });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
@@ -30,8 +33,8 @@ const addUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.addUsuario = addUsuario;
 const getUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id, empresaId } = req.params;
-        const usuario = yield usuario_service.getUsuario(id, empresaId);
+        const { email, contrasena, empresaId } = req.params;
+        const usuario = yield usuario_service.getUsuario(email, contrasena, empresaId);
         if (Object.entries(usuario).length == 0)
             return res.json("No hay usuarios");
         res.json({ usuario });
