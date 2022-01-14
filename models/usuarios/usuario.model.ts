@@ -14,6 +14,7 @@ const usuarios = conexion.define(
     },
     email: {
       type: DataTypes.STRING(50),
+      unique:true,
       validate: {
         isEmail: true,
       },

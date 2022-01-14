@@ -16,8 +16,9 @@ export const addUsuario = async (req: Request, res: Response) => {
 
 export const getUsuario = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const usuario = await usuario_service.getUsuario(id);
+    const { id, empresaId } = req.params;
+    const usuario = await usuario_service.getUsuario(id, empresaId);
+    if (Object.entries(usuario).length == 0) return res.json("No hay usuarios");
     res.json({ usuario });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
@@ -28,8 +29,8 @@ export const getUsuario = async (req: Request, res: Response) => {
 export const updateUsuario = async (req: Request, res: Response) => {
   try {
     const { body } = req;
-    const { id } = req.params;
-    await usuario_service.updateUsuario(body, id);
+    const { id, empresaId } = req.params;
+    await usuario_service.updateUsuario(body, id, empresaId);
     const { statusCode, msg } = MsgRespuesta.Success;
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
@@ -40,8 +41,8 @@ export const updateUsuario = async (req: Request, res: Response) => {
 
 export const deleteUsuario = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    await usuario_service.deleteUsuario(id);
+    const { id, empresaId } = req.params;
+    await usuario_service.deleteUsuario(id, empresaId);
     const { statusCode, msg } = MsgRespuesta.noContent;
 
     res.status(statusCode).json({ Message: msg });

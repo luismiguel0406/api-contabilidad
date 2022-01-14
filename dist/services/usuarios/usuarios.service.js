@@ -19,24 +19,25 @@ class UsuariosService {
             return yield usuario_model_1.default.create(body);
         });
     }
-    getUsuario(id = null) {
+    getUsuario(email, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuarioResult = id === null
-                ? yield usuario_model_1.default.findAll({ where: { estado: "1" } })
-                : yield usuario_model_1.default.findOne({ where: { id, estado: "1" } });
+            const usuarioResult = yield usuario_model_1.default.findAll({
+                attributes: { exclude: ["contrasena"] },
+                where: { email, empresaId, estado: "1" },
+            });
             return usuarioResult;
         });
     }
-    updateUsuario(body, id) {
+    updateUsuario(body, id, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
             yield usuario_model_1.default.update(body, {
-                where: { id, estado: "1" },
+                where: { id, empresaId, estado: "1" },
             });
         });
     }
-    deleteUsuario(id) {
+    deleteUsuario(id, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield usuario_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield usuario_model_1.default.update({ estado: "0" }, { where: { id, empresaId } });
         });
     }
 }

@@ -30,8 +30,10 @@ const addUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.addUsuario = addUsuario;
 const getUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.params;
-        const usuario = yield usuario_service.getUsuario(id);
+        const { id, empresaId } = req.params;
+        const usuario = yield usuario_service.getUsuario(id, empresaId);
+        if (Object.entries(usuario).length == 0)
+            return res.json("No hay usuarios");
         res.json({ usuario });
     }
     catch (error) {
@@ -43,8 +45,8 @@ exports.getUsuario = getUsuario;
 const updateUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { body } = req;
-        const { id } = req.params;
-        yield usuario_service.updateUsuario(body, id);
+        const { id, empresaId } = req.params;
+        yield usuario_service.updateUsuario(body, id, empresaId);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
         res.status(statusCode).json({ Message: msg });
     }
@@ -56,8 +58,8 @@ const updateUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.updateUsuario = updateUsuario;
 const deleteUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.params;
-        yield usuario_service.deleteUsuario(id);
+        const { id, empresaId } = req.params;
+        yield usuario_service.deleteUsuario(id, empresaId);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
         res.status(statusCode).json({ Message: msg });
     }

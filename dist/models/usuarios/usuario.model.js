@@ -25,6 +25,7 @@ const usuarios = connectionDB_1.default.define("usuario", {
     },
     email: {
         type: sequelize_1.DataTypes.STRING(50),
+        unique: true,
         validate: {
             isEmail: true,
         },
