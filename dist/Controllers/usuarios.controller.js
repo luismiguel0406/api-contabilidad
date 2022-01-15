@@ -25,7 +25,15 @@ const addUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         if (ExisteUsuario)
             return res.json("Usuario o contraseña invalida");
         const usuarioCreado = yield usuario_service.addUsuario(req.body);
-        res.json({ NuevoUsuario: usuarioCreado });
+        const Token = (0, jsonWebToken_1.registrarToken)(usuarioCreado.id);
+        res
+            .header("auth-token", Token)
+            .json({
+            Usuario: usuarioCreado.nombreUsuario,
+            Empresa: usuarioCreado.empresaId,
+            Email: usuarioCreado.emaiil,
+            Id: usuarioCreado.id,
+        });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

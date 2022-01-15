@@ -21,10 +21,9 @@ export const ValidadToken = (
   if (!Token) return res.status(statusCode).json({ Message: msg });
 
   const Payload = jwt.verify(
-    Token,
-    variablesEnv.SECRET_KEY || ""
-  ) as IPayloadToken;
-   req.userId = Payload._id;
-
+    Token, variablesEnv.SECRET_KEY || "" ) as IPayloadToken;
+    
+  //req.userId = Payload._id;
+ let vriableGlobalUsuarioId = Payload._id
   next();
 };

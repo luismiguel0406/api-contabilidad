@@ -13,8 +13,17 @@ export const addUsuario = async (req: Request, res: Response) => {
     const ExisteUsuario = await usuario_service.getUsuario(email, empresaId);
     if (ExisteUsuario) return res.json("Usuario o contraseña invalida");
 
-    const usuarioCreado = await usuario_service.addUsuario(req.body);
-    res.json({ NuevoUsuario: usuarioCreado });
+    const usuarioCreado:any = await usuario_service.addUsuario(req.body);
+    const Token:string =  registrarToken(usuarioCreado.id)
+
+    res
+      .header("auth-token", Token)
+      .json({
+        Usuario: usuarioCreado.nombreUsuario,
+        Empresa: usuarioCreado.empresaId,
+        Email: usuarioCreado.emaiil,
+        Id: usuarioCreado.id,
+      });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });

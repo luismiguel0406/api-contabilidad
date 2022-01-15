@@ -15,12 +15,13 @@ const registrarToken = (usuarioId) => {
 };
 exports.registrarToken = registrarToken;
 const ValidadToken = (req, res, next) => {
-    const Token = req.header('auth-token');
+    const Token = req.header("auth-token");
     const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.unauthorized;
     if (!Token)
         return res.status(statusCode).json({ Message: msg });
-    const Payload = jsonwebtoken_1.default.verify(Token, index_1.default.SECRET_KEY || '');
-    const req, userId = Payload._id;
+    const Payload = jsonwebtoken_1.default.verify(Token, index_1.default.SECRET_KEY || "");
+    //req.userId = Payload._id;
+    let vriableGlobalUsuarioId = Payload._id;
     next();
 };
 exports.ValidadToken = ValidadToken;
