@@ -19,11 +19,11 @@ class UsuariosService {
             return yield usuario_model_1.default.create(body);
         });
     }
-    getUsuario(email, contrasena = null, empresaId) {
+    getUsuario(email, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuarioResult = yield usuario_model_1.default.findAll({
-                attributes: { exclude: ["contrasena"] },
-                where: { email, contrasena, empresaId, estado: "1" },
+            const usuarioResult = yield usuario_model_1.default.findOne({
+                // attributes: { exclude: ["contrasena"] },
+                where: { email, empresaId, estado: "1" },
             });
             return usuarioResult;
         });

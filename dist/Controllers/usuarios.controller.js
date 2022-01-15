@@ -14,15 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUsuario = exports.updateUsuario = exports.getUsuario = exports.addUsuario = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
+const jsonWebToken_1 = require("../lib/Token/jsonWebToken");
+const encryptaPw_1 = require("../lib/validaciones/encryptaPw");
 const usuarios_service_1 = __importDefault(require("../services/usuarios/usuarios.service"));
 const usuario_service = new usuarios_service_1.default();
 const addUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { body } = req;
-        const ExisteUsuario = yield usuario_service.getUsuario(body.email, null, body.empresaId);
+        const { email, empresaId } = req.body;
+        const ExisteUsuario = yield usuario_service.getUsuario(email, empresaId);
         if (ExisteUsuario)
             return res.json("Usuario o contraseña invalida");
-        const usuarioCreado = yield usuario_service.addUsuario(body);
+        const usuarioCreado = yield usuario_service.addUsuario(req.body);
         res.json({ NuevoUsuario: usuarioCreado });
     }
     catch (error) {
@@ -34,10 +36,21 @@ exports.addUsuario = addUsuario;
 const getUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, contrasena, empresaId } = req.params;
-        const usuario = yield usuario_service.getUsuario(email, contrasena, empresaId);
-        if (Object.entries(usuario).length == 0)
-            return res.json("No hay usuarios");
-        res.json({ usuario });
+        const usuario = yield usuario_service.getUsuario(email, empresaId);
+        if (!usuario)
+            return res.json({ Message: "Usuario o contrasena invalida" });
+        const ContrasenaCorrecta = yield (0, encryptaPw_1.validarContrasena)(contrasena, usuario.contrasena);
+        if (!ContrasenaCorrecta)
+            return res.json({ Message: "Usuario o contraseña invalida" });
+        const Token = (0, jsonWebToken_1.registrarToken)(usuario.id);
+        res
+            .header("auth-token", Token)
+            .json({
+            Usuario: usuario.nombreUsuario,
+            Empresa: usuario.empresaId,
+            Email: usuario.emaiil,
+            Id: usuario.id,
+        });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
