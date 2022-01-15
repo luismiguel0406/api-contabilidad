@@ -26,5 +26,9 @@ exports.MsgRespuesta = {
         msg: "Error interno desde el servidor",
         statusCode: 500,
     },
+    unauthorized: {
+        msg: "Acceso denegado",
+        statusCode: 401
+    },
 };
 //# sourceMappingURL=MensajesRespuestaCliente.js.map
