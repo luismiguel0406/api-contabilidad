@@ -14,6 +14,7 @@ exports.default = {
     PASSWORD: process.env.PASSWORD,
     HOST: process.env.HOST,
     SECRET_KEY: process.env.SECRET_KEY,
-    SALT_ROUND: process.env.SALT_ROUND
+    SALT_ROUND: process.env.SALT_ROUND,
+    DATABASE_URL_DIGITAL_OCEAN: process.env.DATABASE_URL_DIGITAL_OCEAN
 };
 //# sourceMappingURL=index.js.map

@@ -55,7 +55,6 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
-      //await db.sync({force:true})
       console.log("Database CACTUS Online");
     } catch (error) {
       console.log(`Error ${error}`);

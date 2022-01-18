@@ -6,25 +6,27 @@ import UsuariosService from "../services/usuarios/usuarios.service";
 
 const usuario_service = new UsuariosService();
 
-export const addUsuario = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const RegistrarUsuario = async (req:Request, res:Response, next:NextFunction) => {
   try {
     const { email, empresaId } = req.body;
 
     const ExisteUsuario = await usuario_service.getUsuario(email, empresaId);
-    if (ExisteUsuario) return res.json("Usuario o contraseña invalida");
+    if (ExisteUsuario) {
+      const { statusCode, msg } = MsgRespuesta.badRequest;
+      return res
+        .status(statusCode)
+        .json({ Message: `Usuario o contraseña invalida, ${msg}` });
+    }
 
     const usuarioCreado: any = await usuario_service.addUsuario(req.body);
     const Token: string = registrarToken(usuarioCreado.id);
 
     res.header("auth-token", Token).json({
+      Id: usuarioCreado.id,
       Usuario: usuarioCreado.nombreUsuario,
       Empresa: usuarioCreado.empresaId,
       Email: usuarioCreado.email,
-      Id: usuarioCreado.id,
+      
     });
     next();
   } catch (error) {
@@ -33,19 +35,23 @@ export const addUsuario = async (
   }
 };
 
-export const getUsuario = async (req: Request, res: Response, next: NextFunction) => {
+export const InicioSesionUsuario = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { email, contrasena, empresaId } = req.params;
+    const { email, contrasena, empresaId } = req.body;
 
     const usuario: any = await usuario_service.getUsuario(email, empresaId);
-    if (!usuario) return res.json({ Message: "Usuario o contrasena invalida" });
-
+    if (!usuario) {
+      const { statusCode, msg } = MsgRespuesta.badRequest;
+      return res
+        .status(statusCode)
+        .json({ Message: `Usuario o contraseña invalida, ${msg}` });
+    }
     const ContrasenaCorrecta: boolean = await validarContrasena(
       contrasena,
       usuario.contrasena
     );
     if (!ContrasenaCorrecta){
-      const {statusCode, msg} = MsgRespuesta.unauthorized;
+      const {statusCode, msg} = MsgRespuesta.badRequest;
       return res.status(statusCode).json({ Message: `Usuario o contraseña invalida, ${msg}`});
     }
     
