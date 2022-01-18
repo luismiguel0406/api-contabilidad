@@ -22,7 +22,6 @@ class UsuariosService {
     getUsuario(email, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
             const usuarioResult = yield usuario_model_1.default.findOne({
-                // attributes: { exclude: ["contrasena"] },
                 where: { email, empresaId, estado: "1" },
             });
             return usuarioResult;

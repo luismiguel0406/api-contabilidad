@@ -7,11 +7,9 @@ export default class UsuariosService {
   }
 
   async getUsuario(email: string, empresaId: string) {
-        
     const usuarioResult = await usuariosModel.findOne({
-     // attributes: { exclude: ["contrasena"] },
       where: { email, empresaId, estado: "1" },
-    }); 
+    });
     return usuarioResult;
   }
 

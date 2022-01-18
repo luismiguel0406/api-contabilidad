@@ -1,4 +1,4 @@
-import { Response, Request } from "express";
+import { Response, Request, NextFunction } from "express";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 import { registrarToken } from "../lib/Token/jsonWebToken";
 import { validarContrasena } from "../lib/validaciones/encryptaPw";
@@ -6,31 +6,34 @@ import UsuariosService from "../services/usuarios/usuarios.service";
 
 const usuario_service = new UsuariosService();
 
-export const addUsuario = async (req: Request, res: Response) => {
+export const addUsuario = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { email, empresaId } = req.body;
 
     const ExisteUsuario = await usuario_service.getUsuario(email, empresaId);
     if (ExisteUsuario) return res.json("Usuario o contraseña invalida");
 
-    const usuarioCreado:any = await usuario_service.addUsuario(req.body);
-    const Token:string =  registrarToken(usuarioCreado.id)
+    const usuarioCreado: any = await usuario_service.addUsuario(req.body);
+    const Token: string = registrarToken(usuarioCreado.id);
 
-    res
-      .header("auth-token", Token)
-      .json({
-        Usuario: usuarioCreado.nombreUsuario,
-        Empresa: usuarioCreado.empresaId,
-        Email: usuarioCreado.emaiil,
-        Id: usuarioCreado.id,
-      });
+    res.header("auth-token", Token).json({
+      Usuario: usuarioCreado.nombreUsuario,
+      Empresa: usuarioCreado.empresaId,
+      Email: usuarioCreado.email,
+      Id: usuarioCreado.id,
+    });
+    next();
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });
   }
 };
 
-export const getUsuario = async (req: Request, res: Response) => {
+export const getUsuario = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { email, contrasena, empresaId } = req.params;
 
@@ -41,18 +44,19 @@ export const getUsuario = async (req: Request, res: Response) => {
       contrasena,
       usuario.contrasena
     );
-    if (!ContrasenaCorrecta)
-      return res.json({ Message: "Usuario o contraseña invalida" });
-
+    if (!ContrasenaCorrecta){
+      const {statusCode, msg} = MsgRespuesta.unauthorized;
+      return res.status(statusCode).json({ Message: `Usuario o contraseña invalida, ${msg}`});
+    }
+    
     const Token: string = registrarToken(usuario.id);
-    res
-      .header("auth-token", Token)
-      .json({
-        Usuario: usuario.nombreUsuario,
-        Empresa: usuario.empresaId,
-        Email: usuario.emaiil,
-        Id: usuario.id,
-      });
+    res.header("auth-token", Token).json({
+      Usuario: usuario.nombreUsuario,
+      Empresa: usuario.empresaId,
+      Email: usuario.email,
+      Id: usuario.id,
+    });
+    next();
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });

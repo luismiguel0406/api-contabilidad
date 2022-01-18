@@ -5,25 +5,27 @@ import { MsgRespuesta } from "../../helpers/MensajesError/MensajesRespuestaClien
 import { IPayloadToken } from "../../interfaces/token.interface";
 
 export const registrarToken = (usuarioId: string) => {
+ 
   const token = jwt.sign({ _id: usuarioId }, variablesEnv.SECRET_KEY || "", {
-    expiresIn: "12h",
+    expiresIn: "1h",
   });
   return token;
 };
 
-export const ValidadToken = (
+export const ValidarToken = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
+  
+  
   const Token = req.header("auth-token");
-  const { statusCode, msg } = MsgRespuesta.unauthorized;
-  if (!Token) return res.status(statusCode).json({ Message: msg });
 
-  const Payload = jwt.verify(
-    Token, variablesEnv.SECRET_KEY || "" ) as IPayloadToken;
-    
-  //req.userId = Payload._id;
- let vriableGlobalUsuarioId = Payload._id
+  if (!Token) {
+    const { statusCode, msg } = MsgRespuesta.unauthorized;
+    return res.status(statusCode).json({ Message: msg });
+  }
+  const Payload = jwt.verify( Token, variablesEnv.SECRET_KEY || "" ) as IPayloadToken;
+  req.userId = Payload._id;
   next();
 };
