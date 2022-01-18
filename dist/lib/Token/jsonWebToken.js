@@ -9,7 +9,7 @@ const index_1 = __importDefault(require("../../config/index"));
 const MensajesRespuestaCliente_1 = require("../../helpers/MensajesError/MensajesRespuestaCliente");
 const registrarToken = (usuarioId) => {
     const token = jsonwebtoken_1.default.sign({ _id: usuarioId }, index_1.default.SECRET_KEY || "", {
-        expiresIn: "2m",
+        expiresIn: "12h",
     });
     return token;
 };

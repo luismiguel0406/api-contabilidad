@@ -53,7 +53,7 @@ exports.addFactura = addFactura;
 const deleteFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        return yield facturas_service.deleteFactura(id);
+        yield facturas_service.deleteFactura(id);
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

@@ -7,7 +7,7 @@ import { IPayloadToken } from "../../interfaces/token.interface";
 export const registrarToken = (usuarioId: string) => {
  
   const token:string = jwt.sign({ _id: usuarioId }, variablesEnv.SECRET_KEY || "", {
-    expiresIn: "2m",
+    expiresIn: "12h",
   });
   return token;
 };

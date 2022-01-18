@@ -47,7 +47,7 @@ export const addFactura = async (req: Request, res: Response) => {
 export const deleteFactura = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    return await facturas_service.deleteFactura(id);
+    await facturas_service.deleteFactura(id);
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ message: msg, error });
