@@ -8,7 +8,7 @@ const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const perfil = connectionDB_1.default.define("perfil", {
     descripcion: {
         type: sequelize_1.DataTypes.STRING(50),
-        allowNull: false
+        allowNull: false,
     },
     estado: {
         type: sequelize_1.DataTypes.BOOLEAN,
@@ -21,5 +21,6 @@ const perfil = connectionDB_1.default.define("perfil", {
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
     },
-});
+}, { schema: "USUARIOS" });
+exports.default = perfil;
 //# sourceMappingURL=perfil.model.js.map
