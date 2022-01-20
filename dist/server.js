@@ -91,6 +91,7 @@ class Server {
             const tipoVenta = new Querys_1.TipoVenta();
             const impuestos = new Querys_1.Impuestos();
             const mediosDePago = new Querys_1.MediosDePago();
+            const Perfil = new Querys_1.Perfiles();
             tipoClientes.InsertarTipoClientes();
             tipoContacto.InsertarTipoContactos();
             tipoProveedor.InsertarTiposProveedores();
@@ -100,6 +101,7 @@ class Server {
             tipoVenta.InsertarTipoVentas();
             impuestos.InsertarImpuestos();
             mediosDePago.InsertarMediosDePago();
+            Perfil.InsertarPerfiles();
         }
         catch (error) {
             console.error(`Error Metodo InicioAplicacion, ${error}`);

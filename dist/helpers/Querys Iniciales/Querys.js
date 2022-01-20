@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
+exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
 const CuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/CuentasContables.model"));
@@ -23,6 +23,7 @@ const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedore
 const tipoVentas_model_1 = __importDefault(require("../../models/Facturacion/ventas/tipoVentas.model"));
 const impuestos_model_1 = __importDefault(require("../../models/Facturacion/impuestos/impuestos.model"));
 const medioDePago_model_1 = __importDefault(require("../../models/Facturacion/medioDePago/medioDePago.model"));
+const perfil_model_1 = __importDefault(require("models/Perfiles/perfil.model"));
 class TiposProveedores {
     // AGREGO TIPO AL INICIO DEL PROGRAMA //
     constructor() {
@@ -877,4 +878,33 @@ class MediosDePago {
     }
 }
 exports.MediosDePago = MediosDePago;
+class Perfiles {
+    constructor() {
+        this.PerfilesArray = [
+            {
+                descripcion: "ADMINISTRADOR",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+            },
+            {
+                descripcion: "AUXILIAR",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+            },
+        ];
+    }
+    InsertarPerfiles() {
+        try {
+            perfil_model_1.default.afterSync("createPerfil", () => __awaiter(this, void 0, void 0, function* () {
+                perfil_model_1.default.bulkCreate(this.PerfilesArray);
+            }));
+        }
+        catch (error) {
+            console.error("Error al insertar los perfiles");
+        }
+    }
+}
+exports.Perfiles = Perfiles;
 //# sourceMappingURL=Querys.js.map

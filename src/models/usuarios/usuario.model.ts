@@ -1,3 +1,4 @@
+import perfil from "models/Perfiles/perfil.model";
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
 import { Encryptar } from "../../lib/validaciones/encryptaPw";
@@ -14,7 +15,7 @@ const usuarios = conexion.define(
     },
     email: {
       type: DataTypes.STRING(50),
-      unique:true,
+      unique: true,
       validate: {
         isEmail: true,
       },
@@ -34,23 +35,27 @@ const usuarios = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    perfilId:{
+      type:DataTypes.INTEGER,
+     // allowNull:false
+    }
   },
   {
     schema: "USUARIOS",
-    /*hooks: {
-      beforeCreate: async (data: any, options) => {
-        data.dataValues.contrasena = await encryptar(data.dataValues.contrasena);
-      },
-    },*/
   }
 );
 
-
-  usuarios.beforeCreate(async(data:any,options)=>{
+usuarios.beforeCreate(async (data: any, options) => {
   const encryptada = await Encryptar(data.contrasena);
   data.contrasena = encryptada;
-})
+});
+
+//------- ASOCIACIONES -------//
+
 empresas.hasMany(usuarios, { foreignKey: "empresaId" });
 usuarios.belongsTo(empresas);
+
+perfil.hasMany(usuarios,{foreignKey:"perfilId"});
+usuarios.belongsTo(perfil)
 
 export default usuarios;

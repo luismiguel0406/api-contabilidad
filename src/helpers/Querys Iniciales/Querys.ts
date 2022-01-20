@@ -18,6 +18,8 @@ import { IImpuestos } from "../../interfaces/impuestos.interface";
 import impuestos from "../../models/Facturacion/impuestos/impuestos.model";
 import { IMedioDePago } from "../../interfaces/medioDePago.interface";
 import mediosDePago from "../../models/Facturacion/medioDePago/medioDePago.model";
+import { IPerfil } from "interfaces/perfil.interface";
+import perfil from "models/Perfiles/perfil.model";
 
 export class TiposProveedores {
   private tipoProveedoresArray: Array<ITipoPoveedor>;
@@ -883,6 +885,36 @@ export class MediosDePago {
       });
     } catch (error) {
       console.error("Error insertando medios de pago");
+    }
+  }
+}
+
+export class Perfiles {
+  private PerfilesArray: Array<IPerfil>;
+  constructor() {
+    this.PerfilesArray = [
+      {
+        descripcion: "ADMINISTRADOR",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+      },
+      {
+        descripcion: "AUXILIAR",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+      },
+    ];
+  }
+
+  InsertarPerfiles() {
+    try {
+      perfil.afterSync("createPerfil", async () => {
+        perfil.bulkCreate(this.PerfilesArray);
+      });
+    } catch (error) {
+      console.error("Error al insertar los perfiles");
     }
   }
 }
