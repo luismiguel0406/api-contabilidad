@@ -23,7 +23,7 @@ const detalleImpuesto_service = new detalleImpuesto_service_1.default();
 const getFacturas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const facturaResult = yield facturas_service.getFacturas(id);
+        const facturaResult = yield facturas_service.getFacturas(id, req.empresaId);
         if (!facturaResult) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
@@ -39,10 +39,10 @@ exports.getFacturas = getFacturas;
 const addFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { body } = req;
-        let Factura = yield facturas_service.addFactura(body);
-        let detalleFactura = (yield detalleFactura_service.addDetalleFactura(body.detalleFactura, Factura.id));
+        const factura = yield facturas_service.addFactura(body);
+        const detalleFactura = yield detalleFactura_service.addDetalleFactura(body.detalleFactura, factura.id);
         // await detalleImpuesto_service.addDetalleImpuesto(detalleFactura.dataValues);
-        return res.json({ Factura, DetalleFactura: detalleFactura });
+        return res.json({ factura, DetalleFactura: detalleFactura });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
@@ -53,7 +53,7 @@ exports.addFactura = addFactura;
 const deleteFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        yield facturas_service.deleteFactura(id);
+        yield facturas_service.deleteFactura(id, req.empresaId);
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

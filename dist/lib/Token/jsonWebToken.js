@@ -7,8 +7,8 @@ exports.ValidarToken = exports.registrarToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const index_1 = __importDefault(require("../../config/index"));
 const MensajesRespuestaCliente_1 = require("../../helpers/MensajesError/MensajesRespuestaCliente");
-const registrarToken = (usuarioId) => {
-    const token = jsonwebtoken_1.default.sign({ _id: usuarioId }, index_1.default.SECRET_KEY || "", {
+const registrarToken = (usuarioId, _empresaId = null) => {
+    const token = jsonwebtoken_1.default.sign({ _id: usuarioId, _empresaId }, index_1.default.SECRET_KEY || "", {
         expiresIn: "12h",
     });
     return token;
@@ -23,6 +23,7 @@ const ValidarToken = (req, res, next) => {
         }
         const Payload = jsonwebtoken_1.default.verify(Token, index_1.default.SECRET_KEY || "");
         req.userId = Payload._id;
+        req.empresaId = Payload._empresaId;
         next();
     }
     catch (error) {

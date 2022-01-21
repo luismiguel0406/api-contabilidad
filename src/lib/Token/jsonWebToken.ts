@@ -4,9 +4,9 @@ import variablesEnv from "../../config/index";
 import { MsgRespuesta } from "../../helpers/MensajesError/MensajesRespuestaCliente";
 import { IPayloadToken } from "../../interfaces/token.interface";
 
-export const registrarToken = (usuarioId: string) => {
+export const registrarToken = (usuarioId: string, _empresaId:any =null) => {
  
-  const token:string = jwt.sign({ _id: usuarioId }, variablesEnv.SECRET_KEY || "", {
+  const token:string = jwt.sign({ _id: usuarioId, _empresaId }, variablesEnv.SECRET_KEY || "", {
     expiresIn: "12h",
   });
   return token;
@@ -24,6 +24,7 @@ export const ValidarToken = ( req: Request, res: Response, next: NextFunction) =
       variablesEnv.SECRET_KEY || ""
     ) as IPayloadToken;
     req.userId = Payload._id;
+    req.empresaId = Payload._empresaId
     next();
   } catch (error) {
     return next(error);

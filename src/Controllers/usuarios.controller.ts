@@ -57,10 +57,10 @@ export const InicioSesionUsuario = async (req: Request, res: Response, next: Nex
     
     const Token: string = registrarToken(usuario.id);
     res.header("auth-token", Token).json({
+      Id: usuario.id,
       Usuario: usuario.nombreUsuario,
       Empresa: usuario.empresaId,
-      Email: usuario.email,
-      Id: usuario.id,
+      Email: usuario.email
     });
     next();
   } catch (error) {

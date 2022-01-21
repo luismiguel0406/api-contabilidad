@@ -27,7 +27,7 @@ class FacturasService {
             }
         });
     }
-    getFacturas(id = null) {
+    getFacturas(id = null, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
             const facturasResult = id === null
                 ? yield factura_model_1.default.findAll({
@@ -39,7 +39,7 @@ class FacturasService {
                         },
                     ],
                 })
-                : yield factura_model_1.default.findAll({
+                : yield factura_model_1.default.findOne({
                     include: [
                         {
                             model: detalleFactura_1.default,
@@ -47,14 +47,14 @@ class FacturasService {
                             include: [{ model: detalleImpuestos_1.default }],
                         },
                     ],
-                    where: { id, estado: "1" },
+                    where: { id, empresaId, estado: "1" },
                 });
             return facturasResult;
         });
     }
-    deleteFactura(id) {
+    deleteFactura(id, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield factura_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield factura_model_1.default.update({ estado: "0" }, { where: { id, empresaId } });
         });
     }
     updateFactura() {

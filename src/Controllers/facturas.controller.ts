@@ -11,7 +11,7 @@ const detalleImpuesto_service = new DetalleImpuestoService();
 export const getFacturas = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const facturaResult = await facturas_service.getFacturas(id);
+    const facturaResult = await facturas_service.getFacturas(id, req.empresaId);
 
     if (!facturaResult) {
       const { statusCode, msg } = MsgRespuesta.notFound;
@@ -28,16 +28,12 @@ export const addFactura = async (req: Request, res: Response) => {
   try {
     const { body } = req;
 
-    let Factura: any = <any>await facturas_service.addFactura(body);
+    const factura = await facturas_service.addFactura(body);
 
-    let detalleFactura: any = <any>(
-      await detalleFactura_service.addDetalleFactura(
-        body.detalleFactura,
-        Factura.id
-      )
-    );
+    const detalleFactura  = await detalleFactura_service.addDetalleFactura(body.detalleFactura, factura.id);
+
     // await detalleImpuesto_service.addDetalleImpuesto(detalleFactura.dataValues);
-    return res.json({ Factura, DetalleFactura: detalleFactura });
+    return res.json({ factura, DetalleFactura: detalleFactura });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ message: msg, error });
@@ -47,7 +43,7 @@ export const addFactura = async (req: Request, res: Response) => {
 export const deleteFactura = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    await facturas_service.deleteFactura(id);
+    await facturas_service.deleteFactura(id, req.empresaId);
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ message: msg, error });

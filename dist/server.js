@@ -104,7 +104,7 @@ class Server {
             Perfil.InsertarPerfiles();
         }
         catch (error) {
-            console.error(`Error Metodo InicioAplicacion, ${error}`);
+            console.error(`Error Metodo Inicio Aplicacion, ${error}`);
         }
     }
     InicioNuevaEmpresa() {

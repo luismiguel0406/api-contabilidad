@@ -12,6 +12,7 @@ export interface IItem {
   usuario: string;
   terminal: string;
   tipoItemId: number;
+  cuentasContablesId:Array<number>;
 }
 
 export interface ITipoItem {

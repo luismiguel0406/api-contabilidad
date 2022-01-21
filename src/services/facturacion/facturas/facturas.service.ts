@@ -13,7 +13,7 @@ export default class FacturasService {
     }
   }
   
-  async getFacturas(id: any = null) {
+  async getFacturas(id: any = null, empresaId:string) {
     const facturasResult =
       id === null
         ? await facturas.findAll({
@@ -25,7 +25,7 @@ export default class FacturasService {
               },
             ],
           })
-        : await facturas.findAll({
+        : await facturas.findOne({
             include: [
               {
                 model: detallesFactura,
@@ -33,14 +33,14 @@ export default class FacturasService {
                 include: [{ model: detallesImpuesto }],
               },
             ],
-            where: { id, estado: "1" },
+            where: { id, empresaId, estado: "1" },
           });
 
     return facturasResult;
   }
 
-  async deleteFactura(id: string) {
-    await facturas.update({ estado: "0" }, { where: { id } });
+  async deleteFactura(id: string, empresaId:string) {
+    await facturas.update({ estado: "0" }, { where: { id, empresaId } });
   }
 
   async updateFactura() {
