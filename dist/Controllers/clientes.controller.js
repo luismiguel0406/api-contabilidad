@@ -21,7 +21,7 @@ const getClientes = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         const { id } = req.params;
         const clientesResult = yield clientes_service.getClientes(id);
-        if (clientesResult === null) {
+        if (Object.entries(clientesResult).length == 0) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }

@@ -10,9 +10,9 @@ const clientes_service = new ClientesService();
 export const getClientes = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const clientesResult = await clientes_service.getClientes(id);
+    const clientesResult:any = await clientes_service.getClientes(id);
 
-    if (clientesResult === null) {
+    if (Object.entries(clientesResult).length == 0 ) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }

@@ -1,4 +1,4 @@
-import perfil from "models/Perfiles/perfil.model";
+import perfil from "../../models/Perfiles/perfil.model";
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
 import { Encryptar } from "../../lib/validaciones/encryptaPw";
@@ -9,6 +9,7 @@ const usuarios = conexion.define(
   {
     nombreUsuario: {
       type: DataTypes.STRING(50),
+      unique:true
     },
     contrasena: {
       type: DataTypes.STRING,

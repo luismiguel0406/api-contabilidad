@@ -1,7 +1,7 @@
 import { IDetalleImpuestos } from "./impuestos.interface";
 
 export interface IFactura {
-  numeroFactura: number;
+  noFactura: number;
   Ncf: string;
   NcfModificado: string | null;
   subTotal: number;
@@ -19,7 +19,8 @@ export interface IFactura {
   empresaId: number;
   clienteId: number;
   monedaId: number;
-  detalleFactura: Array<IDetalleFactura>;
+  medioPagoId:number;
+  detalleFactura: Array<IDetalleFactura> | null;
 }
 
 export interface IDetalleFactura {

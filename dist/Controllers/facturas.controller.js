@@ -40,9 +40,7 @@ const addFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const { body } = req;
         const factura = yield facturas_service.addFactura(body);
-        const detalleFactura = yield detalleFactura_service.addDetalleFactura(body.detalleFactura, factura.id);
-        // await detalleImpuesto_service.addDetalleImpuesto(detalleFactura.dataValues);
-        return res.json({ factura, DetalleFactura: detalleFactura });
+        return res.json({ factura });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

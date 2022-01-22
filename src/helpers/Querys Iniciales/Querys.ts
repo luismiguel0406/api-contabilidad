@@ -18,8 +18,8 @@ import { IImpuestos } from "../../interfaces/impuestos.interface";
 import impuestos from "../../models/Facturacion/impuestos/impuestos.model";
 import { IMedioDePago } from "../../interfaces/medioDePago.interface";
 import mediosDePago from "../../models/Facturacion/medioDePago/medioDePago.model";
-import { IPerfil } from "interfaces/perfil.interface";
-import perfil from "models/Perfiles/perfil.model";
+import { IPerfil } from "../../interfaces/perfil.interface"
+import perfil from "../../models/Perfiles/perfil.model";
 
 export class TiposProveedores {
   private tipoProveedoresArray: Array<ITipoPoveedor>;

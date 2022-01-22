@@ -28,12 +28,9 @@ export const addFactura = async (req: Request, res: Response) => {
   try {
     const { body } = req;
 
-    const factura = await facturas_service.addFactura(body);
+    const factura:any = await facturas_service.addFactura(body);
 
-    const detalleFactura  = await detalleFactura_service.addDetalleFactura(body.detalleFactura, factura.id);
-
-    // await detalleImpuesto_service.addDetalleImpuesto(detalleFactura.dataValues);
-    return res.json({ factura, DetalleFactura: detalleFactura });
+    return res.json({ factura }); 
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ message: msg, error });

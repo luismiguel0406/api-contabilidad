@@ -23,7 +23,7 @@ const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedore
 const tipoVentas_model_1 = __importDefault(require("../../models/Facturacion/ventas/tipoVentas.model"));
 const impuestos_model_1 = __importDefault(require("../../models/Facturacion/impuestos/impuestos.model"));
 const medioDePago_model_1 = __importDefault(require("../../models/Facturacion/medioDePago/medioDePago.model"));
-const perfil_model_1 = __importDefault(require("models/Perfiles/perfil.model"));
+const perfil_model_1 = __importDefault(require("../../models/Perfiles/perfil.model"));
 class TiposProveedores {
     // AGREGO TIPO AL INICIO DEL PROGRAMA //
     constructor() {

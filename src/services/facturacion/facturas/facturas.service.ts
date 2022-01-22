@@ -6,10 +6,12 @@ import detallesImpuesto from "../../../models/Facturacion/impuestos/detalleImpue
 export default class FacturasService {
   async addFactura(body: IFactura) {
     try {
+      console.log(body)
       const factura = await facturas.create(body);
+     
       return factura;
     } catch (error) {
-      return error;
+      return error
     }
   }
   

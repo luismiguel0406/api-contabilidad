@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const perfil_model_1 = __importDefault(require("models/Perfiles/perfil.model"));
+const perfil_model_1 = __importDefault(require("../../models/Perfiles/perfil.model"));
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const encryptaPw_1 = require("../../lib/validaciones/encryptaPw");
@@ -20,6 +20,7 @@ const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
 const usuarios = connectionDB_1.default.define("usuario", {
     nombreUsuario: {
         type: sequelize_1.DataTypes.STRING(50),
+        unique: true
     },
     contrasena: {
         type: sequelize_1.DataTypes.STRING,

@@ -8,16 +8,16 @@ import moneda from "../moneda/moneda.model";
 const facturas = conexion.define(
   "factura",
   {
-    numeroFactura: {
-      type: DataTypes.INTEGER,
+    noFactura: {
+      type: DataTypes.STRING(50),
       allowNull: false,
     },
     Ncf: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(25),
       allowNull: false,
     },
     NcfModificado: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(25),
     },
     subTotal: {
       type: DataTypes.FLOAT,
@@ -78,7 +78,7 @@ const facturas = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    medioPagoId: {
+    medioDePagoId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1,
@@ -98,7 +98,7 @@ facturas.belongsTo(moneda);
 empresa.hasMany(facturas, { foreignKey: "empresaId" });
 facturas.belongsTo(empresa);
 
-mediosDePago.hasMany(facturas, { foreignKey: "medioPagoId" });
+mediosDePago.hasMany(facturas, { foreignKey: "medioDePagoId" });
 facturas.belongsTo(mediosDePago);
 
 export default facturas;

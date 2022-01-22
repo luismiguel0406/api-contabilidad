@@ -10,16 +10,16 @@ const empresa_model_1 = __importDefault(require("../../Empresa/empresa.model"));
 const medioDePago_model_1 = __importDefault(require("../medioDePago/medioDePago.model"));
 const moneda_model_1 = __importDefault(require("../moneda/moneda.model"));
 const facturas = connectionDB_1.default.define("factura", {
-    numeroFactura: {
-        type: sequelize_1.DataTypes.INTEGER,
+    noFactura: {
+        type: sequelize_1.DataTypes.STRING(50),
         allowNull: false,
     },
     Ncf: {
-        type: sequelize_1.DataTypes.STRING(20),
+        type: sequelize_1.DataTypes.STRING(25),
         allowNull: false,
     },
     NcfModificado: {
-        type: sequelize_1.DataTypes.STRING(20),
+        type: sequelize_1.DataTypes.STRING(25),
     },
     subTotal: {
         type: sequelize_1.DataTypes.FLOAT,
@@ -80,7 +80,7 @@ const facturas = connectionDB_1.default.define("factura", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    medioPagoId: {
+    medioDePagoId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 1,
@@ -93,7 +93,7 @@ moneda_model_1.default.hasMany(facturas, { foreignKey: "monedaId" });
 facturas.belongsTo(moneda_model_1.default);
 empresa_model_1.default.hasMany(facturas, { foreignKey: "empresaId" });
 facturas.belongsTo(empresa_model_1.default);
-medioDePago_model_1.default.hasMany(facturas, { foreignKey: "medioPagoId" });
+medioDePago_model_1.default.hasMany(facturas, { foreignKey: "medioDePagoId" });
 facturas.belongsTo(medioDePago_model_1.default);
 exports.default = facturas;
 //# sourceMappingURL=factura.model.js.map
