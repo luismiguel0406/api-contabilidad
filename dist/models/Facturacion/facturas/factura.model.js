@@ -25,7 +25,7 @@ const facturas = connectionDB_1.default.define("factura", {
         type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
     },
-    descuento: {
+    totalDescuentos: {
         type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
         defaultValue: 0.0,

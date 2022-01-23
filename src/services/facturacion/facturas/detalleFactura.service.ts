@@ -8,15 +8,11 @@ export default class DetalleFacturaService {
         [
           {
             impuestoId: 1,
-            valor: 60.8,
-            estado: true,
-            createAt: "2022-1-22"
+            valor: 60.8,            
           },
             {
             impuestoId: 1,
             valor: 45.8,
-            estado: true,
-            createAt: "2022-1-22"
           },
         ]
       

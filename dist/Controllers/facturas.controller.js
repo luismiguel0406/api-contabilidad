@@ -16,10 +16,8 @@ exports.deleteFactura = exports.addFactura = exports.getFacturas = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const detalleFactura_service_1 = __importDefault(require("../services/facturacion/facturas/detalleFactura.service"));
 const facturas_service_1 = __importDefault(require("../services/facturacion/facturas/facturas.service"));
-const detalleImpuesto_service_1 = __importDefault(require("../services/facturacion/impuestos/detalleImpuesto.service"));
 const facturas_service = new facturas_service_1.default();
 const detalleFactura_service = new detalleFactura_service_1.default();
-const detalleImpuesto_service = new detalleImpuesto_service_1.default();
 const getFacturas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;

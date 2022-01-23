@@ -23,7 +23,7 @@ const facturas = conexion.define(
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    descuento: {
+    totalDescuentos: {
       type: DataTypes.FLOAT,
       allowNull: false,
       defaultValue: 0.0,

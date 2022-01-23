@@ -21,7 +21,6 @@ export default class FacturasService {
               {
                 model: detallesFactura,
                 required: true,
-                include: [{ model: detallesImpuesto }],
               },
             ],
           })
@@ -30,7 +29,6 @@ export default class FacturasService {
               {
                 model: detallesFactura,
                 required: true,
-                include: [{ model: detallesImpuesto }],
               },
             ],
             where: { id, empresaId, estado: "1" },

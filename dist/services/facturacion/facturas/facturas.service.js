@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const detalleFactura_1 = __importDefault(require("../../../models/Facturacion/facturas/detalleFactura"));
 const factura_model_1 = __importDefault(require("../../../models/Facturacion/facturas/factura.model"));
-const detalleImpuestos_1 = __importDefault(require("../../../models/Facturacion/impuestos/detalleImpuestos"));
 class FacturasService {
     addFactura(body) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -35,7 +34,6 @@ class FacturasService {
                         {
                             model: detalleFactura_1.default,
                             required: true,
-                            include: [{ model: detalleImpuestos_1.default }],
                         },
                     ],
                 })
@@ -44,7 +42,6 @@ class FacturasService {
                         {
                             model: detalleFactura_1.default,
                             required: true,
-                            include: [{ model: detalleImpuestos_1.default }],
                         },
                     ],
                     where: { id, empresaId, estado: "1" },

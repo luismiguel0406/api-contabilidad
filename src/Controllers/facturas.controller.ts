@@ -7,7 +7,7 @@ import DetalleImpuestoService from "../services/facturacion/impuestos/detalleImp
 
 const facturas_service = new FacturasService();
 const detalleFactura_service = new DetalleFacturaService();
-const detalleImpuesto_service = new DetalleImpuestoService();
+
 
 export const getFacturas = async (req: Request, res: Response) => {
   try {

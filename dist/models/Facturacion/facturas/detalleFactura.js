@@ -34,19 +34,11 @@ const detallesFactura = connectionDB_1.default.define("detalleFactura", {
     total: {
         type: sequelize_1.DataTypes.FLOAT,
     },
-    createdAt: {
-        type: sequelize_1.DataTypes.DATE,
-        allowNull: false,
-    },
-    updatedAt: {
-        type: sequelize_1.DataTypes.DATE,
-    },
     detalleImpuesto: {
         type: sequelize_1.DataTypes.STRING(1000),
     },
-}, { schema: "FACTURACION" });
+}, { timestamps: false, schema: "FACTURACION" });
 //--- ASOCIACIONES---//
-//detallesFactura.sync({force:true})
 Item_model_1.default.hasMany(detallesFactura, { foreignKey: "itemId" });
 detallesFactura.belongsTo(Item_model_1.default);
 factura_model_1.default.hasMany(detallesFactura, { foreignKey: "facturaId" });

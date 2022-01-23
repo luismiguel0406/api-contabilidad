@@ -21,14 +21,10 @@ class DetalleFacturaService {
                     {
                         impuestoId: 1,
                         valor: 60.8,
-                        estado: true,
-                        createAt: "2022-1-22"
                     },
                     {
                         impuestoId: 1,
                         valor: 45.8,
-                        estado: true,
-                        createAt: "2022-1-22"
                     },
                 ];
                 let detalleConvertido = JSON.stringify(detalleImpuesto);

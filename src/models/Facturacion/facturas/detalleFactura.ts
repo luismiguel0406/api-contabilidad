@@ -32,22 +32,15 @@ const detallesFactura = conexion.define(
     total: {
       type: DataTypes.FLOAT,
     },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-    },
     detalleImpuesto: {
       type: DataTypes.STRING(1000),
     },
   },
-  { schema: "FACTURACION" }
+  { timestamps: false, schema: "FACTURACION" }
 );
 
 //--- ASOCIACIONES---//
-//detallesFactura.sync({force:true})
+
 item.hasMany(detallesFactura, { foreignKey: "itemId" });
 detallesFactura.belongsTo(item);
 
