@@ -11,8 +11,5 @@ export interface IImpuestos {
 
 export interface IDetalleImpuestos {
   impuestoId: number;
-  detalleFacturaId: number;
   valor: number;
-  estado: boolean;
-  createdAt: Date;
 }

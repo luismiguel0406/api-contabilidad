@@ -29,7 +29,5 @@ export interface IDetalleFactura {
   precioVenta: number;
   descuento: number;
   total: number;
-  createdAt: Date;
-  updatedAt:Date | null;
   detalleImpuesto: string | null; 
 }

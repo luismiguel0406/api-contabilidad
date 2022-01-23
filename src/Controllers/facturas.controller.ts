@@ -3,7 +3,6 @@ import { IFactura } from "interfaces/factura.interface";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 import DetalleFacturaService from "../services/facturacion/facturas/detalleFactura.service";
 import FacturasService from "../services/facturacion/facturas/facturas.service";
-import DetalleImpuestoService from "../services/facturacion/impuestos/detalleImpuesto.service";
 
 const facturas_service = new FacturasService();
 const detalleFactura_service = new DetalleFacturaService();
