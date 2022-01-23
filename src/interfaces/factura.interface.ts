@@ -1,5 +1,3 @@
-import { IDetalleImpuestos } from "./impuestos.interface";
-
 export interface IFactura {
   noFactura: number;
   Ncf: string;
@@ -20,18 +18,18 @@ export interface IFactura {
   clienteId: number;
   monedaId: number;
   medioPagoId:number;
-  detalleFactura: Array<IDetalleFactura> | null;
+  detalleFactura: IDetalleFactura | null;
 }
 
 export interface IDetalleFactura {
-  facturaId: number | null;
+  facturaId: string | null;
   itemId: number;
   descripcion: string;
   cantidad: number;
   precioVenta: number;
   descuento: number;
   total: number;
-  estado: boolean;
   createdAt: Date;
-  detalleImpuesto: Array<IDetalleImpuestos>; 
+  updatedAt:Date | null;
+  detalleImpuesto: string | null; 
 }

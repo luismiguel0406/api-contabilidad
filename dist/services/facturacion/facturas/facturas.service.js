@@ -19,7 +19,6 @@ class FacturasService {
     addFactura(body) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log(body);
                 const factura = yield factura_model_1.default.create(body);
                 return factura;
             }

@@ -4,18 +4,16 @@ import facturas from "../../../models/Facturacion/facturas/factura.model";
 import detallesImpuesto from "../../../models/Facturacion/impuestos/detalleImpuestos";
 
 export default class FacturasService {
-  async addFactura(body: IFactura) {
+  async addFactura(body:any) {
     try {
-      console.log(body)
-      const factura = await facturas.create(body);
-     
-      return factura;
+    const factura:any =  await facturas.create(body);
+    return factura
     } catch (error) {
-      return error
+      return error;
     }
   }
-  
-  async getFacturas(id: any = null, empresaId:string) {
+
+  async getFacturas(id: any = null, empresaId: string) {
     const facturasResult =
       id === null
         ? await facturas.findAll({
@@ -41,7 +39,7 @@ export default class FacturasService {
     return facturasResult;
   }
 
-  async deleteFactura(id: string, empresaId:string) {
+  async deleteFactura(id: string, empresaId: string) {
     await facturas.update({ estado: "0" }, { where: { id, empresaId } });
   }
 

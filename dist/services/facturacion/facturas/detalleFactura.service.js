@@ -17,8 +17,24 @@ class DetalleFacturaService {
     addDetalleFactura(body, facturaId) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                let detalleImpuesto = [
+                    {
+                        impuestoId: 1,
+                        valor: 60.8,
+                        estado: true,
+                        createAt: "2022-1-22"
+                    },
+                    {
+                        impuestoId: 1,
+                        valor: 45.8,
+                        estado: true,
+                        createAt: "2022-1-22"
+                    },
+                ];
+                let detalleConvertido = JSON.stringify(detalleImpuesto);
                 for (let detalle of body) {
                     detalle.facturaId = facturaId;
+                    detalle.detalleImpuesto = detalleConvertido;
                 }
                 const detalleFactura = yield detalleFactura_1.default.bulkCreate(body);
                 return detalleFactura;

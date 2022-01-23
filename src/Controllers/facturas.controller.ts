@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { IFactura } from "interfaces/factura.interface";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 import DetalleFacturaService from "../services/facturacion/facturas/detalleFactura.service";
 import FacturasService from "../services/facturacion/facturas/facturas.service";
@@ -11,9 +12,12 @@ const detalleImpuesto_service = new DetalleImpuestoService();
 export const getFacturas = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const facturaResult = await facturas_service.getFacturas(id, req.empresaId);
+    const facturaResult: any = await facturas_service.getFacturas(
+      id,
+      req.empresaId
+    );
 
-    if (!facturaResult) {
+    if (Object.entries(facturaResult).length == 0) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
@@ -28,9 +32,14 @@ export const addFactura = async (req: Request, res: Response) => {
   try {
     const { body } = req;
 
-    const factura:any = await facturas_service.addFactura(body);
+    const factura: any = await facturas_service.addFactura(body);
+    const { id } = factura.dataValues;
+    const detalleFactura = await detalleFactura_service.addDetalleFactura(
+      body.detalleFactura,
+      id
+    );
 
-    return res.json({ factura }); 
+    res.json({ factura, detalleFactura });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ message: msg, error });

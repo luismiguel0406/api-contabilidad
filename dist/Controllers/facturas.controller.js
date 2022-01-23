@@ -24,7 +24,7 @@ const getFacturas = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         const { id } = req.params;
         const facturaResult = yield facturas_service.getFacturas(id, req.empresaId);
-        if (!facturaResult) {
+        if (Object.entries(facturaResult).length == 0) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }
@@ -40,7 +40,9 @@ const addFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const { body } = req;
         const factura = yield facturas_service.addFactura(body);
-        return res.json({ factura });
+        const { id } = factura.dataValues;
+        const detalleFactura = yield detalleFactura_service.addDetalleFactura(body.detalleFactura, id);
+        res.json({ factura, detalleFactura });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
