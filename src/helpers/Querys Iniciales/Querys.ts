@@ -13,7 +13,7 @@ import tipoComprobantes from "../../models/Facturacion/comprobantes/tipoComproba
 import moneda from "../../models/Facturacion/moneda/moneda.model";
 import tiposItem from "../../models/Inventario/tipoItem.model";
 import tipoProveedor from "../../models/Proveedores/tipoProveedores.model";
-import tipoVenta from "../../models/Facturacion/ventas/tipoVentas.model";
+import tiposVenta from "../../models/Facturacion/ventas/tipoVentas.model";
 import { IImpuestos } from "../../interfaces/impuestos.interface";
 import impuestos from "../../models/Facturacion/impuestos/impuestos.model";
 import { IMedioDePago } from "../../interfaces/medioDePago.interface";
@@ -21,7 +21,7 @@ import mediosDePago from "../../models/Facturacion/medioDePago/medioDePago.model
 import { IPerfil } from "../../interfaces/perfil.interface";
 import perfil from "../../models/Perfiles/perfil.model";
 import { ITipoGasto } from "interfaces/gasto.interface";
-import tipoGasto from "models/Facturacion/Facturas por pagar/Gastos/gastos.model";
+import tipoGasto from "../../models/Facturacion/Facturas por pagar/Gastos/gastos.model";
 
 export class TiposProveedores {
   private tipoProveedoresArray: Array<ITipoPoveedor>;
@@ -719,8 +719,8 @@ export class TipoVenta {
   }
   InsertarTipoVentas() {
     try {
-      tipoVenta.afterSync("createTipoVenta", async () => {
-        await tipoVenta.bulkCreate(this.tipoVentaArray);
+      tiposVenta.afterSync("createTipoVenta", async () => {
+        await tiposVenta.bulkCreate(this.tipoVentaArray);
       });
     } catch (error) {
       console.error(`Error insertando Tipos venta, ${error}`);

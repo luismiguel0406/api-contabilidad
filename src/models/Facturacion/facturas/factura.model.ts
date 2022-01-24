@@ -4,7 +4,7 @@ import clientes from "../../Clientes/Cliente.model";
 import empresa from "../../Empresa/empresa.model";
 import mediosDePago from "../medioDePago/medioDePago.model";
 import moneda from "../moneda/moneda.model";
-import tipoVenta from "../ventas/tipoVentas.model";
+import tiposVenta from "../ventas/tipoVentas.model";
 
 const facturas = conexion.define(
   "factura",
@@ -106,6 +106,7 @@ facturas.belongsTo(empresa);
 mediosDePago.hasMany(facturas, { foreignKey: "medioDePagoId" });
 facturas.belongsTo(mediosDePago);
 
-/*tipoVenta.hasMany(facturas, { foreignKey: "tipoVentaId" });
-facturas.belongsTo(tipoVenta);*/
+tiposVenta.hasMany(facturas, { foreignKey: 'tipoVentaId' });
+facturas.belongsTo(tiposVenta);
+
 export default facturas;

@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { IFactura } from "interfaces/factura.interface";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 import FacturasService from "../services/facturacion/facturas/facturas.service";
 

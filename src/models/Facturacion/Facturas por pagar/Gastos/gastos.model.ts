@@ -30,4 +30,5 @@ const tipoGasto = conexion.define(
   { schema: "FACTURACION" }
 );
 
+
 export default tipoGasto;

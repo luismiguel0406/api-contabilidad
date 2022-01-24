@@ -1,0 +1,1 @@
+{"version":3,"file":"tipoGastos.route.js","sourceRoot":"","sources":["../../../src/routes/facturacion/tipoGastos.route.ts"],"names":[],"mappings":";;AAAA,iFAAuE;AACvE,qCAA+B;AAG/B,MAAM,MAAM,GAAG,IAAA,gBAAM,GAAE,CAAC;AACxB,MAAM,mBAAmB,GAAG,kBAAkB,CAAC;AAC/C,MAAM,SAAS,GAAG,WAAW,CAAC;AAE9B,MAAM,CAAC,GAAG,CAAC,GAAG,mBAAmB,IAAI,SAAS,OAAO,EAAC,oCAAa,CAAC,CAAC;AAErE,kBAAe,MAAM,CAAC"}

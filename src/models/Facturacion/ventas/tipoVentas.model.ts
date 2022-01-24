@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import conexion from "../../../Database/connectionDB";
 import tiposItem from "../../Inventario/tipoItem.model";
 
-const tipoVenta = conexion.define(
+const tiposVenta = conexion.define(
   "tipoVenta",
   {
     descripcion: {
@@ -36,8 +36,8 @@ const tipoVenta = conexion.define(
 );
 
 //--- ASOCIACIONES---// 
-//tipoVentas.sync({force:true})
-tiposItem.hasMany(tipoVenta,{foreignKey:"tipoItemId"});
-tipoVenta.belongsTo(tiposItem);
+//tiposVenta.sync({force:true})
+tiposItem.hasMany(tiposVenta,{foreignKey:"tipoItemId"});
+tiposVenta.belongsTo(tiposItem);
 
-export default tipoVenta;
+export default tiposVenta;

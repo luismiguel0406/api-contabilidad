@@ -11,6 +11,7 @@ import {
   Impuestos,
   MediosDePago,
   Perfiles,
+  Tipogasto,
 } from "./helpers/Querys Iniciales/Querys";
 import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
 import MonedasRoutes from "./routes/facturacion/moneda.route";
@@ -25,6 +26,7 @@ import impuestosRoutes from "./routes/facturacion/impuestos.route";
 import medioDePagoRoutes from "./routes/facturacion/medioDePagp.route";
 import facturasRoutes from "./routes/facturacion/factura.route";
 import usuariosRoutes from "./routes/Usuarios/usuarios.route";
+import tipoGastosRoutes from  "./routes/facturacion/tipoGastos.route";
 import cors from "cors";
 import variablesEnv from "./config/index";
 import db from "./Database/connectionDB";
@@ -82,6 +84,7 @@ class Server {
     this.app.use(medioDePagoRoutes);
     this.app.use(facturasRoutes);
     this.app.use(usuariosRoutes);
+    this.app.use(tipoGastosRoutes);
   }
 
   InicioAplicacion() {
@@ -96,17 +99,19 @@ class Server {
       const impuestos = new Impuestos();
       const mediosDePago = new MediosDePago();
       const Perfil = new Perfiles();
+      const tipoGasto = new Tipogasto();
 
       tipoClientes.InsertarTipoClientes();
       tipoContacto.InsertarTipoContactos();
       tipoProveedor.InsertarTiposProveedores();
       moneda.InsertarMonedas();
-      tipoItem.InsertarTipoItem();
       comprobantes.InsertarComprobantes();
+      tipoItem.InsertarTipoItem();
       tipoVenta.InsertarTipoVentas();
       impuestos.InsertarImpuestos();
       mediosDePago.InsertarMediosDePago();
       Perfil.InsertarPerfiles();
+      tipoGasto.InsertarTipoGasto();
     } catch (error) {
       console.error(`Error Metodo Inicio Aplicacion, ${error}`);
     }
