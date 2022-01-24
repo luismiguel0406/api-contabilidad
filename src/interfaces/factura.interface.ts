@@ -3,7 +3,7 @@ export interface IFactura {
   Ncf: string;
   NcfModificado: string | null;
   subTotal: number;
-  descuento: number;
+  totalDescuentos: number;
   totalImpuestos: number;
   total: number;
   comentario: string;
@@ -17,12 +17,14 @@ export interface IFactura {
   empresaId: number;
   clienteId: number;
   monedaId: number;
-  medioPagoId:number;
-  detalleFactura: IDetalleFactura | null;
+  medioDePagoId:number;
+  tipoVentaId:number;
+  detalleFactura: Array<IDetalleFactura>;
+  
 }
 
 export interface IDetalleFactura {
-  facturaId: string | null;
+  facturaId: number;
   itemId: number;
   descripcion: string;
   cantidad: number;

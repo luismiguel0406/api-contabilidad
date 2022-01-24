@@ -1,9 +1,8 @@
 import { DataTypes } from "sequelize";
-import conexion from "../../../Database/connectionDB";
-import tiposItem from "../../Inventario/tipoItem.model";
+import conexion from "../../../../Database/connectionDB";
 
-const tipoVenta = conexion.define(
-  "tipoVenta",
+const tipoGasto = conexion.define(
+  "tipoGasto",
   {
     descripcion: {
       type: DataTypes.STRING,
@@ -26,18 +25,9 @@ const tipoVenta = conexion.define(
     },
     terminal: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    tipoItemId: {
-      type: DataTypes.INTEGER,
     },
   },
   { schema: "FACTURACION" }
 );
 
-//--- ASOCIACIONES---// 
-//tipoVentas.sync({force:true})
-tiposItem.hasMany(tipoVenta,{foreignKey:"tipoItemId"});
-tipoVenta.belongsTo(tiposItem);
-
-export default tipoVenta;
+export default tipoGasto;

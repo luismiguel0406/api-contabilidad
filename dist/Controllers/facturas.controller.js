@@ -14,10 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteFactura = exports.addFactura = exports.getFacturas = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
-const detalleFactura_service_1 = __importDefault(require("../services/facturacion/facturas/detalleFactura.service"));
 const facturas_service_1 = __importDefault(require("../services/facturacion/facturas/facturas.service"));
 const facturas_service = new facturas_service_1.default();
-const detalleFactura_service = new detalleFactura_service_1.default();
 const getFacturas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
@@ -36,11 +34,8 @@ const getFacturas = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getFacturas = getFacturas;
 const addFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { body } = req;
-        const factura = yield facturas_service.addFactura(body);
-        const { id } = factura.dataValues;
-        const detalleFactura = yield detalleFactura_service.addDetalleFactura(body.detalleFactura, id);
-        res.json({ factura, detalleFactura });
+        const factura = yield facturas_service.addFactura(req.body);
+        res.json(factura);
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

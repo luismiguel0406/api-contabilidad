@@ -4,6 +4,7 @@ import clientes from "../../Clientes/Cliente.model";
 import empresa from "../../Empresa/empresa.model";
 import mediosDePago from "../medioDePago/medioDePago.model";
 import moneda from "../moneda/moneda.model";
+import tipoVenta from "../ventas/tipoVentas.model";
 
 const facturas = conexion.define(
   "factura",
@@ -83,12 +84,16 @@ const facturas = conexion.define(
       allowNull: false,
       defaultValue: 1,
     },
+    tipoVentaId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   { schema: "FACTURACION" }
 );
 
 //--- ASOCIACIONES---//
-
+//facturas.sync({force:true})
 clientes.hasMany(facturas, { foreignKey: "clienteId" });
 facturas.belongsTo(clientes);
 
@@ -101,4 +106,6 @@ facturas.belongsTo(empresa);
 mediosDePago.hasMany(facturas, { foreignKey: "medioDePagoId" });
 facturas.belongsTo(mediosDePago);
 
+/*tipoVenta.hasMany(facturas, { foreignKey: "tipoVentaId" });
+facturas.belongsTo(tipoVenta);*/
 export default facturas;

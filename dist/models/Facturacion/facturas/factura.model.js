@@ -85,8 +85,13 @@ const facturas = connectionDB_1.default.define("factura", {
         allowNull: false,
         defaultValue: 1,
     },
+    tipoVentaId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
 }, { schema: "FACTURACION" });
 //--- ASOCIACIONES---//
+//facturas.sync({force:true})
 Cliente_model_1.default.hasMany(facturas, { foreignKey: "clienteId" });
 facturas.belongsTo(Cliente_model_1.default);
 moneda_model_1.default.hasMany(facturas, { foreignKey: "monedaId" });
@@ -95,5 +100,7 @@ empresa_model_1.default.hasMany(facturas, { foreignKey: "empresaId" });
 facturas.belongsTo(empresa_model_1.default);
 medioDePago_model_1.default.hasMany(facturas, { foreignKey: "medioDePagoId" });
 facturas.belongsTo(medioDePago_model_1.default);
+/*tipoVenta.hasMany(facturas, { foreignKey: "tipoVentaId" });
+facturas.belongsTo(tipoVenta);*/
 exports.default = facturas;
 //# sourceMappingURL=factura.model.js.map

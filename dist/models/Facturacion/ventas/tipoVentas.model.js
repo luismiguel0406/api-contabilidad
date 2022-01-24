@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../../Database/connectionDB"));
 const tipoItem_model_1 = __importDefault(require("../../Inventario/tipoItem.model"));
-const tipoVentas = connectionDB_1.default.define("tipoVenta", {
+const tipoVenta = connectionDB_1.default.define("tipoVenta", {
     descripcion: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
@@ -35,7 +35,8 @@ const tipoVentas = connectionDB_1.default.define("tipoVenta", {
     },
 }, { schema: "FACTURACION" });
 //--- ASOCIACIONES---// 
-tipoItem_model_1.default.hasMany(tipoVentas, { foreignKey: "tipoItemId" });
-tipoVentas.belongsTo(tipoItem_model_1.default);
-exports.default = tipoVentas;
+//tipoVentas.sync({force:true})
+tipoItem_model_1.default.hasMany(tipoVenta, { foreignKey: "tipoItemId" });
+tipoVenta.belongsTo(tipoItem_model_1.default);
+exports.default = tipoVenta;
 //# sourceMappingURL=tipoVentas.model.js.map

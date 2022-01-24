@@ -709,7 +709,7 @@ class TipoVenta {
     InsertarTipoVentas() {
         try {
             tipoVentas_model_1.default.afterSync("createTipoVenta", () => __awaiter(this, void 0, void 0, function* () {
-                yield tipoItem_model_1.default.bulkCreate(this.tipoVentaArray);
+                yield tipoVentas_model_1.default.bulkCreate(this.tipoVentaArray);
             }));
         }
         catch (error) {

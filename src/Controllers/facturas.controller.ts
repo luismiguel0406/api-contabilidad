@@ -1,12 +1,9 @@
 import { Request, Response } from "express";
 import { IFactura } from "interfaces/factura.interface";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
-import DetalleFacturaService from "../services/facturacion/facturas/detalleFactura.service";
 import FacturasService from "../services/facturacion/facturas/facturas.service";
 
 const facturas_service = new FacturasService();
-const detalleFactura_service = new DetalleFacturaService();
-
 
 export const getFacturas = async (req: Request, res: Response) => {
   try {
@@ -29,16 +26,8 @@ export const getFacturas = async (req: Request, res: Response) => {
 
 export const addFactura = async (req: Request, res: Response) => {
   try {
-    const { body } = req;
-
-    const factura: any = await facturas_service.addFactura(body);
-    const { id } = factura.dataValues;
-    const detalleFactura = await detalleFactura_service.addDetalleFactura(
-      body.detalleFactura,
-      id
-    );
-
-    res.json({ factura, detalleFactura });
+    const factura = await facturas_service.addFactura(req.body);
+    res.json(factura);
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ message: msg, error });
