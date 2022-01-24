@@ -18,8 +18,10 @@ import { IImpuestos } from "../../interfaces/impuestos.interface";
 import impuestos from "../../models/Facturacion/impuestos/impuestos.model";
 import { IMedioDePago } from "../../interfaces/medioDePago.interface";
 import mediosDePago from "../../models/Facturacion/medioDePago/medioDePago.model";
-import { IPerfil } from "../../interfaces/perfil.interface"
+import { IPerfil } from "../../interfaces/perfil.interface";
 import perfil from "../../models/Perfiles/perfil.model";
+import { ITipoGasto } from "interfaces/gasto.interface";
+import tipoGasto from "models/Facturacion/Facturas por pagar/Gastos/gastos.model";
 
 export class TiposProveedores {
   private tipoProveedoresArray: Array<ITipoPoveedor>;
@@ -58,7 +60,7 @@ export class TiposProveedores {
       try {
         await tipoProveedor.bulkCreate(this.tipoProveedoresArray);
       } catch (error) {
-        console.error(error, "Error insertando tipos proveedores");
+        console.error(`Error insertando tipos proveedores, ${error}`);
       }
     });
   }
@@ -109,7 +111,7 @@ export class TiposContactos {
       try {
         await tiposContactos.bulkCreate(this.tipoContactosArray);
       } catch (error) {
-        console.error(error, "Error insertando tipos contactos");
+        console.error(`Error insertando tipos contactos, ${error}`);
       }
     });
   }
@@ -144,7 +146,7 @@ export class TiposClientes {
         await tipoCliente.bulkCreate(this.tipoClientesArray);
       });
     } catch (error) {
-      console.error(error, "Error insertando tipo Clientes");
+      console.error(`Error insertando tipo Clientes, ${error}`);
     }
   }
 }
@@ -181,7 +183,7 @@ export class Moneda {
         await moneda.bulkCreate(this.monedaArray);
       });
     } catch (error) {
-      console.error(error, "Error insertando Monedas");
+      console.error(`Error insertando Monedas, ${error}`);
     }
   }
 }
@@ -488,7 +490,7 @@ export class CuentasContablesPadres {
         await cuentaContable.bulkCreate(this.CuentaContableArray);
       });
     } catch (error) {
-      console.error(error, "Error insertando Cuentas Contables");
+      console.error(`Error insertando Cuentas Contables, ${error}`);
     }
   }
 }
@@ -605,7 +607,7 @@ export class TiposComprobantes {
         await tipoComprobantes.bulkCreate(this.tipoComprobantesArray);
       });
     } catch (error) {
-      console.error(error, "Error insertando comprobantes");
+      console.error(error, `Error insertando comprobantes, ${error}`);
     }
   }
 }
@@ -640,7 +642,7 @@ export class TiposItem {
         await tiposItem.bulkCreate(this.tipoItemArray);
       });
     } catch (error) {
-      console.error("Error insertando Tipos item");
+      console.error(`Error insertando Tipos item, ${error}`);
     }
   }
 }
@@ -721,7 +723,7 @@ export class TipoVenta {
         await tipoVenta.bulkCreate(this.tipoVentaArray);
       });
     } catch (error) {
-      console.error("Error insertando Tipos venta");
+      console.error(`Error insertando Tipos venta, ${error}`);
     }
   }
 }
@@ -850,7 +852,7 @@ export class Impuestos {
         await impuestos.bulkCreate(this.impuestoArray);
       });
     } catch (error) {
-      console.error("Error insertando impuestos");
+      console.error(`Error insertando impuestos, ${error}`);
     }
   }
 }
@@ -884,7 +886,7 @@ export class MediosDePago {
         mediosDePago.bulkCreate(this.medioDePagoArray);
       });
     } catch (error) {
-      console.error("Error insertando medios de pago");
+      console.error(`Error insertando medios de pago, ${error}`);
     }
   }
 }
@@ -914,7 +916,121 @@ export class Perfiles {
         perfil.bulkCreate(this.PerfilesArray);
       });
     } catch (error) {
-      console.error("Error al insertar los perfiles");
+      console.error(`Error al insertar los perfiles, ${error}`);
+    }
+  }
+}
+
+export class Tipogasto {
+  private tipoGastoArray: Array<ITipoGasto>;
+  constructor() {
+    this.tipoGastoArray = [
+      {
+        descripcion: "00-NO ESPECIFICADO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "01-GASTOS DE PERSONAL",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "02-GASTOS POR TRABAJOS, SUMINISTROS Y SERVICIOS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "03-ARRENDAMIENTOS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "04-GASTOS DE ACTIVOS FIJOS'",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "05-GASTOS DE REPRESENTACIÓN",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "06-OTRAS DEDUCCIONES ADMITIDAS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "07-GASTOS FINANCIEROS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "08-GASTOS EXTRAORDINARIOS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "09-COMPRAS Y GASTOS QUE FORMAN PARTE DEL COSTO DE VENTA",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "10-ADQUISICIONES DE ACTIVOS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "11-GASTOS DE SEGUROS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+    ];
+  }
+  InsertarTipoGasto(){
+
+    try {
+      tipoGasto.afterSync("createTipoGastos",async()=>{
+        tipoGasto.bulkCreate(this.tipoGastoArray);
+      })
+    } catch (error) {
+      console.error(`Error al insertar tipos de gastos, ${error}`)
     }
   }
 }
