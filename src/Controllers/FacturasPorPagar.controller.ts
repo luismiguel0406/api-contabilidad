@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { MsgRespuesta } from "helpers/MensajesError/MensajesRespuestaCliente";
 import TipoFacturaPorPagarService from "services/facturacion/facturas por pagar/tipoFacturasPorPagar/tipoFacturasPorPagar.service";
 
+//-------TIPO FACTURAS -----//
+
 const tipoFactura_service = new TipoFacturaPorPagarService();
 
 export const getTipoFactura = async (req: Request, res: Response) => {

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
+exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
 const CuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/CuentasContables.model"));
@@ -25,6 +25,7 @@ const impuestos_model_1 = __importDefault(require("../../models/Facturacion/impu
 const medioDePago_model_1 = __importDefault(require("../../models/Facturacion/medioDePago/medioDePago.model"));
 const perfil_model_1 = __importDefault(require("../../models/Perfiles/perfil.model"));
 const gastos_model_1 = __importDefault(require("../../models/Facturacion/Facturas por pagar/Gastos/gastos.model"));
+const tiposFacturasPorPagar_model_1 = __importDefault(require("../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model"));
 class TiposProveedores {
     // AGREGO TIPO AL INICIO DEL PROGRAMA //
     constructor() {
@@ -1021,4 +1022,37 @@ class Tipogasto {
     }
 }
 exports.Tipogasto = Tipogasto;
+class TipoFacturasPorPagar {
+    constructor() {
+        this.tipoFacturasPorPagarArray = [
+            {
+                descripcion: "GASTO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                descripcion: "NOTA DE CREDITO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+        ];
+    }
+    InsertarTipoFactura() {
+        try {
+            tiposFacturasPorPagar_model_1.default.afterSync("createTipoFacturas", () => __awaiter(this, void 0, void 0, function* () {
+                tiposFacturasPorPagar_model_1.default.bulkCreate(this.tipoFacturasPorPagarArray);
+            }));
+        }
+        catch (error) {
+            console.error(`Error al insertar tipo de facturas, ${error}`);
+        }
+    }
+}
+exports.TipoFacturasPorPagar = TipoFacturasPorPagar;
 //# sourceMappingURL=Querys.js.map

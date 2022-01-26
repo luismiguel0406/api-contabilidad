@@ -20,8 +20,10 @@ import { IMedioDePago } from "../../interfaces/medioDePago.interface";
 import mediosDePago from "../../models/Facturacion/medioDePago/medioDePago.model";
 import { IPerfil } from "../../interfaces/perfil.interface";
 import perfil from "../../models/Perfiles/perfil.model";
-import { ITipoGasto } from "interfaces/gasto.interface";
+import { ITipoGasto } from "../../interfaces/gasto.interface";
 import tipoGasto from "../../models/Facturacion/Facturas por pagar/Gastos/gastos.model";
+import { ITipoFacturasPorPagar } from "../../interfaces/facturasPorPagar.interface";
+import tipoFacturasPorPagar from "../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model";
 
 export class TiposProveedores {
   private tipoProveedoresArray: Array<ITipoPoveedor>;
@@ -1023,14 +1025,47 @@ export class Tipogasto {
       },
     ];
   }
-  InsertarTipoGasto(){
-
+  InsertarTipoGasto() {
     try {
-      tipoGasto.afterSync("createTipoGastos",async()=>{
+      tipoGasto.afterSync("createTipoGastos", async () => {
         tipoGasto.bulkCreate(this.tipoGastoArray);
-      })
+      });
     } catch (error) {
-      console.error(`Error al insertar tipos de gastos, ${error}`)
+      console.error(`Error al insertar tipos de gastos, ${error}`);
+    }
+  }
+}
+
+export class TipoFacturasPorPagar {
+  private tipoFacturasPorPagarArray: Array<ITipoFacturasPorPagar>;
+  constructor() {
+    this.tipoFacturasPorPagarArray = [
+      {
+        descripcion: "GASTO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "NOTA DE CREDITO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+    ];
+  }
+
+  InsertarTipoFactura() {
+    try {
+      tipoFacturasPorPagar.afterSync("createTipoFacturas", async () => {
+        tipoFacturasPorPagar.bulkCreate(this.tipoFacturasPorPagarArray);
+      });
+    } catch (error) {
+      console.error(`Error al insertar tipo de facturas, ${error}`);
     }
   }
 }

@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTipoFactura = void 0;
 const MensajesRespuestaCliente_1 = require("helpers/MensajesError/MensajesRespuestaCliente");
 const tipoFacturasPorPagar_service_1 = __importDefault(require("services/facturacion/facturas por pagar/tipoFacturasPorPagar/tipoFacturasPorPagar.service"));
+//-------TIPO FACTURAS -----//
 const tipoFactura_service = new tipoFacturasPorPagar_service_1.default();
 const getTipoFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
