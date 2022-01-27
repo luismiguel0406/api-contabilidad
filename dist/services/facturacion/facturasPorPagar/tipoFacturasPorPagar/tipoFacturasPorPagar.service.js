@@ -12,24 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const _1 = __importDefault(require("."));
+const facturasPorPagar_model_1 = __importDefault(require("../../../../models/Facturacion/Facturas por pagar/facturasPorPagar.model"));
 class TipoFacturaPorPagarService {
     getTiposFactura(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const Tipofactura = id === null
-                ? yield _1.default.findAll({ where: { estado: "1" } })
-                : yield _1.default.findOne({ where: { id, estado: "1" } });
+                ? yield facturasPorPagar_model_1.default.findAll({ where: { estado: "1" } })
+                : yield facturasPorPagar_model_1.default.findOne({ where: { id, estado: "1" } });
             return Tipofactura;
         });
     }
     addTipoFactura(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield _1.default.create(body);
+            yield facturasPorPagar_model_1.default.create(body);
         });
     }
     updateTipoFacturas(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield _1.default.update(body, {
+            yield facturasPorPagar_model_1.default.update(body, {
                 where: {
                     id,
                     estado: "1",
@@ -40,7 +40,7 @@ class TipoFacturaPorPagarService {
     ;
     deleteTipoFacturas(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield _1.default.update({ estado: "0" }, { where: { id } });
+            yield facturasPorPagar_model_1.default.update({ estado: "0" }, { where: { id } });
         });
     }
     ;

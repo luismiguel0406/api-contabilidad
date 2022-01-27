@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
-import TipoGastosService from "../services/facturacion/facturas por pagar/tipoGastos/tipoGastos.service";
+import TipoGastosService from "../services/facturacion/facturasPorPagar/tipoGastos/tipoGastos.service";
 
 const tipoGasto_service = new TipoGastosService();
 

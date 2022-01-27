@@ -17,9 +17,6 @@ const facturas = conexion.define(
       type: DataTypes.STRING(25),
       allowNull: false,
     },
-    NcfModificado: {
-      type: DataTypes.STRING(25),
-    },
     subTotal: {
       type: DataTypes.FLOAT,
       allowNull: false,
@@ -27,7 +24,7 @@ const facturas = conexion.define(
     totalDescuentos: {
       type: DataTypes.FLOAT,
       allowNull: false,
-      defaultValue: 0.0,
+      defaultValue: 0,
     },
     totalImpuestos: {
       type: DataTypes.FLOAT,
@@ -93,7 +90,7 @@ const facturas = conexion.define(
 );
 
 //--- ASOCIACIONES---//
-//facturas.sync({force:true})
+
 clientes.hasMany(facturas, { foreignKey: "clienteId" });
 facturas.belongsTo(clientes);
 
@@ -106,7 +103,7 @@ facturas.belongsTo(empresa);
 mediosDePago.hasMany(facturas, { foreignKey: "medioDePagoId" });
 facturas.belongsTo(mediosDePago);
 
-tiposVenta.hasMany(facturas, { foreignKey: 'tipoVentaId' });
+tiposVenta.hasMany(facturas, { foreignKey: "tipoVentaId" });
 facturas.belongsTo(tiposVenta);
 
 export default facturas;

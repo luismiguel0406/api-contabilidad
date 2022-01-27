@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { MsgRespuesta } from "helpers/MensajesError/MensajesRespuestaCliente";
-import TipoFacturaPorPagarService from "services/facturacion/facturas por pagar/tipoFacturasPorPagar/tipoFacturasPorPagar.service";
+import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
+import TipoFacturaPorPagarService from "../services/facturacion/facturasPorPagar/tipoFacturasPorPagar/tipoFacturasPorPagar.service";
 
 //-------TIPO FACTURAS -----//
 

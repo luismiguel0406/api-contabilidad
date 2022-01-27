@@ -1,11 +1,12 @@
-import empresas from "models/Empresa/empresa.model";
-import Proveedores from "models/Proveedores/Proveedores.model";
+import empresas from "../../Empresa/empresa.model";
+import Proveedores from "../../Proveedores/Proveedores.model";
 import { DataTypes } from "sequelize";
 import conexion from "../../../Database/connectionDB";
 import mediosDePago from "../medioDePago/medioDePago.model";
 import moneda from "../moneda/moneda.model";
 import tipoGasto from "./Gastos/gastos.model";
 import tipoFacturasPorPagar from "./tiposFacturasPorPagar/tiposFacturasPorPagar.model";
+
 
 const facturasPorPagar = conexion.define(
   "facturaPorPagar",
@@ -41,7 +42,7 @@ const facturasPorPagar = conexion.define(
     comentario: {
       type: DataTypes.STRING,
     },
-    fechaFactura: {
+    fecha: {
       type: DataTypes.DATE,
       allowNull: false,
     },
@@ -117,5 +118,7 @@ facturasPorPagar.belongsTo(mediosDePago);
 
 tipoGasto.hasMany(facturasPorPagar, { foreignKey: "tipoGastoId" });
 facturasPorPagar.belongsTo(tipoGasto);
+
+
 
 export default facturasPorPagar;

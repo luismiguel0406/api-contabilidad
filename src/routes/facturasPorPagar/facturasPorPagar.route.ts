@@ -1,4 +1,4 @@
-import { getTipoFactura } from "Controllers/FacturasPorPagar.controller";
+import { getTipoFactura } from "../../Controllers/FacturasPorPagar.controller";
 import {Router} from "express";
 
 const router = Router();

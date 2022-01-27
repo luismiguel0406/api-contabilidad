@@ -19,9 +19,6 @@ const facturas = connectionDB_1.default.define("factura", {
         type: sequelize_1.DataTypes.STRING(25),
         allowNull: false,
     },
-    NcfModificado: {
-        type: sequelize_1.DataTypes.STRING(25),
-    },
     subTotal: {
         type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
@@ -29,7 +26,7 @@ const facturas = connectionDB_1.default.define("factura", {
     totalDescuentos: {
         type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
-        defaultValue: 0.0,
+        defaultValue: 0,
     },
     totalImpuestos: {
         type: sequelize_1.DataTypes.FLOAT,
@@ -92,7 +89,6 @@ const facturas = connectionDB_1.default.define("factura", {
     },
 }, { schema: "FACTURACION" });
 //--- ASOCIACIONES---//
-//facturas.sync({force:true})
 Cliente_model_1.default.hasMany(facturas, { foreignKey: "clienteId" });
 facturas.belongsTo(Cliente_model_1.default);
 moneda_model_1.default.hasMany(facturas, { foreignKey: "monedaId" });
@@ -101,7 +97,7 @@ empresa_model_1.default.hasMany(facturas, { foreignKey: "empresaId" });
 facturas.belongsTo(empresa_model_1.default);
 medioDePago_model_1.default.hasMany(facturas, { foreignKey: "medioDePagoId" });
 facturas.belongsTo(medioDePago_model_1.default);
-tipoVentas_model_1.default.hasMany(facturas, { foreignKey: 'tipoVentaId' });
+tipoVentas_model_1.default.hasMany(facturas, { foreignKey: "tipoVentaId" });
 facturas.belongsTo(tipoVentas_model_1.default);
 exports.default = facturas;
 //# sourceMappingURL=factura.model.js.map

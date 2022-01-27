@@ -35,7 +35,6 @@ const tiposVenta = connectionDB_1.default.define("tipoVenta", {
     },
 }, { schema: "FACTURACION" });
 //--- ASOCIACIONES---// 
-//tiposVenta.sync({force:true})
 tipoItem_model_1.default.hasMany(tiposVenta, { foreignKey: "tipoItemId" });
 tiposVenta.belongsTo(tipoItem_model_1.default);
 exports.default = tiposVenta;

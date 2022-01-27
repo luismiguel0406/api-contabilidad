@@ -1,7 +1,6 @@
 export interface IFactura {
   noFactura: number;
   Ncf: string;
-  NcfModificado: string | null;
   subTotal: number;
   totalDescuentos: number;
   totalImpuestos: number;

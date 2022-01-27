@@ -12,38 +12,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const _1 = __importDefault(require("."));
-class TipoFacturaPorPagarService {
-    getTiposFactura(id = null) {
+const facturasPorPagar_model_1 = __importDefault(require("models/Facturacion/Facturas por pagar/facturasPorPagar.model"));
+class FacturasPorPagarService {
+    getFacturasPorPagar(id = null, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const Tipofactura = id === null
-                ? yield _1.default.findAll({ where: { estado: "1" } })
-                : yield _1.default.findOne({ where: { id, estado: "1" } });
-            return Tipofactura;
+            const FacturasPorPagar = id === null
+                ? yield facturasPorPagar_model_1.default.findAll({ where: { empresaId, estado: "1" } })
+                : yield facturasPorPagar_model_1.default.findOne({
+                    where: { id, empresaId, estado: "1" },
+                });
+            return FacturasPorPagar;
         });
     }
-    addTipoFactura(body) {
+    addfacturasPorPagar(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield _1.default.create(body);
+            // codes here
         });
     }
-    updateTipoFacturas(body, id) {
+    deleteFacturasPorPagar(id, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield _1.default.update(body, {
-                where: {
-                    id,
-                    estado: "1",
-                },
-            });
+            yield facturasPorPagar_model_1.default.update({ estado: "0" }, { where: { id, empresaId } });
         });
     }
-    ;
-    deleteTipoFacturas(id) {
+    updateFacturasPorPagar() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield _1.default.update({ estado: "0" }, { where: { id } });
+            return "Las Facturas no se actualizan";
         });
     }
-    ;
 }
-exports.default = TipoFacturaPorPagarService;
-//# sourceMappingURL=tipoFacturasPorPagar.service.js.map
+exports.default = FacturasPorPagarService;
+//# sourceMappingURL=facturasPorPagar.service.js.map

@@ -28,6 +28,7 @@ const medioDePagp_route_1 = __importDefault(require("./routes/facturacion/medioD
 const factura_route_1 = __importDefault(require("./routes/facturacion/factura.route"));
 const usuarios_route_1 = __importDefault(require("./routes/Usuarios/usuarios.route"));
 const tipoGastos_route_1 = __importDefault(require("./routes/facturacion/tipoGastos.route"));
+const facturasPorPagar_route_1 = __importDefault(require("./routes/facturasPorPagar/facturasPorPagar.route"));
 const cors_1 = __importDefault(require("cors"));
 const index_1 = __importDefault(require("./config/index"));
 const connectionDB_1 = __importDefault(require("./Database/connectionDB"));
@@ -53,6 +54,7 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield connectionDB_1.default.authenticate();
+                // await  db.sync({force:true})
                 console.log("Database CACTUS Online");
             }
             catch (error) {
@@ -81,6 +83,7 @@ class Server {
         this.app.use(factura_route_1.default);
         this.app.use(usuarios_route_1.default);
         this.app.use(tipoGastos_route_1.default);
+        this.app.use(facturasPorPagar_route_1.default);
     }
     InicioAplicacion() {
         try {
@@ -95,6 +98,7 @@ class Server {
             const mediosDePago = new Querys_1.MediosDePago();
             const Perfil = new Querys_1.Perfiles();
             const tipoGasto = new Querys_1.Tipogasto();
+            const tipoFacturasPorPagar = new Querys_1.TipoFacturasPorPagar();
             tipoClientes.InsertarTipoClientes();
             tipoContacto.InsertarTipoContactos();
             tipoProveedor.InsertarTiposProveedores();
@@ -106,6 +110,7 @@ class Server {
             mediosDePago.InsertarMediosDePago();
             Perfil.InsertarPerfiles();
             tipoGasto.InsertarTipoGasto();
+            tipoFacturasPorPagar.InsertarTipoFactura();
         }
         catch (error) {
             console.error(`Error Metodo Inicio Aplicacion, ${error}`);

@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const empresa_model_1 = __importDefault(require("models/Empresa/empresa.model"));
-const Proveedores_model_1 = __importDefault(require("models/Proveedores/Proveedores.model"));
+const empresa_model_1 = __importDefault(require("../../Empresa/empresa.model"));
+const Proveedores_model_1 = __importDefault(require("../../Proveedores/Proveedores.model"));
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../../Database/connectionDB"));
 const medioDePago_model_1 = __importDefault(require("../medioDePago/medioDePago.model"));
@@ -43,7 +43,7 @@ const facturasPorPagar = connectionDB_1.default.define("facturaPorPagar", {
     comentario: {
         type: sequelize_1.DataTypes.STRING,
     },
-    fechaFactura: {
+    fecha: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
     },

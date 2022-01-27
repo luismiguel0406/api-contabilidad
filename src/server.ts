@@ -12,6 +12,7 @@ import {
   MediosDePago,
   Perfiles,
   Tipogasto,
+  TipoFacturasPorPagar,
 } from "./helpers/Querys Iniciales/Querys";
 import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
 import MonedasRoutes from "./routes/facturacion/moneda.route";
@@ -27,10 +28,12 @@ import medioDePagoRoutes from "./routes/facturacion/medioDePagp.route";
 import facturasRoutes from "./routes/facturacion/factura.route";
 import usuariosRoutes from "./routes/Usuarios/usuarios.route";
 import tipoGastosRoutes from  "./routes/facturacion/tipoGastos.route";
+import tipoFacturasPorpPagarRoutes from "./routes/facturasPorPagar/facturasPorPagar.route"
 import cors from "cors";
 import variablesEnv from "./config/index";
 import db from "./Database/connectionDB";
 import helmet from "helmet";
+
 
 /*INICIALIZO EL SERVIDOR*/
 class Server {
@@ -58,6 +61,7 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
+     // await  db.sync({force:true})
       console.log("Database CACTUS Online");
     } catch (error) {
       console.log(`Error ${error}`);
@@ -85,6 +89,7 @@ class Server {
     this.app.use(facturasRoutes);
     this.app.use(usuariosRoutes);
     this.app.use(tipoGastosRoutes);
+    this.app.use(tipoFacturasPorpPagarRoutes);
   }
 
   InicioAplicacion() {
@@ -100,6 +105,7 @@ class Server {
       const mediosDePago = new MediosDePago();
       const Perfil = new Perfiles();
       const tipoGasto = new Tipogasto();
+      const tipoFacturasPorPagar = new TipoFacturasPorPagar();
 
       tipoClientes.InsertarTipoClientes();
       tipoContacto.InsertarTipoContactos();
@@ -112,6 +118,7 @@ class Server {
       mediosDePago.InsertarMediosDePago();
       Perfil.InsertarPerfiles();
       tipoGasto.InsertarTipoGasto();
+      tipoFacturasPorPagar.InsertarTipoFactura();
     } catch (error) {
       console.error(`Error Metodo Inicio Aplicacion, ${error}`);
     }

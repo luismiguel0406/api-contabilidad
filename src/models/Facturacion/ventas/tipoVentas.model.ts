@@ -36,7 +36,7 @@ const tiposVenta = conexion.define(
 );
 
 //--- ASOCIACIONES---// 
-//tiposVenta.sync({force:true})
+
 tiposItem.hasMany(tiposVenta,{foreignKey:"tipoItemId"});
 tiposVenta.belongsTo(tiposItem);
 

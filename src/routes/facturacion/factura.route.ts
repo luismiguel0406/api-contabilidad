@@ -1,5 +1,5 @@
 import {Router} from "express";
-import { addFactura, getFacturas } from "../../Controllers/facturas.controller";
+import { addFactura, deleteFactura, getFacturas } from "../../Controllers/facturas.controller";
 
 const router = Router();
 
@@ -8,5 +8,6 @@ const facturas = "facturas";
 
 router.get(`${endPointFacturacion}/${facturas}/:id?`,getFacturas);
 router.post(`${endPointFacturacion}/${facturas}`,addFactura);
+router.delete(`${endPointFacturacion}/${facturas}`,deleteFactura);
 
 export default router;
