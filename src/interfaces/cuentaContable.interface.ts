@@ -1,5 +1,4 @@
 export interface ICuentaContable {
- 
   cuenta: string;
   descripcion: string;
   estado: boolean;
@@ -10,5 +9,11 @@ export interface ICuentaContable {
   cuentaPadreId: number | null;
   empresaId: number;
   monedaId: number;
-  
+}
+
+export interface ITipoCuentaContable {
+  descripcion: string;
+  estado: boolean;
+  createdAt: Date;
+  updatedAt: Date | null;
 }

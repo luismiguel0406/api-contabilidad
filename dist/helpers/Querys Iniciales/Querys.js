@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
+exports.TipoCuentasContables = exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.CuentasContablesPadres = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
 const CuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/CuentasContables.model"));
@@ -26,6 +26,7 @@ const medioDePago_model_1 = __importDefault(require("../../models/Facturacion/me
 const perfil_model_1 = __importDefault(require("../../models/Perfiles/perfil.model"));
 const gastos_model_1 = __importDefault(require("../../models/Facturacion/Facturas por pagar/Gastos/gastos.model"));
 const tiposFacturasPorPagar_model_1 = __importDefault(require("../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model"));
+const tipoCuentaContable_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoCuentaContable.model"));
 class TiposProveedores {
     // AGREGO TIPO AL INICIO DEL PROGRAMA //
     constructor() {
@@ -1055,4 +1056,63 @@ class TipoFacturasPorPagar {
     }
 }
 exports.TipoFacturasPorPagar = TipoFacturasPorPagar;
+class TipoCuentasContables {
+    constructor() {
+        this.tipoCuentaContableArray = [
+            {
+                descripcion: "ACTIVOS",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+            },
+            {
+                descripcion: "PASIVOS",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+            },
+            {
+                descripcion: "CAPITAL",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+            },
+            {
+                descripcion: "INGRESOS",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+            },
+            {
+                descripcion: "COSTOS",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+            },
+            {
+                descripcion: "GASTOS",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+            },
+            {
+                descripcion: "RESUMENES",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+            },
+        ];
+    }
+    InsertarTipoCuentasContables() {
+        try {
+            tipoCuentaContable_model_1.default.afterSync("createTiposCuenta", () => __awaiter(this, void 0, void 0, function* () {
+                tipoCuentaContable_model_1.default.bulkCreate(this.tipoCuentaContableArray);
+            }));
+        }
+        catch (error) {
+            console.error(`Error al insertar tipo cuenta contable, ${error}`);
+        }
+    }
+}
+exports.TipoCuentasContables = TipoCuentasContables;
 //# sourceMappingURL=Querys.js.map

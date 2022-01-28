@@ -1,8 +1,8 @@
 import { Response, Request } from "express";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
-import CuentasContables from "../services/cuentas/cuentasContables.service";
+import CuentasContablesService from "../services/cuentas/cuentasContables.service";
 
-const cuentaContable_service = new CuentasContables();
+const cuentaContable_service = new CuentasContablesService();
 
 export const postCuentaContable = async (req: Request, res: Response) => {
   try {
@@ -27,8 +27,8 @@ export const getCuentasContables = async (req: Request, res: Response) => {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
-    const { statusCode, msg } = MsgRespuesta.Success;
-    res.status(statusCode).json({ Cuentas: cuentaResult, Message: msg });
+ 
+    res.json({ Cuentas: cuentaResult});
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ Message: msg, error });
@@ -61,3 +61,25 @@ export const deleteCuentasContables = async (req: Request, res: Response) => {
     res.status(statusCode).json({ Message: msg, error });
   }
 };
+
+//---------TIPOS CUENTAS CONTABLES ----------//
+
+export const getTiposCuentasContables = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const tipoCuentaResult: any =
+      await cuentaContable_service.getTiposCuentaContable(id);
+
+    if (Object.entries(tipoCuentaResult).length === 0) {
+      const { statusCode, msg } = MsgRespuesta.notFound;
+      return res.status(statusCode).json({ Message: msg });
+    }
+    res.json({ TiposCuentas: tipoCuentaResult });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ Message: msg, error });
+  }
+};
+
+

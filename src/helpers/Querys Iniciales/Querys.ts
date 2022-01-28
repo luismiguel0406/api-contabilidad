@@ -1,7 +1,10 @@
 import { ITipoCliente } from "../../interfaces/cliente.interface";
 import { ITipoComprobante } from "../../interfaces/comprobante.interface";
 import { ItipoContacto } from "../../interfaces/contactos.interface";
-import { ICuentaContable } from "../../interfaces/cuentaContable.interface";
+import {
+  ICuentaContable,
+  ITipoCuentaContable,
+} from "../../interfaces/cuentaContable.interface";
 import { IMoneda } from "../../interfaces/moneda.interface";
 import { ITipoPoveedor } from "../../interfaces/proveedor.interface";
 import { ITipoItem } from "../../interfaces/Item.interface";
@@ -24,6 +27,7 @@ import { ITipoGasto } from "../../interfaces/gasto.interface";
 import tipoGasto from "../../models/Facturacion/Facturas por pagar/Gastos/gastos.model";
 import { ITipoFacturasPorPagar } from "../../interfaces/facturasPorPagar.interface";
 import tipoFacturasPorPagar from "../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model";
+import tiposCuentaContable from "../../models/Cuentas Contables/tipoCuentaContable.model";
 
 export class TiposProveedores {
   private tipoProveedoresArray: Array<ITipoPoveedor>;
@@ -1066,6 +1070,65 @@ export class TipoFacturasPorPagar {
       });
     } catch (error) {
       console.error(`Error al insertar tipo de facturas, ${error}`);
+    }
+  }
+}
+
+export class TipoCuentasContables {
+  private tipoCuentaContableArray: Array<ITipoCuentaContable>;
+  constructor() {
+    this.tipoCuentaContableArray = [
+     {
+        descripcion: "ACTIVOS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+      },
+      {
+        descripcion: "PASIVOS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+      },
+      {
+        descripcion: "CAPITAL",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+      },
+      {
+        descripcion: "INGRESOS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+      },
+      {
+        descripcion: "COSTOS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+      },
+      {
+        descripcion: "GASTOS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+      },
+      {
+        descripcion: "RESUMENES",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+      },
+    ];
+  }
+  InsertarTipoCuentasContables(){
+    try {
+      tiposCuentaContable.afterSync("createTiposCuenta",async ()=>{
+        tiposCuentaContable.bulkCreate(this.tipoCuentaContableArray)
+      })
+    } catch (error) {
+      console.error(`Error al insertar tipo cuenta contable, ${error}`)
     }
   }
 }

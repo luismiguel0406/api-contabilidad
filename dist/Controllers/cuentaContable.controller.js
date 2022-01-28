@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteCuentasContables = exports.updateCuentasContables = exports.getCuentasContables = exports.postCuentaContable = void 0;
+exports.getTiposCuentasContables = exports.deleteCuentasContables = exports.updateCuentasContables = exports.getCuentasContables = exports.postCuentaContable = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const cuentasContables_service_1 = __importDefault(require("../services/cuentas/cuentasContables.service"));
 const cuentaContable_service = new cuentasContables_service_1.default();
@@ -37,8 +37,7 @@ const getCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, func
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }
-        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
-        res.status(statusCode).json({ Cuentas: cuentaResult, Message: msg });
+        res.json({ Cuentas: cuentaResult });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
@@ -73,4 +72,21 @@ const deleteCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, f
     }
 });
 exports.deleteCuentasContables = deleteCuentasContables;
+//---------TIPOS CUENTAS CONTABLES ----------//
+const getTiposCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const tipoCuentaResult = yield cuentaContable_service.getTiposCuentaContable(id);
+        if (Object.entries(tipoCuentaResult).length === 0) {
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            return res.status(statusCode).json({ Message: msg });
+        }
+        res.json({ TiposCuentas: tipoCuentaResult });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.getTiposCuentasContables = getTiposCuentasContables;
 //# sourceMappingURL=cuentaContable.controller.js.map

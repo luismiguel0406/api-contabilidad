@@ -12,8 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const tipoCuentaContable_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoCuentaContable.model"));
 const CuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/CuentasContables.model"));
-class CuentasContables {
+class CuentasContablesService {
     getCuentasContables(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const cuentaResult = id === null
@@ -40,6 +41,32 @@ class CuentasContables {
             yield CuentasContables_model_1.default.update(body, { where: { id, estado: "1" } });
         });
     }
+    //-------------TIPO CUENTAS ---------------//
+    getTiposCuentaContable(id = null) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const tipoCuentaResult = id === null
+                ? yield tipoCuentaContable_model_1.default.findAll({
+                    where: { estado: "1" },
+                })
+                : yield CuentasContables_model_1.default.findOne({ where: { id, estado: "1" } });
+            return tipoCuentaResult;
+        });
+    }
+    addTipoCuentaContable(body) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield tipoCuentaContable_model_1.default.create(body);
+        });
+    }
+    updateTipoCuentaContable(body, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield tipoCuentaContable_model_1.default.update(body, { where: { id, estado: "1" } });
+        });
+    }
+    deleteTipoCuentaContable(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield tipoCuentaContable_model_1.default.update({ estado: "0" }, { where: { id } });
+        });
+    }
 }
-exports.default = CuentasContables;
+exports.default = CuentasContablesService;
 //# sourceMappingURL=cuentasContables.service.js.map

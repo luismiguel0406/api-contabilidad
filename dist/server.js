@@ -99,6 +99,7 @@ class Server {
             const Perfil = new Querys_1.Perfiles();
             const tipoGasto = new Querys_1.Tipogasto();
             const tipoFacturasPorPagar = new Querys_1.TipoFacturasPorPagar();
+            const tipoCuentasContables = new Querys_1.TipoCuentasContables();
             tipoClientes.InsertarTipoClientes();
             tipoContacto.InsertarTipoContactos();
             tipoProveedor.InsertarTiposProveedores();
@@ -111,6 +112,7 @@ class Server {
             Perfil.InsertarPerfiles();
             tipoGasto.InsertarTipoGasto();
             tipoFacturasPorPagar.InsertarTipoFactura();
+            tipoCuentasContables.InsertarTipoCuentasContables();
         }
         catch (error) {
             console.error(`Error Metodo Inicio Aplicacion, ${error}`);

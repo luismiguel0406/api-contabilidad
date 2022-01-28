@@ -13,6 +13,7 @@ import {
   Perfiles,
   Tipogasto,
   TipoFacturasPorPagar,
+  TipoCuentasContables,
 } from "./helpers/Querys Iniciales/Querys";
 import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
 import MonedasRoutes from "./routes/facturacion/moneda.route";
@@ -106,6 +107,7 @@ class Server {
       const Perfil = new Perfiles();
       const tipoGasto = new Tipogasto();
       const tipoFacturasPorPagar = new TipoFacturasPorPagar();
+      const tipoCuentasContables = new TipoCuentasContables();
 
       tipoClientes.InsertarTipoClientes();
       tipoContacto.InsertarTipoContactos();
@@ -119,6 +121,7 @@ class Server {
       Perfil.InsertarPerfiles();
       tipoGasto.InsertarTipoGasto();
       tipoFacturasPorPagar.InsertarTipoFactura();
+      tipoCuentasContables.InsertarTipoCuentasContables();
     } catch (error) {
       console.error(`Error Metodo Inicio Aplicacion, ${error}`);
     }
