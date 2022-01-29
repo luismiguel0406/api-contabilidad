@@ -4,10 +4,10 @@ import CuentasContablesService from "../services/cuentas/cuentasContables.servic
 
 const cuentaContable_service = new CuentasContablesService();
 
-export const postCuentaContable = async (req: Request, res: Response) => {
+export const postGrupoCuentaContable = async (req: Request, res: Response) => {
   try {
     const { body } = req;
-    await cuentaContable_service.addCuentaContable(body);
+    await cuentaContable_service.addGrupoCuentaContable(body);
     const { statusCode, msg } = MsgRespuesta.created;
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
@@ -16,30 +16,30 @@ export const postCuentaContable = async (req: Request, res: Response) => {
   }
 };
 
-export const getCuentasContables = async (req: Request, res: Response) => {
+export const getGrupoCuentasContables = async (req: Request, res: Response) => {
   try {
     
     const { id } = req.params;
 
-    const cuentaResult = await cuentaContable_service.getCuentasContables(id);
+    const grupoCuentaResult:any = await cuentaContable_service.getGrupoCuentasContables(id);
 
-    if (cuentaResult === null) {
+    if (Object.entries(grupoCuentaResult).length === 0) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
  
-    res.json({ Cuentas: cuentaResult});
+    res.json({ GrupoCuentas: grupoCuentaResult});
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ Message: msg, error });
   }
 };
 
-export const updateCuentasContables = async (req: Request, res: Response) => {
+export const updateGrupoCuentasContables = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { body } = req;
-    await cuentaContable_service.updateCuentaContable(body, id);
+    await cuentaContable_service.updateGrupoCuentaContable(body, id);
 
     const { statusCode, msg } = MsgRespuesta.Success;
     res.status(statusCode).json({ Message: msg });
@@ -49,10 +49,10 @@ export const updateCuentasContables = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteCuentasContables = async (req: Request, res: Response) => {
+export const deleteGrupoCuentasContables = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    await cuentaContable_service.deleteCuentaContable(id);
+    await cuentaContable_service.deleteGrupoCuentaContable(id);
 
     const { statusCode, msg } = MsgRespuesta.noContent;
     res.status(statusCode).json({ Message: msg });

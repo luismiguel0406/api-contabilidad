@@ -1,15 +1,24 @@
-import {Router} from "express"
-import { ValidarToken } from "../../lib/Token/jsonWebToken";
-import { deleteCuentasContables, getCuentasContables, postCuentaContable, updateCuentasContables } from "../../Controllers/cuentaContable.controller";
-
+import { Router } from "express";
+import {
+  deleteGrupoCuentasContables,
+  getGrupoCuentasContables,
+  getTiposCuentasContables,
+  postGrupoCuentaContable,
+  updateGrupoCuentasContables,
+} from "../../Controllers/cuentaContable.controller";
 
 const router = Router();
-const endPointCuentas = '/api/cuentas';
+const endPointCuentas = "/api/cuentas";
+const tipoCuentas = "tipoCuentas";
 
+// TIPOS //
+router.get(`${endPointCuentas}/${tipoCuentas}/:id?`, getTiposCuentasContables);
 
-router.get(`${endPointCuentas}/:id?`,ValidarToken,getCuentasContables);
-router.post(`${endPointCuentas}`,postCuentaContable);
-router.put(`${endPointCuentas}/:id`,updateCuentasContables);
-router.delete(`${endPointCuentas}/:id`,deleteCuentasContables);
+//SUBTIPOS//
+
+router.get(`${endPointCuentas}/:id?`, getGrupoCuentasContables);
+router.post(`${endPointCuentas}`, postGrupoCuentaContable);
+router.put(`${endPointCuentas}/:id`, updateGrupoCuentasContables);
+router.delete(`${endPointCuentas}/:id`, deleteGrupoCuentasContables);
 
 export default router;

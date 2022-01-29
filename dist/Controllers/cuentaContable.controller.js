@@ -12,14 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTiposCuentasContables = exports.deleteCuentasContables = exports.updateCuentasContables = exports.getCuentasContables = exports.postCuentaContable = void 0;
+exports.getTiposCuentasContables = exports.deleteGrupoCuentasContables = exports.updateGrupoCuentasContables = exports.getGrupoCuentasContables = exports.postGrupoCuentaContable = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const cuentasContables_service_1 = __importDefault(require("../services/cuentas/cuentasContables.service"));
 const cuentaContable_service = new cuentasContables_service_1.default();
-const postCuentaContable = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const postGrupoCuentaContable = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { body } = req;
-        yield cuentaContable_service.addCuentaContable(body);
+        yield cuentaContable_service.addGrupoCuentaContable(body);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
         res.status(statusCode).json({ Message: msg });
     }
@@ -28,28 +28,28 @@ const postCuentaContable = (req, res) => __awaiter(void 0, void 0, void 0, funct
         res.status(statusCode).json({ Message: msg, error });
     }
 });
-exports.postCuentaContable = postCuentaContable;
-const getCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.postGrupoCuentaContable = postGrupoCuentaContable;
+const getGrupoCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const cuentaResult = yield cuentaContable_service.getCuentasContables(id);
-        if (cuentaResult === null) {
+        const grupoCuentaResult = yield cuentaContable_service.getGrupoCuentasContables(id);
+        if (Object.entries(grupoCuentaResult).length === 0) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }
-        res.json({ Cuentas: cuentaResult });
+        res.json({ GrupoCuentas: grupoCuentaResult });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
         res.status(statusCode).json({ Message: msg, error });
     }
 });
-exports.getCuentasContables = getCuentasContables;
-const updateCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getGrupoCuentasContables = getGrupoCuentasContables;
+const updateGrupoCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
         const { body } = req;
-        yield cuentaContable_service.updateCuentaContable(body, id);
+        yield cuentaContable_service.updateGrupoCuentaContable(body, id);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
         res.status(statusCode).json({ Message: msg });
     }
@@ -58,11 +58,11 @@ const updateCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, f
         res.status(statusCode).json({ Message: msg, error });
     }
 });
-exports.updateCuentasContables = updateCuentasContables;
-const deleteCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.updateGrupoCuentasContables = updateGrupoCuentasContables;
+const deleteGrupoCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        yield cuentaContable_service.deleteCuentaContable(id);
+        yield cuentaContable_service.deleteGrupoCuentaContable(id);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
         res.status(statusCode).json({ Message: msg });
     }
@@ -71,7 +71,7 @@ const deleteCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, f
         res.status(statusCode).json({ Message: msg, error });
     }
 });
-exports.deleteCuentasContables = deleteCuentasContables;
+exports.deleteGrupoCuentasContables = deleteGrupoCuentasContables;
 //---------TIPOS CUENTAS CONTABLES ----------//
 const getTiposCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

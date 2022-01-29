@@ -13,32 +13,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const tipoCuentaContable_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoCuentaContable.model"));
-const CuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/CuentasContables.model"));
+const grupoCuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/grupoCuentasContables.model"));
 class CuentasContablesService {
-    getCuentasContables(id = null) {
+    getGrupoCuentasContables(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const cuentaResult = id === null
-                ? yield CuentasContables_model_1.default.findAll({
+                ? yield grupoCuentasContables_model_1.default.findAll({
                     where: { estado: "1" },
                     order: ["cuenta"],
                 })
-                : yield CuentasContables_model_1.default.findOne({ where: { id, estado: "1" } });
+                : yield grupoCuentasContables_model_1.default.findOne({
+                    where: { id, estado: "1" },
+                });
             return cuentaResult;
         });
     }
-    addCuentaContable(body) {
+    addGrupoCuentaContable(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield CuentasContables_model_1.default.create(body);
+            yield grupoCuentasContables_model_1.default.create(body);
         });
     }
-    deleteCuentaContable(id) {
+    deleteGrupoCuentaContable(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield CuentasContables_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield grupoCuentasContables_model_1.default.update({ estado: "0" }, { where: { id } });
         });
     }
-    updateCuentaContable(body, id) {
+    updateGrupoCuentaContable(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield CuentasContables_model_1.default.update(body, { where: { id, estado: "1" } });
+            yield grupoCuentasContables_model_1.default.update(body, { where: { id, estado: "1" } });
         });
     }
     //-------------TIPO CUENTAS ---------------//
@@ -48,7 +50,9 @@ class CuentasContablesService {
                 ? yield tipoCuentaContable_model_1.default.findAll({
                     where: { estado: "1" },
                 })
-                : yield CuentasContables_model_1.default.findOne({ where: { id, estado: "1" } });
+                : yield grupoCuentasContables_model_1.default.findOne({
+                    where: { id, estado: "1" },
+                });
             return tipoCuentaResult;
         });
     }

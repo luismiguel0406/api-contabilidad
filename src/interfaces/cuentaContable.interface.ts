@@ -1,4 +1,4 @@
-export interface ICuentaContable {
+export interface IGrupoCuentaContable {
   cuenta: string;
   descripcion: string;
   estado: boolean;
@@ -6,7 +6,7 @@ export interface ICuentaContable {
   updatedAt: Date | null;
   usuario: string;
   terminal: string;
-  cuentaPadreId: number | null;
+  tipoCuentaContableId: number | null;
   empresaId: number;
   monedaId: number;
 }

@@ -1,32 +1,34 @@
 import tiposCuentaContable from "../../models/Cuentas Contables/tipoCuentaContable.model";
 import {
-  ICuentaContable,
+  IGrupoCuentaContable,
   ITipoCuentaContable,
 } from "../../interfaces/cuentaContable.interface";
-import cuentaContableModel from "../../models/Cuentas Contables/CuentasContables.model";
+import grupoCuentaContableModel from "../../models/Cuentas Contables/grupoCuentasContables.model";
 
 export default class CuentasContablesService {
-  async getCuentasContables(id: any = null) {
+  async getGrupoCuentasContables(id: any = null) {
     const cuentaResult =
       id === null
-        ? await cuentaContableModel.findAll({
+        ? await grupoCuentaContableModel.findAll({
             where: { estado: "1" },
             order: ["cuenta"],
           })
-        : await cuentaContableModel.findOne({ where: { id, estado: "1" } });
+        : await grupoCuentaContableModel.findOne({
+            where: { id, estado: "1" },
+          });
     return cuentaResult;
   }
 
-  async addCuentaContable(body: ICuentaContable) {
-    await cuentaContableModel.create(body);
+  async addGrupoCuentaContable(body: IGrupoCuentaContable) {
+    await grupoCuentaContableModel.create(body);
   }
 
-  async deleteCuentaContable(id: string) {
-    await cuentaContableModel.update({ estado: "0" }, { where: { id } });
+  async deleteGrupoCuentaContable(id: string) {
+    await grupoCuentaContableModel.update({ estado: "0" }, { where: { id } });
   }
 
-  async updateCuentaContable(body: ICuentaContable, id: string) {
-    await cuentaContableModel.update(body, { where: { id, estado: "1" } });
+  async updateGrupoCuentaContable(body: IGrupoCuentaContable, id: string) {
+    await grupoCuentaContableModel.update(body, { where: { id, estado: "1" } });
   }
 
   //-------------TIPO CUENTAS ---------------//
@@ -37,7 +39,9 @@ export default class CuentasContablesService {
         ? await tiposCuentaContable.findAll({
             where: { estado: "1" },
           })
-        : await cuentaContableModel.findOne({ where: { id, estado: "1" } });
+        : await grupoCuentaContableModel.findOne({
+            where: { id, estado: "1" },
+          });
     return tipoCuentaResult;
   }
 

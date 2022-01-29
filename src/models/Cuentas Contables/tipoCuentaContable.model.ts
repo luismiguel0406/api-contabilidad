@@ -1,4 +1,3 @@
-import { isSchema } from "joi";
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
 

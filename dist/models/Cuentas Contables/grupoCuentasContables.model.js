@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const empresa_model_1 = __importDefault(require("models/Empresa/empresa.model"));
+const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const moneda_model_1 = __importDefault(require("../Facturacion/moneda/moneda.model"));
@@ -58,4 +58,4 @@ grupoCuentasContables.belongsTo(moneda_model_1.default);
 empresa_model_1.default.hasMany(grupoCuentasContables, { foreignKey: "empresaId" });
 grupoCuentasContables.belongsTo(empresa_model_1.default);
 exports.default = grupoCuentasContables;
-//# sourceMappingURL=CuentasContables.model.js.map
+//# sourceMappingURL=grupoCuentasContables.model.js.map

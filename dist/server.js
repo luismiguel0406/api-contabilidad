@@ -121,8 +121,8 @@ class Server {
     InicioNuevaEmpresa() {
         try {
             const empresaId = 1; //VER AQUI
-            const cuentasContablesPadres = new Querys_1.CuentasContablesPadres(empresaId);
-            cuentasContablesPadres.InsertarCuentasContablesPadre();
+            const grupocuentasContables = new Querys_1.GrupoCuentasContables(empresaId);
+            grupocuentasContables.InsertarGruposCuentasContable();
         }
         catch (error) {
             console.error(`Error Metodo InicioNuevaEmpresa, ${error}`);

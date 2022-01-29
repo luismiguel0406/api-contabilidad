@@ -1,7 +1,7 @@
 import express, { Application } from "express";
 import {
   TiposComprobantes,
-  CuentasContablesPadres,
+  GrupoCuentasContables,
   Moneda,
   TiposClientes,
   TiposContactos,
@@ -130,8 +130,8 @@ class Server {
   InicioNuevaEmpresa() {
     try {
       const empresaId = 1; //VER AQUI
-      const cuentasContablesPadres = new CuentasContablesPadres(empresaId);
-      cuentasContablesPadres.InsertarCuentasContablesPadre();
+      const grupocuentasContables = new GrupoCuentasContables(empresaId);
+      grupocuentasContables.InsertarGruposCuentasContable();
     } catch (error) {
       console.error(`Error Metodo InicioNuevaEmpresa, ${error}`);
     }
