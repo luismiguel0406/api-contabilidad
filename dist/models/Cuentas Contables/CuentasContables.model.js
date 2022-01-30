@@ -3,59 +3,51 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const empresa_model_1 = __importDefault(require("models/Empresa/empresa.model"));
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const moneda_model_1 = __importDefault(require("../Facturacion/moneda/moneda.model"));
 const tipoCuentaContable_model_1 = __importDefault(require("./tipoCuentaContable.model"));
-const grupoCuentasContables = connectionDB_1.default.define("grupoCuentasContable", {
-    cuenta: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
+const grupoCuentasContables_model_1 = __importDefault(require("./grupoCuentasContables.model"));
+const cuentasContables = connectionDB_1.default.define("cuentaContable", {
+    noCuenta: {
+        type: sequelize_1.DataTypes.STRING(25),
+        allowNull: false
     },
     descripcion: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
     },
     estado: {
         type: sequelize_1.DataTypes.BOOLEAN,
-        allowNull: false,
+        allowNull: false
     },
-    createdAt: {
+    createAt: {
         type: sequelize_1.DataTypes.DATE,
-        allowNull: false,
+        allowNull: false
     },
-    updatedAt: {
+    updateAt: {
         type: sequelize_1.DataTypes.DATE,
+        allowNull: false
     },
     usuario: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
     },
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
     tipoCuentaContableId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false
     },
-    empresaId: {
+    grupoCuentaId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
-    monedaId: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
-}, { schema: "CUENTAS" });
-// --- ASOCIACIONES --- //
-grupoCuentasContables.hasMany(tipoCuentaContable_model_1.default, {
-    foreignKey: "tipoCuentaContableId",
+        allowNull: false
+    }
 });
-tipoCuentaContable_model_1.default.belongsTo(grupoCuentasContables);
-moneda_model_1.default.hasMany(grupoCuentasContables, { foreignKey: "monedaId" });
-grupoCuentasContables.belongsTo(moneda_model_1.default);
-empresa_model_1.default.hasMany(grupoCuentasContables, { foreignKey: "empresaId" });
-grupoCuentasContables.belongsTo(empresa_model_1.default);
-exports.default = grupoCuentasContables;
-//# sourceMappingURL=CuentasContables.model.js.map
+//---- ASOCIACIONES -------//
+tipoCuentaContable_model_1.default.hasMany(cuentasContables, { foreignKey: 'tipoCuentaContableId' });
+cuentasContables.belongsTo(tipoCuentaContable_model_1.default);
+grupoCuentasContables_model_1.default.hasMany(cuentasContables, { foreignKey: 'grupoCuentaId' });
+cuentasContables.belongsTo(grupoCuentasContables_model_1.default);
+exports.default = cuentasContables;
+//# sourceMappingURL=cuentasContables.model.js.map
