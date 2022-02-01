@@ -196,10 +196,10 @@ export class Moneda {
 
 // VER ID EMPRESA
 export class GrupoCuentasContables {
-  private CuentaContableArray: Array<IGrupoCuentaContable>;
+  private grupoCuentaContableArray: Array<IGrupoCuentaContable>;
 
   constructor(empresaId: number) {
-    this.CuentaContableArray = [
+    this.grupoCuentaContableArray = [
    
       {
         cuenta: "10",
@@ -398,7 +398,7 @@ export class GrupoCuentasContables {
   InsertarGruposCuentasContable() {
     try {
       grupoCuentasContables.afterSync("createGrupoCuentasContables", async () => {
-        await grupoCuentasContables.bulkCreate(this.CuentaContableArray);
+        await grupoCuentasContables.bulkCreate(this.grupoCuentaContableArray);
       });
     } catch (error) {
       console.error(`Error insertando grupos Cuentas Contables, ${error}`);

@@ -1,3 +1,4 @@
+
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
 

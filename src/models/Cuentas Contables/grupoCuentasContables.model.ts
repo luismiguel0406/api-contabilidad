@@ -50,6 +50,7 @@ const grupoCuentasContables = conexion.define(
 );
 // --- ASOCIACIONES --- //
 
+
 grupoCuentasContables.hasMany(tiposCuentaContable, {
   foreignKey: "tipoCuentaContableId",
 });

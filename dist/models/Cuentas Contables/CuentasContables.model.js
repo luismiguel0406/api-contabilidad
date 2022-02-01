@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const tipoCuentaContable_model_1 = __importDefault(require("./tipoCuentaContable.model"));
@@ -49,5 +50,7 @@ tipoCuentaContable_model_1.default.hasMany(cuentasContables, { foreignKey: 'tipo
 cuentasContables.belongsTo(tipoCuentaContable_model_1.default);
 grupoCuentasContables_model_1.default.hasMany(cuentasContables, { foreignKey: 'grupoCuentaId' });
 cuentasContables.belongsTo(grupoCuentasContables_model_1.default);
+empresa_model_1.default.hasMany(cuentasContables, { foreignKey: 'empresaId' });
+cuentasContables.belongsTo(empresa_model_1.default);
 exports.default = cuentasContables;
 //# sourceMappingURL=cuentasContables.model.js.map

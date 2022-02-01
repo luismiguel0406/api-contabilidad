@@ -189,7 +189,7 @@ exports.Moneda = Moneda;
 // VER ID EMPRESA
 class GrupoCuentasContables {
     constructor(empresaId) {
-        this.CuentaContableArray = [
+        this.grupoCuentaContableArray = [
             {
                 cuenta: "10",
                 descripcion: "ACTIVOS CORRIENTES",
@@ -387,7 +387,7 @@ class GrupoCuentasContables {
     InsertarGruposCuentasContable() {
         try {
             grupoCuentasContables_model_1.default.afterSync("createGrupoCuentasContables", () => __awaiter(this, void 0, void 0, function* () {
-                yield grupoCuentasContables_model_1.default.bulkCreate(this.CuentaContableArray);
+                yield grupoCuentasContables_model_1.default.bulkCreate(this.grupoCuentaContableArray);
             }));
         }
         catch (error) {

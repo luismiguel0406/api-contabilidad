@@ -52,6 +52,8 @@ cuentasContables.belongsTo(tiposCuentaContable);
 grupoCuentasContables.hasMany(cuentasContables,{foreignKey:'grupoCuentaId'})
 cuentasContables.belongsTo(grupoCuentasContables);
 
+empresas.hasMany(cuentasContables,{foreignKey:'empresaId'});
+cuentasContables.belongsTo(empresas);
 
 
 export default cuentasContables;
