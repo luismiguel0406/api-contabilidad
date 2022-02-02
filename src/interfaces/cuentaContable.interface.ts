@@ -13,6 +13,8 @@ export interface IGrupoCuentaContable {
 
 export interface ITipoCuentaContable {
   descripcion: string;
+  debito:string;
+  credito:string;
   estado: boolean;
   createdAt: Date;
   updatedAt: Date | null;

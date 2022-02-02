@@ -4,6 +4,7 @@ import conexion from "../../Database/connectionDB";
 import moneda from "../Facturacion/moneda/moneda.model";
 import tiposCuentaContable from "./tipoCuentaContable.model";
 
+
 const grupoCuentasContables = conexion.define(
   "grupoCuentasContable",
   {
@@ -51,15 +52,13 @@ const grupoCuentasContables = conexion.define(
 // --- ASOCIACIONES --- //
 
 
-grupoCuentasContables.hasMany(tiposCuentaContable, {
-  foreignKey: "tipoCuentaContableId",
-});
-tiposCuentaContable.belongsTo(grupoCuentasContables);
+tiposCuentaContable.hasMany(grupoCuentasContables, { foreignKey: "tipoCuentaContableId",});
+grupoCuentasContables.belongsTo(tiposCuentaContable);
 
 moneda.hasMany(grupoCuentasContables, { foreignKey: "monedaId" });
 grupoCuentasContables.belongsTo(moneda);
 
-empresas.hasMany(grupoCuentasContables, { foreignKey: "empresaId" });
-grupoCuentasContables.belongsTo(empresas);
+/*empresas.hasMany(grupoCuentasContables, { foreignKey: "empresaId" });
+grupoCuentasContables.belongsTo(empresas);*/
 
 export default grupoCuentasContables;

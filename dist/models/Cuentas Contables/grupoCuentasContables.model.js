@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const moneda_model_1 = __importDefault(require("../Facturacion/moneda/moneda.model"));
@@ -49,13 +48,11 @@ const grupoCuentasContables = connectionDB_1.default.define("grupoCuentasContabl
     },
 }, { schema: "CUENTAS" });
 // --- ASOCIACIONES --- //
-grupoCuentasContables.hasMany(tipoCuentaContable_model_1.default, {
-    foreignKey: "tipoCuentaContableId",
-});
-tipoCuentaContable_model_1.default.belongsTo(grupoCuentasContables);
+tipoCuentaContable_model_1.default.hasMany(grupoCuentasContables, { foreignKey: "tipoCuentaContableId", });
+grupoCuentasContables.belongsTo(tipoCuentaContable_model_1.default);
 moneda_model_1.default.hasMany(grupoCuentasContables, { foreignKey: "monedaId" });
 grupoCuentasContables.belongsTo(moneda_model_1.default);
-empresa_model_1.default.hasMany(grupoCuentasContables, { foreignKey: "empresaId" });
-grupoCuentasContables.belongsTo(empresa_model_1.default);
+/*empresas.hasMany(grupoCuentasContables, { foreignKey: "empresaId" });
+grupoCuentasContables.belongsTo(empresas);*/
 exports.default = grupoCuentasContables;
 //# sourceMappingURL=grupoCuentasContables.model.js.map

@@ -46,8 +46,8 @@ class Server {
     this.port = variablesEnv.PORT || "";
 
     this.dbConnection();
-    this.InicioAplicacion();
     this.InicioNuevaEmpresa();
+    this.InicioAplicacion();
     this.middlewares();
     this.routes();
   }
@@ -62,7 +62,7 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
-    // await  db.sync({force:true})
+    //await  db.sync({force:true})
       console.log("Database CACTUS Online");
     } catch (error) {
       console.log(`Error ${error}`);

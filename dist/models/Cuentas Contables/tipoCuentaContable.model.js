@@ -10,6 +10,14 @@ const tiposCuentaContable = connectionDB_1.default.define("tipoCuentaContable", 
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
+    credito: {
+        type: sequelize_1.DataTypes.STRING(25),
+        allowNull: false,
+    },
+    debito: {
+        type: sequelize_1.DataTypes.STRING(25),
+        allowNull: false,
+    },
     estado: {
         type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
