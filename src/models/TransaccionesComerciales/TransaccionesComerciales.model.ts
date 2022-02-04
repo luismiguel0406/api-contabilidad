@@ -24,8 +24,7 @@ const transaccionesComerciales = conexion.define("transaccionesPayload",{
       },
       terminal: {
         type: DataTypes.STRING,
-      }
-    
+      }   
 })
 
 
