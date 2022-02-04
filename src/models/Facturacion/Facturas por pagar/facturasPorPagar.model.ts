@@ -119,6 +119,4 @@ facturasPorPagar.belongsTo(mediosDePago);
 tipoGasto.hasMany(facturasPorPagar, { foreignKey: "tipoGastoId" });
 facturasPorPagar.belongsTo(tipoGasto);
 
-
-
 export default facturasPorPagar;
