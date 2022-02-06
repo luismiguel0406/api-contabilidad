@@ -9,7 +9,7 @@ export interface IAccionContable {
   terminal: string;
 }
 
-export interface IAsientoContable {
+export interface IEntradaContable {
   noEntrada: number;
   descripcion: string;
   totalDebito: number;
@@ -20,4 +20,14 @@ export interface IAsientoContable {
   usuario: string;
   terminal: string;
   empresaId: number;
+}
+
+export interface IEntradaContableDetalle {
+  cuenta: string;
+  descripcionCuenta: string;
+  comentario: string;
+  debito: number;
+  credito: number;
+  estado: boolean;
+  entradaId: number;
 }
