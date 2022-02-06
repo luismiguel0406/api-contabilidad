@@ -1,9 +1,9 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
-import asientosContables from "./asientoContableHeader.model";
+import entradasContables from "./entradaContableHeader.model";
 
-const asientosContablesDetalle = conexion.define(
-  "asientoContableDetalle",
+const entradaContablesDetalle = conexion.define(
+  "entradaContableDetalle",
   {
     cuenta: {
       type: DataTypes.STRING,
@@ -27,15 +27,15 @@ const asientosContablesDetalle = conexion.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    asientoId:{
+    entradaId:{
         type:DataTypes.INTEGER,
         allowNull:false
     }
   },
-  { schema: "ASIENTOS" }
+  { schema: "DIARIO" }
 );
 
-asientosContables.hasMany(asientosContablesDetalle,{foreignKey:"asientoId"});
-asientosContablesDetalle.belongsTo(asientosContables);
+entradasContables.hasMany(entradaContablesDetalle,{foreignKey:"entradaId"});
+entradaContablesDetalle.belongsTo(entradasContables);
 
-export default asientosContablesDetalle;
+export default entradaContablesDetalle;

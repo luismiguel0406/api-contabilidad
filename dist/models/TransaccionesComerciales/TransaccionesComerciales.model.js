@@ -32,6 +32,6 @@ const transaccionesComerciales = connectionDB_1.default.define("transaccionesCom
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
-}, { schema: "ASIENTOS" });
+}, { schema: "DIARIO" });
 exports.default = transaccionesComerciales;
 //# sourceMappingURL=TransaccionesComerciales.model.js.map

@@ -1,9 +1,9 @@
 import { DataTypes } from "sequelize";
-import empresas from "../../models/Empresa/empresa.model";
+import empresas from "../Empresa/empresa.model";
 import conexion from "../../Database/connectionDB";
 
-const asientosContables = conexion.define(
-  "asientoContable",
+const entradasContables = conexion.define(
+  "entradaContable",
   {
     createAt: {
       type: DataTypes.DATEONLY,
@@ -47,7 +47,7 @@ const asientosContables = conexion.define(
   { schema: "ASIENTOS" }
 );
 
-empresas.hasMany(asientosContables, { foreignKey: "empresaId" });
-asientosContables.belongsTo(empresas);
+empresas.hasMany(entradasContables, { foreignKey: "empresaId" });
+entradasContables.belongsTo(empresas);
 
-export default asientosContables;
+export default entradasContables;

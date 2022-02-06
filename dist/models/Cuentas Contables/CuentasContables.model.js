@@ -11,46 +11,50 @@ const grupoCuentasContables_model_1 = __importDefault(require("./grupoCuentasCon
 const cuentasContables = connectionDB_1.default.define("cuentaContable", {
     noCuenta: {
         type: sequelize_1.DataTypes.STRING(25),
-        allowNull: false
+        allowNull: false,
     },
     descripcion: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
     },
     estado: {
         type: sequelize_1.DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: false,
     },
     createAt: {
         type: sequelize_1.DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
     },
     updateAt: {
         type: sequelize_1.DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
     },
     usuario: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
     },
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
     tipoCuentaContableId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
     },
     grupoCuentaId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
-    }
-});
+        allowNull: false,
+    },
+}, { schema: "CUENTAS" });
 //---- ASOCIACIONES -------//
-tipoCuentaContable_model_1.default.hasMany(cuentasContables, { foreignKey: 'tipoCuentaContableId' });
+tipoCuentaContable_model_1.default.hasMany(cuentasContables, {
+    foreignKey: "tipoCuentaContableId",
+});
 cuentasContables.belongsTo(tipoCuentaContable_model_1.default);
-grupoCuentasContables_model_1.default.hasMany(cuentasContables, { foreignKey: 'grupoCuentaId' });
+grupoCuentasContables_model_1.default.hasMany(cuentasContables, {
+    foreignKey: "grupoCuentaId",
+});
 cuentasContables.belongsTo(grupoCuentasContables_model_1.default);
-empresa_model_1.default.hasMany(cuentasContables, { foreignKey: 'empresaId' });
+empresa_model_1.default.hasMany(cuentasContables, { foreignKey: "empresaId" });
 cuentasContables.belongsTo(empresa_model_1.default);
 exports.default = cuentasContables;
 //# sourceMappingURL=cuentasContables.model.js.map

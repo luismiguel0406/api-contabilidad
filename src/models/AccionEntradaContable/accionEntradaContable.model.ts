@@ -4,7 +4,7 @@ import transaccionesComerciales from "models/TransaccionesComerciales/Transaccio
 import { DataTypes } from "sequelize/types";
 import conexion from "../../Database/connectionDB";
 
-const accionesAsientoContables = conexion.define("accionAsientoCntable",{
+const accionesEntradasContables = conexion.define("accionEntradaContable",{
 
   transaccionId:{
       type:DataTypes.INTEGER,
@@ -36,13 +36,13 @@ const accionesAsientoContables = conexion.define("accionAsientoCntable",{
     type: DataTypes.STRING,
   }
 
-},{schema:"ASIENTOS"})
+},{schema:"DIARIO"})
 
 
 //ASOCIACIONES//
 
-transaccionesComerciales.belongsToMany(tiposCuentaContable,{through:"accionAsientoCntable",foreignKey:"transaccionId"})
-tiposCuentaContable.belongsToMany(transaccionesComerciales,{through:"accionAsientoCntable", foreignKey:"tipoCuentaId"})
+transaccionesComerciales.belongsToMany(tiposCuentaContable,{through:"accionEntradaContable",foreignKey:"transaccionId"})
+tiposCuentaContable.belongsToMany(transaccionesComerciales,{through:"accionEntradaContable", foreignKey:"tipoCuentaId"})
 
 
-export default accionesAsientoContables
+export default accionesEntradasContables

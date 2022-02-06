@@ -31,6 +31,6 @@ const transaccionesComerciales = conexion.define(
       type: DataTypes.STRING,
     },
   },
-  { schema: "ASIENTOS" }
+  { schema: "DIARIO" }
 );
 export default transaccionesComerciales;

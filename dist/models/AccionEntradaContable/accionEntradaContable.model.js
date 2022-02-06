@@ -42,4 +42,4 @@ const accionesEntradasContables = connectionDB_1.default.define("accionEntradaCo
 TransaccionesComerciales_model_1.default.belongsToMany(tipoCuentaContable_model_1.default, { through: "accionEntradaContable", foreignKey: "transaccionId" });
 tipoCuentaContable_model_1.default.belongsToMany(TransaccionesComerciales_model_1.default, { through: "accionEntradaContable", foreignKey: "tipoCuentaId" });
 exports.default = accionesEntradasContables;
-//# sourceMappingURL=accionAsientoContable.model.js.map
+//# sourceMappingURL=accionEntradaContable.model.js.map
