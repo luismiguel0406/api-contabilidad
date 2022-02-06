@@ -11,7 +11,7 @@ import { ITipoItem } from "../../interfaces/Item.interface";
 import { ITipoVentas } from "../../interfaces/tipoVentas.interface";
 import tipoCliente from "../../models/Clientes/tipoCliente.model";
 import tiposContactos from "../../models/Contacto/tipoContactos.model";
-import grupoCuentasContables from "../../models/Cuentas Contables/grupoCuentasContables.model"
+import grupoCuentasContables from "../../models/Cuentas Contables/grupoCuentasContables.model";
 import tipoComprobantes from "../../models/Facturacion/comprobantes/tipoComprobante.model";
 import moneda from "../../models/Facturacion/moneda/moneda.model";
 import tiposItem from "../../models/Inventario/tipoItem.model";
@@ -28,6 +28,8 @@ import tipoGasto from "../../models/Facturacion/Facturas por pagar/Gastos/gastos
 import { ITipoFacturasPorPagar } from "../../interfaces/facturasPorPagar.interface";
 import tipoFacturasPorPagar from "../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model";
 import tiposCuentaContable from "../../models/Cuentas Contables/tipoCuentaContable.model";
+import { ITransaccionComercial } from "interfaces/TransaccionesComerciales.interface";
+import transaccionesComerciales from "../../models/TransaccionesComerciales/TransaccionesComerciales.model";
 
 export class TiposProveedores {
   private tipoProveedoresArray: Array<ITipoPoveedor>;
@@ -200,7 +202,6 @@ export class GrupoCuentasContables {
 
   constructor(empresaId: number) {
     this.grupoCuentaContableArray = [
-   
       {
         cuenta: "10",
         descripcion: "ACTIVOS CORRIENTES",
@@ -209,7 +210,7 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:1,
+        tipoCuentaContableId: 1,
         empresaId,
         monedaId: 1,
       },
@@ -221,31 +222,31 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:1,
+        tipoCuentaContableId: 1,
         empresaId,
         monedaId: 1,
       },
       {
-        cuenta: "12",        
+        cuenta: "12",
         descripcion: "INVERSIONES",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:1,
+        tipoCuentaContableId: 1,
         empresaId,
         monedaId: 1,
       },
       {
-        cuenta: "13",    
+        cuenta: "13",
         descripcion: "ACTIVOS FIJOS",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:1,
+        tipoCuentaContableId: 1,
         empresaId,
         monedaId: 1,
       },
@@ -257,7 +258,7 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:1,
+        tipoCuentaContableId: 1,
         empresaId,
         monedaId: 1,
       },
@@ -269,7 +270,7 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:1,
+        tipoCuentaContableId: 1,
         empresaId,
         monedaId: 1,
       },
@@ -281,7 +282,7 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:2,
+        tipoCuentaContableId: 2,
         empresaId,
         monedaId: 1,
       },
@@ -293,7 +294,7 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:2,
+        tipoCuentaContableId: 2,
         empresaId,
         monedaId: 1,
       },
@@ -305,7 +306,7 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:2,
+        tipoCuentaContableId: 2,
         empresaId,
         monedaId: 1,
       },
@@ -317,7 +318,7 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:2,
+        tipoCuentaContableId: 2,
         empresaId,
         monedaId: 1,
       },
@@ -329,7 +330,7 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:2,
+        tipoCuentaContableId: 2,
         empresaId,
         monedaId: 1,
       },
@@ -341,7 +342,7 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:2,
+        tipoCuentaContableId: 2,
         empresaId,
         monedaId: 1,
       },
@@ -353,7 +354,7 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:2,
+        tipoCuentaContableId: 2,
         empresaId,
         monedaId: 1,
       },
@@ -365,7 +366,7 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:6,
+        tipoCuentaContableId: 6,
         empresaId,
         monedaId: 1,
       },
@@ -377,7 +378,7 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:6,
+        tipoCuentaContableId: 6,
         empresaId,
         monedaId: 1,
       },
@@ -389,7 +390,7 @@ export class GrupoCuentasContables {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-        tipoCuentaContableId:6,
+        tipoCuentaContableId: 6,
         empresaId,
         monedaId: 1,
       },
@@ -397,9 +398,12 @@ export class GrupoCuentasContables {
   }
   InsertarGruposCuentasContable() {
     try {
-      grupoCuentasContables.afterSync("createGrupoCuentasContables", async () => {
-        await grupoCuentasContables.bulkCreate(this.grupoCuentaContableArray);
-      });
+      grupoCuentasContables.afterSync(
+        "createGrupoCuentasContables",
+        async () => {
+          await grupoCuentasContables.bulkCreate(this.grupoCuentaContableArray);
+        }
+      );
     } catch (error) {
       console.error(`Error insertando grupos Cuentas Contables, ${error}`);
     }
@@ -983,71 +987,151 @@ export class TipoCuentasContables {
   private tipoCuentaContableArray: Array<ITipoCuentaContable>;
   constructor() {
     this.tipoCuentaContableArray = [
-     {
+      {
         descripcion: "ACTIVOS",
-        debito:"AUMENTA",
-        credito:"DISMINUYE",
+        debito: "AUMENTA",
+        credito: "DISMINUYE",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
       },
       {
         descripcion: "PASIVOS",
-        debito:"DISMINUYE",
-        credito:"AUMENTA",
+        debito: "DISMINUYE",
+        credito: "AUMENTA",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
       },
       {
         descripcion: "CAPITAL",
-        debito:"DISMINUYE",
-        credito:"AUMENTA",
+        debito: "DISMINUYE",
+        credito: "AUMENTA",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
       },
       {
         descripcion: "INGRESOS",
-        debito:"DISMINUYE",
-        credito:"AUMENTA",
+        debito: "DISMINUYE",
+        credito: "AUMENTA",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
       },
       {
         descripcion: "COSTOS",
-        debito:"AUMENTA",
-        credito:"DISMINUYE",
+        debito: "AUMENTA",
+        credito: "DISMINUYE",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
       },
       {
         descripcion: "GASTOS",
-        debito:"AUMENTA",
-        credito:"DISMINUYE",
+        debito: "AUMENTA",
+        credito: "DISMINUYE",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
       },
       {
         descripcion: "RESUMENES",
-        debito:"",
-        credito:"",
+        debito: "",
+        credito: "",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
       },
     ];
   }
-  InsertarTipoCuentasContables(){
+  InsertarTipoCuentasContables() {
     try {
-      tiposCuentaContable.afterSync("createTiposCuenta",async ()=>{
-        tiposCuentaContable.bulkCreate(this.tipoCuentaContableArray)
-      })
+      tiposCuentaContable.afterSync("createTiposCuenta", async () => {
+        tiposCuentaContable.bulkCreate(this.tipoCuentaContableArray);
+      });
     } catch (error) {
-      console.error(`Error al insertar tipo cuenta contable, ${error}`)
+      console.error(`Error al insertar tipo cuenta contable, ${error}`);
+    }
+  }
+}
+
+export class TransaccionesComerciales {
+  private transaccionesArray: Array<ITransaccionComercial>;
+  constructor() {
+    this.transaccionesArray = [
+      {
+        descripcion: "Apertura de capital",
+        payload: "APERTURA_CAPITAL",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "Registro de facturas por pagar tipo gasto",
+        payload: "REGISTRO_FACTURAS_POR_PAGAR",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "Aplicacion de credito ",
+        payload: "APLICACION_CREDITO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "Aplicacion de pago a factura por pagar",
+        payload: "PAGO_FACTURA_POR_PAGAR",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "Ventas al contado",
+        payload: "VENTA_CONTADO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "Ventas a credito",
+        payload: "VENTA_CREDITO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "Gastos varios",
+        payload: "GASTOS_VARIOS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      }
+    ];
+  }
+  InsertarTransaccionesComerciales() {
+    try {
+      transaccionesComerciales.afterSync("createTransacciones", async () => {
+        transaccionesComerciales.bulkCreate(this.transaccionesArray);
+      });
+    } catch (error) {
+      return console.error(`Error al insertar transacciones, ${error}`);
     }
   }
 }

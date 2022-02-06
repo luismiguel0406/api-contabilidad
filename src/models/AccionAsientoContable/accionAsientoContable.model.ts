@@ -15,7 +15,7 @@ const accionesAsientoContables = conexion.define("accionAsientoCntable",{
       allowNull:false,
   },
   accion:{
-     type:DataTypes.STRING
+     type:DataTypes.INTEGER,
   },
    estado: {
     type: DataTypes.BOOLEAN,
@@ -34,7 +34,7 @@ const accionesAsientoContables = conexion.define("accionAsientoCntable",{
   },
   terminal: {
     type: DataTypes.STRING,
-  },
+  }
 
 },{schema:"ASIENTOS"})
 

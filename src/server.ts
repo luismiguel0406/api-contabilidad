@@ -14,6 +14,7 @@ import {
   Tipogasto,
   TipoFacturasPorPagar,
   TipoCuentasContables,
+  TransaccionesComerciales,
 } from "./helpers/Querys Iniciales/Querys";
 import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
 import MonedasRoutes from "./routes/facturacion/moneda.route";
@@ -62,7 +63,7 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
-    //await  db.sync({force:true})
+     // await  db.sync({force:true})
       console.log("Database CACTUS Online");
     } catch (error) {
       console.log(`Error ${error}`);
@@ -108,6 +109,7 @@ class Server {
       const tipoGasto = new Tipogasto();
       const tipoFacturasPorPagar = new TipoFacturasPorPagar();
       const tipoCuentasContables = new TipoCuentasContables();
+      const transaccionesComerciales = new TransaccionesComerciales();
 
       tipoClientes.InsertarTipoClientes();
       tipoContacto.InsertarTipoContactos();
@@ -122,6 +124,7 @@ class Server {
       tipoGasto.InsertarTipoGasto();
       tipoFacturasPorPagar.InsertarTipoFactura();
       tipoCuentasContables.InsertarTipoCuentasContables();
+      transaccionesComerciales.InsertarTransaccionesComerciales();
     } catch (error) {
       console.error(`Error Metodo Inicio Aplicacion, ${error}`);
     }

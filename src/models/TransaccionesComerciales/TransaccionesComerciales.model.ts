@@ -1,31 +1,36 @@
-import { DataTypes } from "sequelize"
-import conexion from "../../Database/connectionDB"
+import { DataTypes } from "sequelize";
+import conexion from "../../Database/connectionDB";
 
-const transaccionesComerciales = conexion.define("transaccionesPayload",{
-
-    descripcion:{
-        type:DataTypes.STRING,
-        allowNull:false,
+const transaccionesComerciales = conexion.define(
+  "transaccionesComerciales",
+  {
+    descripcion: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    payload: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     estado: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-      },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-      },
-      usuario: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      terminal: {
-        type: DataTypes.STRING,
-      }   
-})
-
-
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+    },
+    usuario: {
+      type: DataTypes.STRING(25),
+      allowNull: false,
+    },
+    terminal: {
+      type: DataTypes.STRING,
+    },
+  },
+  { schema: "ASIENTOS" }
+);
 export default transaccionesComerciales;

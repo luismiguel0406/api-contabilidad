@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TipoCuentasContables = exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.GrupoCuentasContables = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
+exports.TransaccionesComerciales = exports.TipoCuentasContables = exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.GrupoCuentasContables = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
 const grupoCuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/grupoCuentasContables.model"));
@@ -27,6 +27,7 @@ const perfil_model_1 = __importDefault(require("../../models/Perfiles/perfil.mod
 const gastos_model_1 = __importDefault(require("../../models/Facturacion/Facturas por pagar/Gastos/gastos.model"));
 const tiposFacturasPorPagar_model_1 = __importDefault(require("../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model"));
 const tipoCuentaContable_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoCuentaContable.model"));
+const TransaccionesComerciales_model_1 = __importDefault(require("../../models/TransaccionesComerciales/TransaccionesComerciales.model"));
 class TiposProveedores {
     // AGREGO TIPO AL INICIO DEL PROGRAMA //
     constructor() {
@@ -1033,4 +1034,84 @@ class TipoCuentasContables {
     }
 }
 exports.TipoCuentasContables = TipoCuentasContables;
+class TransaccionesComerciales {
+    constructor() {
+        this.transaccionesArray = [
+            {
+                descripcion: "Apertura de capital",
+                payload: "APERTURA_CAPITAL",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                descripcion: "Registro de facturas por pagar tipo gasto",
+                payload: "REGISTRO_FACTURAS_POR_PAGAR",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                descripcion: "Aplicacion de credito ",
+                payload: "APLICACION_CREDITO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                descripcion: "Aplicacion de pago a factura por pagar",
+                payload: "PAGO_FACTURA_POR_PAGAR",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                descripcion: "Ventas al contado",
+                payload: "VENTA_CONTADO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                descripcion: "Ventas a credito",
+                payload: "VENTA_CREDITO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                descripcion: "Gastos varios",
+                payload: "GASTOS_VARIOS",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            }
+        ];
+    }
+    InsertarTransaccionesComerciales() {
+        try {
+            TransaccionesComerciales_model_1.default.afterSync("createTransacciones", () => __awaiter(this, void 0, void 0, function* () {
+                TransaccionesComerciales_model_1.default.bulkCreate(this.transaccionesArray);
+            }));
+        }
+        catch (error) {
+            return console.error(`Error al insertar transacciones, ${error}`);
+        }
+    }
+}
+exports.TransaccionesComerciales = TransaccionesComerciales;
 //# sourceMappingURL=Querys.js.map

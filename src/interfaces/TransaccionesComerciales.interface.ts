@@ -1,6 +1,7 @@
-export interface ITransaccionesComerciales{
-
+export interface ITransaccionComercial{
+    
     descripcion: string;
+    payload:string;
     estado: boolean;
     createdAt: Date;
     updatedAt: Date | null;
