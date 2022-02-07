@@ -29,3 +29,13 @@ export interface IFacturasPorPagar {
   medioDePagoId: number;
   tipoGastoId: number;
 }
+
+export interface IDetalleFacturaPorPagar{
+
+  facturaId:number;
+  cuentaId:number;
+  cuentaDescripcion:string;
+  valor:number;
+  detalleImpuesto:string | null;
+
+}

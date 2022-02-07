@@ -35,7 +35,7 @@ const detallesFactura = connectionDB_1.default.define("detalleFactura", {
         type: sequelize_1.DataTypes.FLOAT,
     },
     detalleImpuesto: {
-        type: sequelize_1.DataTypes.STRING(2000),
+        type: sequelize_1.DataTypes.JSONB,
     },
 }, { timestamps: false, schema: "FACTURACION" });
 //--- ASOCIACIONES---//

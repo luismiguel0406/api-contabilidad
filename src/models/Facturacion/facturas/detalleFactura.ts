@@ -33,7 +33,7 @@ const detallesFactura = conexion.define(
       type: DataTypes.FLOAT,
     },
     detalleImpuesto: {
-      type: DataTypes.STRING(2000),
+      type: DataTypes.JSONB,
     },
   },
   { timestamps: false, schema: "FACTURACION" }
