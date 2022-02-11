@@ -1,10 +1,11 @@
 export interface IEmpresa {
  
   nombre: string;
-  inicialesEmpresa: string;
+  alias: string;
   rnc: string;
-  sucursal: number;
+  sucursalId: number;
   estado: boolean;
+  planId:number;
   createdAt: Date;
   updatedAt: Date | null;
   direccion: string;

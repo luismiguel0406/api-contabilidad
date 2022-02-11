@@ -7,7 +7,7 @@ const detalleFacturasPorPagar = conexion.define(
   "detalleFacturaPorPagar",
   {
     descripcionCuenta: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     valor: {

@@ -7,7 +7,6 @@ export interface IGrupoCuentaContable {
   usuario: string;
   terminal: string;
   tipoCuentaContableId: number | null;
-  empresaId: number;
   monedaId: number;
 }
 

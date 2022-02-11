@@ -8,13 +8,12 @@ export const getEmpresa = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const empresaResultado = await empresa_service.getEmpresa(id);
-    if (empresaResultado === null) {
+    const empresaResultado:any = await empresa_service.getEmpresa(id);
+    if (Object.entries(empresaResultado).length === 0) {
       const { msg, statusCode } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
-    const { msg, statusCode } = MsgRespuesta.Success;
-    res.status(statusCode).json({ Empresas: empresaResultado, Message: msg });
+    res.json({ Empresa: empresaResultado});
   } catch (error) {
     const { msg, statusCode } = MsgRespuesta.internalError;
     res.status(statusCode).json({ Message: msg, error });

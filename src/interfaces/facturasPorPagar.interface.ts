@@ -28,6 +28,7 @@ export interface IFacturasPorPagar {
   monedaId: number;
   medioDePagoId: number;
   tipoGastoId: number;
+  detalleFacturaPorPagar:Array<IDetalleFacturaPorPagar>
 }
 
 export interface IDetalleFacturaPorPagar{

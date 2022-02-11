@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransaccionesComerciales = exports.TipoCuentasContables = exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.GrupoCuentasContables = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
+exports.Empresa = exports.TransaccionesComerciales = exports.TipoCuentasContables = exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.GrupoCuentasContables = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
 const grupoCuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/grupoCuentasContables.model"));
@@ -28,6 +28,7 @@ const gastos_model_1 = __importDefault(require("../../models/Facturacion/Factura
 const tiposFacturasPorPagar_model_1 = __importDefault(require("../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model"));
 const tipoCuentaContable_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoCuentaContable.model"));
 const TransaccionesComerciales_model_1 = __importDefault(require("../../models/TransaccionesComerciales/TransaccionesComerciales.model"));
+const empresa_model_1 = __importDefault(require("../../models/Empresa/empresa.model"));
 class TiposProveedores {
     // AGREGO TIPO AL INICIO DEL PROGRAMA //
     constructor() {
@@ -187,9 +188,8 @@ class Moneda {
     }
 }
 exports.Moneda = Moneda;
-// VER ID EMPRESA
 class GrupoCuentasContables {
-    constructor(empresaId) {
+    constructor() {
         this.grupoCuentaContableArray = [
             {
                 cuenta: "10",
@@ -200,7 +200,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 1,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -212,7 +211,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 1,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -224,7 +222,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 1,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -236,7 +233,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 1,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -248,7 +244,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 1,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -260,7 +255,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 1,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -272,7 +266,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 2,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -284,7 +277,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 2,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -296,7 +288,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 2,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -308,7 +299,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 2,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -320,7 +310,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 2,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -332,7 +321,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 2,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -344,7 +332,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 2,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -356,7 +343,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 6,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -368,7 +354,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 6,
-                empresaId,
                 monedaId: 1,
             },
             {
@@ -380,7 +365,6 @@ class GrupoCuentasContables {
                 usuario: "SA",
                 terminal: "SA",
                 tipoCuentaContableId: 6,
-                empresaId,
                 monedaId: 1,
             },
         ];
@@ -1099,7 +1083,7 @@ class TransaccionesComerciales {
                 updatedAt: null,
                 usuario: "SA",
                 terminal: "SA",
-            }
+            },
         ];
     }
     InsertarTransaccionesComerciales() {
@@ -1114,4 +1098,34 @@ class TransaccionesComerciales {
     }
 }
 exports.TransaccionesComerciales = TransaccionesComerciales;
+class Empresa {
+    constructor() {
+        this._empresa = {
+            nombre: "FRUTAS y POSTRES S.A.",
+            alias: "FSA",
+            rnc: "1-2547896-89",
+            sucursalId: 1,
+            estado: true,
+            planId: 1,
+            createdAt: new Date(),
+            updatedAt: null,
+            direccion: "CALLE LAS HOJAS EDIFICIO ALMENDRA #4/ SANTO DOMINGO ESTE",
+            telefono: "809-123-4567",
+            correo: "HOJAS@GMAIL.COM",
+            usuario: "SA",
+            terminal: "SA",
+        };
+    }
+    CrearEmpresa() {
+        try {
+            empresa_model_1.default.afterSync("createEmpresa", () => __awaiter(this, void 0, void 0, function* () {
+                empresa_model_1.default.create(this._empresa);
+            }));
+        }
+        catch (error) {
+            console.error(`Error al crear empresa, ${error}`);
+        }
+    }
+}
+exports.Empresa = Empresa;
 //# sourceMappingURL=Querys.js.map

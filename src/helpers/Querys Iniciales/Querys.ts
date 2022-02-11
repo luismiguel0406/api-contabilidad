@@ -30,6 +30,8 @@ import tipoFacturasPorPagar from "../../models/Facturacion/Facturas por pagar/ti
 import tiposCuentaContable from "../../models/Cuentas Contables/tipoCuentaContable.model";
 import { ITransaccionComercial } from "interfaces/TransaccionesComerciales.interface";
 import transaccionesComerciales from "../../models/TransaccionesComerciales/TransaccionesComerciales.model";
+import { IEmpresa } from "interfaces/empresa.interface";
+import empresas from "../../models/Empresa/empresa.model";
 
 export class TiposProveedores {
   private tipoProveedoresArray: Array<ITipoPoveedor>;
@@ -196,11 +198,10 @@ export class Moneda {
   }
 }
 
-// VER ID EMPRESA
 export class GrupoCuentasContables {
   private grupoCuentaContableArray: Array<IGrupoCuentaContable>;
 
-  constructor(empresaId: number) {
+  constructor() {
     this.grupoCuentaContableArray = [
       {
         cuenta: "10",
@@ -211,7 +212,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 1,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -223,7 +223,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 1,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -235,7 +234,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 1,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -247,7 +245,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 1,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -259,7 +256,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 1,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -271,7 +267,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 1,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -283,7 +278,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 2,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -295,7 +289,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 2,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -307,7 +300,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 2,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -319,7 +311,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 2,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -331,7 +322,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 2,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -343,7 +333,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 2,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -355,7 +344,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 2,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -367,7 +355,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 6,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -379,7 +366,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 6,
-        empresaId,
         monedaId: 1,
       },
       {
@@ -391,7 +377,6 @@ export class GrupoCuentasContables {
         usuario: "SA",
         terminal: "SA",
         tipoCuentaContableId: 6,
-        empresaId,
         monedaId: 1,
       },
     ];
@@ -1122,7 +1107,7 @@ export class TransaccionesComerciales {
         updatedAt: null,
         usuario: "SA",
         terminal: "SA",
-      }
+      },
     ];
   }
   InsertarTransaccionesComerciales() {
@@ -1132,6 +1117,36 @@ export class TransaccionesComerciales {
       });
     } catch (error) {
       return console.error(`Error al insertar transacciones, ${error}`);
+    }
+  }
+}
+
+export class Empresa {
+  private _empresa: IEmpresa;
+  constructor() {
+    this._empresa = {
+      nombre: "FRUTAS y POSTRES S.A.",
+      alias: "FSA",
+      rnc: "1-2547896-89",
+      sucursalId: 1,
+      estado: true,
+      planId: 1,
+      createdAt: new Date(),
+      updatedAt: null,
+      direccion: "CALLE LAS HOJAS EDIFICIO ALMENDRA #4/ SANTO DOMINGO ESTE",
+      telefono: "809-123-4567",
+      correo: "HOJAS@GMAIL.COM",
+      usuario: "SA",
+      terminal: "SA",
+    };
+  }
+  CrearEmpresa() {
+    try {
+      empresas.afterSync("createEmpresa", async () => {
+        empresas.create(this._empresa);
+      });
+    } catch (error) {
+      console.error(`Error al crear empresa, ${error}`);
     }
   }
 }

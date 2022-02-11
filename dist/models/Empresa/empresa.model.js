@@ -18,6 +18,10 @@ const empresas = connectionDB_1.default.define("empresa", {
         allowNull: false,
         unique: true,
     },
+    planId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
+    },
     estado: {
         type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,

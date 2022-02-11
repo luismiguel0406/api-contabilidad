@@ -38,10 +38,6 @@ const grupoCuentasContables = connectionDB_1.default.define("grupoCuentasContabl
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    empresaId: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
     monedaId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
@@ -52,7 +48,5 @@ tipoCuentaContable_model_1.default.hasMany(grupoCuentasContables, { foreignKey: 
 grupoCuentasContables.belongsTo(tipoCuentaContable_model_1.default);
 moneda_model_1.default.hasMany(grupoCuentasContables, { foreignKey: "monedaId" });
 grupoCuentasContables.belongsTo(moneda_model_1.default);
-/*empresas.hasMany(grupoCuentasContables, { foreignKey: "empresaId" });
-grupoCuentasContables.belongsTo(empresas);*/
 exports.default = grupoCuentasContables;
 //# sourceMappingURL=grupoCuentasContables.model.js.map

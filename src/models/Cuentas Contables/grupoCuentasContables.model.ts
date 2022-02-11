@@ -38,10 +38,6 @@ const grupoCuentasContables = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    empresaId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     monedaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -58,7 +54,5 @@ grupoCuentasContables.belongsTo(tiposCuentaContable);
 moneda.hasMany(grupoCuentasContables, { foreignKey: "monedaId" });
 grupoCuentasContables.belongsTo(moneda);
 
-/*empresas.hasMany(grupoCuentasContables, { foreignKey: "empresaId" });
-grupoCuentasContables.belongsTo(empresas);*/
 
 export default grupoCuentasContables;

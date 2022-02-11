@@ -16,6 +16,10 @@ const empresas = conexion.define(
       allowNull: false,
       unique: true,
     },
+    planId:{
+      type:DataTypes.INTEGER,
+      allowNull:false
+    },
     estado: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

@@ -100,7 +100,9 @@ class Server {
             const tipoGasto = new Querys_1.Tipogasto();
             const tipoFacturasPorPagar = new Querys_1.TipoFacturasPorPagar();
             const tipoCuentasContables = new Querys_1.TipoCuentasContables();
+            const grupoCuentasContables = new Querys_1.GrupoCuentasContables();
             const transaccionesComerciales = new Querys_1.TransaccionesComerciales();
+            const empresa = new Querys_1.Empresa();
             tipoClientes.InsertarTipoClientes();
             tipoContacto.InsertarTipoContactos();
             tipoProveedor.InsertarTiposProveedores();
@@ -114,7 +116,9 @@ class Server {
             tipoGasto.InsertarTipoGasto();
             tipoFacturasPorPagar.InsertarTipoFactura();
             tipoCuentasContables.InsertarTipoCuentasContables();
+            grupoCuentasContables.InsertarGruposCuentasContable();
             transaccionesComerciales.InsertarTransaccionesComerciales();
+            empresa.CrearEmpresa();
         }
         catch (error) {
             console.error(`Error Metodo Inicio Aplicacion, ${error}`);
@@ -122,9 +126,7 @@ class Server {
     }
     InicioNuevaEmpresa() {
         try {
-            const empresaId = 1; //VER AQUI
-            const grupocuentasContables = new Querys_1.GrupoCuentasContables(empresaId);
-            grupocuentasContables.InsertarGruposCuentasContable();
+            console.info("COLOCAR HOOK DE LA EMPRESA AQUI!");
         }
         catch (error) {
             console.error(`Error Metodo InicioNuevaEmpresa, ${error}`);

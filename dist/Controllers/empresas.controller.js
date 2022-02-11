@@ -20,12 +20,11 @@ const getEmpresa = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const { id } = req.params;
         const empresaResultado = yield empresa_service.getEmpresa(id);
-        if (empresaResultado === null) {
+        if (Object.entries(empresaResultado).length === 0) {
             const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }
-        const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
-        res.status(statusCode).json({ Empresas: empresaResultado, Message: msg });
+        res.json({ Empresa: empresaResultado });
     }
     catch (error) {
         const { msg, statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.internalError;

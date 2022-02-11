@@ -15,6 +15,7 @@ import {
   TipoFacturasPorPagar,
   TipoCuentasContables,
   TransaccionesComerciales,
+  Empresa,
 } from "./helpers/Querys Iniciales/Querys";
 import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
 import MonedasRoutes from "./routes/facturacion/moneda.route";
@@ -109,7 +110,9 @@ class Server {
       const tipoGasto = new Tipogasto();
       const tipoFacturasPorPagar = new TipoFacturasPorPagar();
       const tipoCuentasContables = new TipoCuentasContables();
+      const grupoCuentasContables =  new GrupoCuentasContables();
       const transaccionesComerciales = new TransaccionesComerciales();
+      const empresa = new Empresa();
 
       tipoClientes.InsertarTipoClientes();
       tipoContacto.InsertarTipoContactos();
@@ -124,17 +127,17 @@ class Server {
       tipoGasto.InsertarTipoGasto();
       tipoFacturasPorPagar.InsertarTipoFactura();
       tipoCuentasContables.InsertarTipoCuentasContables();
+      grupoCuentasContables.InsertarGruposCuentasContable();
       transaccionesComerciales.InsertarTransaccionesComerciales();
+      empresa.CrearEmpresa();
     } catch (error) {
       console.error(`Error Metodo Inicio Aplicacion, ${error}`);
     }
   }
 
   InicioNuevaEmpresa() {
-    try {
-      const empresaId = 1; //VER AQUI
-      const grupocuentasContables = new GrupoCuentasContables(empresaId);
-      grupocuentasContables.InsertarGruposCuentasContable();
+    try {     
+    console.info("COLOCAR HOOK DE LA EMPRESA AQUI!")
     } catch (error) {
       console.error(`Error Metodo InicioNuevaEmpresa, ${error}`);
     }

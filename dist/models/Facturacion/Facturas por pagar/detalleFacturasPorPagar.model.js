@@ -9,7 +9,7 @@ const connectionDB_1 = __importDefault(require("../../../Database/connectionDB")
 const facturasPorPagar_model_1 = __importDefault(require("./facturasPorPagar.model"));
 const detalleFacturasPorPagar = connectionDB_1.default.define("detalleFacturaPorPagar", {
     descripcionCuenta: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     valor: {
