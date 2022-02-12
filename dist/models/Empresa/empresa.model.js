@@ -14,7 +14,7 @@ const empresas = connectionDB_1.default.define("empresa", {
         type: sequelize_1.DataTypes.STRING,
     },
     rnc: {
-        type: sequelize_1.DataTypes.STRING(25),
+        type: sequelize_1.DataTypes.STRING(11),
         allowNull: false,
         unique: true,
     },

@@ -43,6 +43,10 @@ const cuentasContables = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    empresaId:{
+      type:DataTypes.INTEGER,
+      allowNull:false
+    }
   },
   { schema: "CUENTAS" }
 );

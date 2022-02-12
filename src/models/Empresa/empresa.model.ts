@@ -12,7 +12,7 @@ const empresas = conexion.define(
       type: DataTypes.STRING,
     },
     rnc: {
-      type: DataTypes.STRING(25),
+      type: DataTypes.STRING(11),
       allowNull: false,
       unique: true,
     },

@@ -44,6 +44,10 @@ const cuentasContables = connectionDB_1.default.define("cuentaContable", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
+    empresaId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
+    }
 }, { schema: "CUENTAS" });
 //---- ASOCIACIONES -------//
 tipoCuentaContable_model_1.default.hasMany(cuentasContables, {

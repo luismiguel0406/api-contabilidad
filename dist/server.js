@@ -54,7 +54,7 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield connectionDB_1.default.authenticate();
-                // await  db.sync({force:true})
+                //await  db.sync({force:true})
                 console.log("Database CACTUS Online");
             }
             catch (error) {

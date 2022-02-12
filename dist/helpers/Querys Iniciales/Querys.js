@@ -1103,7 +1103,7 @@ class Empresa {
         this._empresa = {
             nombre: "FRUTAS y POSTRES S.A.",
             alias: "FSA",
-            rnc: "1-2547896-89",
+            rnc: "1-547896-89",
             sucursalId: 1,
             estado: true,
             planId: 1,
