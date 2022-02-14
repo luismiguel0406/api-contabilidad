@@ -84,9 +84,13 @@ class Server {
         this.app.use(usuarios_route_1.default);
         this.app.use(tipoGastos_route_1.default);
         this.app.use(facturasPorPagar_route_1.default);
+        this.app.use("*", (req, res) => {
+            res.status(404).json({ Message: "No existe la ruta que colocaste" });
+        });
     }
     InicioAplicacion() {
         try {
+            const empresa = new Querys_1.Empresa();
             const tipoClientes = new Querys_1.TiposClientes();
             const tipoContacto = new Querys_1.TiposContactos();
             const tipoProveedor = new Querys_1.TiposProveedores();
@@ -101,8 +105,9 @@ class Server {
             const tipoFacturasPorPagar = new Querys_1.TipoFacturasPorPagar();
             const tipoCuentasContables = new Querys_1.TipoCuentasContables();
             const grupoCuentasContables = new Querys_1.GrupoCuentasContables();
+            const cuentasContables = new Querys_1.CuentasContables();
             const transaccionesComerciales = new Querys_1.TransaccionesComerciales();
-            const empresa = new Querys_1.Empresa();
+            empresa.CrearEmpresa();
             tipoClientes.InsertarTipoClientes();
             tipoContacto.InsertarTipoContactos();
             tipoProveedor.InsertarTiposProveedores();
@@ -117,8 +122,8 @@ class Server {
             tipoFacturasPorPagar.InsertarTipoFactura();
             tipoCuentasContables.InsertarTipoCuentasContables();
             grupoCuentasContables.InsertarGruposCuentasContable();
+            cuentasContables.InsertarCuentas();
             transaccionesComerciales.InsertarTransaccionesComerciales();
-            empresa.CrearEmpresa();
         }
         catch (error) {
             console.error(`Error Metodo Inicio Aplicacion, ${error}`);

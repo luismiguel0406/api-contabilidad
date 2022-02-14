@@ -8,6 +8,7 @@ const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const tipoCuentaContable_model_1 = __importDefault(require("./tipoCuentaContable.model"));
 const grupoCuentasContables_model_1 = __importDefault(require("./grupoCuentasContables.model"));
+const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda/moneda.model"));
 const cuentasContables = connectionDB_1.default.define("cuentaContable", {
     noCuenta: {
         type: sequelize_1.DataTypes.STRING(25),
@@ -21,11 +22,11 @@ const cuentasContables = connectionDB_1.default.define("cuentaContable", {
         type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
     },
-    createAt: {
+    createdAt: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
     },
-    updateAt: {
+    updatedAt: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
     },
@@ -40,11 +41,15 @@ const cuentasContables = connectionDB_1.default.define("cuentaContable", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    grupoCuentaId: {
+    grupoCuentasContableId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
     empresaId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
+    },
+    monedaId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     }
@@ -55,10 +60,12 @@ tipoCuentaContable_model_1.default.hasMany(cuentasContables, {
 });
 cuentasContables.belongsTo(tipoCuentaContable_model_1.default);
 grupoCuentasContables_model_1.default.hasMany(cuentasContables, {
-    foreignKey: "grupoCuentaId",
+    foreignKey: "grupoCuentasContableId",
 });
 cuentasContables.belongsTo(grupoCuentasContables_model_1.default);
 empresa_model_1.default.hasMany(cuentasContables, { foreignKey: "empresaId" });
 cuentasContables.belongsTo(empresa_model_1.default);
+moneda_model_1.default.hasMany(cuentasContables, { foreignKey: "monedaId" });
+cuentasContables.belongsTo(moneda_model_1.default);
 exports.default = cuentasContables;
 //# sourceMappingURL=cuentasContables.model.js.map

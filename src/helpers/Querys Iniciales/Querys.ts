@@ -2,6 +2,7 @@ import { ITipoCliente } from "../../interfaces/cliente.interface";
 import { ITipoComprobante } from "../../interfaces/comprobante.interface";
 import { ItipoContacto } from "../../interfaces/contactos.interface";
 import {
+  ICuentaContable,
   IGrupoCuentaContable,
   ITipoCuentaContable,
 } from "../../interfaces/cuentaContable.interface";
@@ -32,7 +33,38 @@ import { ITransaccionComercial } from "interfaces/TransaccionesComerciales.inter
 import transaccionesComerciales from "../../models/TransaccionesComerciales/TransaccionesComerciales.model";
 import { IEmpresa } from "interfaces/empresa.interface";
 import empresas from "../../models/Empresa/empresa.model";
+import cuentasContables from "../../models/Cuentas Contables/cuentasContables.model";
 
+
+export class Empresa {
+  private _empresa: IEmpresa;
+  constructor() {
+    this._empresa = {
+      nombre: "FRUTAS y POSTRES S.A.",
+      alias: "FSA",
+      rnc: "1-547896-89",
+      sucursalId: 1,
+      estado: true,
+      planId: 1,
+      createdAt: new Date(),
+      updatedAt: null,
+      direccion: "CALLE LAS HOJAS EDIFICIO ALMENDRA #4/ SANTO DOMINGO ESTE",
+      telefono: "809-123-4567",
+      correo: "HOJAS@GMAIL.COM",
+      usuario: "SA",
+      terminal: "SA",
+    };
+  }
+  CrearEmpresa() {
+    try {
+      empresas.afterSync("createEmpresa", async () => {
+        await empresas.create(this._empresa);
+      });
+    } catch (error) {
+      console.error(`Error al crear empresa, ${error}`);
+    }
+  }
+}
 export class TiposProveedores {
   private tipoProveedoresArray: Array<ITipoPoveedor>;
 
@@ -783,7 +815,7 @@ export class MediosDePago {
   InsertarMediosDePago() {
     try {
       mediosDePago.afterSync("createMediosDePago", async () => {
-        mediosDePago.bulkCreate(this.medioDePagoArray);
+        await mediosDePago.bulkCreate(this.medioDePagoArray);
       });
     } catch (error) {
       console.error(`Error insertando medios de pago, ${error}`);
@@ -960,7 +992,7 @@ export class TipoFacturasPorPagar {
   InsertarTipoFactura() {
     try {
       tipoFacturasPorPagar.afterSync("createTipoFacturas", async () => {
-        tipoFacturasPorPagar.bulkCreate(this.tipoFacturasPorPagarArray);
+        await tipoFacturasPorPagar.bulkCreate(this.tipoFacturasPorPagarArray);
       });
     } catch (error) {
       console.error(`Error al insertar tipo de facturas, ${error}`);
@@ -1033,7 +1065,7 @@ export class TipoCuentasContables {
   InsertarTipoCuentasContables() {
     try {
       tiposCuentaContable.afterSync("createTiposCuenta", async () => {
-        tiposCuentaContable.bulkCreate(this.tipoCuentaContableArray);
+        await tiposCuentaContable.bulkCreate(this.tipoCuentaContableArray);
       });
     } catch (error) {
       console.error(`Error al insertar tipo cuenta contable, ${error}`);
@@ -1113,40 +1145,65 @@ export class TransaccionesComerciales {
   InsertarTransaccionesComerciales() {
     try {
       transaccionesComerciales.afterSync("createTransacciones", async () => {
-        transaccionesComerciales.bulkCreate(this.transaccionesArray);
+        await transaccionesComerciales.bulkCreate(this.transaccionesArray);
       });
     } catch (error) {
       return console.error(`Error al insertar transacciones, ${error}`);
     }
   }
 }
-
-export class Empresa {
-  private _empresa: IEmpresa;
+export class CuentasContables {
+  private _cuenntaArray: Array<ICuentaContable>;
   constructor() {
-    this._empresa = {
-      nombre: "FRUTAS y POSTRES S.A.",
-      alias: "FSA",
-      rnc: "1-547896-89",
-      sucursalId: 1,
-      estado: true,
-      planId: 1,
-      createdAt: new Date(),
-      updatedAt: null,
-      direccion: "CALLE LAS HOJAS EDIFICIO ALMENDRA #4/ SANTO DOMINGO ESTE",
-      telefono: "809-123-4567",
-      correo: "HOJAS@GMAIL.COM",
-      usuario: "SA",
-      terminal: "SA",
-    };
+    this._cuenntaArray = [
+      {
+        noCuenta: "1010001",
+        descripcion: "BANCO POPULAR",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+        tipoCuentaContableId: 1,
+        grupoCuentasContableId: 1,
+        monedaId:1,
+        empresaId: 1,
+      },
+      {
+        noCuenta: "2010001",
+        descripcion: "PROVEEDORES",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+        tipoCuentaContableId: 2,
+        grupoCuentasContableId: 9,
+        monedaId:1,
+        empresaId: 1,
+      },
+      {
+        noCuenta: "6010001",
+        descripcion: "GASTOS VARIOS",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+        tipoCuentaContableId: 6,
+        grupoCuentasContableId: 14,
+        monedaId:1,
+        empresaId: 1,
+      },
+    ];
   }
-  CrearEmpresa() {
+  InsertarCuentas() {
     try {
-      empresas.afterSync("createEmpresa", async () => {
-        empresas.create(this._empresa);
+      cuentasContables.afterSync("createCuentasContables", async () => {
+        await cuentasContables.bulkCreate(this._cuenntaArray);
       });
     } catch (error) {
-      console.error(`Error al crear empresa, ${error}`);
+      return console.error(`Error al insertar cuentas contables, ${error}`);
     }
   }
 }

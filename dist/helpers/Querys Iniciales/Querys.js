@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Empresa = exports.TransaccionesComerciales = exports.TipoCuentasContables = exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.GrupoCuentasContables = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = void 0;
+exports.CuentasContables = exports.TransaccionesComerciales = exports.TipoCuentasContables = exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.GrupoCuentasContables = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = exports.Empresa = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
 const grupoCuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/grupoCuentasContables.model"));
@@ -29,6 +29,37 @@ const tiposFacturasPorPagar_model_1 = __importDefault(require("../../models/Fact
 const tipoCuentaContable_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoCuentaContable.model"));
 const TransaccionesComerciales_model_1 = __importDefault(require("../../models/TransaccionesComerciales/TransaccionesComerciales.model"));
 const empresa_model_1 = __importDefault(require("../../models/Empresa/empresa.model"));
+const cuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/cuentasContables.model"));
+class Empresa {
+    constructor() {
+        this._empresa = {
+            nombre: "FRUTAS y POSTRES S.A.",
+            alias: "FSA",
+            rnc: "1-547896-89",
+            sucursalId: 1,
+            estado: true,
+            planId: 1,
+            createdAt: new Date(),
+            updatedAt: null,
+            direccion: "CALLE LAS HOJAS EDIFICIO ALMENDRA #4/ SANTO DOMINGO ESTE",
+            telefono: "809-123-4567",
+            correo: "HOJAS@GMAIL.COM",
+            usuario: "SA",
+            terminal: "SA",
+        };
+    }
+    CrearEmpresa() {
+        try {
+            empresa_model_1.default.afterSync("createEmpresa", () => __awaiter(this, void 0, void 0, function* () {
+                yield empresa_model_1.default.create(this._empresa);
+            }));
+        }
+        catch (error) {
+            console.error(`Error al crear empresa, ${error}`);
+        }
+    }
+}
+exports.Empresa = Empresa;
 class TiposProveedores {
     // AGREGO TIPO AL INICIO DEL PROGRAMA //
     constructor() {
@@ -761,7 +792,7 @@ class MediosDePago {
     InsertarMediosDePago() {
         try {
             medioDePago_model_1.default.afterSync("createMediosDePago", () => __awaiter(this, void 0, void 0, function* () {
-                medioDePago_model_1.default.bulkCreate(this.medioDePagoArray);
+                yield medioDePago_model_1.default.bulkCreate(this.medioDePagoArray);
             }));
         }
         catch (error) {
@@ -936,7 +967,7 @@ class TipoFacturasPorPagar {
     InsertarTipoFactura() {
         try {
             tiposFacturasPorPagar_model_1.default.afterSync("createTipoFacturas", () => __awaiter(this, void 0, void 0, function* () {
-                tiposFacturasPorPagar_model_1.default.bulkCreate(this.tipoFacturasPorPagarArray);
+                yield tiposFacturasPorPagar_model_1.default.bulkCreate(this.tipoFacturasPorPagarArray);
             }));
         }
         catch (error) {
@@ -1009,7 +1040,7 @@ class TipoCuentasContables {
     InsertarTipoCuentasContables() {
         try {
             tipoCuentaContable_model_1.default.afterSync("createTiposCuenta", () => __awaiter(this, void 0, void 0, function* () {
-                tipoCuentaContable_model_1.default.bulkCreate(this.tipoCuentaContableArray);
+                yield tipoCuentaContable_model_1.default.bulkCreate(this.tipoCuentaContableArray);
             }));
         }
         catch (error) {
@@ -1089,7 +1120,7 @@ class TransaccionesComerciales {
     InsertarTransaccionesComerciales() {
         try {
             TransaccionesComerciales_model_1.default.afterSync("createTransacciones", () => __awaiter(this, void 0, void 0, function* () {
-                TransaccionesComerciales_model_1.default.bulkCreate(this.transaccionesArray);
+                yield TransaccionesComerciales_model_1.default.bulkCreate(this.transaccionesArray);
             }));
         }
         catch (error) {
@@ -1098,34 +1129,60 @@ class TransaccionesComerciales {
     }
 }
 exports.TransaccionesComerciales = TransaccionesComerciales;
-class Empresa {
+class CuentasContables {
     constructor() {
-        this._empresa = {
-            nombre: "FRUTAS y POSTRES S.A.",
-            alias: "FSA",
-            rnc: "1-547896-89",
-            sucursalId: 1,
-            estado: true,
-            planId: 1,
-            createdAt: new Date(),
-            updatedAt: null,
-            direccion: "CALLE LAS HOJAS EDIFICIO ALMENDRA #4/ SANTO DOMINGO ESTE",
-            telefono: "809-123-4567",
-            correo: "HOJAS@GMAIL.COM",
-            usuario: "SA",
-            terminal: "SA",
-        };
+        this._cuenntaArray = [
+            {
+                noCuenta: "1010001",
+                descripcion: "BANCO POPULAR",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+                tipoCuentaContableId: 1,
+                grupoCuentasContableId: 1,
+                monedaId: 1,
+                empresaId: 1,
+            },
+            {
+                noCuenta: "2010001",
+                descripcion: "PROVEEDORES",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+                tipoCuentaContableId: 2,
+                grupoCuentasContableId: 9,
+                monedaId: 1,
+                empresaId: 1,
+            },
+            {
+                noCuenta: "6010001",
+                descripcion: "GASTOS VARIOS",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+                tipoCuentaContableId: 6,
+                grupoCuentasContableId: 14,
+                monedaId: 1,
+                empresaId: 1,
+            },
+        ];
     }
-    CrearEmpresa() {
+    InsertarCuentas() {
         try {
-            empresa_model_1.default.afterSync("createEmpresa", () => __awaiter(this, void 0, void 0, function* () {
-                empresa_model_1.default.create(this._empresa);
+            cuentasContables_model_1.default.afterSync("createCuentasContables", () => __awaiter(this, void 0, void 0, function* () {
+                yield cuentasContables_model_1.default.bulkCreate(this._cuenntaArray);
             }));
         }
         catch (error) {
-            console.error(`Error al crear empresa, ${error}`);
+            return console.error(`Error al insertar cuentas contables, ${error}`);
         }
     }
 }
-exports.Empresa = Empresa;
+exports.CuentasContables = CuentasContables;
 //# sourceMappingURL=Querys.js.map

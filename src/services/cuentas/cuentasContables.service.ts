@@ -4,8 +4,48 @@ import {
   ITipoCuentaContable,
 } from "../../interfaces/cuentaContable.interface";
 import grupoCuentaContableModel from "../../models/Cuentas Contables/grupoCuentasContables.model";
+import cuentasContables from "../../models/Cuentas Contables/cuentasContables.model";
+import grupoCuentasContables from "../../models/Cuentas Contables/grupoCuentasContables.model";
 
 export default class CuentasContablesService {
+  async getCuentasContables(id: any = null, empresaId: string) {
+    const cuentaResult =
+      id === null
+        ? await cuentasContables.findAll({
+            include: [
+              {
+                model: grupoCuentasContables,
+                attributes:["descripcion"],
+                required: true,
+              },
+              {
+                model: tiposCuentaContable,
+                attributes:["descripcion"],
+                required: true,
+              },
+            ],
+            where: { empresaId, estado: "1" },
+          })
+        : await cuentasContables.findOne({
+            include: [
+              {
+                model: grupoCuentasContables,
+                attributes:["descripcion"],
+                required: true,
+              },
+              {
+                model: tiposCuentaContable,
+                attributes:["descripcion"],
+                required: true,
+              },
+            ],
+            where: { id, empresaId, estado: "1" },
+          });
+          return cuentaResult;
+  }
+
+  //-------------GRUPO CUENTAS ---------------//
+
   async getGrupoCuentasContables(id: any = null) {
     const cuentaResult =
       id === null

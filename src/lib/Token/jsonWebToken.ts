@@ -4,7 +4,7 @@ import variablesEnv from "../../config/index";
 import { MsgRespuesta } from "../../helpers/MensajesError/MensajesRespuestaCliente";
 import { IPayloadToken } from "../../interfaces/token.interface";
 
-export const registrarToken = (usuarioId: string, _empresaId:any =null) => {
+export const registrarToken = (usuarioId: string, _empresaId:any = null) => {
  
   const token:string = jwt.sign({ _id: usuarioId, _empresaId }, variablesEnv.SECRET_KEY || "", {
     expiresIn: "12h",

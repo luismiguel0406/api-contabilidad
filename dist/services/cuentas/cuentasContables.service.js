@@ -14,7 +14,46 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const tipoCuentaContable_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoCuentaContable.model"));
 const grupoCuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/grupoCuentasContables.model"));
+const cuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/cuentasContables.model"));
+const grupoCuentasContables_model_2 = __importDefault(require("../../models/Cuentas Contables/grupoCuentasContables.model"));
 class CuentasContablesService {
+    getCuentasContables(id = null, empresaId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const cuentaResult = id === null
+                ? yield cuentasContables_model_1.default.findAll({
+                    include: [
+                        {
+                            model: grupoCuentasContables_model_2.default,
+                            attributes: ["descripcion"],
+                            required: true,
+                        },
+                        {
+                            model: tipoCuentaContable_model_1.default,
+                            attributes: ["descripcion"],
+                            required: true,
+                        },
+                    ],
+                    where: { empresaId, estado: "1" },
+                })
+                : yield cuentasContables_model_1.default.findOne({
+                    include: [
+                        {
+                            model: grupoCuentasContables_model_2.default,
+                            attributes: ["descripcion"],
+                            required: true,
+                        },
+                        {
+                            model: tipoCuentaContable_model_1.default,
+                            attributes: ["descripcion"],
+                            required: true,
+                        },
+                    ],
+                    where: { id, empresaId, estado: "1" },
+                });
+            return cuentaResult;
+        });
+    }
+    //-------------GRUPO CUENTAS ---------------//
     getGrupoCuentasContables(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const cuentaResult = id === null

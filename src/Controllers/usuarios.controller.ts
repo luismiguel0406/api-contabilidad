@@ -55,13 +55,13 @@ export const InicioSesionUsuario = async (req: Request, res: Response, next: Nex
       return res.status(statusCode).json({ Message: `Usuario o contraseña invalida, ${msg}`});
     }
     
-    const Token: string = registrarToken(usuario.id);
+    const Token: string = registrarToken(usuario.id, usuario.empresaId);
     res.header("auth-token", Token).json({
       Id: usuario.id,
       Usuario: usuario.nombreUsuario,
       Empresa: usuario.empresaId,
-      Email: usuario.email
-    });
+      Email: usuario.email,
+      Message:`Bienvenido ${usuario.nombreUsuario}`});
     next();
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;

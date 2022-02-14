@@ -12,10 +12,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTiposCuentasContables = exports.deleteGrupoCuentasContables = exports.updateGrupoCuentasContables = exports.getGrupoCuentasContables = exports.postGrupoCuentaContable = void 0;
+exports.getTiposCuentasContables = exports.deleteGrupoCuentasContables = exports.updateGrupoCuentasContables = exports.getGrupoCuentasContables = exports.postGrupoCuentaContable = exports.getCuentasContables = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const cuentasContables_service_1 = __importDefault(require("../services/cuentas/cuentasContables.service"));
 const cuentaContable_service = new cuentasContables_service_1.default();
+//--------- CUENTAS CONTABLES ----------//
+const getCuentasContables = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const { empresaId } = req;
+        const cuentasContables = yield cuentaContable_service.getCuentasContables(id, empresaId);
+        if (Object.entries(cuentasContables).length === 0) {
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            return res.status(statusCode).json({ Message: msg });
+        }
+        res.json({ cuentasContables });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        return res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.getCuentasContables = getCuentasContables;
+//CODES HERE
+//---------GRUPOS CUENTAS CONTABLES ----------//
 const postGrupoCuentaContable = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { body } = req;

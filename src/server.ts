@@ -1,4 +1,4 @@
-import express, { Application } from "express";
+import express, { Application, Request, Response } from "express";
 import {
   TiposComprobantes,
   GrupoCuentasContables,
@@ -16,6 +16,7 @@ import {
   TipoCuentasContables,
   TransaccionesComerciales,
   Empresa,
+  CuentasContables,
 } from "./helpers/Querys Iniciales/Querys";
 import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
 import MonedasRoutes from "./routes/facturacion/moneda.route";
@@ -93,10 +94,14 @@ class Server {
     this.app.use(usuariosRoutes);
     this.app.use(tipoGastosRoutes);
     this.app.use(tipoFacturasPorpPagarRoutes);
+    this.app.use("*", (req:Request, res:Response)=>{
+      res.status(404).json({Message:"No existe la ruta que colocaste"})
+    })
   }
 
   InicioAplicacion() {
     try {
+      const empresa = new Empresa();
       const tipoClientes = new TiposClientes();
       const tipoContacto = new TiposContactos();
       const tipoProveedor = new TiposProveedores();
@@ -111,9 +116,12 @@ class Server {
       const tipoFacturasPorPagar = new TipoFacturasPorPagar();
       const tipoCuentasContables = new TipoCuentasContables();
       const grupoCuentasContables =  new GrupoCuentasContables();
+      const cuentasContables = new CuentasContables();
       const transaccionesComerciales = new TransaccionesComerciales();
-      const empresa = new Empresa();
+     
 
+
+      empresa.CrearEmpresa();
       tipoClientes.InsertarTipoClientes();
       tipoContacto.InsertarTipoContactos();
       tipoProveedor.InsertarTiposProveedores();
@@ -128,8 +136,9 @@ class Server {
       tipoFacturasPorPagar.InsertarTipoFactura();
       tipoCuentasContables.InsertarTipoCuentasContables();
       grupoCuentasContables.InsertarGruposCuentasContable();
+      cuentasContables.InsertarCuentas();
       transaccionesComerciales.InsertarTransaccionesComerciales();
-      empresa.CrearEmpresa();
+     
     } catch (error) {
       console.error(`Error Metodo Inicio Aplicacion, ${error}`);
     }

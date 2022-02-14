@@ -59,12 +59,13 @@ const InicioSesionUsuario = (req, res, next) => __awaiter(void 0, void 0, void 0
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
             return res.status(statusCode).json({ Message: `Usuario o contraseña invalida, ${msg}` });
         }
-        const Token = (0, jsonWebToken_1.registrarToken)(usuario.id);
+        const Token = (0, jsonWebToken_1.registrarToken)(usuario.id, usuario.empresaId);
         res.header("auth-token", Token).json({
             Id: usuario.id,
             Usuario: usuario.nombreUsuario,
             Empresa: usuario.empresaId,
-            Email: usuario.email
+            Email: usuario.email,
+            Message: `Bienvenido ${usuario.nombreUsuario}`
         });
         next();
     }
