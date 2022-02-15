@@ -1,5 +1,6 @@
 import tiposCuentaContable from "../../models/Cuentas Contables/tipoCuentaContable.model";
 import {
+  ICuentaContable,
   IGrupoCuentaContable,
   ITipoCuentaContable,
 } from "../../interfaces/cuentaContable.interface";
@@ -15,12 +16,12 @@ export default class CuentasContablesService {
             include: [
               {
                 model: grupoCuentasContables,
-                attributes:["descripcion"],
+                attributes: ["descripcion"],
                 required: true,
               },
               {
                 model: tiposCuentaContable,
-                attributes:["descripcion"],
+                attributes: ["descripcion"],
                 required: true,
               },
             ],
@@ -30,18 +31,30 @@ export default class CuentasContablesService {
             include: [
               {
                 model: grupoCuentasContables,
-                attributes:["descripcion"],
+                attributes: ["descripcion"],
                 required: true,
               },
               {
                 model: tiposCuentaContable,
-                attributes:["descripcion"],
+                attributes: ["descripcion"],
                 required: true,
               },
             ],
             where: { id, empresaId, estado: "1" },
           });
-          return cuentaResult;
+    return cuentaResult;
+  }
+
+  async addCuentasContables(body: ICuentaContable) {
+    await cuentasContables.create(body);
+  }
+
+  async updateCuentaContable(id: string, body: ICuentaContable) {
+    await cuentasContables.update(body, { where: { id, estado: "1" } });
+  }
+  
+  async deleteCuentaContable(id: string) {
+    await cuentasContables.update({ estado: "0" }, { where: { id } });
   }
 
   //-------------GRUPO CUENTAS ---------------//

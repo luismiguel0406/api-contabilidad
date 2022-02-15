@@ -19,7 +19,7 @@ export const RegistrarUsuario = async (req:Request, res:Response, next:NextFunct
     }
 
     const usuarioCreado: any = await usuario_service.addUsuario(req.body);
-    const Token: string = registrarToken(usuarioCreado.id);
+    const Token: string = registrarToken(usuarioCreado.id, empresaId);
 
     res.header("auth-token", Token).json({
       Id: usuarioCreado.id,

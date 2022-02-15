@@ -29,7 +29,7 @@ const RegistrarUsuario = (req, res, next) => __awaiter(void 0, void 0, void 0, f
                 .json({ Message: `Usuario o contraseña invalida, ${msg}` });
         }
         const usuarioCreado = yield usuario_service.addUsuario(req.body);
-        const Token = (0, jsonWebToken_1.registrarToken)(usuarioCreado.id);
+        const Token = (0, jsonWebToken_1.registrarToken)(usuarioCreado.id, empresaId);
         res.header("auth-token", Token).json({
             Id: usuarioCreado.id,
             Usuario: usuarioCreado.nombreUsuario,

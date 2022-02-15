@@ -53,6 +53,21 @@ class CuentasContablesService {
             return cuentaResult;
         });
     }
+    addCuentasContables(body) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield cuentasContables_model_1.default.create(body);
+        });
+    }
+    updateCuentaContable(id, body) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield cuentasContables_model_1.default.update(body, { where: { id, estado: "1" } });
+        });
+    }
+    deleteCuentaContable(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield cuentasContables_model_1.default.update({ estado: "0" }, { where: { id } });
+        });
+    }
     //-------------GRUPO CUENTAS ---------------//
     getGrupoCuentasContables(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
