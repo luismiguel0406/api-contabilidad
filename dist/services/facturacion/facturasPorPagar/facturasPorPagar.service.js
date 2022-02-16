@@ -21,7 +21,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const detalleFacturasPorPagar_model_1 = __importDefault(require("models/Facturacion/Facturas por pagar/detalleFacturasPorPagar.model"));
 const facturasPorPagar_model_1 = __importDefault(require("models/Facturacion/Facturas por pagar/facturasPorPagar.model"));
-const sequelize_1 = require("sequelize");
 class FacturasPorPagarService {
     getFacturasPorPagar(id = null, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -37,8 +36,7 @@ class FacturasPorPagarService {
         var e_1, _a;
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const t = yield sequelize_1.Sequelize.transaction();
-                const facturaPorPagarResult = yield facturasPorPagar_model_1.default.create(body, { transaction: t });
+                const facturaPorPagarResult = yield facturasPorPagar_model_1.default.create(body);
                 const { id } = facturaPorPagarResult.dataValues;
                 try {
                     for (var _b = __asyncValues(body.detalleFacturaPorPagar), _c; _c = yield _b.next(), !_c.done;) {
@@ -53,29 +51,27 @@ class FacturasPorPagarService {
                     }
                     finally { if (e_1) throw e_1.error; }
                 }
-                const detalleFacturaResult = detalleFacturasPorPagar_model_1.default.bulkCreate(body.detalleFacturaPorPagar, { transaction: t });
+                const detalleFacturaResult = detalleFacturasPorPagar_model_1.default.bulkCreate(body.detalleFacturaPorPagar);
                 return {
                     facturaPorPagar: facturaPorPagarResult,
                     detalleFacturaPorPagar: detalleFacturaResult,
                 };
             }
-            finally {
+            catch (error) {
+                return error;
             }
         });
     }
-    catch(error) {
-        return error;
+    deleteFacturasPorPagar(id, empresaId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield facturasPorPagar_model_1.default.update({ estado: "0" }, { where: { id, empresaId } });
+        });
+    }
+    updateFacturasPorPagar() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return "Las Facturas no se actualizan";
+        });
     }
 }
 exports.default = FacturasPorPagarService;
-async;
-deleteFacturasPorPagar(id, string, empresaId, string);
-{
-    await facturasPorPagar_model_1.default.update({ estado: "0" }, { where: { id, empresaId } });
-}
-async;
-updateFacturasPorPagar();
-{
-    return "Las Facturas no se actualizan";
-}
 //# sourceMappingURL=facturasPorPagar.service.js.map

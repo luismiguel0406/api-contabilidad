@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/helmet": "^4.0.0",
+    "@types/sequelize": "^4.28.11",
     "bcrypt": "^5.0.1",
     "concurrently": "^7.0.0",
     "cors": "^2.8.5",
