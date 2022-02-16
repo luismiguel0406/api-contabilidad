@@ -17,10 +17,8 @@ router.put(`${endPointCuentas}/${grupoCuenta}/:id`, cuentaContable_controller_1.
 router.delete(`${endPointCuentas}/${grupoCuenta}/:id`, cuentaContable_controller_1.deleteGrupoCuentasContables);
 // CUENTAS //'
 router.get(`${endPointCuentas}/${cuentaContable}/:id?`, jsonWebToken_1.ValidarToken, cuentaContable_controller_1.getCuentasContables);
-/*
-router.post(`${endPointCuentas}/${grupoCuenta}`, postGrupoCuentaContable);
-router.put(`${endPointCuentas}/${grupoCuenta}/:id`, updateGrupoCuentasContables);
-router.delete(`${endPointCuentas}/${grupoCuenta}/:id`, deleteGrupoCuentasContables);
-*/
+router.post(`${endPointCuentas}/${grupoCuenta}`, cuentaContable_controller_1.postGrupoCuentaContable);
+router.put(`${endPointCuentas}/${grupoCuenta}/:id`, cuentaContable_controller_1.updateGrupoCuentasContables);
+router.delete(`${endPointCuentas}/${grupoCuenta}/:id`, cuentaContable_controller_1.deleteGrupoCuentasContables);
 exports.default = router;
 //# sourceMappingURL=cuentas.route.js.map

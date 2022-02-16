@@ -1,5 +1,5 @@
 import { IFacturasPorPagar } from "interfaces/facturasPorPagar.interface";
-import tipoFacturasPorPagar from "../../../../models/Facturacion/Facturas por pagar/facturasPorPagar.model";
+import tipoFacturasPorPagar from "../../../../models/Facturacion/Facturas por pagar//tiposFacturasPorPagar/tiposFacturasPorPagar.model";
 
 export default class TipoFacturaPorPagarService {
   async getTiposFactura(id: any = null) {

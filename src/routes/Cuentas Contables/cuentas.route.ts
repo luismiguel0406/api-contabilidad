@@ -28,10 +28,9 @@ router.delete(`${endPointCuentas}/${grupoCuenta}/:id`, deleteGrupoCuentasContabl
 // CUENTAS //'
 
 router.get(`${endPointCuentas}/${cuentaContable}/:id?`,ValidarToken,getCuentasContables );
-/*
 router.post(`${endPointCuentas}/${grupoCuenta}`, postGrupoCuentaContable);
 router.put(`${endPointCuentas}/${grupoCuenta}/:id`, updateGrupoCuentasContables);
 router.delete(`${endPointCuentas}/${grupoCuenta}/:id`, deleteGrupoCuentasContables);
-*/
+
 export default router;
   

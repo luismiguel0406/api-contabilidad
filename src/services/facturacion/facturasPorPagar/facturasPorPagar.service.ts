@@ -1,5 +1,8 @@
 import { IFacturasPorPagar } from "interfaces/facturasPorPagar.interface";
+import detalleFacturasPorPagar from "models/Facturacion/Facturas por pagar/detalleFacturasPorPagar.model";
 import facturasPorPagar from "models/Facturacion/Facturas por pagar/facturasPorPagar.model";
+import { Sequelize } from "sequelize";
+
 
 export default class FacturasPorPagarService {
   async getFacturasPorPagar(id: any = null, empresaId: string) {
@@ -14,7 +17,31 @@ export default class FacturasPorPagarService {
   }
 
   async addfacturasPorPagar(body: IFacturasPorPagar) {
-    // codes here
+    try {
+      const t = await Sequelize.transaction()
+
+     
+
+        const facturaPorPagarResult: any = await facturasPorPagar.create(body,{transaction:t});
+        const { id } = facturaPorPagarResult.dataValues;
+  
+        for await (let detalle of body.detalleFacturaPorPagar) {
+          detalle.facturaId = id;
+        }
+        const detalleFacturaResult = detalleFacturasPorPagar.bulkCreate(
+          body.detalleFacturaPorPagar,{transaction:t}
+        );
+  
+        return {
+          facturaPorPagar: facturaPorPagarResult,
+          detalleFacturaPorPagar: detalleFacturaResult,
+        };
+
+      }
+      
+    } catch (error) {
+      return error;
+    }
   }
 
   async deleteFacturasPorPagar(id: string, empresaId: string) {

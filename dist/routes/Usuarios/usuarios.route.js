@@ -8,7 +8,7 @@ const registrarse = "Registrarse";
 const InicioSesion = "InicioSesion";
 const usuario = "usuario";
 router.post(`${endPointUsuarios}/${registrarse}`, usuarios_controller_1.RegistrarUsuario);
-router.post(`${endPointUsuarios}/${InicioSesion}`, usuarios_controller_1.InicioSesionUsuario);
+router.post(`${endPointUsuarios}/${InicioSesion}`, usuarios_controller_1.InicioSesionUsuario); //OJO EMPRESA
 router.put(`${endPointUsuarios}/${usuario}/:id/:empresaId`, usuarios_controller_1.updateUsuario);
 router.delete(`${endPointUsuarios}/${usuario}/:id/:empresaId`, usuarios_controller_1.deleteUsuario);
 exports.default = router;
