@@ -1,8 +1,6 @@
 import { IFacturasPorPagar } from "interfaces/facturasPorPagar.interface";
 import detalleFacturasPorPagar from "models/Facturacion/Facturas por pagar/detalleFacturasPorPagar.model";
 import facturasPorPagar from "models/Facturacion/Facturas por pagar/facturasPorPagar.model";
-import sequelize from "sequelize";
-import { Sequelize } from "sequelize";
 
 export default class FacturasPorPagarService {
   async getFacturasPorPagar(id: any = null, empresaId: string) {
