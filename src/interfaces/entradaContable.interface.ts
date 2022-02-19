@@ -1,7 +1,8 @@
 export interface IAccionContable {
   transaccionId: number;
   tipoCuentaId: number;
-  accion: number;
+  accion: string;
+  movimiento:string;
   estado: boolean;
   createdAt: Date;
   updatedAt: Date | null;

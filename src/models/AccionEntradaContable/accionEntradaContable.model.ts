@@ -15,7 +15,12 @@ const accionesEntradasContables = conexion.define("accionEntradaContable",{
       allowNull:false,
   },
   accion:{
-     type:DataTypes.INTEGER,
+     type:DataTypes.STRING,
+     allowNull:false
+  },
+  movimiento:{
+   type:DataTypes.STRING,
+   allowNull:false
   },
    estado: {
     type: DataTypes.BOOLEAN,
