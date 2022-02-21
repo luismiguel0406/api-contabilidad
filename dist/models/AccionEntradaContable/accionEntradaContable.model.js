@@ -17,7 +17,12 @@ const accionesEntradasContables = connectionDB_1.default.define("accionEntradaCo
         allowNull: false,
     },
     accion: {
-        type: types_1.DataTypes.INTEGER,
+        type: types_1.DataTypes.STRING,
+        allowNull: false
+    },
+    movimiento: {
+        type: types_1.DataTypes.STRING,
+        allowNull: false
     },
     estado: {
         type: types_1.DataTypes.BOOLEAN,

@@ -9,15 +9,13 @@ export const getProveedores = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const ProveedoresResult = await proveedorers_service.getProveedores(id);
-    if (ProveedoresResult === null) {
+    const ProveedoresResult:boolean | any = await proveedorers_service.getProveedores(id);
+    if (!ProveedoresResult) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
-    const { statusCode, msg } = MsgRespuesta.Success;
-    return res
-      .status(statusCode)
-      .json({ Proveedores: ProveedoresResult, Message: msg });
+    
+    return res.json({ Proveedores: ProveedoresResult});
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });

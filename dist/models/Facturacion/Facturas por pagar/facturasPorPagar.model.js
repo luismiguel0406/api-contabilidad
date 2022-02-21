@@ -70,7 +70,7 @@ const facturasPorPagar = connectionDB_1.default.define("facturaPorPagar", {
         type: sequelize_1.DataTypes.STRING(50),
         allowNull: false,
     },
-    tipoFacturaId: {
+    tipoFacturaIPorPagard: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 1,
@@ -98,7 +98,7 @@ const facturasPorPagar = connectionDB_1.default.define("facturaPorPagar", {
     },
 }, { schema: "FACTURACION" });
 //-------ASOCIACIONES-------//
-tiposFacturasPorPagar_model_1.default.hasMany(facturasPorPagar, { foreignKey: "tipoFacturaId" });
+tiposFacturasPorPagar_model_1.default.hasMany(facturasPorPagar, { foreignKey: " tipoFacturaIPorPagard" });
 facturasPorPagar.belongsTo(tiposFacturasPorPagar_model_1.default);
 empresa_model_1.default.hasMany(facturasPorPagar, { foreignKey: "empresaId" });
 facturasPorPagar.belongsTo(empresa_model_1.default);

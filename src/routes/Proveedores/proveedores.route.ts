@@ -12,13 +12,14 @@ import {
 
 const router = Router();
 const endPointProveedores = "/api/proveedores";
+const proveedor = "proveedor"
 const tipoProveedor = "tipo";
 
 //PROVEEDORES
-router.get(`${endPointProveedores}/:id?`, getProveedores);
-router.post(`${endPointProveedores}`, postProveedor);
-router.put(`${endPointProveedores}/:id`, updateProveedores);
-router.delete(`${endPointProveedores}/:id`, deleteProveedor);
+router.get(`${endPointProveedores}/${proveedor}:id?`, getProveedores);
+router.post(`${endPointProveedores}/${proveedor}`, postProveedor);
+router.put(`${endPointProveedores}/${proveedor}/:id`, updateProveedores);
+router.delete(`${endPointProveedores}/${proveedor}/:id`, deleteProveedor);
 
 //TIPO PROVEEDORES
 router.get(`${endPointProveedores}/${tipoProveedor}:id?`, getTipoProveedor);

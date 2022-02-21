@@ -8,21 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const accionEntradaContable_model_1 = __importDefault(require("models/AccionEntradaContable/accionEntradaContable.model"));
-class AccionesEntradaContableService {
-    getAccionEntrada(payload, tipoCuentaId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const accionContable = yield accionEntradaContable_model_1.default.findAll({
-                where: { payload, tipoCuentaId },
-            });
-            return accionContable;
-            // CODES HERE
-        });
-    }
-}
-exports.default = AccionesEntradaContableService;
-//# sourceMappingURL=AccionesEntradaContable.service.js.map
+exports.entradaContable = void 0;
+const entradaContable = () => __awaiter(void 0, void 0, void 0, function* () {
+});
+exports.entradaContable = entradaContable;
+//# sourceMappingURL=entradaContable.js.map

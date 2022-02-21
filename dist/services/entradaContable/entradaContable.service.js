@@ -12,17 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const accionEntradaContable_model_1 = __importDefault(require("models/AccionEntradaContable/accionEntradaContable.model"));
-class AccionesEntradaContableService {
-    getAccionEntrada(payload, tipoCuentaId) {
+const entradaContableHeader_model_1 = __importDefault(require("models/EntradaContable/entradaContableHeader.model"));
+class EntradaContableService {
+    addEntradaContable(payload, body) {
         return __awaiter(this, void 0, void 0, function* () {
-            const accionContable = yield accionEntradaContable_model_1.default.findAll({
-                where: { payload, tipoCuentaId },
-            });
-            return accionContable;
-            // CODES HERE
+            const entradaContableSaved = yield entradaContableHeader_model_1.default.create(body);
+            //codes here
         });
     }
 }
-exports.default = AccionesEntradaContableService;
-//# sourceMappingURL=AccionesEntradaContable.service.js.map
+exports.default = EntradaContableService;
+//# sourceMappingURL=entradaContable.service.js.map

@@ -1,4 +1,4 @@
-import cuentasContables from "models/Cuentas Contables/cuentasContables.model";
+import cuentasContables from "../../Cuentas Contables/cuentasContables.model";
 import { DataTypes } from "sequelize";
 import conexion from "../../../Database/connectionDB";
 import facturasPorPagar from "./facturasPorPagar.model";
@@ -35,7 +35,7 @@ const detalleFacturasPorPagar = conexion.define(
 facturasPorPagar.hasMany(detalleFacturasPorPagar, { foreignKey: "facturaId" });
 detalleFacturasPorPagar.belongsTo(facturasPorPagar);
 
-cuentasContables.hasMany(facturasPorPagar, { foreignKey: "cuentaContableId" });
-facturasPorPagar.belongsTo(cuentasContables);
+cuentasContables.hasMany(detalleFacturasPorPagar, { foreignKey: "cuentaContableId" });
+detalleFacturasPorPagar.belongsTo(cuentasContables);
 
 export default detalleFacturasPorPagar;

@@ -21,14 +21,11 @@ const getProveedores = (req, res) => __awaiter(void 0, void 0, void 0, function*
     try {
         const { id } = req.params;
         const ProveedoresResult = yield proveedorers_service.getProveedores(id);
-        if (ProveedoresResult === null) {
+        if (!ProveedoresResult) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }
-        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
-        return res
-            .status(statusCode)
-            .json({ Proveedores: ProveedoresResult, Message: msg });
+        return res.json({ Proveedores: ProveedoresResult });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

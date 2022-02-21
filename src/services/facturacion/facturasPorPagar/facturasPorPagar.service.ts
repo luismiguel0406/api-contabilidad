@@ -2,9 +2,9 @@ import {
   IFacturasPorPagar,
   ITipoFacturasPorPagar,
 } from "interfaces/facturasPorPagar.interface";
-import detalleFacturasPorPagar from "models/Facturacion/Facturas por pagar/detalleFacturasPorPagar.model";
-import facturasPorPagar from "models/Facturacion/Facturas por pagar/facturasPorPagar.model";
-import tipoFacturasPorPagar from "models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model";
+import detalleFacturasPorPagar from "../../../models//Facturacion/Facturas por pagar/detalleFacturasPorPagar.model"
+import facturasPorPagar from "../../../models/Facturacion/Facturas por pagar/facturasPorPagar.model";
+import tipoFacturasPorPagar from "../../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model";
 
 export default class FacturasPorPagarService {
   //---------- FACTURAS POR PAGAR -------------//
@@ -31,7 +31,6 @@ export default class FacturasPorPagarService {
       const detalleFacturaResult = detalleFacturasPorPagar.bulkCreate(
         body.detalleFacturaPorPagar
       );
-     // entrada contable llamar
       return {
         facturaPorPagar: facturaPorPagarResult,
         detalleFacturaPorPagar: detalleFacturaResult,

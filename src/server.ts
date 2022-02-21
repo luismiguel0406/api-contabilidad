@@ -32,7 +32,7 @@ import medioDePagoRoutes from "./routes/facturacion/medioDePagp.route";
 import facturasRoutes from "./routes/facturacion/factura.route";
 import usuariosRoutes from "./routes/Usuarios/usuarios.route";
 import tipoGastosRoutes from  "./routes/facturacion/tipoGastos.route";
-import tipoFacturasPorpPagarRoutes from "./routes/facturasPorPagar/facturasPorPagar.route"
+import facturasPorpPagarRoutes from "./routes/facturasPorPagar/facturasPorPagar.route"
 import cors from "cors";
 import variablesEnv from "./config/index";
 import db from "./Database/connectionDB";
@@ -93,7 +93,7 @@ class Server {
     this.app.use(facturasRoutes);
     this.app.use(usuariosRoutes);
     this.app.use(tipoGastosRoutes);
-    this.app.use(tipoFacturasPorpPagarRoutes);
+    this.app.use(facturasPorpPagarRoutes);
     this.app.use("*", (req:Request, res:Response)=>{
       res.status(404).json({Message:"No existe la ruta que colocaste"})
     })

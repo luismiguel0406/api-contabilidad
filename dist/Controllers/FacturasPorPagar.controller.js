@@ -14,13 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postFacturaPorPagar = exports.getTipoFactura = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
-const tipoFacturasPorPagar_service_1 = __importDefault(require("../services/facturacion/facturasPorPagar/tipoFacturasPorPagar/tipoFacturasPorPagar.service"));
+const facturasPorPagar_service_1 = __importDefault(require("../services/facturacion/facturasPorPagar/facturasPorPagar.service"));
 //-------TIPO FACTURAS POR PAGAR -----//
-const tipoFactura_service = new tipoFacturasPorPagar_service_1.default();
+const facturaPorPagar_service = new facturasPorPagar_service_1.default();
 const getTipoFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const tipoFacturaResult = yield tipoFactura_service.getTiposFactura(id);
+        const tipoFacturaResult = yield facturaPorPagar_service.getTiposFactura(id);
         if (!tipoFacturaResult) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
@@ -36,7 +36,9 @@ exports.getTipoFactura = getTipoFactura;
 //------- FACTURAS POR PAGAR -------//
 const postFacturaPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        //codes here
+        const factura = yield facturaPorPagar_service.addFacturasPorPagar(req.body);
+        console.log(factura);
+        res.json(factura);
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
