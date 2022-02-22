@@ -19,7 +19,7 @@ const facturasPorPagar = conexion.define(
       type: DataTypes.STRING(25),
       allowNull: false,
     },
-    NcfModificado: {//n minuscula
+    ncfModificado: {//n minuscula
       type: DataTypes.STRING(25),
     },
     subTotal: {
@@ -69,7 +69,7 @@ const facturasPorPagar = conexion.define(
       type: DataTypes.STRING(50),
       allowNull: false,
     },
-    tipoFacturaIPorPagard: {
+    tipoFacturasPorPagarId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1,
@@ -101,7 +101,7 @@ const facturasPorPagar = conexion.define(
 
 //-------ASOCIACIONES-------//
 
-tipoFacturasPorPagar.hasMany(facturasPorPagar, { foreignKey: " tipoFacturaIPorPagard" });
+tipoFacturasPorPagar.hasMany(facturasPorPagar, { foreignKey: "tipoFacturasPorPagarId" });
 facturasPorPagar.belongsTo(tipoFacturasPorPagar);
 
 empresas.hasMany(facturasPorPagar, { foreignKey: "empresaId" });

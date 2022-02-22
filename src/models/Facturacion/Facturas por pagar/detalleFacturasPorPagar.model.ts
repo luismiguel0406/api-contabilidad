@@ -18,7 +18,7 @@ const detalleFacturasPorPagar = conexion.define(
     detalleImpuesto: {
       type: DataTypes.JSONB,
     },
-    facturaId: {
+    facturaPorPagarId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -29,10 +29,10 @@ const detalleFacturasPorPagar = conexion.define(
   },
   { schema: "FACTURACION" }
 );
-
+//detalleFacturasPorPagar.sync({force:true})
 //---ASOCIACIONES---//
 
-facturasPorPagar.hasMany(detalleFacturasPorPagar, { foreignKey: "facturaId" });
+facturasPorPagar.hasMany(detalleFacturasPorPagar, { foreignKey: "facturaPorPagarId" });
 detalleFacturasPorPagar.belongsTo(facturasPorPagar);
 
 cuentasContables.hasMany(detalleFacturasPorPagar, { foreignKey: "cuentaContableId" });

@@ -27,8 +27,8 @@ export const postFacturaPorPagar = async (req: Request, res: Response) => {
   try {
    
       const factura:any = await facturaPorPagar_service.addFacturasPorPagar(req.body);
-      console.log(factura)
-      res.json(factura);   
+      const { statusCode, msg } = MsgRespuesta.created;
+      res.status(statusCode).json({factura, Message:msg});   
  
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;

@@ -24,11 +24,11 @@ export default class FacturasPorPagarService {
     try {
       const facturaPorPagarResult: any = await facturasPorPagar.create(body);
       const { id } = facturaPorPagarResult.dataValues;
-
+      
       for await (let detalle of body.detalleFacturaPorPagar) {
-        detalle.facturaId = id;
+        detalle.facturaPorPagarId = id;
       }
-      const detalleFacturaResult = detalleFacturasPorPagar.bulkCreate(
+      const detalleFacturaResult = await detalleFacturasPorPagar.bulkCreate(
         body.detalleFacturaPorPagar
       );
       return {

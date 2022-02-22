@@ -20,7 +20,7 @@ const detalleFacturasPorPagar = connectionDB_1.default.define("detalleFacturaPor
     detalleImpuesto: {
         type: sequelize_1.DataTypes.JSONB,
     },
-    facturaId: {
+    facturaPorPagarId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
@@ -29,8 +29,9 @@ const detalleFacturasPorPagar = connectionDB_1.default.define("detalleFacturaPor
         allowNull: false,
     },
 }, { schema: "FACTURACION" });
+//detalleFacturasPorPagar.sync({force:true})
 //---ASOCIACIONES---//
-facturasPorPagar_model_1.default.hasMany(detalleFacturasPorPagar, { foreignKey: "facturaId" });
+facturasPorPagar_model_1.default.hasMany(detalleFacturasPorPagar, { foreignKey: "facturaPorPagarId" });
 detalleFacturasPorPagar.belongsTo(facturasPorPagar_model_1.default);
 cuentasContables_model_1.default.hasMany(detalleFacturasPorPagar, { foreignKey: "cuentaContableId" });
 detalleFacturasPorPagar.belongsTo(cuentasContables_model_1.default);

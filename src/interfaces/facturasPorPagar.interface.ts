@@ -22,7 +22,7 @@ export interface IFacturasPorPagar {
   updatedAt: Date | null;
   usuario: string;
   terminal: string;
-  tipoFacturaId: number;
+  tipoFacturasPorPagarId: number;
   empresaId: number;
   proveedorId: number;
   monedaId: number;
@@ -33,9 +33,9 @@ export interface IFacturasPorPagar {
 
 export interface IDetalleFacturaPorPagar{
 
-  facturaId:number;
+  facturaPorPagarId:number;
   cuentaId:number;
-  cuentaDescripcion:string;
+  descripcionCuenta:string;
   valor:number;
   detalleImpuesto:string | null;
 

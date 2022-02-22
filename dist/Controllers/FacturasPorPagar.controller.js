@@ -37,8 +37,8 @@ exports.getTipoFactura = getTipoFactura;
 const postFacturaPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const factura = yield facturaPorPagar_service.addFacturasPorPagar(req.body);
-        console.log(factura);
-        res.json(factura);
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
+        res.status(statusCode).json({ factura, Message: msg });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

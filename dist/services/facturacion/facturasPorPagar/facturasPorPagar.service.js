@@ -43,7 +43,7 @@ class FacturasPorPagarService {
                 try {
                     for (var _b = __asyncValues(body.detalleFacturaPorPagar), _c; _c = yield _b.next(), !_c.done;) {
                         let detalle = _c.value;
-                        detalle.facturaId = id;
+                        detalle.facturaPorPagarId = id;
                     }
                 }
                 catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -53,7 +53,7 @@ class FacturasPorPagarService {
                     }
                     finally { if (e_1) throw e_1.error; }
                 }
-                const detalleFacturaResult = detalleFacturasPorPagar_model_1.default.bulkCreate(body.detalleFacturaPorPagar);
+                const detalleFacturaResult = yield detalleFacturasPorPagar_model_1.default.bulkCreate(body.detalleFacturaPorPagar);
                 return {
                     facturaPorPagar: facturaPorPagarResult,
                     detalleFacturaPorPagar: detalleFacturaResult,
