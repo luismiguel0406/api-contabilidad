@@ -27,15 +27,19 @@ const detalleFacturasPorPagar = conexion.define(
       allowNull: false,
     },
   },
-  { schema: "FACTURACION" }
+  { schema: "FACTURACION", timestamps: false }
 );
 //detalleFacturasPorPagar.sync({force:true})
 //---ASOCIACIONES---//
 
-facturasPorPagar.hasMany(detalleFacturasPorPagar, { foreignKey: "facturaPorPagarId" });
+facturasPorPagar.hasMany(detalleFacturasPorPagar, {
+  foreignKey: "facturaPorPagarId",
+});
 detalleFacturasPorPagar.belongsTo(facturasPorPagar);
 
-cuentasContables.hasMany(detalleFacturasPorPagar, { foreignKey: "cuentaContableId" });
+cuentasContables.hasMany(detalleFacturasPorPagar, {
+  foreignKey: "cuentaContableId",
+});
 detalleFacturasPorPagar.belongsTo(cuentasContables);
 
 export default detalleFacturasPorPagar;
