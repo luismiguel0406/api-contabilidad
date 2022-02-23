@@ -14,9 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const entradaContableHeader_model_1 = __importDefault(require("models/EntradaContable/entradaContableHeader.model"));
 class EntradaContableService {
-    addEntradaContable(payload, body) {
+    addEntradaContable(payload, data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const entradaContableSaved = yield entradaContableHeader_model_1.default.create(body);
+            const entradaContableSaved = yield entradaContableHeader_model_1.default.create(data);
+            let objetoEntrada;
+            data.forEach((element) => {
+                objetoEntrada.cuenta = element.cuentaContable;
+                ;
+                objetoEntrada.debito = element.valor;
+                objetoEntrada.credito = 0;
+                objetoEntrada.comentario = 'NO COMENTARIO';
+                objetoEntrada.estado = true;
+                objetoEntrada.entradaId =
+                ;
+            });
             //codes here
         });
     }

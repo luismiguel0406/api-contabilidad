@@ -1,3 +1,5 @@
+import { IDetalleImpuestos } from "./impuestos.interface";
+
 export interface ITipoFacturasPorPagar {
   descripcion: string;
   estado: boolean;
@@ -37,6 +39,6 @@ export interface IDetalleFacturaPorPagar{
   cuentaId:number;
   descripcionCuenta:string;
   valor:number;
-  detalleImpuesto:string | null;
+  detalleImpuesto:Array<IDetalleImpuestos> | null;
 
 }

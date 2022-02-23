@@ -29,7 +29,7 @@ const detalleFacturasPorPagar = conexion.define(
   },
   { schema: "FACTURACION", timestamps: false }
 );
-//detalleFacturasPorPagar.sync({force:true})
+
 //---ASOCIACIONES---//
 
 facturasPorPagar.hasMany(detalleFacturasPorPagar, {
