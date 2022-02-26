@@ -13,10 +13,6 @@ const entradaContablesDetalle = conexion.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    comentario: {
-      type: DataTypes.STRING,
-      defaultValue: "Asiento",
-    },
     debito: {
       type: DataTypes.FLOAT,
     },

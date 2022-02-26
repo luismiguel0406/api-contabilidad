@@ -3,6 +3,29 @@ import { IEntradaContableDetalle } from "../../interfaces/entradaContable.interf
 
 
 export default class EntradaContableService {
+
+
+async filtrarEntrada(data:any){
+  const { total, comentario, empresaId, createdAt, usuario, terminal } = data;
+
+
+ let entradaHeader= {
+   totalDebito : total,
+   toTalCredito :total,
+   comentario,
+   estado:true,
+   createdAt,
+   updateAt:null,
+   usuario,
+   terminal,
+   empresaId
+ }
+
+ return {entradaHeader}
+
+}
+
+
   async addEntradaContable(payload: string, data: any) {
    
    
@@ -18,9 +41,8 @@ export default class EntradaContableService {
       objetoEntrada.cuenta = element.cuentaContable;;
       objetoEntrada.debito = element.valor;
       objetoEntrada.credito = 0;
-      objetoEntrada.comentario = 'NO COMENTARIO';
       objetoEntrada.estado = true;
-      objetoEntrada.entradaId = 
+      objetoEntrada.entradaId = 1
 
       
     });

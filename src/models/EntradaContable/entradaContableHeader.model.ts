@@ -13,10 +13,6 @@ const entradasContables = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    descripcion: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     totalDebito: {
       type: DataTypes.FLOAT,
       allowNull: false,
@@ -24,6 +20,10 @@ const entradasContables = conexion.define(
     totalCredito: {
       type: DataTypes.FLOAT,
       allowNull: false,
+    },
+    comentario: {
+      type: DataTypes.STRING,
+      defaultValue: "ASIENTO CONTABLE",
     },
     estado: {
       type: DataTypes.BOOLEAN,

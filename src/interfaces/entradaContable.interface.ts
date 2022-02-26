@@ -12,9 +12,9 @@ export interface IAccionContable {
 
 export interface IEntradaContable {
   noEntrada: number;
-  descripcion: string;
   totalDebito: number;
   totalCredito: number;
+  comentario: string;
   estado: boolean;
   createdAt: Date;
   updatedAt: Date | null;
@@ -26,7 +26,6 @@ export interface IEntradaContable {
 export interface IEntradaContableDetalle {
   cuenta: string;
   descripcionCuenta: string;
-  comentario: string;
   debito: number;
   credito: number;
   estado: boolean;
