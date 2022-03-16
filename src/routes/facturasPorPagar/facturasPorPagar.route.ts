@@ -1,5 +1,6 @@
-import { getTipoFactura, postFacturaPorPagar } from "../../Controllers/FacturasPorPagar.controller";
+import { getFacturasPorPagar, getTipoFactura, postFacturaPorPagar } from "../../Controllers/FacturasPorPagar.controller";
 import {Router} from "express";
+
 
 const router = Router();
 
@@ -12,6 +13,7 @@ router.get(`${endPointFacturacion}/${tipoFacturasPorPagar}/:id?`,getTipoFactura)
 
 //----------- FACTURA POR PAGAR ------------//
 router.post(`${endPointFacturacion}/${facturaPorPagar}`,postFacturaPorPagar);
+router.get(`${endPointFacturacion}/${facturaPorPagar}/:id?/:empresaId`,getFacturasPorPagar);
 
 
 

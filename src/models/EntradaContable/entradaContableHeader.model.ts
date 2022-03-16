@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import empresas from "../Empresa/empresa.model";
 import conexion from "../../Database/connectionDB";
+import transaccionesComerciales from "../TransaccionesComerciales/TransaccionesComerciales.model";
 
 const entradasContables = conexion.define(
   "entradaContable",
@@ -43,11 +44,25 @@ const entradasContables = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    transaccionComercialId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    transaccionId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   { schema: "ASIENTOS" }
 );
 
 empresas.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresas);
+
+transaccionesComerciales.hasMany(entradasContables, {foreignKey:"transaccionComercialId"})
+entradasContables.belongsTo(transaccionesComerciales);
+
+ 
+
 
 export default entradasContables;

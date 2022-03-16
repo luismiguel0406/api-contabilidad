@@ -10,5 +10,6 @@ const facturaPorPagar = "FacturaPorPagar";
 router.get(`${endPointFacturacion}/${tipoFacturasPorPagar}/:id?`, FacturasPorPagar_controller_1.getTipoFactura);
 //----------- FACTURA POR PAGAR ------------//
 router.post(`${endPointFacturacion}/${facturaPorPagar}`, FacturasPorPagar_controller_1.postFacturaPorPagar);
+router.get(`${endPointFacturacion}/${facturaPorPagar}/:id?/:empresaId`, FacturasPorPagar_controller_1.getFacturasPorPagar);
 exports.default = router;
 //# sourceMappingURL=facturasPorPagar.route.js.map

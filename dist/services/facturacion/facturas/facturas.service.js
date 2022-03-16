@@ -59,6 +59,7 @@ class FacturasService {
                             required: true,
                         },
                     ],
+                    where: { empresaId, estado: "1" }
                 })
                 : yield factura_model_1.default.findOne({
                     include: [
@@ -67,7 +68,7 @@ class FacturasService {
                             required: true,
                         },
                     ],
-                    where: { id, empresaId, estado: "1" },
+                    where: { id, empresaId, estado: "1" }
                 });
             return facturasResult;
         });

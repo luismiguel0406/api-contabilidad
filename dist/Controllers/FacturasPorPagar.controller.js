@@ -12,11 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postFacturaPorPagar = exports.getTipoFactura = void 0;
+exports.getFacturasPorPagar = exports.postFacturaPorPagar = exports.getTipoFactura = void 0;
+const entradaContable_service_1 = __importDefault(require("../services/entradaContable/entradaContable.service"));
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const facturasPorPagar_service_1 = __importDefault(require("../services/facturacion/facturasPorPagar/facturasPorPagar.service"));
 //-------TIPO FACTURAS POR PAGAR -----//
 const facturaPorPagar_service = new facturasPorPagar_service_1.default();
+const entradaContable_service = new entradaContable_service_1.default();
 const getTipoFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
@@ -37,6 +39,9 @@ exports.getTipoFactura = getTipoFactura;
 const postFacturaPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const factura = yield facturaPorPagar_service.addFacturasPorPagar(req.body);
+        console.log("Factura por pagar", factura);
+        const entradaContableHeader = yield entradaContable_service.filtrarEntrada(factura.facturaPorPagar);
+        console.log("Entrada contable", entradaContableHeader);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
         res.status(statusCode).json({ factura, Message: msg });
     }
@@ -46,4 +51,21 @@ const postFacturaPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.postFacturaPorPagar = postFacturaPorPagar;
+const getFacturasPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const { empresaId } = req;
+        const facturasPorPagar = yield facturaPorPagar_service.getFacturasPorPagar(id, empresaId);
+        if (!facturasPorPagar) {
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            return res.status(statusCode).json({ Message: msg });
+        }
+        res.json({ FacturasPorPagar: facturasPorPagar });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        return res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.getFacturasPorPagar = getFacturasPorPagar;
 //# sourceMappingURL=FacturasPorPagar.controller.js.map

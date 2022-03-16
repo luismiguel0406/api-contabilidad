@@ -31,6 +31,7 @@ export default class FacturasService {
                 required: true,
               },
             ],
+            where: {empresaId, estado: "1" }
           })
         : await facturas.findOne({
             include: [
@@ -39,7 +40,7 @@ export default class FacturasService {
                 required: true,
               },
             ],
-            where: { id, empresaId, estado: "1" },
+            where: { id, empresaId, estado: "1" }
           });
 
     return facturasResult;

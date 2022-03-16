@@ -11,7 +11,7 @@ export interface IAccionContable {
 }
 
 export interface IEntradaContable {
-  noEntrada: number;
+  noEntrada: number |string;
   totalDebito: number;
   totalCredito: number;
   comentario: string;
@@ -21,6 +21,10 @@ export interface IEntradaContable {
   usuario: string;
   terminal: string;
   empresaId: number;
+  transaccionComercialId:number;
+  transaccionId:number;
+  
+  
 }
 
 export interface IEntradaContableDetalle {

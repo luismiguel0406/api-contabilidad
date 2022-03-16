@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
+const TransaccionesComerciales_model_1 = __importDefault(require("../TransaccionesComerciales/TransaccionesComerciales.model"));
 const entradasContables = connectionDB_1.default.define("entradaContable", {
     createAt: {
         type: sequelize_1.DataTypes.DATEONLY,
@@ -15,10 +16,6 @@ const entradasContables = connectionDB_1.default.define("entradaContable", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    descripcion: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
     totalDebito: {
         type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
@@ -26,6 +23,10 @@ const entradasContables = connectionDB_1.default.define("entradaContable", {
     totalCredito: {
         type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
+    },
+    comentario: {
+        type: sequelize_1.DataTypes.STRING,
+        defaultValue: "ASIENTO CONTABLE",
     },
     estado: {
         type: sequelize_1.DataTypes.BOOLEAN,
@@ -45,8 +46,18 @@ const entradasContables = connectionDB_1.default.define("entradaContable", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
+    transaccionComercialId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
+    transaccionId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
 }, { schema: "ASIENTOS" });
 empresa_model_1.default.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresa_model_1.default);
+TransaccionesComerciales_model_1.default.hasMany(entradasContables, { foreignKey: "transaccionComercialId" });
+entradasContables.belongsTo(TransaccionesComerciales_model_1.default);
 exports.default = entradasContables;
 //# sourceMappingURL=entradaContableHeader.model.js.map

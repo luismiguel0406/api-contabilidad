@@ -15,10 +15,6 @@ const entradaContablesDetalle = connectionDB_1.default.define("entradaContableDe
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    comentario: {
-        type: sequelize_1.DataTypes.STRING,
-        defaultValue: "Asiento",
-    },
     debito: {
         type: sequelize_1.DataTypes.FLOAT,
     },

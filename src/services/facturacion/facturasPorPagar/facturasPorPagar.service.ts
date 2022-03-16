@@ -2,7 +2,7 @@ import {
   IFacturasPorPagar,
   ITipoFacturasPorPagar,
 } from "interfaces/facturasPorPagar.interface";
-import detalleFacturasPorPagar from "../../../models//Facturacion/Facturas por pagar/detalleFacturasPorPagar.model"
+import detalleFacturasPorPagar from "../../../models//Facturacion/Facturas por pagar/detalleFacturasPorPagar.model";
 import facturasPorPagar from "../../../models/Facturacion/Facturas por pagar/facturasPorPagar.model";
 import tipoFacturasPorPagar from "../../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model";
 
@@ -12,8 +12,22 @@ export default class FacturasPorPagarService {
   async getFacturasPorPagar(id: any = null, empresaId: string) {
     const FacturasPorPagar =
       id === null
-        ? await facturasPorPagar.findAll({ where: { empresaId, estado: "1" } })
+        ? await facturasPorPagar.findAll({
+            include: [
+              {
+                model: detalleFacturasPorPagar,
+                required: true,
+              },
+            ],
+            where: { empresaId, estado: "1" },
+          })
         : await facturasPorPagar.findOne({
+            include: [
+              {
+                model: detalleFacturasPorPagar,
+                required: true,
+              },
+            ],
             where: { id, empresaId, estado: "1" },
           });
 
@@ -24,7 +38,7 @@ export default class FacturasPorPagarService {
     try {
       const facturaPorPagarResult: any = await facturasPorPagar.create(body);
       const { id } = facturaPorPagarResult.dataValues;
-      
+
       for await (let detalle of body.detalleFacturaPorPagar) {
         detalle.facturaPorPagarId = id;
       }

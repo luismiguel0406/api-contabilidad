@@ -1,16 +1,19 @@
 import { Request, Response } from "express";
+import { IEntradaContable } from "interfaces/entradaContable.interface";
+import EntradaContableService from "../services/entradaContable/entradaContable.service";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 import FacturasPorPagarService from "../services/facturacion/facturasPorPagar/facturasPorPagar.service";
 
 //-------TIPO FACTURAS POR PAGAR -----//
 
 const facturaPorPagar_service = new FacturasPorPagarService();
-
+const entradaContable_service = new EntradaContableService();
 
 export const getTipoFactura = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const tipoFacturaResult: boolean | any = await facturaPorPagar_service.getTiposFactura(id);
+    const tipoFacturaResult: boolean | any =
+      await facturaPorPagar_service.getTiposFactura(id);
     if (!tipoFacturaResult) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
@@ -25,11 +28,36 @@ export const getTipoFactura = async (req: Request, res: Response) => {
 //------- FACTURAS POR PAGAR -------//
 export const postFacturaPorPagar = async (req: Request, res: Response) => {
   try {
-   
-      const factura:any = await facturaPorPagar_service.addFacturasPorPagar(req.body);
-      const { statusCode, msg } = MsgRespuesta.created;
-      res.status(statusCode).json({factura, Message:msg});   
- 
+    const factura: any = await facturaPorPagar_service.addFacturasPorPagar(
+      req.body
+    );
+    console.log("Factura por pagar", factura);
+
+    const entradaContableHeader = await entradaContable_service.filtrarEntrada(
+      factura.facturaPorPagar
+    );
+    console.log("Entrada contable", entradaContableHeader);
+
+    const { statusCode, msg } = MsgRespuesta.created;
+    res.status(statusCode).json({ factura, Message: msg });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    return res.status(statusCode).json({ Message: msg, error });
+  }
+};
+
+export const getFacturasPorPagar = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const {empresaId} = req;
+
+    const facturasPorPagar: boolean | any = await facturaPorPagar_service.getFacturasPorPagar(id, empresaId);
+
+    if (!facturasPorPagar) {
+      const { statusCode, msg } = MsgRespuesta.notFound;
+      return res.status(statusCode).json({ Message: msg });
+    }
+    res.json({ FacturasPorPagar: facturasPorPagar });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });
