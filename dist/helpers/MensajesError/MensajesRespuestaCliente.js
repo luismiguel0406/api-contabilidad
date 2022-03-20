@@ -15,7 +15,7 @@ exports.MsgRespuesta = {
         statusCode: 201,
     },
     badRequest: {
-        msg: "No se pudo procear su solicitud",
+        msg: "No se pudo procesar su solicitud",
         statusCode: 400,
     },
     notFound: {
@@ -26,7 +26,7 @@ exports.MsgRespuesta = {
         msg: "Error interno desde el servidor",
         statusCode: 500,
     },
-    unauthorized: {
+    unAuthorized: {
         msg: "Acceso denegado",
         statusCode: 401
     },

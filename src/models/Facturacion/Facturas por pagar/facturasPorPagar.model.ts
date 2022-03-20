@@ -19,7 +19,7 @@ const facturasPorPagar = conexion.define(
       type: DataTypes.STRING(25),
       allowNull: false,
     },
-    ncfModificado: {//n minuscula
+    ncfModificado: {
       type: DataTypes.STRING(25),
     },
     subTotal: {
@@ -33,7 +33,7 @@ const facturasPorPagar = conexion.define(
     },
     totalImpuestos: {
       type: DataTypes.FLOAT,
-      defaultValue: 0,
+      defaultValue: 0.0,
     },
     total: {
       type: DataTypes.FLOAT,
@@ -95,11 +95,16 @@ const facturasPorPagar = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+     detalle:{
+      type: DataTypes.JSONB,
+      allowNull:false
+    }
   },
   { schema: "FACTURACION" }
 );
 
 //-------ASOCIACIONES-------//
+//facturasPorPagar.sync({force:true})
 
 tipoFacturasPorPagar.hasMany(facturasPorPagar, { foreignKey: "tipoFacturasPorPagarId" });
 facturasPorPagar.belongsTo(tipoFacturasPorPagar);

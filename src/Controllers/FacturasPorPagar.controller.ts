@@ -31,12 +31,10 @@ export const postFacturaPorPagar = async (req: Request, res: Response) => {
     const factura: any = await facturaPorPagar_service.addFacturasPorPagar(
       req.body
     );
-    console.log("Factura por pagar", factura);
-
-    const entradaContableHeader = await entradaContable_service.filtrarEntrada(
-      factura.facturaPorPagar
-    );
-    console.log("Entrada contable", entradaContableHeader);
+   /* const entradaContable = await entradaContable_service.filtrarEntrada(
+      factura
+    );*/
+    //const entrada = await entradaContable_service.addEntradaContable("PayLoad",entradaContable)
 
     const { statusCode, msg } = MsgRespuesta.created;
     res.status(statusCode).json({ factura, Message: msg });

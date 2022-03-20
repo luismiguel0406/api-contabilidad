@@ -16,7 +16,7 @@ export const ValidarToken = ( req: Request, res: Response, next: NextFunction) =
   try {
     const Token = req.header("auth-token");
     if (!Token) {
-      const { statusCode, msg } = MsgRespuesta.unauthorized;
+      const { statusCode, msg } = MsgRespuesta.unAuthorized;
       return res.status(statusCode).json({ Message: msg });
     }
     const Payload = jwt.verify(

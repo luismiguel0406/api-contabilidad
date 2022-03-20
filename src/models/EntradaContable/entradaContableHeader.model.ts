@@ -6,8 +6,8 @@ import transaccionesComerciales from "../TransaccionesComerciales/TransaccionesC
 const entradasContables = conexion.define(
   "entradaContable",
   {
-    createAt: {
-      type: DataTypes.DATEONLY,
+    createdAt: {
+      type: DataTypes.DATE,
       allowNull: false,
     },
     noEntrada: {
@@ -52,9 +52,15 @@ const entradasContables = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    detalle:{
+      type:DataTypes.JSONB,
+      allowNull:false
+    }
   },
-  { schema: "ASIENTOS" }
+  { schema: "DIARIO" }
 );
+
+//entradasContables.sync({force:true})
 
 empresas.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresas);

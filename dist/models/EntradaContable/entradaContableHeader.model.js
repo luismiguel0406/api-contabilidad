@@ -8,8 +8,8 @@ const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const TransaccionesComerciales_model_1 = __importDefault(require("../TransaccionesComerciales/TransaccionesComerciales.model"));
 const entradasContables = connectionDB_1.default.define("entradaContable", {
-    createAt: {
-        type: sequelize_1.DataTypes.DATEONLY,
+    createdAt: {
+        type: sequelize_1.DataTypes.DATE,
         allowNull: false,
     },
     noEntrada: {
@@ -54,7 +54,12 @@ const entradasContables = connectionDB_1.default.define("entradaContable", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-}, { schema: "ASIENTOS" });
+    detalle: {
+        type: sequelize_1.DataTypes.JSONB,
+        allowNull: false
+    }
+}, { schema: "DIARIO" });
+//entradasContables.sync({force:true})
 empresa_model_1.default.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresa_model_1.default);
 TransaccionesComerciales_model_1.default.hasMany(entradasContables, { foreignKey: "transaccionComercialId" });

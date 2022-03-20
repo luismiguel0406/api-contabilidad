@@ -18,7 +18,7 @@ const ValidarToken = (req, res, next) => {
     try {
         const Token = req.header("auth-token");
         if (!Token) {
-            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.unauthorized;
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.unAuthorized;
             return res.status(statusCode).json({ Message: msg });
         }
         const Payload = jsonwebtoken_1.default.verify(Token, index_1.default.SECRET_KEY || "");
