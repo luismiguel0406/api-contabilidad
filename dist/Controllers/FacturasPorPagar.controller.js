@@ -39,6 +39,7 @@ exports.getTipoFactura = getTipoFactura;
 const postFacturaPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const factura = yield facturaPorPagar_service.addFacturasPorPagar(req.body);
+        //ENTRADA CONTABLE
         /* const entradaContable = await entradaContable_service.filtrarEntrada(
            factura
          );*/

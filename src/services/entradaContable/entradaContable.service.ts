@@ -6,9 +6,11 @@ import {
 } from "../../interfaces/entradaContable.interface";
 
 export default class EntradaContableService {
-  async filtrarEntrada(data: any) {
 
-    const { total, comentario, empresaId, createdAt, usuario, terminal, id } =
+
+  async facturaPorPagar(data: any) {
+
+    const { total, comentario, empresaId, createdAt, usuario, terminal, id, detalleFacturaPorPagar } =
     data;
      
     let entradaContable: IEntradaContable = {
@@ -22,8 +24,8 @@ export default class EntradaContableService {
       usuario,
       terminal,
       empresaId,
-      transaccionComercialId: 1, // trandsaccion comercial
-      transaccionId: id, // id de la accion realzada
+      transaccionComercialId: 1, // Transaccion comercial  ejemplo: factura, pago , etc
+      transaccionId: id, // Id de la accion realzada
       detalle: [
         {
           debito: 1,
@@ -43,17 +45,5 @@ export default class EntradaContableService {
     return { entradaContable };
   }
 
-  async addEntradaContable(payload: string, data: any) {
-    const entradaContableSaved: any = await entradasContables.create(data);
-
-  /* let objetoEntrada: IEntradaContableDetalle;
-
-    data.forEach((element: any) => {
-      objetoEntrada.cuenta = element.cuentaContable;
-      objetoEntrada.debito = element.valor;
-      objetoEntrada.credito = 0;
-    });
-*/
-    //codes here
-  }
+  
 }

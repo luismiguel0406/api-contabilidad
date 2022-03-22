@@ -8,15 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const entradaContableHeader_model_1 = __importDefault(require("../../models/EntradaContable/entradaContableHeader.model"));
 class EntradaContableService {
-    filtrarEntrada(data) {
+    facturaPorPagar(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { total, comentario, empresaId, createdAt, usuario, terminal, id } = data;
+            const { total, comentario, empresaId, createdAt, usuario, terminal, id, detalleFacturaPorPagar } = data;
             let entradaContable = {
                 noEntrada: 25,
                 totalDebito: total,
@@ -46,20 +42,6 @@ class EntradaContableService {
                 ],
             };
             return { entradaContable };
-        });
-    }
-    addEntradaContable(payload, data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const entradaContableSaved = yield entradaContableHeader_model_1.default.create(data);
-            /* let objetoEntrada: IEntradaContableDetalle;
-          
-              data.forEach((element: any) => {
-                objetoEntrada.cuenta = element.cuentaContable;
-                objetoEntrada.debito = element.valor;
-                objetoEntrada.credito = 0;
-              });
-          */
-            //codes here
         });
     }
 }

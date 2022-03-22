@@ -31,6 +31,9 @@ export const postFacturaPorPagar = async (req: Request, res: Response) => {
     const factura: any = await facturaPorPagar_service.addFacturasPorPagar(
       req.body
     );
+    //ENTRADA CONTABLE
+
+ 
    /* const entradaContable = await entradaContable_service.filtrarEntrada(
       factura
     );*/

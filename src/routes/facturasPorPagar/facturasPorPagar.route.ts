@@ -1,5 +1,6 @@
 import { getFacturasPorPagar, getTipoFactura, postFacturaPorPagar } from "../../Controllers/FacturasPorPagar.controller";
 import {Router} from "express";
+import { ValidarToken } from "../../lib/Token/jsonWebToken";
 
 
 const router = Router();
@@ -12,8 +13,9 @@ const facturaPorPagar = "FacturaPorPagar";
 router.get(`${endPointFacturacion}/${tipoFacturasPorPagar}/:id?`,getTipoFactura);
 
 //----------- FACTURA POR PAGAR ------------//
-router.post(`${endPointFacturacion}/${facturaPorPagar}`,postFacturaPorPagar);
-router.get(`${endPointFacturacion}/${facturaPorPagar}/:id?/:empresaId`,getFacturasPorPagar);
+router.use(`${endPointFacturacion}/${facturaPorPagar}`,ValidarToken)
+router.post(`${endPointFacturacion}/${facturaPorPagar}`, postFacturaPorPagar);
+router.get(`${endPointFacturacion}/${facturaPorPagar}/:id?`, getFacturasPorPagar);
 
 
 
