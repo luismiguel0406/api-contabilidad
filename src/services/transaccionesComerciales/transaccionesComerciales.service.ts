@@ -4,6 +4,7 @@ export default class TransaccionesComercialesService {
   async getTransaccionesComerciales(payload: string = "") {
     try {
       const transaccion = await transaccionesComerciales.findAll({
+        attributes:["id","descripcion"],
         where: { payload, estado : "1" },
       });
       return transaccion;

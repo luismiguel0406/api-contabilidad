@@ -6,15 +6,10 @@ export const generarDetalleEntradaContable = async (
   detalle: any,
   payload: string
 ) => {
-  const movimientosEntradaContable: any =
-    await transaccionComercial_service.getTransaccionesComerciales(payload);
+  const movimientosEntradaContable: any = await transaccionComercial_service.getTransaccionesComerciales(payload);
 
-  const movimientoTipoCuentaContable = (movimientos: any) => {
-    console.log("Movimientos", movimientos);
-  };
-
-   return movimientosEntradaContable
-
+ 
+ return movimientosEntradaContable
   /* for await (let item of detalle){
    // Detalle cuenta 
    // Linea de detalle factura

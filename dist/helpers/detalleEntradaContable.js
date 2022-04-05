@@ -17,9 +17,6 @@ const transaccionesComerciales_service_1 = __importDefault(require("../services/
 const transaccionComercial_service = new transaccionesComerciales_service_1.default();
 const generarDetalleEntradaContable = (detalle, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const movimientosEntradaContable = yield transaccionComercial_service.getTransaccionesComerciales(payload);
-    const movimientoTipoCuentaContable = (movimientos) => {
-        console.log("Movimientos", movimientos);
-    };
     return movimientosEntradaContable;
     /* for await (let item of detalle){
      // Detalle cuenta

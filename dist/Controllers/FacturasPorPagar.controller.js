@@ -43,7 +43,6 @@ const postFacturaPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, func
         //ENTRADA CONTABLE
         const entradaContable = yield entradaContable_service.facturaPorPagar(factura);
         const MovimientosContables = yield (0, detalleEntradaContable_1.generarDetalleEntradaContable)(entradaContable, "REGISTRO_FACTURAS_POR_PAGAR");
-        //const entrada = await entradaContable_service.addEntradaContable("PayLoad",entradaContable)
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
         res.status(statusCode).json({ factura, entradaContable, MovimientosContables, Message: msg });
     }

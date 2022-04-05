@@ -18,6 +18,7 @@ class TransaccionesComercialesService {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const transaccion = yield TransaccionesComerciales_model_1.default.findAll({
+                    attributes: ["id", "descripcion"],
                     where: { payload, estado: "1" },
                 });
                 return transaccion;
