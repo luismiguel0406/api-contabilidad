@@ -13,22 +13,9 @@ export default class FacturasPorPagarService {
     const FacturasPorPagar =
       id === null
         ? await facturasPorPagar.findAll({
-           /* include: [
-              {
-                model: detalleFacturasPorPagar,
-                required: true,
-              },
-            ],
-            */
             where: { empresaId, estado: "1" },
           })
         : await facturasPorPagar.findOne({
-           /* include: [
-              {
-                model: detalleFacturasPorPagar,
-                required: true,
-              },
-            ],*/
             where: { id, empresaId, estado: "1" },
           });
 

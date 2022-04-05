@@ -1,10 +1,10 @@
-import transaccionesComerciales from "models/TransaccionesComerciales/TransaccionesComerciales.model";
+import transaccionesComerciales from "../../models/TransaccionesComerciales/TransaccionesComerciales.model";
 
 export default class TransaccionesComercialesService {
-  async getTransaccionesComerciales(id: number, payload: string) {
+  async getTransaccionesComerciales(payload: string = "") {
     try {
       const transaccion = await transaccionesComerciales.findAll({
-        where: { id, payload, estado : "1" },
+        where: { payload, estado : "1" },
       });
       return transaccion;
     } catch (error) {

@@ -12,13 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const TransaccionesComerciales_model_1 = __importDefault(require("models/TransaccionesComerciales/TransaccionesComerciales.model"));
+const TransaccionesComerciales_model_1 = __importDefault(require("../../models/TransaccionesComerciales/TransaccionesComerciales.model"));
 class TransaccionesComercialesService {
-    getTransaccionesComerciales(id, payload) {
+    getTransaccionesComerciales(payload = "") {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const transaccion = yield TransaccionesComerciales_model_1.default.findAll({
-                    where: { id, payload, estado: "1" },
+                    where: { payload, estado: "1" },
                 });
                 return transaccion;
             }

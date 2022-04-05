@@ -41,7 +41,7 @@ class EntradaContableService {
                     },
                 ],
             };
-            return { entradaContable };
+            return entradaContable;
         });
     }
 }

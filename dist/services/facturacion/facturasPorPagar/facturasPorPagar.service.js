@@ -21,22 +21,9 @@ class FacturasPorPagarService {
         return __awaiter(this, void 0, void 0, function* () {
             const FacturasPorPagar = id === null
                 ? yield facturasPorPagar_model_1.default.findAll({
-                    /* include: [
-                       {
-                         model: detalleFacturasPorPagar,
-                         required: true,
-                       },
-                     ],
-                     */
                     where: { empresaId, estado: "1" },
                 })
                 : yield facturasPorPagar_model_1.default.findOne({
-                    /* include: [
-                       {
-                         model: detalleFacturasPorPagar,
-                         required: true,
-                       },
-                     ],*/
                     where: { id, empresaId, estado: "1" },
                 });
             return FacturasPorPagar;

@@ -103,6 +103,7 @@ const facturasPorPagar = conexion.define(
   { schema: "FACTURACION" }
 );
 
+
 //-------ASOCIACIONES-------//
 
 tipoFacturasPorPagar.hasMany(facturasPorPagar, { foreignKey: "tipoFacturasPorPagarId" });

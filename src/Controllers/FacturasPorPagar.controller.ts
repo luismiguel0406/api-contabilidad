@@ -1,8 +1,9 @@
-import { Request, Response } from "express";
+import { Request, Response,NextFunction } from "express";
 import { IEntradaContable } from "interfaces/entradaContable.interface";
 import EntradaContableService from "../services/entradaContable/entradaContable.service";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 import FacturasPorPagarService from "../services/facturacion/facturasPorPagar/facturasPorPagar.service";
+import { generarDetalleEntradaContable } from "../helpers/detalleEntradaContable"
 
 //-------TIPO FACTURAS POR PAGAR -----//
 
@@ -33,14 +34,14 @@ export const postFacturaPorPagar = async (req: Request, res: Response) => {
     );
     //ENTRADA CONTABLE
 
- 
-   /* const entradaContable = await entradaContable_service.filtrarEntrada(
-      factura
-    );*/
+    const entradaContable = await entradaContable_service.facturaPorPagar(factura);
+
+    const MovimientosContables = await generarDetalleEntradaContable(entradaContable,"REGISTRO_FACTURAS_POR_PAGAR")
+   
     //const entrada = await entradaContable_service.addEntradaContable("PayLoad",entradaContable)
 
     const { statusCode, msg } = MsgRespuesta.created;
-    res.status(statusCode).json({ factura, Message: msg });
+    res.status(statusCode).json({ factura, entradaContable, MovimientosContables, Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });
@@ -49,6 +50,7 @@ export const postFacturaPorPagar = async (req: Request, res: Response) => {
 
 export const getFacturasPorPagar = async (req: Request, res: Response) => {
   try {
+   
     const { id } = req.params;
     const {empresaId} = req;
 
@@ -59,7 +61,10 @@ export const getFacturasPorPagar = async (req: Request, res: Response) => {
       return res.status(statusCode).json({ Message: msg });
     }
     res.json({ FacturasPorPagar: facturasPorPagar });
-  } catch (error) {
+    
+  } 
+  
+  catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });
   }

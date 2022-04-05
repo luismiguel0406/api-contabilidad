@@ -16,6 +16,7 @@ exports.getFacturasPorPagar = exports.postFacturaPorPagar = exports.getTipoFactu
 const entradaContable_service_1 = __importDefault(require("../services/entradaContable/entradaContable.service"));
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const facturasPorPagar_service_1 = __importDefault(require("../services/facturacion/facturasPorPagar/facturasPorPagar.service"));
+const detalleEntradaContable_1 = require("../helpers/detalleEntradaContable");
 //-------TIPO FACTURAS POR PAGAR -----//
 const facturaPorPagar_service = new facturasPorPagar_service_1.default();
 const entradaContable_service = new entradaContable_service_1.default();
@@ -40,12 +41,11 @@ const postFacturaPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, func
     try {
         const factura = yield facturaPorPagar_service.addFacturasPorPagar(req.body);
         //ENTRADA CONTABLE
-        /* const entradaContable = await entradaContable_service.filtrarEntrada(
-           factura
-         );*/
+        const entradaContable = yield entradaContable_service.facturaPorPagar(factura);
+        const MovimientosContables = yield (0, detalleEntradaContable_1.generarDetalleEntradaContable)(entradaContable, "REGISTRO_FACTURAS_POR_PAGAR");
         //const entrada = await entradaContable_service.addEntradaContable("PayLoad",entradaContable)
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
-        res.status(statusCode).json({ factura, Message: msg });
+        res.status(statusCode).json({ factura, entradaContable, MovimientosContables, Message: msg });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
