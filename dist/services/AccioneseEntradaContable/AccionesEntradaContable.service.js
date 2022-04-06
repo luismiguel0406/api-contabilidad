@@ -12,12 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const accionEntradaContable_model_1 = __importDefault(require("models/AccionEntradaContable/accionEntradaContable.model"));
+const accionEntradaContable_model_1 = __importDefault(require("../../models/AccionEntradaContable/accionEntradaContable.model"));
 class AccionesEntradaContableService {
-    getAccionEntrada(payload, tipoCuentaId) {
+    getAccionEntrada(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const accionContable = yield accionEntradaContable_model_1.default.findAll({
-                where: { payload, tipoCuentaId },
+                where: { id, estado: "1" }
             });
             return accionContable;
             // CODES HERE

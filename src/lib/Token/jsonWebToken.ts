@@ -24,7 +24,8 @@ export const ValidarToken = ( req: Request, res: Response, next: NextFunction) =
       variablesEnv.SECRET_KEY || ""
     ) as IPayloadToken;
     req.userId = Payload._id;
-    req.empresaId = Payload._empresaId
+    req.empresaId = Payload._empresaId;
+    
     next();
   } catch (error) {
     return next(error);

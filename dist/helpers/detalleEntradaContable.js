@@ -13,20 +13,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generarDetalleEntradaContable = void 0;
+const AccionesEntradaContable_service_1 = __importDefault(require("../services/AccioneseEntradaContable/AccionesEntradaContable.service"));
 const transaccionesComerciales_service_1 = __importDefault(require("../services/transaccionesComerciales/transaccionesComerciales.service"));
 const transaccionComercial_service = new transaccionesComerciales_service_1.default();
+const accionEntrada_service = new AccionesEntradaContable_service_1.default();
 const generarDetalleEntradaContable = (detalle, payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const movimientosEntradaContable = yield transaccionComercial_service.getTransaccionesComerciales(payload);
-    return movimientosEntradaContable;
+    const transaccion = yield transaccionComercial_service.getTransaccionesComerciales(payload);
+    const data = transaccion[0].transaccionesComerciales;
+    console.log(data, "la data");
+    // const accionesContables = await accionEntrada_service.getAccionEntrada(data.id);
+    // return accionesContables
+    // ESTO ME TRAE DEBITO Y CREDITO SEGUN EL TIPO DE CUENTA
     /* for await (let item of detalle){
      // Detalle cuenta
      // Linea de detalle factura
      // Se deberia Tomar la cuenta contable, su tipo y de acuerdo a este , indicar si va en debito o credito
      // EN BASE DE DATOS select * from transacciones comerciales  where transaccion comercial igual a la operacion
      // Entonces  hago un SWITCH CASE ETC ETC
-  
-   
-  
      }*/
 });
 exports.generarDetalleEntradaContable = generarDetalleEntradaContable;

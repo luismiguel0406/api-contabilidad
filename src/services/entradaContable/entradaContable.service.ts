@@ -1,4 +1,4 @@
-import entradasContables from "../../models/EntradaContable/entradaContableHeader.model";
+import entradasContables from "../../models/EntradaContable/entradaContable.model";
 import { v4 as uuidv4 } from "uuid";
 import {
   IEntradaContable,

@@ -68,7 +68,5 @@ entradasContables.belongsTo(empresas);
 transaccionesComerciales.hasMany(entradasContables, {foreignKey:"transaccionComercialId"})
 entradasContables.belongsTo(transaccionesComerciales);
 
- 
-
 
 export default entradasContables;

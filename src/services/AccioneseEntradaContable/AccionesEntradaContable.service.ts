@@ -1,9 +1,9 @@
-import accionesEntradasContables from "models/AccionEntradaContable/accionEntradaContable.model";
+import accionesEntradasContables from "../../models/AccionEntradaContable/accionEntradaContable.model";
 
 export default class AccionesEntradaContableService {
-  async getAccionEntrada(payload: string, tipoCuentaId: number) {
+  async getAccionEntrada(id: number) {
     const accionContable = await accionesEntradasContables.findAll({
-      where: { payload, tipoCuentaId },
+      where: { id , estado:"1"}
     });
 
     return accionContable;

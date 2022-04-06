@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
-import entradasContables from "./entradaContableHeader.model";
+import entradasContables from "./entradaContable.model";
 
 const entradaContablesDetalle = conexion.define(
   "entradaContableDetalle",

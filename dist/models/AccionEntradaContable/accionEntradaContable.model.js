@@ -3,44 +3,44 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const tipoCuentaContable_model_1 = __importDefault(require("models/Cuentas Contables/tipoCuentaContable.model"));
-const TransaccionesComerciales_model_1 = __importDefault(require("models/TransaccionesComerciales/TransaccionesComerciales.model"));
-const types_1 = require("sequelize/types");
+const tipoCuentaContable_model_1 = __importDefault(require("../Cuentas Contables/tipoCuentaContable.model"));
+const TransaccionesComerciales_model_1 = __importDefault(require("../TransaccionesComerciales/TransaccionesComerciales.model"));
+const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const accionesEntradasContables = connectionDB_1.default.define("accionEntradaContable", {
     transaccionId: {
-        type: types_1.DataTypes.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
     tipoCuentaId: {
-        type: types_1.DataTypes.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
     accion: {
-        type: types_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
     movimiento: {
-        type: types_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
     estado: {
-        type: types_1.DataTypes.BOOLEAN,
+        type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
     },
     createdAt: {
-        type: types_1.DataTypes.DATE,
+        type: sequelize_1.DataTypes.DATE,
         allowNull: false,
     },
     updatedAt: {
-        type: types_1.DataTypes.DATE,
+        type: sequelize_1.DataTypes.DATE,
     },
     usuario: {
-        type: types_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     terminal: {
-        type: types_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
     }
 }, { schema: "DIARIO" });
 //ASOCIACIONES//
