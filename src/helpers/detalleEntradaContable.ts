@@ -1,3 +1,8 @@
+import {
+  IAccionContable,
+  IEntradaContableDetalle,
+} from "interfaces/entradaContable.interface";
+import { ITransaccionComercial } from "interfaces/TransaccionesComerciales.interface";
 import AccionesEntradaContableService from "../services/AccioneseEntradaContable/AccionesEntradaContable.service";
 import TransaccionesComerciales from "../services/transaccionesComerciales/transaccionesComerciales.service";
 
@@ -8,18 +13,40 @@ export const generarDetalleEntradaContable = async (
   detalle: any,
   payload: string
 ) => {
-  const transaccion:any =  await transaccionComercial_service.getTransaccionesComerciales(payload);
-  const data = transaccion[0].transaccionesComerciales
-  console.log(data,"la data")
- // const accionesContables = await accionEntrada_service.getAccionEntrada(data.id);
- // return accionesContables
-   // ESTO ME TRAE DEBITO Y CREDITO SEGUN EL TIPO DE CUENTA
+  const transaccion = <any>(
+    await transaccionComercial_service.getTransaccionesComerciales(payload)
+  );
+  const accionesContables = <Array<any>>(
+    await accionEntrada_service.getAccionEntrada(transaccion.id)
+  );
+  let entradaContable: any = [{}];
+  for await (let d of detalle) {
+    let accion = accionesContables.filter(
+      (a: any) => a.tipoCuentaId == d.tipoCuentaId
+    );
+    switch (accion[0]?.accion) {
+      case "CREDITO":
+        entradaContable.push({
+          credito: 200, // valor,
+          debito: 0,
+          descripcionCuenta: "DESCRIPCION DE LA CUENTA",
+          cuenta: "cuenta",
+        });
+
+        break;
+      case "DEBITO":
+        entradaContable.push({
+          credito: 0, 
+          debito: 200, //valor
+          descripcionCuenta: "DESCRIPCION DE LA CUENTA",
+          cuenta: "cuenta",
+        });
+
+        break;
+      default:
+        break;
+    }
+  }
+  console.log( "Entrada Contable", entradaContable);
  
-  /* for await (let item of detalle){
-   // Detalle cuenta 
-   // Linea de detalle factura
-   // Se deberia Tomar la cuenta contable, su tipo y de acuerdo a este , indicar si va en debito o credito
-   // EN BASE DE DATOS select * from transacciones comerciales  where transaccion comercial igual a la operacion
-   // Entonces  hago un SWITCH CASE ETC ETC
-   }*/
 };

@@ -33,6 +33,7 @@ export interface IEntradaContableDetalle {
   descripcionCuenta: string;
   debito: number;
   credito: number;
+  tipoCuentaId:number;
   //estado: boolean;
  //entradaId: number;
 }

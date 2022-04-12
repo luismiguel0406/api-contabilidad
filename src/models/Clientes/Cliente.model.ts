@@ -6,7 +6,7 @@ const clientes = conexion.define(
   "clientes",
   {
     nombre: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(),
       allowNull: false,
     },
     RNC_Cedula: {

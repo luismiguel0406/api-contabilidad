@@ -8,6 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __asyncValues = (this && this.__asyncValues) || function (o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -17,20 +24,46 @@ const AccionesEntradaContable_service_1 = __importDefault(require("../services/A
 const transaccionesComerciales_service_1 = __importDefault(require("../services/transaccionesComerciales/transaccionesComerciales.service"));
 const transaccionComercial_service = new transaccionesComerciales_service_1.default();
 const accionEntrada_service = new AccionesEntradaContable_service_1.default();
-const generarDetalleEntradaContable = (detalle, payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const transaccion = yield transaccionComercial_service.getTransaccionesComerciales(payload);
-    const data = transaccion[0].transaccionesComerciales;
-    console.log(data, "la data");
-    // const accionesContables = await accionEntrada_service.getAccionEntrada(data.id);
-    // return accionesContables
-    // ESTO ME TRAE DEBITO Y CREDITO SEGUN EL TIPO DE CUENTA
-    /* for await (let item of detalle){
-     // Detalle cuenta
-     // Linea de detalle factura
-     // Se deberia Tomar la cuenta contable, su tipo y de acuerdo a este , indicar si va en debito o credito
-     // EN BASE DE DATOS select * from transacciones comerciales  where transaccion comercial igual a la operacion
-     // Entonces  hago un SWITCH CASE ETC ETC
-     }*/
-});
+const generarDetalleEntradaContable = (detalle, payload) => { var detalle_1, detalle_1_1; return __awaiter(void 0, void 0, void 0, function* () {
+    var e_1, _a;
+    var _b;
+    const transaccion = (yield transaccionComercial_service.getTransaccionesComerciales(payload));
+    const accionesContables = (yield accionEntrada_service.getAccionEntrada(transaccion.id));
+    let entradaContable = [{}];
+    try {
+        for (detalle_1 = __asyncValues(detalle); detalle_1_1 = yield detalle_1.next(), !detalle_1_1.done;) {
+            let d = detalle_1_1.value;
+            let accion = accionesContables.filter((a) => a.tipoCuentaId == d.tipoCuentaId);
+            switch ((_b = accion[0]) === null || _b === void 0 ? void 0 : _b.accion) {
+                case "CREDITO":
+                    entradaContable.push({
+                        credito: 200,
+                        debito: 0,
+                        descripcionCuenta: "DESCRIPCION DE LA CUENTA",
+                        cuenta: "cuenta",
+                    });
+                    break;
+                case "DEBITO":
+                    entradaContable.push({
+                        credito: 0,
+                        debito: 200,
+                        descripcionCuenta: "DESCRIPCION DE LA CUENTA",
+                        cuenta: "cuenta",
+                    });
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    catch (e_1_1) { e_1 = { error: e_1_1 }; }
+    finally {
+        try {
+            if (detalle_1_1 && !detalle_1_1.done && (_a = detalle_1.return)) yield _a.call(detalle_1);
+        }
+        finally { if (e_1) throw e_1.error; }
+    }
+    console.log("Entrada Contable", entradaContable);
+}); };
 exports.generarDetalleEntradaContable = generarDetalleEntradaContable;
 //# sourceMappingURL=detalleEntradaContable.js.map

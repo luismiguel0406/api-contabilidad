@@ -8,7 +8,7 @@ const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const tipoCliente_model_1 = __importDefault(require("./tipoCliente.model"));
 const clientes = connectionDB_1.default.define("clientes", {
     nombre: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING(),
         allowNull: false,
     },
     RNC_Cedula: {

@@ -17,11 +17,10 @@ class TransaccionesComercialesService {
     getTransaccionesComerciales(payload = "") {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const transaccion = yield TransaccionesComerciales_model_1.default.findAll({
+                return yield TransaccionesComerciales_model_1.default.findOne({
                     attributes: ["id", "descripcion"],
                     where: { payload, estado: "1" },
                 });
-                return transaccion;
             }
             catch (error) {
                 return error;

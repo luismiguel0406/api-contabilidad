@@ -31,13 +31,15 @@ class EntradaContableService {
                         debito: 1,
                         credito: 2,
                         descripcionCuenta: "No descripcion",
-                        cuenta: "4654654",
+                        cuenta: "2654654",
+                        tipoCuentaId: 2
                     },
                     {
                         debito: 1,
                         credito: 2,
                         descripcionCuenta: "No descripcion",
-                        cuenta: "4654654",
+                        cuenta: "65654654",
+                        tipoCuentaId: 6
                     },
                 ],
             };

@@ -3,7 +3,7 @@ import accionesEntradasContables from "../../models/AccionEntradaContable/accion
 export default class AccionesEntradaContableService {
   async getAccionEntrada(id: number) {
     const accionContable = await accionesEntradasContables.findAll({
-      where: { id , estado:"1"}
+      where: { transaccionId: id, estado: "1" },
     });
 
     return accionContable;

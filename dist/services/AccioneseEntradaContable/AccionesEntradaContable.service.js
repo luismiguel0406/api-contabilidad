@@ -17,7 +17,7 @@ class AccionesEntradaContableService {
     getAccionEntrada(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const accionContable = yield accionEntradaContable_model_1.default.findAll({
-                where: { id, estado: "1" }
+                where: { transaccionId: id, estado: "1" },
             });
             return accionContable;
             // CODES HERE

@@ -3,11 +3,10 @@ import transaccionesComerciales from "../../models/TransaccionesComerciales/Tran
 export default class TransaccionesComercialesService {
   async getTransaccionesComerciales(payload: string = "") {
     try {
-      const transaccion = await transaccionesComerciales.findAll({
+      return await transaccionesComerciales.findOne({
         attributes:["id","descripcion"],
         where: { payload, estado : "1" },
-      });
-      return transaccion;
+      });    
     } catch (error) {
       return error;
     }

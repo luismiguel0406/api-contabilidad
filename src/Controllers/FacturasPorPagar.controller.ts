@@ -35,8 +35,8 @@ export const postFacturaPorPagar = async (req: Request, res: Response) => {
     //ENTRADA CONTABLE
 
     const entradaContable = await entradaContable_service.facturaPorPagar(factura);
-
-    const MovimientosContables = await generarDetalleEntradaContable(entradaContable,"REGISTRO_FACTURAS_POR_PAGAR")
+    
+    const MovimientosContables = await generarDetalleEntradaContable(entradaContable,"REGISTRO_FACTURAS_POR_PAGAR");
    
 
     const { statusCode, msg } = MsgRespuesta.created;
