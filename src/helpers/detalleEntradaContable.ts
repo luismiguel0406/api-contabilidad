@@ -19,17 +19,18 @@ export const generarDetalleEntradaContable = async (
   const accionesContables = <Array<any>>(
     await accionEntrada_service.getAccionEntrada(transaccion.id)
   );
-  let entradaContable: any = [{}];
+  let entradaContable:any = [];
   for await (let d of detalle) {
     let accion = accionesContables.filter(
       (a: any) => a.tipoCuentaId == d.tipoCuentaId
     );
     switch (accion[0]?.accion) {
       case "CREDITO":
+        
         entradaContable.push({
-          credito: 200, // valor,
+          credito: d.valor,
           debito: 0,
-          descripcionCuenta: "DESCRIPCION DE LA CUENTA",
+          descripcionCuenta: d.descripcionCuenta,
           cuenta: "cuenta",
         });
 
@@ -37,8 +38,8 @@ export const generarDetalleEntradaContable = async (
       case "DEBITO":
         entradaContable.push({
           credito: 0, 
-          debito: 200, //valor
-          descripcionCuenta: "DESCRIPCION DE LA CUENTA",
+          debito: d.valor,
+          descripcionCuenta: d.descripcionCuenta,
           cuenta: "cuenta",
         });
 

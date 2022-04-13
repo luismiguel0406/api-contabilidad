@@ -32,19 +32,7 @@ class FacturasPorPagarService {
     addFacturasPorPagar(body) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const facturaPorPagarResult = yield facturasPorPagar_model_1.default.create(body);
-                /*
-                 const { id } = facturaPorPagarResult.dataValues;
-           
-                 for await (let detalle of body.detalleFacturaPorPagar) {
-                   detalle.facturaPorPagarId = id;
-                 }
-                 const detalleFacturaResult = await detalleFacturasPorPagar.bulkCreate(
-                   body.detalleFacturaPorPagar
-                 );
-                 */
-                return facturaPorPagarResult;
-                // detalleFacturaResult,
+                return yield facturasPorPagar_model_1.default.create(body);
             }
             catch (error) {
                 return error;

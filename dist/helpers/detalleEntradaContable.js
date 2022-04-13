@@ -29,7 +29,7 @@ const generarDetalleEntradaContable = (detalle, payload) => { var detalle_1, det
     var _b;
     const transaccion = (yield transaccionComercial_service.getTransaccionesComerciales(payload));
     const accionesContables = (yield accionEntrada_service.getAccionEntrada(transaccion.id));
-    let entradaContable = [{}];
+    let entradaContable = [];
     try {
         for (detalle_1 = __asyncValues(detalle); detalle_1_1 = yield detalle_1.next(), !detalle_1_1.done;) {
             let d = detalle_1_1.value;
@@ -37,17 +37,17 @@ const generarDetalleEntradaContable = (detalle, payload) => { var detalle_1, det
             switch ((_b = accion[0]) === null || _b === void 0 ? void 0 : _b.accion) {
                 case "CREDITO":
                     entradaContable.push({
-                        credito: 200,
+                        credito: d.valor,
                         debito: 0,
-                        descripcionCuenta: "DESCRIPCION DE LA CUENTA",
+                        descripcionCuenta: d.descripcionCuenta,
                         cuenta: "cuenta",
                     });
                     break;
                 case "DEBITO":
                     entradaContable.push({
                         credito: 0,
-                        debito: 200,
-                        descripcionCuenta: "DESCRIPCION DE LA CUENTA",
+                        debito: d.valor,
+                        descripcionCuenta: d.descripcionCuenta,
                         cuenta: "cuenta",
                     });
                     break;

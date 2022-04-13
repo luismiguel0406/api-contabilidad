@@ -9,12 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const uuid_1 = require("uuid");
 class EntradaContableService {
     facturaPorPagar(data) {
         return __awaiter(this, void 0, void 0, function* () {
             const { total, comentario, empresaId, createdAt, usuario, terminal, id, detalleFacturaPorPagar } = data;
             let entradaContable = {
-                noEntrada: 25,
+                noEntrada: (0, uuid_1.v4)(),
                 totalDebito: total,
                 totalCredito: total,
                 comentario,
@@ -26,22 +27,7 @@ class EntradaContableService {
                 empresaId,
                 transaccionComercialId: 1,
                 transaccionId: id,
-                detalle: [
-                    {
-                        debito: 1,
-                        credito: 2,
-                        descripcionCuenta: "No descripcion",
-                        cuenta: "2654654",
-                        tipoCuentaId: 2
-                    },
-                    {
-                        debito: 1,
-                        credito: 2,
-                        descripcionCuenta: "No descripcion",
-                        cuenta: "65654654",
-                        tipoCuentaId: 6
-                    },
-                ],
+                detalle: detalleFacturaPorPagar,
             };
             return entradaContable;
         });

@@ -24,20 +24,7 @@ export default class FacturasPorPagarService {
 
   async addFacturasPorPagar(body: IFacturasPorPagar) {
     try {
-      const facturaPorPagarResult: any = await facturasPorPagar.create(body);
-     /*
-      const { id } = facturaPorPagarResult.dataValues;
-
-      for await (let detalle of body.detalleFacturaPorPagar) {
-        detalle.facturaPorPagarId = id;
-      }
-      const detalleFacturaResult = await detalleFacturasPorPagar.bulkCreate(
-        body.detalleFacturaPorPagar
-      );
-      */
-      return  facturaPorPagarResult;
-       // detalleFacturaResult,
-      
+      return await facturasPorPagar.create(body);           
     } catch (error) {
       return error;
     }

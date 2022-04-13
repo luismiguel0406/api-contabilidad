@@ -14,7 +14,7 @@ export default class EntradaContableService {
     data;
      
     let entradaContable: IEntradaContable = {
-      noEntrada: 25,
+      noEntrada: uuidv4(),
       totalDebito: total,
       totalCredito: total,
       comentario,
@@ -26,22 +26,7 @@ export default class EntradaContableService {
       empresaId,
       transaccionComercialId: 1, // Transaccion comercial  ejemplo: factura, pago , etc
       transaccionId: id, // Id de la accion realzada
-      detalle: [
-        {
-          debito: 1,
-          credito: 2,
-          descripcionCuenta: "No descripcion",
-          cuenta: "2654654",
-          tipoCuentaId:2
-        },
-        {
-          debito: 1,
-          credito: 2,
-          descripcionCuenta: "No descripcion",
-          cuenta: "65654654",
-          tipoCuentaId:6
-        },
-      ],
+      detalle:detalleFacturaPorPagar,
     };
 
     return  entradaContable ;
