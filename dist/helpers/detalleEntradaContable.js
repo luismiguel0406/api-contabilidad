@@ -33,14 +33,14 @@ const generarDetalleEntradaContable = (detalle, payload) => { var detalle_1, det
     try {
         for (detalle_1 = __asyncValues(detalle); detalle_1_1 = yield detalle_1.next(), !detalle_1_1.done;) {
             let d = detalle_1_1.value;
-            let accion = accionesContables.filter((a) => a.tipoCuentaId == d.tipoCuentaId);
-            switch ((_b = accion[0]) === null || _b === void 0 ? void 0 : _b.accion) {
+            let accionContableFiltered = accionesContables.filter((a) => a.tipoCuentaId == d.tipoCuentaId);
+            switch ((_b = accionContableFiltered[0]) === null || _b === void 0 ? void 0 : _b.accion) {
                 case "CREDITO":
                     entradaContable.push({
                         credito: d.valor,
                         debito: 0,
                         descripcionCuenta: d.descripcionCuenta,
-                        cuenta: "cuenta",
+                        cuenta: d.cuenta,
                     });
                     break;
                 case "DEBITO":
@@ -48,7 +48,7 @@ const generarDetalleEntradaContable = (detalle, payload) => { var detalle_1, det
                         credito: 0,
                         debito: d.valor,
                         descripcionCuenta: d.descripcionCuenta,
-                        cuenta: "cuenta",
+                        cuenta: d.cuenta,
                     });
                     break;
                 default:
@@ -63,7 +63,6 @@ const generarDetalleEntradaContable = (detalle, payload) => { var detalle_1, det
         }
         finally { if (e_1) throw e_1.error; }
     }
-    console.log("Entrada Contable", entradaContable);
 }); };
 exports.generarDetalleEntradaContable = generarDetalleEntradaContable;
 //# sourceMappingURL=detalleEntradaContable.js.map

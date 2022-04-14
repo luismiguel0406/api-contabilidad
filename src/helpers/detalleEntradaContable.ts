@@ -1,8 +1,3 @@
-import {
-  IAccionContable,
-  IEntradaContableDetalle,
-} from "interfaces/entradaContable.interface";
-import { ITransaccionComercial } from "interfaces/TransaccionesComerciales.interface";
 import AccionesEntradaContableService from "../services/AccioneseEntradaContable/AccionesEntradaContable.service";
 import TransaccionesComerciales from "../services/transaccionesComerciales/transaccionesComerciales.service";
 
@@ -19,28 +14,27 @@ export const generarDetalleEntradaContable = async (
   const accionesContables = <Array<any>>(
     await accionEntrada_service.getAccionEntrada(transaccion.id)
   );
-  let entradaContable:any = [];
+  let entradaContable: any = [];
   for await (let d of detalle) {
-    let accion = accionesContables.filter(
+    let accionContableFiltered = accionesContables.filter(
       (a: any) => a.tipoCuentaId == d.tipoCuentaId
     );
-    switch (accion[0]?.accion) {
+    switch (accionContableFiltered[0]?.accion) {
       case "CREDITO":
-        
         entradaContable.push({
           credito: d.valor,
           debito: 0,
           descripcionCuenta: d.descripcionCuenta,
-          cuenta: "cuenta",
+          cuenta: d.cuenta,
         });
 
         break;
       case "DEBITO":
         entradaContable.push({
-          credito: 0, 
+          credito: 0,
           debito: d.valor,
           descripcionCuenta: d.descripcionCuenta,
-          cuenta: "cuenta",
+          cuenta: d.cuenta,
         });
 
         break;
@@ -48,6 +42,4 @@ export const generarDetalleEntradaContable = async (
         break;
     }
   }
-  console.log( "Entrada Contable", entradaContable);
- 
 };
