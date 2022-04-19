@@ -8,7 +8,7 @@ import { generarDetalleEntradaContable } from "../helpers/detalleEntradaContable
 //-------TIPO FACTURAS POR PAGAR -----//
 
 const facturaPorPagar_service = new FacturasPorPagarService();
-const entradaContable_service = new EntradaContableService();
+const entradaContable_service = new EntradaContableService("REGISTRO_FACTURAS_POR_PAGAR");
 
 export const getTipoFactura = async (req: Request, res: Response) => {
   try {
@@ -34,13 +34,12 @@ export const postFacturaPorPagar = async (req: Request, res: Response) => {
     );
     //ENTRADA CONTABLE
 
-    const entradaContable = await entradaContable_service.facturaPorPagar(factura);
+    const entradaContableHeaader = await entradaContable_service.facturaPorPagar(factura);
     
-    const MovimientosContables = await generarDetalleEntradaContable(entradaContable.detalle,"REGISTRO_FACTURAS_POR_PAGAR");
+    const entradaContableDetalle = await entradaContable_service.generarDetalle(entradaContableHeaader.detalle);
    
-
     const { statusCode, msg } = MsgRespuesta.created;
-    res.status(statusCode).json({ factura, entradaContable, MovimientosContables, Message: msg });
+    res.status(statusCode).json({ factura, entradaContableHeaader, entradaContableDetalle, Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });

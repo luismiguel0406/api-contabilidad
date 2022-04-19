@@ -23,7 +23,7 @@ export interface IEntradaContable {
   empresaId: number;
   transaccionComercialId:number;
   transaccionId:number;
-  detalle:Array<IEntradaContableDetalle>
+  detalle:Array<IEntradaContableDetalle> | null
   
   
 }
@@ -34,6 +34,4 @@ export interface IEntradaContableDetalle {
   debito: number;
   credito: number;
   tipoCuentaId:number;
-  //estado: boolean;
- //entradaId: number;
 }
