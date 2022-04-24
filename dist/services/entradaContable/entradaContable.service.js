@@ -19,13 +19,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const entradaContable_model_1 = __importDefault(require("../../models/EntradaContable/entradaContable.model"));
 const AccionesEntradaContable_service_1 = __importDefault(require("../AccioneseEntradaContable/AccionesEntradaContable.service"));
-const uuid_1 = require("uuid");
 const transaccionesComerciales_service_1 = __importDefault(require("../transaccionesComerciales/transaccionesComerciales.service"));
 class EntradaContableService {
     constructor(payload) {
         this._payload = payload;
-        this.getTransacionInit();
     }
     getTransacionInit() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -35,13 +34,11 @@ class EntradaContableService {
             return;
         });
     }
-    /* ****************************************** */
     facturaPorPagar(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const transaccionId = this._transaccionId;
             const { total, comentario, empresaId, createdAt, usuario, terminal, id, detalleFacturaPorPagar, } = data;
             let entradaContableHeader = {
-                noEntrada: (0, uuid_1.v4)(),
+                noEntrada: 123456,
                 totalDebito: total,
                 totalCredito: total,
                 comentario,
@@ -51,22 +48,21 @@ class EntradaContableService {
                 usuario,
                 terminal,
                 empresaId,
-                transaccionComercialId: transaccionId,
+                transaccionComercialId: this._transaccionId,
                 transaccionId: id,
                 detalle: detalleFacturaPorPagar,
             };
             return entradaContableHeader;
         });
     }
-    /* *********************************************** */
     generarDetalle(detalle) {
         var detalle_1, detalle_1_1;
         var e_1, _a;
         var _b;
         return __awaiter(this, void 0, void 0, function* () {
             const accionEntrada_service = new AccionesEntradaContable_service_1.default();
-            const transaccionId = this._transaccionId;
-            const accionesContables = (yield accionEntrada_service.getAccionEntrada(transaccionId));
+            yield this.getTransacionInit();
+            const accionesContables = (yield accionEntrada_service.getAccionEntrada(this._transaccionId));
             let entradaContableDetalle = [];
             try {
                 for (detalle_1 = __asyncValues(detalle); detalle_1_1 = yield detalle_1.next(), !detalle_1_1.done;) {
@@ -79,6 +75,7 @@ class EntradaContableService {
                                 debito: 0,
                                 descripcionCuenta: d.descripcionCuenta,
                                 cuenta: d.cuenta,
+                                detalleImpuesto: '' //pendiente
                             });
                             break;
                         case "DEBITO":
@@ -87,6 +84,7 @@ class EntradaContableService {
                                 debito: d.valor,
                                 descripcionCuenta: d.descripcionCuenta,
                                 cuenta: d.cuenta,
+                                detalleImpuesto: '' //pendiente
                             });
                             break;
                         default:
@@ -102,6 +100,11 @@ class EntradaContableService {
                 finally { if (e_1) throw e_1.error; }
             }
             return entradaContableDetalle;
+        });
+    }
+    addEntradaContable(entrada) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield entradaContable_model_1.default.create(entrada);
         });
     }
 }

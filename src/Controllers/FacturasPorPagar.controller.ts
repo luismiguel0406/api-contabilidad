@@ -34,12 +34,17 @@ export const postFacturaPorPagar = async (req: Request, res: Response) => {
     );
     //ENTRADA CONTABLE
 
-    const entradaContableHeaader = await entradaContable_service.facturaPorPagar(factura);
+    const entradaContableHeader = await entradaContable_service.facturaPorPagar(factura);
     
-    const entradaContableDetalle = await entradaContable_service.generarDetalle(entradaContableHeaader.detalle);
+    const entradaContableDetalle = await entradaContable_service.generarDetalle(entradaContableHeader.detalle);
+
+    let entradaContable:IEntradaContable = {...entradaContableHeader, detalle:entradaContableDetalle};
+
+    const entradaContableaResult = await entradaContable_service.addEntradaContable(entradaContable);
    
     const { statusCode, msg } = MsgRespuesta.created;
-    res.status(statusCode).json({ factura, entradaContableHeaader, entradaContableDetalle, Message: msg });
+    
+    res.status(statusCode).json({ factura, entradaContable:entradaContableaResult, Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });

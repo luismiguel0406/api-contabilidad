@@ -59,7 +59,7 @@ const entradasContables = connectionDB_1.default.define("entradaContable", {
         allowNull: false
     }
 }, { schema: "DIARIO" });
-//entradasContables.sync({force:true})
+entradasContables.sync({ force: true });
 empresa_model_1.default.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresa_model_1.default);
 TransaccionesComerciales_model_1.default.hasMany(entradasContables, { foreignKey: "transaccionComercialId" });

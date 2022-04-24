@@ -1,1 +1,1 @@
-{"version":3,"file":"payloadsEntradaContable.js","sourceRoot":"","sources":["../../src/helpers/payloadsEntradaContable.ts"],"names":[],"mappings":";;;AAAa,QAAA,OAAO,GAAC;IAClB,eAAe,EAAC,mBAAmB;IACnC,mBAAmB,EAAC,yBAAyB;CAE/C,CAAA"}
+{"version":3,"file":"payloadsEntradaContable.js","sourceRoot":"","sources":["../../src/helpers/payloadsEntradaContable.ts"],"names":[],"mappings":";;;AAAa,QAAA,OAAO,GAAC;IAClB,eAAe,EAAC,mBAAmB;IACnC,mBAAmB,EAAC,wBAAwB;CAE9C,CAAA"}

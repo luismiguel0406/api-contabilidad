@@ -2,8 +2,7 @@ import entradasContables from "../../models/EntradaContable/entradaContable.mode
 import AccionesEntradaContableService from "../AccioneseEntradaContable/AccionesEntradaContable.service";
 import { v4 as uuidv4 } from "uuid";
 import {
-  IEntradaContable,
-  IEntradaContableDetalle,
+  IEntradaContable
 } from "../../interfaces/entradaContable.interface";
 import TransaccionesComercialesService from "../transaccionesComerciales/transaccionesComerciales.service";
 
@@ -14,7 +13,7 @@ export default class EntradaContableService {
 
   constructor(payload: string) {
     this._payload = payload
-    this.getTransacionInit();
+    
   }
 
   async getTransacionInit() {
@@ -25,10 +24,8 @@ export default class EntradaContableService {
     this._transaccionId = transaccionId.id
     return
   }
-  /* ****************************************** */
 
   async facturaPorPagar(data: any) {
-    const transaccionId:any = this._transaccionId
     const {
       total,
       comentario,
@@ -41,7 +38,7 @@ export default class EntradaContableService {
     } = data;
 
     let entradaContableHeader: IEntradaContable = {
-      noEntrada: uuidv4(),
+      noEntrada: 123456,
       totalDebito: total,
       totalCredito: total,
       comentario,
@@ -51,20 +48,19 @@ export default class EntradaContableService {
       usuario,
       terminal,
       empresaId,
-      transaccionComercialId: transaccionId, // Transaccion comercial  ejemplo: factura, pago , etc
-      transaccionId: id, // Id de la accion realzada
+      transaccionComercialId: this._transaccionId, // Transaccion comercial  ejemplo: factura, pago , etc
+      transaccionId: id, // Id de la accion realzada // ver aqui arreglar nombres y demas
       detalle: detalleFacturaPorPagar,
     };
 
     return entradaContableHeader;
   }
 
-  /* *********************************************** */
   async generarDetalle(detalle: any) {
     const accionEntrada_service = new AccionesEntradaContableService();
-    const transaccionId:any = this._transaccionId
+    await this.getTransacionInit();
     const accionesContables = <Array<any>>(
-      await accionEntrada_service.getAccionEntrada(transaccionId)
+      await accionEntrada_service.getAccionEntrada(this._transaccionId)
     );
 
     let entradaContableDetalle: any = [];
@@ -79,6 +75,7 @@ export default class EntradaContableService {
             debito: 0,
             descripcionCuenta: d.descripcionCuenta,
             cuenta: d.cuenta,
+            detalleImpuesto:''//pendiente
           });
 
           break;
@@ -88,6 +85,7 @@ export default class EntradaContableService {
             debito: d.valor,
             descripcionCuenta: d.descripcionCuenta,
             cuenta: d.cuenta,
+            detalleImpuesto:''//pendiente
           });
 
           break;
@@ -97,4 +95,9 @@ export default class EntradaContableService {
     }
     return entradaContableDetalle;
   }
+  
+  async addEntradaContable( entrada:IEntradaContable ){   
+   return await entradasContables.create(entrada)    
+  }
+
 }

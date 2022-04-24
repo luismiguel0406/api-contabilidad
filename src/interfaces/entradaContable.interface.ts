@@ -34,4 +34,5 @@ export interface IEntradaContableDetalle {
   debito: number;
   credito: number;
   tipoCuentaId:number;
+  detalleImpuesto:string;
 }

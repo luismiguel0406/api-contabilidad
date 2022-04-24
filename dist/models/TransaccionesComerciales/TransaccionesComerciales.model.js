@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const transaccionesComerciales = connectionDB_1.default.define("transaccionesComerciales", {
+const transaccionesComerciales = connectionDB_1.default.define("transaccionComercial", {
     descripcion: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
@@ -33,5 +33,6 @@ const transaccionesComerciales = connectionDB_1.default.define("transaccionesCom
         type: sequelize_1.DataTypes.STRING,
     },
 }, { schema: "DIARIO" });
+//transaccionesComerciales.sync({force:true})
 exports.default = transaccionesComerciales;
 //# sourceMappingURL=TransaccionesComerciales.model.js.map
