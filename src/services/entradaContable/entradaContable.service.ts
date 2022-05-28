@@ -75,7 +75,7 @@ export default class EntradaContableService {
             debito: 0,
             descripcionCuenta: d.descripcionCuenta,
             cuenta: d.cuenta,
-            detalleImpuesto:''//pendiente
+            detalleImpuesto:d.detalleImpuestos
           });
 
           break;
@@ -85,7 +85,7 @@ export default class EntradaContableService {
             debito: d.valor,
             descripcionCuenta: d.descripcionCuenta,
             cuenta: d.cuenta,
-            detalleImpuesto:''//pendiente
+            detalleImpuesto:d.detalleImpuestos
           });
 
           break;

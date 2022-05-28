@@ -60,7 +60,7 @@ const entradasContables = conexion.define(
   { schema: "DIARIO" }
 );
 
-entradasContables.sync({force:true})
+//entradasContables.sync({force:true})
 
 empresas.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresas);

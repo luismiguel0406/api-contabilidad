@@ -61,7 +61,7 @@ export const InicioSesionUsuario = async (req: Request, res: Response, next: Nex
       Usuario: usuario.nombreUsuario,
       Empresa: usuario.empresaId,
       Email: usuario.email,
-      Message:`Bienvenido ${usuario.nombreUsuario}`});
+      Message:`Bienvenid@ ${usuario.nombreUsuario}`});
     next();
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
