@@ -1,28 +1,25 @@
 import entradasContables from "../../models/EntradaContable/entradaContable.model";
 import AccionesEntradaContableService from "../AccioneseEntradaContable/AccionesEntradaContable.service";
 import { v4 as uuidv4 } from "uuid";
-import {
-  IEntradaContable
-} from "../../interfaces/entradaContable.interface";
+import { IEntradaContable } from "../../interfaces/entradaContable.interface";
 import TransaccionesComercialesService from "../transaccionesComerciales/transaccionesComerciales.service";
 
-
 export default class EntradaContableService {
-  private _transaccionId:any;
+  private _transaccionId: any;
   private _payload;
 
   constructor(payload: string) {
-    this._payload = payload
-    
+    this._payload = payload;
   }
 
   async getTransacionInit() {
     const transaccionComercial_service = new TransaccionesComercialesService();
-    const transaccionId:any = await transaccionComercial_service.getTransaccionesComerciales(
-      this._payload
-    );
-    this._transaccionId = transaccionId.id
-    return
+    const transaccionId: any =
+      await transaccionComercial_service.getTransaccionesComerciales(
+        this._payload
+      );
+    this._transaccionId = transaccionId.id;
+    return;
   }
 
   async facturaPorPagar(data: any) {
@@ -64,10 +61,12 @@ export default class EntradaContableService {
     );
 
     let entradaContableDetalle: any = [];
+
     for await (let d of detalle) {
       let accionContableFiltered = accionesContables.filter(
         (a: any) => a.tipoCuentaId == d.tipoCuentaId
       );
+      
       switch (accionContableFiltered[0]?.accion) {
         case "CREDITO":
           entradaContableDetalle.push({
@@ -75,7 +74,6 @@ export default class EntradaContableService {
             debito: 0,
             descripcionCuenta: d.descripcionCuenta,
             cuenta: d.cuenta,
-            detalleImpuesto:d.detalleImpuestos
           });
 
           break;
@@ -85,19 +83,17 @@ export default class EntradaContableService {
             debito: d.valor,
             descripcionCuenta: d.descripcionCuenta,
             cuenta: d.cuenta,
-            detalleImpuesto:d.detalleImpuestos
           });
 
           break;
         default:
           break;
-      }     
+      }
     }
     return entradaContableDetalle;
   }
-  
-  async addEntradaContable( entrada:IEntradaContable ){   
-   return await entradasContables.create(entrada)    
-  }
 
+  async addEntradaContable(entrada: IEntradaContable) {
+    return await entradasContables.create(entrada);
+  }
 }
