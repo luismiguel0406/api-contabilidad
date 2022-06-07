@@ -5,24 +5,21 @@ import { IEntradaContable } from "../../interfaces/entradaContable.interface";
 import TransaccionesComercialesService from "../transaccionesComerciales/transaccionesComerciales.service";
 
 export default class EntradaContableService {
-  private _transaccionId: any;
-  private _payload;
+  private _transComercialId: any;
+  
 
-  constructor(payload: string) {
-    this._payload = payload;
-  }
-
-  async getTransacionInit() {
+  async getTransacionInit(payload:string) {
     const transaccionComercial_service = new TransaccionesComercialesService();
-    const transaccionId: any =
+
+    //Busco tipo de transaccion segun payload declarado en el controlador 
+    const transaccionComercial: any =
       await transaccionComercial_service.getTransaccionesComerciales(
-        this._payload
-      );
-    this._transaccionId = transaccionId.id;
-    return;
+        payload
+      );    
+      return transaccionComercial.id; 
   }
 
-  async facturaPorPagar(data: any) {
+  async facturaPorPagar(data: any, payload:string) {
     const {
       total,
       comentario,
@@ -33,6 +30,8 @@ export default class EntradaContableService {
       id,
       detalleFacturaPorPagar,
     } = data;
+    const transComercialId:number = await this.getTransacionInit(payload);
+    this._transComercialId = transComercialId;
 
     let entradaContableHeader: IEntradaContable = {
       noEntrada: 123456,
@@ -45,7 +44,7 @@ export default class EntradaContableService {
       usuario,
       terminal,
       empresaId,
-      transaccionComercialId: this._transaccionId, // Transaccion comercial  ejemplo: factura, pago , etc
+      transaccionComercialId: transComercialId, // Transaccion comercial  ejemplo: factura, pago , etc
       transaccionId: id, // Id de la accion realzada // ver aqui arreglar nombres y demas
       detalle: detalleFacturaPorPagar,
     };
@@ -53,15 +52,13 @@ export default class EntradaContableService {
     return entradaContableHeader;
   }
 
+  
   async generarDetalle(detalle: any) {
     const accionEntrada_service = new AccionesEntradaContableService();
-    await this.getTransacionInit();
     const accionesContables = <Array<any>>(
-      await accionEntrada_service.getAccionEntrada(this._transaccionId)
+      await accionEntrada_service.getAccionEntrada(this._transComercialId)
     );
-
     let entradaContableDetalle: any = [];
-
     for await (let d of detalle) {
       let accionContableFiltered = accionesContables.filter(
         (a: any) => a.tipoCuentaId == d.tipoCuentaId

@@ -4,6 +4,7 @@ import TransaccionesComerciales from "../services/transaccionesComerciales/trans
 const transaccionComercial_service = new TransaccionesComerciales();
 const accionEntrada_service = new AccionesEntradaContableService();
 
+//este metodo se refactorizo 
 export const generarDetalleEntradaContable = async (
   detalle: any,
   payload: string
@@ -15,6 +16,7 @@ export const generarDetalleEntradaContable = async (
     await accionEntrada_service.getAccionEntrada(transaccion.id)
   );
   let entradaContable: any = [];
+
   for await (let d of detalle) {
     let accionContableFiltered = accionesContables.filter(
       (a: any) => a.tipoCuentaId == d.tipoCuentaId

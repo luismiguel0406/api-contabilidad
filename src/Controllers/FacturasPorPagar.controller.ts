@@ -8,9 +8,10 @@ import { generarDetalleEntradaContable } from "../helpers/detalleEntradaContable
 //-------TIPO FACTURAS POR PAGAR -----//
 
 const facturaPorPagar_service = new FacturasPorPagarService();
-const entradaContable_service = new EntradaContableService(
-  "REGISTRO_FACTURAS_POR_PAGAR"
-);
+const entradaContable_service = new EntradaContableService();
+
+let payload = "REGISTRO_FACTURAS_POR_PAGAR"
+
 
 export const getTipoFactura = async (req: Request, res: Response) => {
   try {
@@ -37,9 +38,9 @@ export const postFacturaPorPagar = async (req: Request, res: Response) => {
     //ENTRADA CONTABLE
 
     const entradaContableHeader = await entradaContable_service.facturaPorPagar(
-      factura
+      factura, payload
     );
-
+   
     const entradaContableDetalle = await entradaContable_service.generarDetalle(
       entradaContableHeader.detalle
     );
