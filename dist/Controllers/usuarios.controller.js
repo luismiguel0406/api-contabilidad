@@ -65,7 +65,7 @@ const InicioSesionUsuario = (req, res, next) => __awaiter(void 0, void 0, void 0
             Usuario: usuario.nombreUsuario,
             Empresa: usuario.empresaId,
             Email: usuario.email,
-            Message: `Bienvenido ${usuario.nombreUsuario}`
+            Message: `Bienvenid@ ${usuario.nombreUsuario}`
         });
         next();
     }

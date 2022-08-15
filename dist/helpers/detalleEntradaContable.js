@@ -24,6 +24,7 @@ const AccionesEntradaContable_service_1 = __importDefault(require("../services/A
 const transaccionesComerciales_service_1 = __importDefault(require("../services/transaccionesComerciales/transaccionesComerciales.service"));
 const transaccionComercial_service = new transaccionesComerciales_service_1.default();
 const accionEntrada_service = new AccionesEntradaContable_service_1.default();
+//este metodo se refactorizo 
 const generarDetalleEntradaContable = (detalle, payload) => { var detalle_1, detalle_1_1; return __awaiter(void 0, void 0, void 0, function* () {
     var e_1, _a;
     var _b;

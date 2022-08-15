@@ -18,7 +18,7 @@ const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRes
 const facturasPorPagar_service_1 = __importDefault(require("../services/facturacion/facturasPorPagar/facturasPorPagar.service"));
 //-------TIPO FACTURAS POR PAGAR -----//
 const facturaPorPagar_service = new facturasPorPagar_service_1.default();
-const entradaContable_service = new entradaContable_service_1.default("REGISTRO_FACTURAS_POR_PAGAR");
+const entradaContable_service = new entradaContable_service_1.default();
 const getTipoFactura = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
@@ -40,12 +40,12 @@ const postFacturaPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, func
     try {
         const factura = yield facturaPorPagar_service.addFacturasPorPagar(req.body);
         //ENTRADA CONTABLE
-        const entradaContableHeader = yield entradaContable_service.facturaPorPagar(factura);
-        const entradaContableDetalle = yield entradaContable_service.generarDetalle(entradaContableHeader.detalle);
-        let entradaContable = Object.assign(Object.assign({}, entradaContableHeader), { detalle: entradaContableDetalle });
+        const entradaContable = yield entradaContable_service.facturaPorPagar(factura);
         const entradaContableaResult = yield entradaContable_service.addEntradaContable(entradaContable);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
-        res.status(statusCode).json({ factura, entradaContable: entradaContableaResult, Message: msg });
+        res
+            .status(statusCode)
+            .json({ factura, entradaContable: entradaContableaResult, Message: msg });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

@@ -1,54 +1,20 @@
 import entradasContables from "../../models/EntradaContable/entradaContable.model";
 import AccionesEntradaContableService from "../AccioneseEntradaContable/AccionesEntradaContable.service";
 import { v4 as uuidv4 } from "uuid";
-import { IEntradaContable } from "../../interfaces/entradaContable.interface";
+import { IEntradaContable, IEntradaContableDetalle } from "../../interfaces/entradaContable.interface";
 import TransaccionesComercialesService from "../transaccionesComerciales/transaccionesComerciales.service";
-
 export default class EntradaContableService {
-  private _transComercialId: any;
+  private _transComercialId: number = 0;
 
-  async getTransacionInit(payload: string) {
+  async getTransaccionInit(payload: string) {
     const transaccionComercial_service = new TransaccionesComercialesService();
 
-    //Busco tipo de transaccion segun payload declarado en el controlador
     const transaccionComercial: any =
       await transaccionComercial_service.getTransaccionesComerciales(payload);
     return transaccionComercial.id;
   }
 
-  async facturaPorPagar(data: any, payload: string) {
-    const {
-      total,
-      comentario,
-      empresaId,
-      createdAt,
-      usuario,
-      terminal,
-      id,
-      detalleFacturaPorPagar,
-    } = data;
-    const transComercialId: number = await this.getTransacionInit(payload);
-    this._transComercialId = transComercialId;
-
-    let entradaContableHeader: IEntradaContable = {
-      noEntrada: 123456,
-      totalDebito: total,
-      totalCredito: total,
-      comentario,
-      estado: true,
-      createdAt,
-      updatedAt: null,
-      usuario,
-      terminal,
-      empresaId,
-      transaccionComercialId: transComercialId, // Transaccion comercial  ejemplo: factura, pago , etc
-      transaccionId: id, // Id de la accion realzada // ver aqui arreglar nombres y demas
-      detalle: detalleFacturaPorPagar,
-    };
-
-    return entradaContableHeader;
-  }
-
+  //Generar detalle entrada contable //
   async generarDetalle(detalle: any) {
     const accionEntrada_service = new AccionesEntradaContableService();
     const accionesContables = <Array<any>>(
@@ -85,8 +51,49 @@ export default class EntradaContableService {
     }
     return entradaContableDetalle;
   }
-
+// Agregar Entrada Contrable
   async addEntradaContable(entrada: IEntradaContable) {
     return await entradasContables.create(entrada);
   }
+
+  // Entrada facturas por pagar
+  async facturaPorPagar(data: any) {
+    let payload = "REGISTRO_FACTURAS_POR_PAGAR"
+    const {
+      total,
+      comentario,
+      empresaId,
+      createdAt,
+      usuario,
+      terminal,
+      id,
+      detalleFacturaPorPagar,
+    } = data;
+
+    //construyo detalle de la entrada
+    const detalleEntradaContable:Array<IEntradaContableDetalle> = await this.generarDetalle(detalleFacturaPorPagar);
+    this._transComercialId = await this.getTransaccionInit(payload);
+
+   
+    let entradaContable: IEntradaContable = {
+      noEntrada: 123456,
+      totalDebito: total,
+      totalCredito: total,
+      comentario,
+      estado: true,
+      createdAt,
+      updatedAt: null,
+      usuario,
+      terminal,
+      empresaId,
+      transaccionComercialId: this._transComercialId, // Transaccion comercial  ejemplo: factura, pago , etc
+      documentoId: id, // Id de la accion realzada // ver aqui arreglar nombres y demas
+      detalle: detalleEntradaContable
+    };
+
+    return entradaContable;
+  }
+
+
+  async 
 }

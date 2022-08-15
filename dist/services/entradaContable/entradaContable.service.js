@@ -23,46 +23,24 @@ const entradaContable_model_1 = __importDefault(require("../../models/EntradaCon
 const AccionesEntradaContable_service_1 = __importDefault(require("../AccioneseEntradaContable/AccionesEntradaContable.service"));
 const transaccionesComerciales_service_1 = __importDefault(require("../transaccionesComerciales/transaccionesComerciales.service"));
 class EntradaContableService {
-    constructor(payload) {
-        this._payload = payload;
+    constructor() {
+        this._transComercialId = 0;
     }
-    getTransacionInit() {
+    getTransaccionInit(payload) {
         return __awaiter(this, void 0, void 0, function* () {
             const transaccionComercial_service = new transaccionesComerciales_service_1.default();
-            const transaccionId = yield transaccionComercial_service.getTransaccionesComerciales(this._payload);
-            this._transaccionId = transaccionId.id;
-            return;
+            const transaccionComercial = yield transaccionComercial_service.getTransaccionesComerciales(payload);
+            return transaccionComercial.id;
         });
     }
-    facturaPorPagar(data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { total, comentario, empresaId, createdAt, usuario, terminal, id, detalleFacturaPorPagar, } = data;
-            let entradaContableHeader = {
-                noEntrada: 123456,
-                totalDebito: total,
-                totalCredito: total,
-                comentario,
-                estado: true,
-                createdAt,
-                updatedAt: null,
-                usuario,
-                terminal,
-                empresaId,
-                transaccionComercialId: this._transaccionId,
-                transaccionId: id,
-                detalle: detalleFacturaPorPagar,
-            };
-            return entradaContableHeader;
-        });
-    }
+    // Detalle entrada contable //
     generarDetalle(detalle) {
         var detalle_1, detalle_1_1;
         var e_1, _a;
         var _b;
         return __awaiter(this, void 0, void 0, function* () {
             const accionEntrada_service = new AccionesEntradaContable_service_1.default();
-            yield this.getTransacionInit();
-            const accionesContables = (yield accionEntrada_service.getAccionEntrada(this._transaccionId));
+            const accionesContables = (yield accionEntrada_service.getAccionEntrada(this._transComercialId));
             let entradaContableDetalle = [];
             try {
                 for (detalle_1 = __asyncValues(detalle); detalle_1_1 = yield detalle_1.next(), !detalle_1_1.done;) {
@@ -75,7 +53,6 @@ class EntradaContableService {
                                 debito: 0,
                                 descripcionCuenta: d.descripcionCuenta,
                                 cuenta: d.cuenta,
-                                detalleImpuesto: '' //pendiente
                             });
                             break;
                         case "DEBITO":
@@ -84,7 +61,6 @@ class EntradaContableService {
                                 debito: d.valor,
                                 descripcionCuenta: d.descripcionCuenta,
                                 cuenta: d.cuenta,
-                                detalleImpuesto: '' //pendiente
                             });
                             break;
                         default:
@@ -100,6 +76,32 @@ class EntradaContableService {
                 finally { if (e_1) throw e_1.error; }
             }
             return entradaContableDetalle;
+        });
+    }
+    // Entrada facturas por pagar
+    facturaPorPagar(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let payload = "REGISTRO_FACTURAS_POR_PAGAR";
+            const { total, comentario, empresaId, createdAt, usuario, terminal, id, detalleFacturaPorPagar, } = data;
+            //construyo detalle de la entrada
+            const detalleEntradaContable = yield this.generarDetalle(detalleFacturaPorPagar);
+            this._transComercialId = yield this.getTransaccionInit(payload);
+            let entradaContable = {
+                noEntrada: 123456,
+                totalDebito: total,
+                totalCredito: total,
+                comentario,
+                estado: true,
+                createdAt,
+                updatedAt: null,
+                usuario,
+                terminal,
+                empresaId,
+                transaccionComercialId: this._transComercialId,
+                documentoId: id,
+                detalle: detalleEntradaContable
+            };
+            return entradaContable;
         });
     }
     addEntradaContable(entrada) {

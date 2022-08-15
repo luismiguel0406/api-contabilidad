@@ -22,7 +22,7 @@ export interface IEntradaContable {
   terminal: string;
   empresaId: number;
   transaccionComercialId:number;
-  transaccionId:number;
+  documentoId:number;
   detalle:Array<IEntradaContableDetalle> | null
   
   

@@ -48,7 +48,7 @@ const entradasContables = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    transaccionId: {
+    documentoId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
