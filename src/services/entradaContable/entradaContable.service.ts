@@ -87,13 +87,11 @@ export default class EntradaContableService {
       terminal,
       empresaId,
       transaccionComercialId: this._transComercialId, // Transaccion comercial  ejemplo: factura, pago , etc
-      documentoId: id, // Id de la accion realzada // ver aqui arreglar nombres y demas
+      documentoId: id, // Id de la accion realizada // ver aqui arreglar nombres y demas
       detalle: detalleEntradaContable
     };
 
     return entradaContable;
   }
 
-
-  async 
 }

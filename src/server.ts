@@ -46,13 +46,13 @@ class Server {
 
   constructor() {
     this.app = express();
-    this.port = variablesEnv.PORT || "";
+    this.port = variablesEnv.PORT_LOCAL || "";
 
     this.dbConnection();
-    this.InicioNuevaEmpresa();
-    this.InicioAplicacion();
-    this.middlewares();
-    this.routes();
+   // this.InicioNuevaEmpresa();
+   // this.InicioAplicacion();
+   // this.middlewares();
+   // this.routes();
   }
 
   middlewares() {

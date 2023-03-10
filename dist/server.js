@@ -37,12 +37,12 @@ const helmet_1 = __importDefault(require("helmet"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
-        this.port = index_1.default.PORT || "";
+        this.port = index_1.default.PORT_LOCAL || "";
         this.dbConnection();
-        this.InicioNuevaEmpresa();
-        this.InicioAplicacion();
-        this.middlewares();
-        this.routes();
+        // this.InicioNuevaEmpresa();
+        // this.InicioAplicacion();
+        // this.middlewares();
+        // this.routes();
     }
     middlewares() {
         this.app.use((0, helmet_1.default)());

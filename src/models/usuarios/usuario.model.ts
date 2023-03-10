@@ -46,7 +46,7 @@ const usuarios = conexion.define(
   }
 );
 
-usuarios.beforeCreate(async (data: any, options) => {
+usuarios.beforeCreate(async (data: any) => {
   const encryptada = await Encryptar(data.contrasena);
   data.contrasena = encryptada;
 });

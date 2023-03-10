@@ -54,7 +54,7 @@ const usuarios = connectionDB_1.default.define("usuario", {
 }, {
     schema: "USUARIOS",
 });
-usuarios.beforeCreate((data, options) => __awaiter(void 0, void 0, void 0, function* () {
+usuarios.beforeCreate((data) => __awaiter(void 0, void 0, void 0, function* () {
     const encryptada = yield (0, encryptaPw_1.Encryptar)(data.contrasena);
     data.contrasena = encryptada;
 }));
