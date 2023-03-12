@@ -1,4 +1,6 @@
 export interface IUsuario {
+  [index:number]:number;
+  [index:symbol]:symbol;
   nombreUsuario: string;
   contrasena: string;
   email: string;

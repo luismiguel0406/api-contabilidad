@@ -2,6 +2,8 @@
 // INTERFACES CONTACTOS //
 
 export interface ICorreo {
+    [index: number]: number;
+    [index: symbol]: symbol;
     correo: string;
     estado: boolean;
     createdAt: Date;
@@ -14,6 +16,8 @@ export interface ICorreo {
   }
 
   export interface IDireccion {
+    [index: number]: number;
+    [index: symbol]: symbol;
     direccion: string;
     estado: boolean;
     createdAt: Date;
@@ -26,6 +30,8 @@ export interface ICorreo {
   }
 
   export interface ITelefono {
+    [index: number]: number;
+    [index: symbol]: symbol;
     telefono: string;
     estado: boolean;
     createdAt: Date;
@@ -38,6 +44,8 @@ export interface ICorreo {
   }
 
   export interface ItipoContacto {
+    [index:number]: number;
+    [index:symbol]:symbol;
     descripcion: string;
     createdAt: Date;
     updatedAt: Date | null;

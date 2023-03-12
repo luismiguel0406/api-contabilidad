@@ -13,7 +13,7 @@ export default class CorreoService {
 
   async AddCorreo(body:ICorreo) {
   
-   await  correosModel.create(body);  
+   await correosModel.create(body);  
     
   }
 

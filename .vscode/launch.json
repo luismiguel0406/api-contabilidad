@@ -11,10 +11,18 @@
             "request": "launch",
             "name": "Launch program",
             "program": "${workspaceFolder}/src/app.ts",
-            "stopOnEntry": true,
-            "url": "http://localhost:5858",
+            "stopOnEntry": false,
+            
+            
             "preLaunchTask": "tsc: build - tsconfig.json",
             "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+        },
+        {
+            "name": "Attach",
+            "type":"node",
+            "address":"localhost",
+            "port":5858
+
         }
     ]
 }

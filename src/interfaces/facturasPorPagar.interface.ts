@@ -1,6 +1,8 @@
 import { IDetalleImpuestos } from "./impuestos.interface";
 
 export interface ITipoFacturasPorPagar {
+  [index:number]:number;
+  [index:symbol]:symbol;
   descripcion: string;
   estado: boolean;
   createdAt: Date;
@@ -9,6 +11,8 @@ export interface ITipoFacturasPorPagar {
   terminal: string;
 }
 export interface IFacturasPorPagar {
+  [index:number]:number;
+  [index:symbol]:symbol;
   noFactura: string;
   Ncf: string;
   NcfModificado: string;

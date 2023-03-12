@@ -11,6 +11,8 @@ export interface IAccionContable {
 }
 
 export interface IEntradaContable {
+  [index: number]:number;
+  [index:symbol]:symbol;
   noEntrada: number |string;
   totalDebito: number;
   totalCredito: number;

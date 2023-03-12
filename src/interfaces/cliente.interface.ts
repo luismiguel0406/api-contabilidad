@@ -1,4 +1,6 @@
 export interface ICliente {
+  [index:number]:number;
+  [index:symbol]:symbol;
   nombre: string;
   RNC_Cedula: string;
   direccion: string;
@@ -13,6 +15,8 @@ export interface ICliente {
 }
 
 export interface ITipoCliente {
+  [index:number]: number;
+  [index:symbol]: symbol;
   descripcion: string;
   estado: boolean;
   createdAt: Date;

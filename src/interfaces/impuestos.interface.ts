@@ -1,4 +1,6 @@
 export interface IImpuestos {
+  [index:number]: number;
+  [index:symbol]: symbol;
   nombre: string;
   alias: string;
   porcentaje: number;

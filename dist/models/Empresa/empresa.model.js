@@ -18,6 +18,9 @@ const empresas = connectionDB_1.default.define("empresa", {
         allowNull: false,
         unique: true,
     },
+    sucursalId: {
+        type: sequelize_1.DataTypes.INTEGER,
+    },
     planId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
@@ -52,11 +55,8 @@ const empresas = connectionDB_1.default.define("empresa", {
     terminal: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
-    },
-    sucursalId: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
+    }
 }, { schema: "EMPRESA" });
+//empresas.sync()
 exports.default = empresas;
 //# sourceMappingURL=empresa.model.js.map

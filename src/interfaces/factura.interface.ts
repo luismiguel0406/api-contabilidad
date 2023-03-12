@@ -1,4 +1,6 @@
 export interface IFactura {
+  [index: number]:number;
+  [index:symbol]:symbol;
   noFactura: number;
   Ncf: string;
   subTotal: number;
@@ -23,6 +25,8 @@ export interface IFactura {
 }
 
 export interface IDetalleFactura {
+  [index: number]:number;
+  [index:symbol]:symbol;
   facturaId: number;
   itemId: number;
   descripcion: string;

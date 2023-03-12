@@ -1,4 +1,6 @@
 export interface IItem {
+  [index:number]:number;
+  [index:symbol]:symbol;
   descripcion: string;
   precioCompra: number;
   precioVenta: number;
@@ -16,6 +18,8 @@ export interface IItem {
 }
 
 export interface ITipoItem {
+  [index:number]:number;
+  [index:symbol]:symbol;
   descripcion: string;
   estado: boolean;
   createdAt: Date;

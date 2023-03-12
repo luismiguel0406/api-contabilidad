@@ -10,7 +10,7 @@ export const getTipoComprobante = async (req: Request, res: Response) => {
 
     const tipoComprobanteResult =
       await tipoComprobante_service.getTipoComprobante(id);
-    if (tipoComprobanteResult === []) {
+    if (!tipoComprobanteResult) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }

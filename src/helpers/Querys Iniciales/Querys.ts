@@ -66,7 +66,7 @@ export class Empresa {
   }
 }
 export class TiposProveedores {
-  private tipoProveedoresArray: Array<ITipoPoveedor>;
+  private tipoProveedoresArray: Array<ITipoPoveedor> ;
 
   // AGREGO TIPO AL INICIO DEL PROGRAMA //
   constructor() {

@@ -16,6 +16,9 @@ const empresas = conexion.define(
       allowNull: false,
       unique: true,
     },
+    sucursalId: {
+      type: DataTypes.INTEGER,
+    },
     planId:{
       type:DataTypes.INTEGER,
       allowNull:false
@@ -50,13 +53,10 @@ const empresas = conexion.define(
     terminal: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    sucursalId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    }
   },
   { schema: "EMPRESA" }
 );
  
+//empresas.sync()
 export default empresas;

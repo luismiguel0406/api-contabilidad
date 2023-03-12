@@ -46,11 +46,11 @@ class Server {
 
   constructor() {
     this.app = express();
-    this.port = variablesEnv.PORT_LOCAL || "";
+    this.port = variablesEnv.PORT || "";
 
     this.dbConnection();
    // this.InicioNuevaEmpresa();
-   // this.InicioAplicacion();
+     this.InicioAplicacion();
    // this.middlewares();
    // this.routes();
   }
@@ -65,7 +65,7 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
-      //await  db.sync({force:true})
+      await  db.sync({force:true})
       console.log("Database CACTUS Online");
     } catch (error) {
       console.log(`Error ${error}`);
@@ -122,9 +122,9 @@ class Server {
 
 
       empresa.CrearEmpresa();
-      tipoClientes.InsertarTipoClientes();
-      tipoContacto.InsertarTipoContactos();
       tipoProveedor.InsertarTiposProveedores();
+      /*tipoClientes.InsertarTipoClientes();
+      tipoContacto.InsertarTipoContactos();
       moneda.InsertarMonedas();
       comprobantes.InsertarComprobantes();
       tipoItem.InsertarTipoItem();
@@ -137,7 +137,7 @@ class Server {
       tipoCuentasContables.InsertarTipoCuentasContables();
       grupoCuentasContables.InsertarGruposCuentasContable();
       cuentasContables.InsertarCuentas();
-      transaccionesComerciales.InsertarTransaccionesComerciales();
+      transaccionesComerciales.InsertarTransaccionesComerciales();*/
      
     } catch (error) {
       console.error(`Error Metodo Inicio Aplicacion, ${error}`);

@@ -1,4 +1,6 @@
 export interface ITipoCuentaContable {
+  [index:number]:number;
+  [index:symbol]:symbol;
   descripcion: string;
   debito: string;
   credito: string;
@@ -7,6 +9,8 @@ export interface ITipoCuentaContable {
   updatedAt: Date | null;
 }
 export interface IGrupoCuentaContable {
+  [index:number]: number;
+  [index:symbol]: symbol;
   cuenta: string;
   descripcion: string;
   estado: boolean;
@@ -18,6 +22,8 @@ export interface IGrupoCuentaContable {
   monedaId: number;
 }
 export interface ICuentaContable {
+  [index:number]:number;
+  [index:symbol]:symbol;
   noCuenta: string;
   descripcion: string;
   estado: boolean;

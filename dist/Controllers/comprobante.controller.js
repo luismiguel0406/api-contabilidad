@@ -20,7 +20,7 @@ const getTipoComprobante = (req, res) => __awaiter(void 0, void 0, void 0, funct
     try {
         const { id } = req.params;
         const tipoComprobanteResult = yield tipoComprobante_service.getTipoComprobante(id);
-        if (tipoComprobanteResult === []) {
+        if (!tipoComprobanteResult) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }
