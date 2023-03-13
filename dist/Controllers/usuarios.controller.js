@@ -61,7 +61,6 @@ const InicioSesionUsuario = (req, res, next) => __awaiter(void 0, void 0, void 0
         }
         const Token = (0, jsonWebToken_1.registrarToken)(usuario.id, usuario.empresaId);
         res.header("auth-token", Token).json({
-            Id: usuario.id,
             Usuario: usuario.nombreUsuario,
             Empresa: usuario.empresaId,
             Email: usuario.email,

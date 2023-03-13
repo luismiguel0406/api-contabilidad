@@ -37,12 +37,12 @@ const helmet_1 = __importDefault(require("helmet"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
-        this.port = index_1.default.PORT_LOCAL || "";
+        this.port = index_1.default.PORT || "";
         this.dbConnection();
         // this.InicioNuevaEmpresa();
-        this.InicioAplicacion();
-        // this.middlewares();
-        // this.routes();
+        // this.InicioAplicacion();
+        this.middlewares();
+        this.routes();
     }
     middlewares() {
         this.app.use((0, helmet_1.default)());
@@ -54,7 +54,7 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield connectionDB_1.default.authenticate();
-                yield connectionDB_1.default.sync({ force: true });
+                yield connectionDB_1.default.sync({ force: false });
                 console.log("Database CACTUS Online");
             }
             catch (error) {
@@ -109,7 +109,7 @@ class Server {
             const transaccionesComerciales = new Querys_1.TransaccionesComerciales();
             empresa.CrearEmpresa();
             tipoProveedor.InsertarTiposProveedores();
-            /*tipoClientes.InsertarTipoClientes();
+            tipoClientes.InsertarTipoClientes();
             tipoContacto.InsertarTipoContactos();
             moneda.InsertarMonedas();
             comprobantes.InsertarComprobantes();
@@ -123,7 +123,7 @@ class Server {
             tipoCuentasContables.InsertarTipoCuentasContables();
             grupoCuentasContables.InsertarGruposCuentasContable();
             cuentasContables.InsertarCuentas();
-            transaccionesComerciales.InsertarTransaccionesComerciales();*/
+            transaccionesComerciales.InsertarTransaccionesComerciales();
         }
         catch (error) {
             console.error(`Error Metodo Inicio Aplicacion, ${error}`);
