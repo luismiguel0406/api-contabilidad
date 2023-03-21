@@ -18,8 +18,6 @@ export default  {
   PASSWORD_LOCAL: process.env.PASSWORD_LOCAL,
   USER_LOCAL:process.env.USER_LOCAL,
   PORT_DB:process.env.PORT_DB
-
-
 };
 
 

@@ -1,17 +1,20 @@
 import entradasContables from "../../models/EntradaContable/entradaContable.model";
 import AccionesEntradaContableService from "../AccioneseEntradaContable/AccionesEntradaContable.service";
 import { v4 as uuidv4 } from "uuid";
-import { IEntradaContable, IEntradaContableDetalle } from "../../interfaces/entradaContable.interface";
-import TransaccionesComercialesService from "../transaccionesComerciales/transaccionesComerciales.service";
+import {
+  IEntradaContable,
+  IEntradaContableDetalle,
+} from "../../interfaces/entradaContable.interface";
+import TransaccionComercialService from "../transaccionesComerciales/transaccionesComerciales.service";
 export default class EntradaContableService {
   private _transComercialId: number = 0;
 
   async getTransaccionInit(payload: string) {
-    const transaccionComercial_service = new TransaccionesComercialesService();
+    const transaccionComercial_service = new TransaccionComercialService();
 
-    const transaccionComercial: any =
-      await transaccionComercial_service.getTransaccionesComerciales(payload);
-    return transaccionComercial.id;
+    const transComercial: any =
+      await transaccionComercial_service.getTransaccionComercial(payload);
+      return transComercial.id;
   }
 
   //Generar detalle entrada contable //
@@ -51,14 +54,14 @@ export default class EntradaContableService {
     }
     return entradaContableDetalle;
   }
-// Agregar Entrada Contrable
+  // Agregar Entrada Contrable
   async addEntradaContable(entrada: IEntradaContable) {
     return await entradasContables.create(entrada);
   }
 
   // Entrada facturas por pagar
   async facturaPorPagar(data: any) {
-    let payload = "REGISTRO_FACTURAS_POR_PAGAR"
+    let payload = "REGISTRO_FACTURAS_POR_PAGAR";
     const {
       total,
       comentario,
@@ -71,12 +74,12 @@ export default class EntradaContableService {
     } = data;
 
     //construyo detalle de la entrada
-    const detalleEntradaContable:Array<IEntradaContableDetalle> = await this.generarDetalle(detalleFacturaPorPagar);
-    this._transComercialId = await this.getTransaccionInit(payload);
+    const detalleEntradaContable: Array<IEntradaContableDetalle> =
+      await this.generarDetalle(detalleFacturaPorPagar);
+      this._transComercialId = await this.getTransaccionInit(payload);
 
-   
     let entradaContable: IEntradaContable = {
-      noEntrada: 123456,
+      noEntrada: Math.random(),// cambiar
       totalDebito: total,
       totalCredito: total,
       comentario,
@@ -88,10 +91,9 @@ export default class EntradaContableService {
       empresaId,
       transaccionComercialId: this._transComercialId, // Transaccion comercial  ejemplo: factura, pago , etc
       documentoId: id, // Id de la accion realizada // ver aqui arreglar nombres y demas
-      detalle: detalleEntradaContable
+      detalle: detalleEntradaContable,
     };
 
     return entradaContable;
   }
-
 }
