@@ -40,7 +40,7 @@ class Server {
         this.port = index_1.default.PORT || "";
         this.dbConnection();
         // this.InicioNuevaEmpresa();
-        // this.InicioAplicacion();
+        this.InicioAplicacion();
         this.middlewares();
         this.routes();
     }
@@ -54,7 +54,7 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield connectionDB_1.default.authenticate();
-                yield connectionDB_1.default.sync({ force: false });
+                yield connectionDB_1.default.sync({ force: true });
                 console.log("Database CACTUS Online");
             }
             catch (error) {

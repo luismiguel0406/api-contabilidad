@@ -2,8 +2,6 @@ export interface ITipoCuentaContable {
   [index:number]:number;
   [index:symbol]:symbol;
   descripcion: string;
-  debito: string;
-  credito: string;
   estado: boolean;
   createdAt: Date;
   updatedAt: Date | null;

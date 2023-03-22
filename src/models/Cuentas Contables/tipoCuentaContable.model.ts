@@ -8,14 +8,6 @@ const tiposCuentaContable = conexion.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    credito: {
-      type: DataTypes.STRING(25),
-      allowNull: false,
-    },
-    debito: {
-      type: DataTypes.STRING(25),
-      allowNull: false,
-    },
     estado: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

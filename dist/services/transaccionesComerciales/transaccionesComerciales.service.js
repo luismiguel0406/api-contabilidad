@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const TransaccionesComerciales_model_1 = __importDefault(require("../../models/TransaccionesComerciales/TransaccionesComerciales.model"));
-class TransaccionesComercialesService {
-    getTransaccionesComerciales(payload = "") {
+class TransaccionComercialService {
+    getTransaccionComercial(payload = "") {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 return yield TransaccionesComerciales_model_1.default.findOne({
@@ -28,5 +28,5 @@ class TransaccionesComercialesService {
         });
     }
 }
-exports.default = TransaccionesComercialesService;
+exports.default = TransaccionComercialService;
 //# sourceMappingURL=transaccionesComerciales.service.js.map

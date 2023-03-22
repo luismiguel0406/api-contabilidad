@@ -29,8 +29,8 @@ class EntradaContableService {
     getTransaccionInit(payload) {
         return __awaiter(this, void 0, void 0, function* () {
             const transaccionComercial_service = new transaccionesComerciales_service_1.default();
-            const transaccionComercial = yield transaccionComercial_service.getTransaccionesComerciales(payload);
-            return transaccionComercial.id;
+            const transComercial = yield transaccionComercial_service.getTransaccionComercial(payload);
+            return transComercial.id;
         });
     }
     //Generar detalle entrada contable //
@@ -100,7 +100,7 @@ class EntradaContableService {
             const detalleEntradaContable = yield this.generarDetalle(detalleFacturaPorPagar);
             this._transComercialId = yield this.getTransaccionInit(payload);
             let entradaContable = {
-                noEntrada: 123456,
+                noEntrada: Math.random(),
                 totalDebito: total,
                 totalCredito: total,
                 comentario,
@@ -112,7 +112,7 @@ class EntradaContableService {
                 empresaId,
                 transaccionComercialId: this._transComercialId,
                 documentoId: id,
-                detalle: detalleEntradaContable
+                detalle: detalleEntradaContable,
             };
             return entradaContable;
         });

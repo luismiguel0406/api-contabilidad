@@ -10,7 +10,7 @@ export const generarDetalleEntradaContable = async (
   payload: string
 ) => {
   const transaccion = <any>(
-    await transaccionComercial_service.getTransaccionesComerciales(payload)
+    await transaccionComercial_service.getTransaccionComercial(payload)
   );
   const accionesContables = <Array<any>>(
     await accionEntrada_service.getAccionEntrada(transaccion.id)

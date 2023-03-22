@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const tiposCuentaContable = connectionDB_1.default.define("tipoCuentaContable", {
+const tipoMovimiento = connectionDB_1.default.define("tipoMovimiento", {
     descripcion: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING(10),
         allowNull: false,
     },
     estado: {
@@ -21,6 +21,13 @@ const tiposCuentaContable = connectionDB_1.default.define("tipoCuentaContable", 
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
     },
+    usuario: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    terminal: {
+        type: sequelize_1.DataTypes.STRING,
+    },
 }, { schema: "CUENTAS" });
-exports.default = tiposCuentaContable;
-//# sourceMappingURL=tipoCuentaContable.model.js.map
+exports.default = tipoMovimiento;
+//# sourceMappingURL=tipoMovimiento.model.js.map

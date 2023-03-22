@@ -50,7 +50,7 @@ class Server {
 
     this.dbConnection();
    // this.InicioNuevaEmpresa();
-   // this.InicioAplicacion();
+      this.InicioAplicacion();
       this.middlewares();
       this.routes();
   }
@@ -65,7 +65,7 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
-      await  db.sync({force:false})
+      await  db.sync({force:true})
       console.log("Database CACTUS Online");
     } catch (error) {
       console.log(`Error ${error}`);
@@ -138,7 +138,6 @@ class Server {
       grupoCuentasContables.InsertarGruposCuentasContable();
       cuentasContables.InsertarCuentas();
       transaccionesComerciales.InsertarTransaccionesComerciales();
-     
     } catch (error) {
       console.error(`Error Metodo Inicio Aplicacion, ${error}`);
     }
