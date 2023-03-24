@@ -54,8 +54,8 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield connectionDB_1.default.authenticate();
-                yield connectionDB_1.default.sync({ force: true });
-                console.log("Database CACTUS Online");
+                yield connectionDB_1.default.sync();
+                console.log("Database CACTUS online.");
             }
             catch (error) {
                 console.log(`Error ${error}`);
@@ -107,6 +107,7 @@ class Server {
             const grupoCuentasContables = new Querys_1.GrupoCuentasContables();
             const cuentasContables = new Querys_1.CuentasContables();
             const transaccionesComerciales = new Querys_1.TransaccionesComerciales();
+            const tipoMovimiento = new Querys_1.TipoMovimiento();
             empresa.CrearEmpresa();
             tipoProveedor.InsertarTiposProveedores();
             tipoClientes.InsertarTipoClientes();
@@ -124,6 +125,7 @@ class Server {
             grupoCuentasContables.InsertarGruposCuentasContable();
             cuentasContables.InsertarCuentas();
             transaccionesComerciales.InsertarTransaccionesComerciales();
+            tipoMovimiento.InsertarTipoMovimiento();
         }
         catch (error) {
             console.error(`Error Metodo Inicio Aplicacion, ${error}`);

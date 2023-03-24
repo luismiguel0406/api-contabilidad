@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CuentasContables = exports.TransaccionesComerciales = exports.TipoCuentasContables = exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.GrupoCuentasContables = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = exports.Empresa = void 0;
+exports.TipoMovimiento = exports.CuentasContables = exports.TransaccionesComerciales = exports.TipoCuentasContables = exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.GrupoCuentasContables = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = exports.Empresa = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
 const grupoCuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/grupoCuentasContables.model"));
@@ -30,6 +30,7 @@ const tipoCuentaContable_model_1 = __importDefault(require("../../models/Cuentas
 const TransaccionesComerciales_model_1 = __importDefault(require("../../models/TransaccionesComerciales/TransaccionesComerciales.model"));
 const empresa_model_1 = __importDefault(require("../../models/Empresa/empresa.model"));
 const cuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/cuentasContables.model"));
+const tipoMovimiento_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoMovimiento.model"));
 class Empresa {
     constructor() {
         this._empresa = {
@@ -1037,7 +1038,7 @@ class TipoCuentasContables {
 exports.TipoCuentasContables = TipoCuentasContables;
 class TransaccionesComerciales {
     constructor() {
-        this.transaccionesArray = [
+        this._transaccionesArray = [
             {
                 descripcion: "Apertura de capital",
                 payload: "APERTURA_CAPITAL",
@@ -1106,7 +1107,7 @@ class TransaccionesComerciales {
     InsertarTransaccionesComerciales() {
         try {
             TransaccionesComerciales_model_1.default.afterSync("createTransacciones", () => __awaiter(this, void 0, void 0, function* () {
-                yield TransaccionesComerciales_model_1.default.bulkCreate(this.transaccionesArray);
+                yield TransaccionesComerciales_model_1.default.bulkCreate(this._transaccionesArray);
             }));
         }
         catch (error) {
@@ -1171,4 +1172,37 @@ class CuentasContables {
     }
 }
 exports.CuentasContables = CuentasContables;
+class TipoMovimiento {
+    constructor() {
+        this._movimientos = [
+            {
+                descripcion: "CREDITO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                descripcion: "DEBITO",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+        ];
+    }
+    InsertarTipoMovimiento() {
+        try {
+            tipoMovimiento_model_1.default.afterSync('Insertar movimientos', () => __awaiter(this, void 0, void 0, function* () {
+                yield tipoMovimiento_model_1.default.bulkCreate(this._movimientos);
+            }));
+        }
+        catch (error) {
+            return console.error(`Error al insertar tipo de movimientos ${error}`);
+        }
+    }
+}
+exports.TipoMovimiento = TipoMovimiento;
 //# sourceMappingURL=Querys.js.map

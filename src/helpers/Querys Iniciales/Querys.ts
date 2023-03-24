@@ -34,7 +34,7 @@ import transaccionesComerciales from "../../models/TransaccionesComerciales/Tran
 import { IEmpresa } from "interfaces/empresa.interface";
 import empresas from "../../models/Empresa/empresa.model";
 import cuentasContables from "../../models/Cuentas Contables/cuentasContables.model";
-
+import tipoMovimiento from "../../models/Cuentas Contables/tipoMovimiento.model";
 
 export class Empresa {
   private _empresa: IEmpresa;
@@ -66,7 +66,7 @@ export class Empresa {
   }
 }
 export class TiposProveedores {
-  private tipoProveedoresArray: Array<ITipoPoveedor> ;
+  private tipoProveedoresArray: Array<ITipoPoveedor>;
 
   // AGREGO TIPO AL INICIO DEL PROGRAMA //
   constructor() {
@@ -1011,25 +1011,25 @@ export class TipoCuentasContables {
         updatedAt: null,
       },
       {
-        descripcion: "PASIVOS",     
+        descripcion: "PASIVOS",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
       },
       {
-        descripcion: "CAPITAL",   
+        descripcion: "CAPITAL",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
       },
       {
-        descripcion: "INGRESOS",  
+        descripcion: "INGRESOS",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
       },
       {
-        descripcion: "COSTOS",      
+        descripcion: "COSTOS",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
@@ -1060,9 +1060,9 @@ export class TipoCuentasContables {
 }
 
 export class TransaccionesComerciales {
-  private transaccionesArray: Array<ITransaccionComercial>;
+  private _transaccionesArray: Array<ITransaccionComercial>;
   constructor() {
-    this.transaccionesArray = [
+    this._transaccionesArray = [
       {
         descripcion: "Apertura de capital",
         payload: "APERTURA_CAPITAL",
@@ -1131,7 +1131,7 @@ export class TransaccionesComerciales {
   InsertarTransaccionesComerciales() {
     try {
       transaccionesComerciales.afterSync("createTransacciones", async () => {
-        await transaccionesComerciales.bulkCreate(this.transaccionesArray);
+        await transaccionesComerciales.bulkCreate(this._transaccionesArray);
       });
     } catch (error) {
       return console.error(`Error al insertar transacciones, ${error}`);
@@ -1152,7 +1152,7 @@ export class CuentasContables {
         terminal: "SA",
         tipoCuentaContableId: 1,
         grupoCuentasContableId: 1,
-        monedaId:1,
+        monedaId: 1,
         empresaId: 1,
       },
       {
@@ -1165,7 +1165,7 @@ export class CuentasContables {
         terminal: "SA",
         tipoCuentaContableId: 2,
         grupoCuentasContableId: 9,
-        monedaId:1,
+        monedaId: 1,
         empresaId: 1,
       },
       {
@@ -1178,7 +1178,7 @@ export class CuentasContables {
         terminal: "SA",
         tipoCuentaContableId: 6,
         grupoCuentasContableId: 14,
-        monedaId:1,
+        monedaId: 1,
         empresaId: 1,
       },
     ];
@@ -1192,4 +1192,38 @@ export class CuentasContables {
       return console.error(`Error al insertar cuentas contables, ${error}`);
     }
   }
+}
+
+export class TipoMovimiento {
+  private _movimientos: Array<any>;
+  constructor() {
+    this._movimientos = [
+      {
+        descripcion: "CREDITO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "DEBITO",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+    ];
+  }
+
+   InsertarTipoMovimiento(){
+    try {
+      tipoMovimiento.afterSync('Insertar movimientos',async ()=>{
+        await tipoMovimiento.bulkCreate(this._movimientos)
+      })
+    } catch (error) {
+      return console.error(`Error al insertar tipo de movimientos ${error}`)
+    }
+   }
 }

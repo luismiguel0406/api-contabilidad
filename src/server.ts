@@ -17,6 +17,7 @@ import {
   TransaccionesComerciales,
   Empresa,
   CuentasContables,
+  TipoMovimiento,
 } from "./helpers/Querys Iniciales/Querys";
 import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
 import MonedasRoutes from "./routes/facturacion/moneda.route";
@@ -65,8 +66,8 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
-      await  db.sync({force:true})
-      console.log("Database CACTUS Online");
+      await  db.sync()
+      console.log("Database CACTUS online.");
     } catch (error) {
       console.log(`Error ${error}`);
     }
@@ -118,6 +119,7 @@ class Server {
       const grupoCuentasContables =  new GrupoCuentasContables();
       const cuentasContables = new CuentasContables();
       const transaccionesComerciales = new TransaccionesComerciales();
+      const tipoMovimiento = new TipoMovimiento();
      
 
 
@@ -138,6 +140,7 @@ class Server {
       grupoCuentasContables.InsertarGruposCuentasContable();
       cuentasContables.InsertarCuentas();
       transaccionesComerciales.InsertarTransaccionesComerciales();
+      tipoMovimiento.InsertarTipoMovimiento();
     } catch (error) {
       console.error(`Error Metodo Inicio Aplicacion, ${error}`);
     }

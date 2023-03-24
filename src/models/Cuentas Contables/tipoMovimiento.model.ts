@@ -27,4 +27,5 @@ const tipoMovimiento = conexion.define("tipoMovimiento", {
 },
 {schema: "CUENTAS" });
 
+tipoMovimiento.sync()
 export default tipoMovimiento;

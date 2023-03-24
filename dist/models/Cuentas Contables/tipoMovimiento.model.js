@@ -29,5 +29,6 @@ const tipoMovimiento = connectionDB_1.default.define("tipoMovimiento", {
         type: sequelize_1.DataTypes.STRING,
     },
 }, { schema: "CUENTAS" });
+tipoMovimiento.sync();
 exports.default = tipoMovimiento;
 //# sourceMappingURL=tipoMovimiento.model.js.map
