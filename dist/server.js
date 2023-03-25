@@ -40,7 +40,7 @@ class Server {
         this.port = index_1.default.PORT || "";
         this.dbConnection();
         // this.InicioNuevaEmpresa();
-        this.InicioAplicacion();
+        // this.InicioAplicacion();
         this.middlewares();
         this.routes();
     }
@@ -108,6 +108,7 @@ class Server {
             const cuentasContables = new Querys_1.CuentasContables();
             const transaccionesComerciales = new Querys_1.TransaccionesComerciales();
             const tipoMovimiento = new Querys_1.TipoMovimiento();
+            const tipoEfecto = new Querys_1.TipoEfecto();
             empresa.CrearEmpresa();
             tipoProveedor.InsertarTiposProveedores();
             tipoClientes.InsertarTipoClientes();
@@ -126,6 +127,7 @@ class Server {
             cuentasContables.InsertarCuentas();
             transaccionesComerciales.InsertarTransaccionesComerciales();
             tipoMovimiento.InsertarTipoMovimiento();
+            tipoEfecto.insertarTipoEfecto();
         }
         catch (error) {
             console.error(`Error Metodo Inicio Aplicacion, ${error}`);

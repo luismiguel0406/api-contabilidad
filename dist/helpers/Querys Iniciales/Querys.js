@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TipoMovimiento = exports.CuentasContables = exports.TransaccionesComerciales = exports.TipoCuentasContables = exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.GrupoCuentasContables = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = exports.Empresa = void 0;
+exports.TipoEfecto = exports.TipoMovimiento = exports.CuentasContables = exports.TransaccionesComerciales = exports.TipoCuentasContables = exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.GrupoCuentasContables = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = exports.Empresa = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
 const grupoCuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/grupoCuentasContables.model"));
@@ -31,6 +31,7 @@ const TransaccionesComerciales_model_1 = __importDefault(require("../../models/T
 const empresa_model_1 = __importDefault(require("../../models/Empresa/empresa.model"));
 const cuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/cuentasContables.model"));
 const tipoMovimiento_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoMovimiento.model"));
+const tipoEfecto_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoEfecto.model"));
 class Empresa {
     constructor() {
         this._empresa = {
@@ -1195,7 +1196,7 @@ class TipoMovimiento {
     }
     InsertarTipoMovimiento() {
         try {
-            tipoMovimiento_model_1.default.afterSync('Insertar movimientos', () => __awaiter(this, void 0, void 0, function* () {
+            tipoMovimiento_model_1.default.afterSync("Insertar movimientos", () => __awaiter(this, void 0, void 0, function* () {
                 yield tipoMovimiento_model_1.default.bulkCreate(this._movimientos);
             }));
         }
@@ -1205,4 +1206,37 @@ class TipoMovimiento {
     }
 }
 exports.TipoMovimiento = TipoMovimiento;
+class TipoEfecto {
+    constructor() {
+        this._efectos = [
+            {
+                descripcion: "AUMENTAR",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+            {
+                descripcion: "DISMINUIR",
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: null,
+                usuario: "SA",
+                terminal: "SA",
+            },
+        ];
+    }
+    insertarTipoEfecto() {
+        try {
+            tipoEfecto_model_1.default.afterSync("insertar efectos", () => __awaiter(this, void 0, void 0, function* () {
+                yield tipoEfecto_model_1.default.bulkCreate(this._efectos);
+            }));
+        }
+        catch (error) {
+            return console.error(`Error al insertar tipo de efectos ${error}`);
+        }
+    }
+}
+exports.TipoEfecto = TipoEfecto;
 //# sourceMappingURL=Querys.js.map

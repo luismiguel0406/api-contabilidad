@@ -35,6 +35,7 @@ import { IEmpresa } from "interfaces/empresa.interface";
 import empresas from "../../models/Empresa/empresa.model";
 import cuentasContables from "../../models/Cuentas Contables/cuentasContables.model";
 import tipoMovimiento from "../../models/Cuentas Contables/tipoMovimiento.model";
+import tipoEfecto from "../../models/Cuentas Contables/tipoEfecto.model";
 
 export class Empresa {
   private _empresa: IEmpresa;
@@ -1217,13 +1218,46 @@ export class TipoMovimiento {
     ];
   }
 
-   InsertarTipoMovimiento(){
+  InsertarTipoMovimiento() {
     try {
-      tipoMovimiento.afterSync('Insertar movimientos',async ()=>{
-        await tipoMovimiento.bulkCreate(this._movimientos)
-      })
+      tipoMovimiento.afterSync("Insertar movimientos", async () => {
+        await tipoMovimiento.bulkCreate(this._movimientos);
+      });
     } catch (error) {
-      return console.error(`Error al insertar tipo de movimientos ${error}`)
+      return console.error(`Error al insertar tipo de movimientos ${error}`);
     }
-   }
+  }
+}
+
+export class TipoEfecto {
+  private _efectos: Array<any>;
+  constructor() {
+    this._efectos = [
+      {
+        descripcion: "AUMENTAR",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+      {
+        descripcion: "DISMINUIR",
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: null,
+        usuario: "SA",
+        terminal: "SA",
+      },
+    ];
+  }
+  insertarTipoEfecto() {
+    try {
+      tipoEfecto.afterSync("insertar efectos", async () => {
+        await tipoEfecto.bulkCreate(this._efectos);
+      });
+    } catch (error) {
+      return console.error(`Error al insertar tipo de efectos ${error}`);
+    }
+  }
 }

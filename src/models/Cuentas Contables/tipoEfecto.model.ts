@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
 
-const tipoMovimiento = conexion.define("tipoMovimiento", {
+const tipoEfecto = conexion.define("tipoEfecto", {
   descripcion: {
     type: DataTypes.STRING(10),
     allowNull: false,
@@ -23,9 +23,9 @@ const tipoMovimiento = conexion.define("tipoMovimiento", {
   },
   terminal: {
     type: DataTypes.STRING,
+    allowNull: false
   },
 },
 {schema: "CUENTAS" });
 
-
-export default tipoMovimiento;
+export default tipoEfecto;

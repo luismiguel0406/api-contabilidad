@@ -18,6 +18,7 @@ import {
   Empresa,
   CuentasContables,
   TipoMovimiento,
+  TipoEfecto,
 } from "./helpers/Querys Iniciales/Querys";
 import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
 import MonedasRoutes from "./routes/facturacion/moneda.route";
@@ -32,13 +33,12 @@ import impuestosRoutes from "./routes/facturacion/impuestos.route";
 import medioDePagoRoutes from "./routes/facturacion/medioDePagp.route";
 import facturasRoutes from "./routes/facturacion/factura.route";
 import usuariosRoutes from "./routes/Usuarios/usuarios.route";
-import tipoGastosRoutes from  "./routes/facturacion/tipoGastos.route";
-import facturasPorpPagarRoutes from "./routes/facturasPorPagar/facturasPorPagar.route"
+import tipoGastosRoutes from "./routes/facturacion/tipoGastos.route";
+import facturasPorpPagarRoutes from "./routes/facturasPorPagar/facturasPorPagar.route";
 import cors from "cors";
 import variablesEnv from "./config/index";
 import db from "./Database/connectionDB";
 import helmet from "helmet";
-
 
 /*INICIALIZO EL SERVIDOR*/
 class Server {
@@ -50,10 +50,10 @@ class Server {
     this.port = variablesEnv.PORT || "";
 
     this.dbConnection();
-   // this.InicioNuevaEmpresa();
-      this.InicioAplicacion();
-      this.middlewares();
-      this.routes();
+    // this.InicioNuevaEmpresa();
+    // this.InicioAplicacion();
+    this.middlewares();
+    this.routes();
   }
 
   middlewares() {
@@ -66,7 +66,7 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
-      await  db.sync()
+      await db.sync();
       console.log("Database CACTUS online.");
     } catch (error) {
       console.log(`Error ${error}`);
@@ -95,9 +95,9 @@ class Server {
     this.app.use(usuariosRoutes);
     this.app.use(tipoGastosRoutes);
     this.app.use(facturasPorpPagarRoutes);
-    this.app.use("*", (req:Request, res:Response)=>{
-      res.status(404).json({Message:"No existe la ruta que colocaste"})
-    })
+    this.app.use("*", (req: Request, res: Response) => {
+      res.status(404).json({ Message: "No existe la ruta que colocaste" });
+    });
   }
 
   InicioAplicacion() {
@@ -116,12 +116,11 @@ class Server {
       const tipoGasto = new Tipogasto();
       const tipoFacturasPorPagar = new TipoFacturasPorPagar();
       const tipoCuentasContables = new TipoCuentasContables();
-      const grupoCuentasContables =  new GrupoCuentasContables();
+      const grupoCuentasContables = new GrupoCuentasContables();
       const cuentasContables = new CuentasContables();
       const transaccionesComerciales = new TransaccionesComerciales();
       const tipoMovimiento = new TipoMovimiento();
-     
-
+      const tipoEfecto = new TipoEfecto();
 
       empresa.CrearEmpresa();
       tipoProveedor.InsertarTiposProveedores();
@@ -141,14 +140,15 @@ class Server {
       cuentasContables.InsertarCuentas();
       transaccionesComerciales.InsertarTransaccionesComerciales();
       tipoMovimiento.InsertarTipoMovimiento();
+      tipoEfecto.insertarTipoEfecto();
     } catch (error) {
       console.error(`Error Metodo Inicio Aplicacion, ${error}`);
     }
   }
 
   InicioNuevaEmpresa() {
-    try {     
-    console.info("COLOCAR HOOK DE LA EMPRESA AQUI!")
+    try {
+      console.info("COLOCAR HOOK DE LA EMPRESA AQUI!");
     } catch (error) {
       console.error(`Error Metodo InicioNuevaEmpresa, ${error}`);
     }
