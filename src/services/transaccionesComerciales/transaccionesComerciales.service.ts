@@ -1,9 +1,9 @@
-import transaccionesComerciales from "../../models/TransaccionesComerciales/TransaccionesComerciales.model";
+import transaccion from "../../models/Transaccion/Transaccion.model";
 
 export default class TransaccionComercialService {
   async getTransaccionComercial(payload: string = "") {
     try {
-      return await transaccionesComerciales.findOne({
+      return await transaccion.findOne({
         attributes: ["id", "descripcion"],
         where: { payload, estado: "1" },
       });

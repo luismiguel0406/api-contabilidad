@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import empresas from "../Empresa/empresa.model";
 import conexion from "../../Database/connectionDB";
-import transaccionesComerciales from "../TransaccionesComerciales/TransaccionesComerciales.model";
+import transaccion from "../Transaccion/Transaccion.model";
 
 const entradasContables = conexion.define(
   "entradaContable",
@@ -52,10 +52,10 @@ const entradasContables = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    detalle:{
-      type:DataTypes.JSONB,
-      allowNull:false
-    }
+    detalle: {
+      type: DataTypes.JSONB,
+      allowNull: false,
+    },
   },
   { schema: "DIARIO" }
 );
@@ -65,8 +65,9 @@ const entradasContables = conexion.define(
 empresas.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresas);
 
-transaccionesComerciales.hasMany(entradasContables, {foreignKey:"transaccionComercialId"})
-entradasContables.belongsTo(transaccionesComerciales);
-
+transaccion.hasMany(entradasContables, {
+  foreignKey: "transaccionComercialId",
+});
+entradasContables.belongsTo(transaccion);
 
 export default entradasContables;

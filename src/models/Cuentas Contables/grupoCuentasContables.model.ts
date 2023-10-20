@@ -56,3 +56,5 @@ grupoCuentasContables.belongsTo(moneda);
 
 
 export default grupoCuentasContables;
+
+

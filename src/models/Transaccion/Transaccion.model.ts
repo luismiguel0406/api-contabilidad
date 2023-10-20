@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
 
-const transaccionesComerciales = conexion.define(
-  "transaccionComercial",
+const transaccion = conexion.define(
+  "transaccion",
   {
     descripcion: {
       type: DataTypes.STRING,
@@ -34,6 +34,5 @@ const transaccionesComerciales = conexion.define(
   { schema: "DIARIO" }
 );
 
-
 //transaccionesComerciales.sync({force:true})
-export default transaccionesComerciales;
+export default transaccion;

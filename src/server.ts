@@ -115,12 +115,12 @@ class Server {
       const Perfil = new Perfiles();
       const tipoGasto = new Tipogasto();
       const tipoFacturasPorPagar = new TipoFacturasPorPagar();
-      const tipoCuentasContables = new TipoCuentasContables();
-      const grupoCuentasContables = new GrupoCuentasContables();
-      const cuentasContables = new CuentasContables();
+      //const tipoCuentasContables = new TipoCuentasContables();
+      //const grupoCuentasContables = new GrupoCuentasContables();
+      //const tipoEfecto = new TipoEfecto();
+      //const cuentasContables = new CuentasContables();
+      //const tipoMovimiento = new TipoMovimiento();
       const transaccionesComerciales = new TransaccionesComerciales();
-      const tipoMovimiento = new TipoMovimiento();
-      const tipoEfecto = new TipoEfecto();
 
       empresa.CrearEmpresa();
       tipoProveedor.InsertarTiposProveedores();
@@ -135,12 +135,12 @@ class Server {
       Perfil.InsertarPerfiles();
       tipoGasto.InsertarTipoGasto();
       tipoFacturasPorPagar.InsertarTipoFactura();
-      tipoCuentasContables.InsertarTipoCuentasContables();
-      grupoCuentasContables.InsertarGruposCuentasContable();
-      cuentasContables.InsertarCuentas();
+      //tipoCuentasContables.InsertarTipoCuentasContables();
+      //grupoCuentasContables.InsertarGruposCuentasContable();
+      //tipoEfecto.insertarTipoEfecto();
+      //tipoMovimiento.InsertarTipoMovimiento();
+      //cuentasContables.InsertarCuentas();
       transaccionesComerciales.InsertarTransaccionesComerciales();
-      tipoMovimiento.InsertarTipoMovimiento();
-      tipoEfecto.insertarTipoEfecto();
     } catch (error) {
       console.error(`Error Metodo Inicio Aplicacion, ${error}`);
     }

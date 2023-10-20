@@ -30,11 +30,11 @@ import { ITipoFacturasPorPagar } from "../../interfaces/facturasPorPagar.interfa
 import tipoFacturasPorPagar from "../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model";
 import tiposCuentaContable from "../../models/Cuentas Contables/tipoCuentaContable.model";
 import { ITransaccionComercial } from "interfaces/TransaccionesComerciales.interface";
-import transaccionesComerciales from "../../models/TransaccionesComerciales/TransaccionesComerciales.model";
+import transaccion from "../../models/Transaccion/Transaccion.model";
 import { IEmpresa } from "interfaces/empresa.interface";
 import empresas from "../../models/Empresa/empresa.model";
 import cuentasContables from "../../models/Cuentas Contables/cuentasContables.model";
-import tipoMovimiento from "../../models/Cuentas Contables/tipoMovimiento.model";
+import tipoRegistro from "../../models/Cuentas Contables/tipoRegistro.model";
 import tipoEfecto from "../../models/Cuentas Contables/tipoEfecto.model";
 
 export class Empresa {
@@ -1061,6 +1061,7 @@ export class TipoCuentasContables {
 }
 
 export class TransaccionesComerciales {
+  // No Va
   private _transaccionesArray: Array<ITransaccionComercial>;
   constructor() {
     this._transaccionesArray = [
@@ -1131,8 +1132,8 @@ export class TransaccionesComerciales {
   }
   InsertarTransaccionesComerciales() {
     try {
-      transaccionesComerciales.afterSync("createTransacciones", async () => {
-        await transaccionesComerciales.bulkCreate(this._transaccionesArray);
+      transaccion.afterSync("createTransacciones", async () => {
+        await transaccion.bulkCreate(this._transaccionesArray);
       });
     } catch (error) {
       return console.error(`Error al insertar transacciones, ${error}`);
@@ -1220,8 +1221,8 @@ export class TipoMovimiento {
 
   InsertarTipoMovimiento() {
     try {
-      tipoMovimiento.afterSync("Insertar movimientos", async () => {
-        await tipoMovimiento.bulkCreate(this._movimientos);
+      tipoRegistro.afterSync("Insertar movimientos", async () => {
+        await tipoRegistro.bulkCreate(this._movimientos);
       });
     } catch (error) {
       return console.error(`Error al insertar tipo de movimientos ${error}`);
