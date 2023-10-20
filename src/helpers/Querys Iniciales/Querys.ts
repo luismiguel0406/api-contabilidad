@@ -12,7 +12,7 @@ import { ITipoItem } from "../../interfaces/Item.interface";
 import { ITipoVentas } from "../../interfaces/tipoVentas.interface";
 import tipoCliente from "../../models/Clientes/tipoCliente.model";
 import tiposContactos from "../../models/Contacto/tipoContactos.model";
-import grupoCuentasContables from "../../models/Cuentas Contables/grupoCuentasContables.model";
+import grupoCuenta from "../../models/Cuentas Contables/grupoCuenta.model";
 import tipoComprobantes from "../../models/Facturacion/comprobantes/tipoComprobante.model";
 import moneda from "../../models/Facturacion/moneda/moneda.model";
 import tiposItem from "../../models/Inventario/tipoItem.model";
@@ -28,7 +28,7 @@ import { ITipoGasto } from "../../interfaces/gasto.interface";
 import tipoGasto from "../../models/Facturacion/Facturas por pagar/Gastos/gastos.model";
 import { ITipoFacturasPorPagar } from "../../interfaces/facturasPorPagar.interface";
 import tipoFacturasPorPagar from "../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model";
-import tiposCuentaContable from "../../models/Cuentas Contables/tipoCuentaContable.model";
+import tipoCuenta from "../../models/Cuentas Contables/tipoCuenta.model";
 import { ITransaccionComercial } from "interfaces/TransaccionesComerciales.interface";
 import transaccion from "../../models/Transaccion/Transaccion.model";
 import { IEmpresa } from "interfaces/empresa.interface";
@@ -416,12 +416,9 @@ export class GrupoCuentasContables {
   }
   InsertarGruposCuentasContable() {
     try {
-      grupoCuentasContables.afterSync(
-        "createGrupoCuentasContables",
-        async () => {
-          await grupoCuentasContables.bulkCreate(this.grupoCuentaContableArray);
-        }
-      );
+      grupoCuenta.afterSync("createGrupoCuentasContables", async () => {
+        await grupoCuenta.bulkCreate(this.grupoCuentaContableArray);
+      });
     } catch (error) {
       console.error(`Error insertando grupos Cuentas Contables, ${error}`);
     }
@@ -1051,8 +1048,8 @@ export class TipoCuentasContables {
   }
   InsertarTipoCuentasContables() {
     try {
-      tiposCuentaContable.afterSync("createTiposCuenta", async () => {
-        await tiposCuentaContable.bulkCreate(this.tipoCuentaContableArray);
+      tipoCuenta.afterSync("createTiposCuenta", async () => {
+        await tipoCuenta.bulkCreate(this.tipoCuentaContableArray);
       });
     } catch (error) {
       console.error(`Error al insertar tipo cuenta contable, ${error}`);

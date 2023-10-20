@@ -1,8 +1,8 @@
 import empresas from "../Empresa/empresa.model";
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
-import tiposCuentaContable from "./tipoCuentaContable.model";
-import grupoCuentasContables from "./grupoCuentasContables.model";
+import tipoCuenta from "./tipoCuenta.model";
+import grupoCuenta from "./grupoCuenta.model";
 import moneda from "../../models/Facturacion/moneda/moneda.model";
 
 const cuentasContables = conexion.define(
@@ -43,34 +43,34 @@ const cuentasContables = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    empresaId:{
-      type:DataTypes.INTEGER,
-      allowNull:false
+    empresaId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
-    monedaId:{
-      type:DataTypes.INTEGER,
-      allowNull:false
-    }
+    monedaId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   { schema: "CUENTAS" }
 );
 
 //---- ASOCIACIONES -------//
 
-tiposCuentaContable.hasMany(cuentasContables, {
+tipoCuenta.hasMany(cuentasContables, {
   foreignKey: "tipoCuentaContableId",
 });
-cuentasContables.belongsTo(tiposCuentaContable);
+cuentasContables.belongsTo(tipoCuenta);
 
-grupoCuentasContables.hasMany(cuentasContables, {
+grupoCuenta.hasMany(cuentasContables, {
   foreignKey: "grupoCuentasContableId",
 });
-cuentasContables.belongsTo(grupoCuentasContables);
+cuentasContables.belongsTo(grupoCuenta);
 
 empresas.hasMany(cuentasContables, { foreignKey: "empresaId" });
 cuentasContables.belongsTo(empresas);
 
-moneda.hasMany(cuentasContables,{foreignKey:"monedaId"});
+moneda.hasMany(cuentasContables, { foreignKey: "monedaId" });
 cuentasContables.belongsTo(moneda);
 
 export default cuentasContables;

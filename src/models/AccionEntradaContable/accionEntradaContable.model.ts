@@ -1,4 +1,4 @@
-import tiposCuentaContable from "../Cuentas Contables/tipoCuentaContable.model";
+import tipoCuenta from "../Cuentas Contables/tipoCuenta.model";
 import transaccion from "../Transaccion/Transaccion.model";
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
@@ -14,16 +14,12 @@ const accionesEntradasContables = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    tipoEfecto:{
-      type:DataTypes.INTEGER,
-      allowNull: false
-    },
-    accion: {
-      type: DataTypes.STRING,
+    tipoEfectoId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
-    movimiento: {
-      type: DataTypes.STRING,
+    tipoRegistroId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     estado: {
@@ -50,11 +46,11 @@ const accionesEntradasContables = conexion.define(
 
 //ASOCIACIONES//
 
-transaccion.belongsToMany(tiposCuentaContable, {
+transaccion.belongsToMany(tipoCuenta, {
   through: "accionEntradaContable",
   foreignKey: "transaccionId",
 });
-tiposCuentaContable.belongsToMany(transaccion, {
+tipoCuenta.belongsToMany(transaccion, {
   through: "accionEntradaContable",
   foreignKey: "tipoCuentaId",
 });

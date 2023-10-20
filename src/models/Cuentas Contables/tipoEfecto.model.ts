@@ -3,7 +3,7 @@ import conexion from "../../Database/connectionDB";
 
 const tipoEfecto = conexion.define("tipoEfecto", {
   descripcion: {
-    type: DataTypes.STRING(10),
+    type: DataTypes.STRING(15),
     allowNull: false,
   },
   estado: {

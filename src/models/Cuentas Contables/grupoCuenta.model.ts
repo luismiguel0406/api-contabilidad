@@ -2,11 +2,10 @@ import empresas from "../Empresa/empresa.model";
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
 import moneda from "../Facturacion/moneda/moneda.model";
-import tiposCuentaContable from "./tipoCuentaContable.model";
+import tipoCuenta from "./tipoCuenta.model";
 
-
-const grupoCuentasContables = conexion.define(
-  "grupoCuentasContable",
+const grupoCuenta = conexion.define(
+  "grupoCuenta",
   {
     cuenta: {
       type: DataTypes.STRING,
@@ -47,14 +46,12 @@ const grupoCuentasContables = conexion.define(
 );
 // --- ASOCIACIONES --- //
 
+tipoCuenta.hasMany(grupoCuenta, {
+  foreignKey: "tipoCuentaContableId",
+});
+grupoCuenta.belongsTo(tipoCuenta);
 
-tiposCuentaContable.hasMany(grupoCuentasContables, { foreignKey: "tipoCuentaContableId",});
-grupoCuentasContables.belongsTo(tiposCuentaContable);
+moneda.hasMany(grupoCuenta, { foreignKey: "monedaId" });
+grupoCuenta.belongsTo(moneda);
 
-moneda.hasMany(grupoCuentasContables, { foreignKey: "monedaId" });
-grupoCuentasContables.belongsTo(moneda);
-
-
-export default grupoCuentasContables;
-
-
+export default grupoCuenta;

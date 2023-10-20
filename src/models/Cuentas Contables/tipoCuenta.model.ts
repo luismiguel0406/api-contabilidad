@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
 
-const tiposCuentaContable = conexion.define(
-  "tipoCuentaContable",
+const tipoCuenta = conexion.define(
+  "tipoCuenta",
   {
     descripcion: {
       type: DataTypes.STRING,
@@ -23,4 +23,4 @@ const tiposCuentaContable = conexion.define(
   { schema: "CUENTAS" }
 );
 
-export default tiposCuentaContable;
+export default tipoCuenta;
