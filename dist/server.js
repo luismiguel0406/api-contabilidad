@@ -54,7 +54,7 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield connectionDB_1.default.authenticate();
-                yield connectionDB_1.default.sync();
+                //await db.sync();
                 console.log("Database CACTUS online.");
             }
             catch (error) {
@@ -101,14 +101,14 @@ class Server {
             const impuestos = new Querys_1.Impuestos();
             const mediosDePago = new Querys_1.MediosDePago();
             const Perfil = new Querys_1.Perfiles();
-            const tipoGasto = new Querys_1.Tipogasto();
-            const tipoFacturasPorPagar = new Querys_1.TipoFacturasPorPagar();
-            const tipoCuentasContables = new Querys_1.TipoCuentasContables();
-            const grupoCuentasContables = new Querys_1.GrupoCuentasContables();
-            const cuentasContables = new Querys_1.CuentasContables();
+            //const tipoGasto = new Tipogasto();
+            //const tipoFacturasPorPagar = new TipoFacturasPorPagar();
+            //const tipoCuentasContables = new TipoCuentasContables();
+            //const grupoCuentasContables = new GrupoCuentasContables();
+            //const tipoEfecto = new TipoEfecto();
+            //const cuentasContables = new CuentasContables();
+            //const tipoMovimiento = new TipoMovimiento();
             const transaccionesComerciales = new Querys_1.TransaccionesComerciales();
-            const tipoMovimiento = new Querys_1.TipoMovimiento();
-            const tipoEfecto = new Querys_1.TipoEfecto();
             empresa.CrearEmpresa();
             tipoProveedor.InsertarTiposProveedores();
             tipoClientes.InsertarTipoClientes();
@@ -120,14 +120,14 @@ class Server {
             impuestos.InsertarImpuestos();
             mediosDePago.InsertarMediosDePago();
             Perfil.InsertarPerfiles();
-            tipoGasto.InsertarTipoGasto();
-            tipoFacturasPorPagar.InsertarTipoFactura();
-            tipoCuentasContables.InsertarTipoCuentasContables();
-            grupoCuentasContables.InsertarGruposCuentasContable();
-            cuentasContables.InsertarCuentas();
+            //tipoGasto.InsertarTipoGasto();
+            //tipoFacturasPorPagar.InsertarTipoFactura();
+            //tipoCuentasContables.InsertarTipoCuentasContables();
+            //grupoCuentasContables.InsertarGruposCuentasContable();
+            //tipoEfecto.insertarTipoEfecto();
+            //tipoMovimiento.InsertarTipoMovimiento();
+            //cuentasContables.InsertarCuentas();
             transaccionesComerciales.InsertarTransaccionesComerciales();
-            tipoMovimiento.InsertarTipoMovimiento();
-            tipoEfecto.insertarTipoEfecto();
         }
         catch (error) {
             console.error(`Error Metodo Inicio Aplicacion, ${error}`);

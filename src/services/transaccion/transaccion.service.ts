@@ -1,7 +1,7 @@
 import transaccion from "../../models/Transaccion/Transaccion.model";
 
-export default class TransaccionComercialService {
-  async getTransaccionComercial(payload: string = "") {
+export default class TransaccionService {
+  async getTransaccion(payload: string = "") {
     try {
       return await transaccion.findOne({
         attributes: ["id", "descripcion"],

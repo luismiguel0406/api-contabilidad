@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const tipoCuentaContable_model_1 = __importDefault(require("./tipoCuentaContable.model"));
-const grupoCuentasContables_model_1 = __importDefault(require("./grupoCuentasContables.model"));
+const tipoCuenta_model_1 = __importDefault(require("./tipoCuenta.model"));
+const grupoCuenta_model_1 = __importDefault(require("./grupoCuenta.model"));
 const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda/moneda.model"));
 const cuentasContables = connectionDB_1.default.define("cuentaContable", {
     noCuenta: {
@@ -47,22 +47,22 @@ const cuentasContables = connectionDB_1.default.define("cuentaContable", {
     },
     empresaId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
     },
     monedaId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
-    }
+        allowNull: false,
+    },
 }, { schema: "CUENTAS" });
 //---- ASOCIACIONES -------//
-tipoCuentaContable_model_1.default.hasMany(cuentasContables, {
+tipoCuenta_model_1.default.hasMany(cuentasContables, {
     foreignKey: "tipoCuentaContableId",
 });
-cuentasContables.belongsTo(tipoCuentaContable_model_1.default);
-grupoCuentasContables_model_1.default.hasMany(cuentasContables, {
+cuentasContables.belongsTo(tipoCuenta_model_1.default);
+grupoCuenta_model_1.default.hasMany(cuentasContables, {
     foreignKey: "grupoCuentasContableId",
 });
-cuentasContables.belongsTo(grupoCuentasContables_model_1.default);
+cuentasContables.belongsTo(grupoCuenta_model_1.default);
 empresa_model_1.default.hasMany(cuentasContables, { foreignKey: "empresaId" });
 cuentasContables.belongsTo(empresa_model_1.default);
 moneda_model_1.default.hasMany(cuentasContables, { foreignKey: "monedaId" });

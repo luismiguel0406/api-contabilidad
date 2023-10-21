@@ -12,10 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const tipoCuentaContable_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoCuentaContable.model"));
-const grupoCuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/grupoCuentasContables.model"));
+const tipoCuenta_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoCuenta.model"));
+const grupoCuenta_model_1 = __importDefault(require("../../models/Cuentas Contables/grupoCuenta.model"));
 const cuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/cuentasContables.model"));
-const grupoCuentasContables_model_2 = __importDefault(require("../../models/Cuentas Contables/grupoCuentasContables.model"));
+const grupoCuenta_model_2 = __importDefault(require("../../models/Cuentas Contables/grupoCuenta.model"));
 class CuentasContablesService {
     getCuentasContables(id = null, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -23,12 +23,12 @@ class CuentasContablesService {
                 ? yield cuentasContables_model_1.default.findAll({
                     include: [
                         {
-                            model: grupoCuentasContables_model_2.default,
+                            model: grupoCuenta_model_2.default,
                             attributes: ["descripcion"],
                             required: true,
                         },
                         {
-                            model: tipoCuentaContable_model_1.default,
+                            model: tipoCuenta_model_1.default,
                             attributes: ["descripcion"],
                             required: true,
                         },
@@ -38,12 +38,12 @@ class CuentasContablesService {
                 : yield cuentasContables_model_1.default.findOne({
                     include: [
                         {
-                            model: grupoCuentasContables_model_2.default,
+                            model: grupoCuenta_model_2.default,
                             attributes: ["descripcion"],
                             required: true,
                         },
                         {
-                            model: tipoCuentaContable_model_1.default,
+                            model: tipoCuenta_model_1.default,
                             attributes: ["descripcion"],
                             required: true,
                         },
@@ -72,11 +72,11 @@ class CuentasContablesService {
     getGrupoCuentasContables(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const cuentaResult = id === null
-                ? yield grupoCuentasContables_model_1.default.findAll({
+                ? yield grupoCuenta_model_1.default.findAll({
                     where: { estado: "1" },
                     order: ["cuenta"],
                 })
-                : yield grupoCuentasContables_model_1.default.findOne({
+                : yield grupoCuenta_model_1.default.findOne({
                     where: { id, estado: "1" },
                 });
             return cuentaResult;
@@ -84,27 +84,27 @@ class CuentasContablesService {
     }
     addGrupoCuentaContable(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield grupoCuentasContables_model_1.default.create(body);
+            yield grupoCuenta_model_1.default.create(body);
         });
     }
     deleteGrupoCuentaContable(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield grupoCuentasContables_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield grupoCuenta_model_1.default.update({ estado: "0" }, { where: { id } });
         });
     }
     updateGrupoCuentaContable(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield grupoCuentasContables_model_1.default.update(body, { where: { id, estado: "1" } });
+            yield grupoCuenta_model_1.default.update(body, { where: { id, estado: "1" } });
         });
     }
     //-------------TIPO CUENTAS ---------------//
     getTiposCuentaContable(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const tipoCuentaResult = id === null
-                ? yield tipoCuentaContable_model_1.default.findAll({
+                ? yield tipoCuenta_model_1.default.findAll({
                     where: { estado: "1" },
                 })
-                : yield grupoCuentasContables_model_1.default.findOne({
+                : yield grupoCuenta_model_1.default.findOne({
                     where: { id, estado: "1" },
                 });
             return tipoCuentaResult;
@@ -112,17 +112,17 @@ class CuentasContablesService {
     }
     addTipoCuentaContable(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoCuentaContable_model_1.default.create(body);
+            yield tipoCuenta_model_1.default.create(body);
         });
     }
     updateTipoCuentaContable(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoCuentaContable_model_1.default.update(body, { where: { id, estado: "1" } });
+            yield tipoCuenta_model_1.default.update(body, { where: { id, estado: "1" } });
         });
     }
     deleteTipoCuentaContable(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoCuentaContable_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield tipoCuenta_model_1.default.update({ estado: "0" }, { where: { id } });
         });
     }
 }

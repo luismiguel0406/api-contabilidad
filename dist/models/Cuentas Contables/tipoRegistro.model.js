@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const tipoEfecto = connectionDB_1.default.define("tipoEfecto", {
+const tipoRegistro = connectionDB_1.default.define("tipoRegistro", {
     descripcion: {
-        type: sequelize_1.DataTypes.STRING(15),
+        type: sequelize_1.DataTypes.STRING(10),
         allowNull: false,
     },
     estado: {
@@ -27,8 +27,7 @@ const tipoEfecto = connectionDB_1.default.define("tipoEfecto", {
     },
     terminal: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
     },
 }, { schema: "CUENTAS" });
-exports.default = tipoEfecto;
-//# sourceMappingURL=tipoEfecto.model.js.map
+exports.default = tipoRegistro;
+//# sourceMappingURL=tipoRegistro.model.js.map

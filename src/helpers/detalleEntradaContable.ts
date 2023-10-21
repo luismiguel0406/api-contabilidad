@@ -1,16 +1,16 @@
 import AccionesEntradaContableService from "../services/AccioneseEntradaContable/AccionesEntradaContable.service";
-import TransaccionesComerciales from "../services/transaccionesComerciales/transaccionesComerciales.service";
+import TransaccionesComerciales from "../services/transaccion/transaccion.service";
 
 const transaccionComercial_service = new TransaccionesComerciales();
 const accionEntrada_service = new AccionesEntradaContableService();
 
-//este metodo se refactorizo 
+//este metodo se refactorizo
 export const generarDetalleEntradaContable = async (
   detalle: any,
   payload: string
 ) => {
   const transaccion = <any>(
-    await transaccionComercial_service.getTransaccionComercial(payload)
+    await transaccionComercial_service.getTransaccion(payload)
   );
   const accionesContables = <Array<any>>(
     await accionEntrada_service.getAccionEntrada(transaccion.id)

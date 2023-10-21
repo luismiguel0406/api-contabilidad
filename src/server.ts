@@ -66,7 +66,7 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
-      await db.sync();
+      //await db.sync();
       console.log("Database CACTUS online.");
     } catch (error) {
       console.log(`Error ${error}`);
@@ -113,8 +113,8 @@ class Server {
       const impuestos = new Impuestos();
       const mediosDePago = new MediosDePago();
       const Perfil = new Perfiles();
-      const tipoGasto = new Tipogasto();
-      const tipoFacturasPorPagar = new TipoFacturasPorPagar();
+      //const tipoGasto = new Tipogasto();
+      //const tipoFacturasPorPagar = new TipoFacturasPorPagar();
       //const tipoCuentasContables = new TipoCuentasContables();
       //const grupoCuentasContables = new GrupoCuentasContables();
       //const tipoEfecto = new TipoEfecto();
@@ -133,8 +133,8 @@ class Server {
       impuestos.InsertarImpuestos();
       mediosDePago.InsertarMediosDePago();
       Perfil.InsertarPerfiles();
-      tipoGasto.InsertarTipoGasto();
-      tipoFacturasPorPagar.InsertarTipoFactura();
+      //tipoGasto.InsertarTipoGasto();
+      //tipoFacturasPorPagar.InsertarTipoFactura();
       //tipoCuentasContables.InsertarTipoCuentasContables();
       //grupoCuentasContables.InsertarGruposCuentasContable();
       //tipoEfecto.insertarTipoEfecto();

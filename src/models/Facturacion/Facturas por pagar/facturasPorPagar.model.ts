@@ -57,6 +57,7 @@ const facturasPorPagar = conexion.define(
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
+      defaultValue: new Date()
     },
     updatedAt: {
       type: DataTypes.DATE,
@@ -85,6 +86,7 @@ const facturasPorPagar = conexion.define(
     monedaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 1
     },
     medioDePagoId: {
       type: DataTypes.INTEGER,

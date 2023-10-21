@@ -29,16 +29,11 @@ class FacturasService {
                 const factura = yield factura_model_1.default.create(body);
                 const { id } = factura.dataValues;
                 try {
-                    for (var _d = true, _e = __asyncValues(body.detalleFactura), _f; _f = yield _e.next(), _a = _f.done, !_a;) {
+                    for (var _d = true, _e = __asyncValues(body.detalleFactura), _f; _f = yield _e.next(), _a = _f.done, !_a; _d = true) {
                         _c = _f.value;
                         _d = false;
-                        try {
-                            let detalle = _c;
-                            detalle.facturaId = id;
-                        }
-                        finally {
-                            _d = true;
-                        }
+                        let detalle = _c;
+                        detalle.facturaId = id;
                     }
                 }
                 catch (e_1_1) { e_1 = { error: e_1_1 }; }

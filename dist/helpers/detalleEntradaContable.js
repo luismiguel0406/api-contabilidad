@@ -32,35 +32,30 @@ const generarDetalleEntradaContable = (detalle, payload) => { var _a, detalle_1,
     const accionesContables = (yield accionEntrada_service.getAccionEntrada(transaccion.id));
     let entradaContable = [];
     try {
-        for (_a = true, detalle_1 = __asyncValues(detalle); detalle_1_1 = yield detalle_1.next(), _b = detalle_1_1.done, !_b;) {
+        for (_a = true, detalle_1 = __asyncValues(detalle); detalle_1_1 = yield detalle_1.next(), _b = detalle_1_1.done, !_b; _a = true) {
             _d = detalle_1_1.value;
             _a = false;
-            try {
-                let d = _d;
-                let accionContableFiltered = accionesContables.filter((a) => a.tipoCuentaId == d.tipoCuentaId);
-                switch ((_e = accionContableFiltered[0]) === null || _e === void 0 ? void 0 : _e.accion) {
-                    case "CREDITO":
-                        entradaContable.push({
-                            credito: d.valor,
-                            debito: 0,
-                            descripcionCuenta: d.descripcionCuenta,
-                            cuenta: d.cuenta,
-                        });
-                        break;
-                    case "DEBITO":
-                        entradaContable.push({
-                            credito: 0,
-                            debito: d.valor,
-                            descripcionCuenta: d.descripcionCuenta,
-                            cuenta: d.cuenta,
-                        });
-                        break;
-                    default:
-                        break;
-                }
-            }
-            finally {
-                _a = true;
+            let d = _d;
+            let accionContableFiltered = accionesContables.filter((a) => a.tipoCuentaId == d.tipoCuentaId);
+            switch ((_e = accionContableFiltered[0]) === null || _e === void 0 ? void 0 : _e.accion) {
+                case "CREDITO":
+                    entradaContable.push({
+                        credito: d.valor,
+                        debito: 0,
+                        descripcionCuenta: d.descripcionCuenta,
+                        cuenta: d.cuenta,
+                    });
+                    break;
+                case "DEBITO":
+                    entradaContable.push({
+                        credito: 0,
+                        debito: d.valor,
+                        descripcionCuenta: d.descripcionCuenta,
+                        cuenta: d.cuenta,
+                    });
+                    break;
+                default:
+                    break;
             }
         }
     }

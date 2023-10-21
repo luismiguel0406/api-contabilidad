@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const TransaccionesComerciales_model_1 = __importDefault(require("../TransaccionesComerciales/TransaccionesComerciales.model"));
+const Transaccion_model_1 = __importDefault(require("../Transaccion/Transaccion.model"));
 const entradasContables = connectionDB_1.default.define("entradaContable", {
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
@@ -56,13 +56,15 @@ const entradasContables = connectionDB_1.default.define("entradaContable", {
     },
     detalle: {
         type: sequelize_1.DataTypes.JSONB,
-        allowNull: false
-    }
+        allowNull: false,
+    },
 }, { schema: "DIARIO" });
 //entradasContables.sync({force:true})
 empresa_model_1.default.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresa_model_1.default);
-TransaccionesComerciales_model_1.default.hasMany(entradasContables, { foreignKey: "transaccionComercialId" });
-entradasContables.belongsTo(TransaccionesComerciales_model_1.default);
+Transaccion_model_1.default.hasMany(entradasContables, {
+    foreignKey: "transaccionComercialId",
+});
+entradasContables.belongsTo(Transaccion_model_1.default);
 exports.default = entradasContables;
 //# sourceMappingURL=entradaContable.model.js.map

@@ -5,16 +5,15 @@ import {
   IEntradaContable,
   IEntradaContableDetalle,
 } from "../../interfaces/entradaContable.interface";
-import TransaccionComercialService from "../transaccionesComerciales/transaccionesComerciales.service";
+import TransaccionService from "../transaccion/transaccion.service";
 export default class EntradaContableService {
   private _transComercialId: number = 0;
 
   async getTransaccionInit(payload: string) {
-    const transaccionComercial_service = new TransaccionComercialService();
+    const transaccion_service = new TransaccionService();
 
-    const transComercial: any =
-      await transaccionComercial_service.getTransaccionComercial(payload);
-      return transComercial.id;
+    const transaccion :any = await transaccion_service.getTransaccion(payload);
+    return transaccion.id;
   }
 
   //Generar detalle entrada contable //
@@ -76,10 +75,10 @@ export default class EntradaContableService {
     //construyo detalle de la entrada
     const detalleEntradaContable: Array<IEntradaContableDetalle> =
       await this.generarDetalle(detalleFacturaPorPagar);
-      this._transComercialId = await this.getTransaccionInit(payload);
+    this._transComercialId = await this.getTransaccionInit(payload);
 
     let entradaContable: IEntradaContable = {
-      noEntrada: Math.random(),// cambiar
+      noEntrada: Math.random(), // cambiar
       totalDebito: total,
       totalCredito: total,
       comentario,

@@ -58,6 +58,7 @@ const facturasPorPagar = connectionDB_1.default.define("facturaPorPagar", {
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
+        defaultValue: new Date()
     },
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
@@ -86,6 +87,7 @@ const facturasPorPagar = connectionDB_1.default.define("facturaPorPagar", {
     monedaId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 1
     },
     medioDePagoId: {
         type: sequelize_1.DataTypes.INTEGER,

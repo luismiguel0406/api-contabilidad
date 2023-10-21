@@ -45,7 +45,7 @@ const postFacturaPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, func
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
         res
             .status(statusCode)
-            .json({ factura, entradaContable: entradaContableaResult, Message: msg });
+            .json({ factura, entradaContable: 'entradaContableaResult', Message: msg });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
