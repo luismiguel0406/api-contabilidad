@@ -1,4 +1,5 @@
 import TransaccionService from "services/transaccion/transaccion.service";
+import transaccion from '../../models/Transaccion/Transaccion.model';
 
 export default class EntradaContableService{
 
@@ -8,6 +9,19 @@ export default class EntradaContableService{
     async getTransaccionInit(payload: string) {
         const transaccion_service = new TransaccionService(); 
         const transaccion :any = await transaccion_service.getTransaccion(payload);
-        return transaccion.id;
+        const { id } = transaccion
+
+      //2- Busco las acciones que se haran relativa a esta transaccion
+
+      const accionContable = await transaccion.findAll({
+        where:{id, estado:"1"}
+      })
+       
+      return accionContable;
+    
       }
+
+    
+
+    
 }

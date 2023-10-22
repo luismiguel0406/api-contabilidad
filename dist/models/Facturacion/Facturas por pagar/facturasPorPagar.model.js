@@ -98,11 +98,12 @@ const facturasPorPagar = connectionDB_1.default.define("facturaPorPagar", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    detalleFacturaPorPagar: {
+    detalle: {
         type: sequelize_1.DataTypes.JSONB,
         allowNull: false
     }
 }, { schema: "FACTURACION" });
+facturasPorPagar.sync();
 //-------ASOCIACIONES-------//
 tiposFacturasPorPagar_model_1.default.hasMany(facturasPorPagar, { foreignKey: "tipoFacturasPorPagarId" });
 facturasPorPagar.belongsTo(tiposFacturasPorPagar_model_1.default);

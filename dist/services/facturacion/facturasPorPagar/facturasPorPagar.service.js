@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-//import detalleFacturasPorPagar from "../../../models//Facturacion/Facturas por pagar/detalleFacturasPorPagar.model";
 const facturasPorPagar_model_1 = __importDefault(require("../../../models/Facturacion/Facturas por pagar/facturasPorPagar.model"));
 const tiposFacturasPorPagar_model_1 = __importDefault(require("../../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model"));
 class FacturasPorPagarService {

@@ -13,6 +13,7 @@ export interface ITipoFacturasPorPagar {
 export interface IFacturasPorPagar {
   [index:number]:number;
   [index:symbol]:symbol;
+  id:number | undefined;
   noFactura: string;
   Ncf: string;
   NcfModificado: string;
@@ -34,7 +35,7 @@ export interface IFacturasPorPagar {
   monedaId: number;
   medioDePagoId: number;
   tipoGastoId: number;
-  detalleFacturaPorPagar:Array<IDetalleFacturaPorPagar>
+  detalle:Array<IDetalleFacturaPorPagar>
 }
 
 export interface IDetalleFacturaPorPagar{

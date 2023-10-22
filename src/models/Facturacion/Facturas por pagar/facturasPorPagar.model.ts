@@ -97,7 +97,7 @@ const facturasPorPagar = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    detalleFacturaPorPagar:{
+    detalle:{
       type: DataTypes.JSONB,
       allowNull:false
     }
@@ -105,7 +105,7 @@ const facturasPorPagar = conexion.define(
   { schema: "FACTURACION" }
 );
 
-
+facturasPorPagar.sync()
 //-------ASOCIACIONES-------//
 
 tipoFacturasPorPagar.hasMany(facturasPorPagar, { foreignKey: "tipoFacturasPorPagarId" });

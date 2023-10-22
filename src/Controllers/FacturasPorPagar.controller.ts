@@ -4,6 +4,7 @@ import EntradaContableService from "../services/entradaContable/entradaContable.
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 import FacturasPorPagarService from "../services/facturacion/facturasPorPagar/facturasPorPagar.service";
 import { generarDetalleEntradaContable } from "../helpers/detalleEntradaContable";
+import { IFacturasPorPagar } from "interfaces/facturasPorPagar.interface";
 
 //-------TIPO FACTURAS POR PAGAR -----//
 
@@ -35,15 +36,15 @@ export const postFacturaPorPagar = async (req: Request, res: Response) => {
     );
 
     //ENTRADA CONTABLE
-    const entradaContable = await entradaContable_service.facturaPorPagar(factura); 
-    
-    const entradaContableaResult =
-      await entradaContable_service.addEntradaContable(entradaContable);
+    //const entradaContable = await entradaContable_service.facturaPorPagar(factura); 
+    const payload = 'FACTURA_POR_PAGAR';
+    const entradaContableResult =
+      await entradaContable_service.getTransaccionInit(payload, factura);
    
     const { statusCode, msg } = MsgRespuesta.created
     res
       .status(statusCode)
-      .json({ factura, entradaContable: 'entradaContableaResult', Message: msg });
+      .json({ factura, entradaContable: entradaContableResult, Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });

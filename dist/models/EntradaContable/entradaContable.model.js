@@ -8,11 +8,7 @@ const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const Transaccion_model_1 = __importDefault(require("../Transaccion/Transaccion.model"));
 const entradasContables = connectionDB_1.default.define("entradaContable", {
-    createdAt: {
-        type: sequelize_1.DataTypes.DATE,
-        allowNull: false,
-    },
-    noEntrada: {
+    numero: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
@@ -32,21 +28,14 @@ const entradasContables = connectionDB_1.default.define("entradaContable", {
         type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
     },
+    createdAt: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+    },
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
     },
-    usuario: {
-        type: sequelize_1.DataTypes.STRING(25),
-        allowNull: false,
-    },
-    terminal: {
-        type: sequelize_1.DataTypes.STRING,
-    },
-    empresaId: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
-    transaccionComercialId: {
+    transaccionId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
@@ -54,16 +43,27 @@ const entradasContables = connectionDB_1.default.define("entradaContable", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
+    empresaId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
     detalle: {
         type: sequelize_1.DataTypes.JSONB,
         allowNull: false,
     },
+    usuario: {
+        type: sequelize_1.DataTypes.STRING(50),
+        allowNull: false,
+    },
+    terminal: {
+        type: sequelize_1.DataTypes.STRING,
+    },
 }, { schema: "DIARIO" });
-//entradasContables.sync({force:true})
+entradasContables.sync();
 empresa_model_1.default.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresa_model_1.default);
 Transaccion_model_1.default.hasMany(entradasContables, {
-    foreignKey: "transaccionComercialId",
+    foreignKey: "transaccionId",
 });
 entradasContables.belongsTo(Transaccion_model_1.default);
 exports.default = entradasContables;

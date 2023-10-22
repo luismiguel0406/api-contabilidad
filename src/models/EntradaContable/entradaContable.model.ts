@@ -6,11 +6,7 @@ import transaccion from "../Transaccion/Transaccion.model";
 const entradasContables = conexion.define(
   "entradaContable",
   {
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    noEntrada: {
+    numero: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -30,21 +26,14 @@ const entradasContables = conexion.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
     updatedAt: {
       type: DataTypes.DATE,
     },
-    usuario: {
-      type: DataTypes.STRING(25),
-      allowNull: false,
-    },
-    terminal: {
-      type: DataTypes.STRING,
-    },
-    empresaId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    transaccionComercialId: {
+    transaccionId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -52,21 +41,32 @@ const entradasContables = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    empresaId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     detalle: {
       type: DataTypes.JSONB,
       allowNull: false,
+    },
+    usuario: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    terminal: {
+      type: DataTypes.STRING,
     },
   },
   { schema: "DIARIO" }
 );
 
-//entradasContables.sync({force:true})
+entradasContables.sync()
 
 empresas.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresas);
 
 transaccion.hasMany(entradasContables, {
-  foreignKey: "transaccionComercialId",
+  foreignKey: "transaccionId",
 });
 entradasContables.belongsTo(transaccion);
 

@@ -2,7 +2,6 @@ import {
   IFacturasPorPagar,
   ITipoFacturasPorPagar,
 } from "interfaces/facturasPorPagar.interface";
-//import detalleFacturasPorPagar from "../../../models//Facturacion/Facturas por pagar/detalleFacturasPorPagar.model";
 import facturasPorPagar from "../../../models/Facturacion/Facturas por pagar/facturasPorPagar.model";
 import tipoFacturasPorPagar from "../../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model";
 

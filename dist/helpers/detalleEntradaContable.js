@@ -21,14 +21,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generarDetalleEntradaContable = void 0;
 const AccionesEntradaContable_service_1 = __importDefault(require("../services/AccioneseEntradaContable/AccionesEntradaContable.service"));
-const transaccionesComerciales_service_1 = __importDefault(require("../services/transaccionesComerciales/transaccionesComerciales.service"));
-const transaccionComercial_service = new transaccionesComerciales_service_1.default();
+const transaccion_service_1 = __importDefault(require("../services/transaccion/transaccion.service"));
+const transaccionComercial_service = new transaccion_service_1.default();
 const accionEntrada_service = new AccionesEntradaContable_service_1.default();
-//este metodo se refactorizo 
+//este metodo se refactorizo
 const generarDetalleEntradaContable = (detalle, payload) => { var _a, detalle_1, detalle_1_1; return __awaiter(void 0, void 0, void 0, function* () {
     var _b, e_1, _c, _d;
     var _e;
-    const transaccion = (yield transaccionComercial_service.getTransaccionComercial(payload));
+    const transaccion = (yield transaccionComercial_service.getTransaccion(payload));
     const accionesContables = (yield accionEntrada_service.getAccionEntrada(transaccion.id));
     let entradaContable = [];
     try {
