@@ -40,13 +40,10 @@ const postFacturaPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, func
     try {
         const factura = yield facturaPorPagar_service.addFacturasPorPagar(req.body);
         //ENTRADA CONTABLE
-        //const entradaContable = await entradaContable_service.facturaPorPagar(factura); 
         const payload = 'FACTURA_POR_PAGAR';
-        const entradaContableResult = yield entradaContable_service.getTransaccionInit(payload, factura);
+        const entradaContable = yield entradaContable_service.createEntradaContable(payload, factura);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
-        res
-            .status(statusCode)
-            .json({ factura, entradaContable: entradaContableResult, Message: msg });
+        res.status(statusCode).json({ factura, entradaContable, Message: msg });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

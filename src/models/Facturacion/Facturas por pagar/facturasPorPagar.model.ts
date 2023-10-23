@@ -7,7 +7,6 @@ import moneda from "../moneda/moneda.model";
 import tipoGasto from "./Gastos/gastos.model";
 import tipoFacturasPorPagar from "./tiposFacturasPorPagar/tiposFacturasPorPagar.model";
 
-
 const facturasPorPagar = conexion.define(
   "facturaPorPagar",
   {

@@ -10,11 +10,11 @@ const entradasContables = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    totalDebito: {
+    debito: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    totalCredito: {
+    credito: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },

@@ -8,6 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __asyncValues = (this && this.__asyncValues) || function (o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -16,90 +23,14 @@ const entradaContable_model_1 = __importDefault(require("../../models/EntradaCon
 const transaccion_service_1 = __importDefault(require("../transaccion/transaccion.service"));
 const accionEntradaContable_model_1 = __importDefault(require("../../models/AccionEntradaContable/accionEntradaContable.model"));
 const os_1 = __importDefault(require("os"));
+const helpers_1 = __importDefault(require("../../helpers"));
 class EntradaContableService {
     constructor() {
-        this._transComercialId = 0;
-        // async getTransaccionInit(payload: string) {
-        //   const transaccion_service = new TransaccionService();
-        //   const transaccion :any = await transaccion_service.getTransaccion(payload);
-        //   return transaccion.id;
-        // }
-        // //Generar detalle entrada contable //
-        // async generarDetalle(detalle: any) {
-        //   const accionEntrada_service = new AccionesEntradaContableService();
-        //   const accionesContables = <Array<any>>(
-        //     await accionEntrada_service.getAccionEntrada(this._transComercialId)
-        //   );
-        //   let entradaContableDetalle: any = [];
-        //   for await (let d of detalle) {
-        //     let accionContableFiltered = accionesContables.filter(
-        //       (a: any) => a.tipoCuentaId == d.tipoCuentaId
-        //     );
-        //     switch (accionContableFiltered[0]?.accion) {
-        //       case "CREDITO":
-        //         entradaContableDetalle.push({
-        //           credito: d.valor,
-        //           debito: 0,
-        //           descripcionCuenta: d.descripcionCuenta,
-        //           cuenta: d.cuenta,
-        //         });
-        //         break;
-        //       case "DEBITO":
-        //         entradaContableDetalle.push({
-        //           credito: 0,
-        //           debito: d.valor,
-        //           descripcionCuenta: d.descripcionCuenta,
-        //           cuenta: d.cuenta,
-        //         });
-        //         break;
-        //       default:
-        //         break;
-        //     }
-        //   }
-        //   return entradaContableDetalle;
-        // }
-        // // Agregar Entrada Contrable
-        // async addEntradaContable(entrada: IEntradaContable) {
-        //   return await entradasContables.create(entrada);
-        // }
-        // // Entrada facturas por pagar
-        // async facturaPorPagar(data: any) {
-        //   let payload = "REGISTRO_FACTURAS_POR_PAGAR";
-        //   const {
-        //     total,
-        //     comentario,
-        //     empresaId,
-        //     createdAt,
-        //     usuario,
-        //     terminal,
-        //     id,
-        //     detalleFacturaPorPagar,
-        //   } = data;
-        //   //construyo detalle de la entrada
-        //   const detalleEntradaContable: Array<IEntradaContableDetalle> =
-        //     await this.generarDetalle(detalleFacturaPorPagar);
-        //   this._transComercialId = await this.getTransaccionInit(payload);
-        //   let entradaContable: IEntradaContable = {
-        //     noEntrada: Math.random(), // cambiar
-        //     totalDebito: total,
-        //     totalCredito: total,
-        //     comentario,
-        //     estado: true,
-        //     createdAt,
-        //     updatedAt: null,
-        //     usuario,
-        //     terminal,
-        //     empresaId,
-        //     transaccionComercialId: this._transComercialId, // Transaccion comercial  ejemplo: factura, pago , etc
-        //     documentoId: id, // Id de la accion realizada // ver aqui arreglar nombres y demas
-        //     detalle: detalleEntradaContable,
-        //   };
-        //   return entradaContable;
-        // }
         this._transaccionId = 0;
     }
     // 1- Otengo id de la transaccion en curso
-    getTransaccionInit(payload, facturaPorPagar) {
+    createEntradaContable(payload, data) {
+        var _a, e_1, _b, _c;
         return __awaiter(this, void 0, void 0, function* () {
             const transaccion_service = new transaccion_service_1.default();
             const transaccion = yield transaccion_service.getTransaccion(payload);
@@ -107,22 +38,44 @@ class EntradaContableService {
             // 2- Busco las acciones que se haran relativa a esta transaccion
             const accionContable = yield accionEntradaContable_model_1.default.findAll({
                 attributes: ["transaccionId", "tipoCuentaId", "tipoEfectoId", "tipoRegistroId"],
-                where: { id: this._transaccionId, estado: "1" }
+                where: { transaccionId: this._transaccionId, estado: "1" }
             });
-            // 3- Llenar la cabecera de la entrada contable, segun los datos que ingresan
+            // 3- Identificar los tipos de registro segun accion contable
+            const { detalle } = data;
+            let nuevoDetalle = [];
+            try {
+                for (var _d = true, detalle_1 = __asyncValues(detalle), detalle_1_1; detalle_1_1 = yield detalle_1.next(), _a = detalle_1_1.done, !_a; _d = true) {
+                    _c = detalle_1_1.value;
+                    _d = false;
+                    let details = _c;
+                    let detalleSalida = accionContable.filter(item => (item.tipoCuentaId === details.tipoCuentaId));
+                    // si hay mas de 1 tipo de cuenta igual dara error, ejemplo: 2 pasivos o 2 activos
+                    const { tipoCuentaId, tipoEfectoId, tipoRegistroId, transaccionId } = detalleSalida[0];
+                    const determinacion = (0, helpers_1.default)(tipoCuentaId, tipoEfectoId, details);
+                    nuevoDetalle.push(Object.assign({ cuenta: details.cuenta, descripcion: details.descripcionCuenta }, determinacion));
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (!_d && !_a && (_b = detalle_1.return)) yield _b.call(detalle_1);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+            // 4- Llenar la cabecera de la entrada contable, segun los datos que ingresan
             const dataEntrada = {
                 numero: 100,
-                totalDebito: 1,
-                totalCredito: 1,
+                debito: data.total,
+                credito: data.total,
                 comentario: '',
                 estado: true,
                 createdAt: new Date(),
                 transaccionId: this._transaccionId,
-                documentoId: facturaPorPagar.id,
+                documentoId: data.id,
                 empresaId: 1,
                 usuario: os_1.default.userInfo().username,
                 terminal: os_1.default.hostname(),
-                detalle: { test: "valor 1", test2: "valor 2" }
+                detalle: nuevoDetalle
             };
             const entradaContable = yield entradaContable_model_1.default.create(dataEntrada);
             return entradaContable;

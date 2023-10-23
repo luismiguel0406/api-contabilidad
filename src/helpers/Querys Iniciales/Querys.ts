@@ -29,7 +29,7 @@ import tipoGasto from "../../models/Facturacion/Facturas por pagar/Gastos/gastos
 import { ITipoFacturasPorPagar } from "../../interfaces/facturasPorPagar.interface";
 import tipoFacturasPorPagar from "../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model";
 import tipoCuenta from "../../models/Cuentas Contables/tipoCuenta.model";
-import { ITransaccionComercial } from "interfaces/TransaccionesComerciales.interface";
+import { ITransaccion } from "interfaces/transaccion.interface";
 import transaccion from "../../models/Transaccion/Transaccion.model";
 import { IEmpresa } from "interfaces/empresa.interface";
 import empresas from "../../models/Empresa/empresa.model";
@@ -1059,7 +1059,7 @@ export class TipoCuentasContables {
 
 export class TransaccionesComerciales {
   // No Va
-  private _transaccionesArray: Array<ITransaccionComercial>;
+  private _transaccionesArray: Array<ITransaccion>;
   constructor() {
     this._transaccionesArray = [
       {

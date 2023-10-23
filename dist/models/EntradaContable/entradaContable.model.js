@@ -12,11 +12,11 @@ const entradasContables = connectionDB_1.default.define("entradaContable", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    totalDebito: {
+    debito: {
         type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
     },
-    totalCredito: {
+    credito: {
         type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
     },
