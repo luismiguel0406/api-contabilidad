@@ -12,7 +12,7 @@ const tipoEfecto = conexion.define("tipoEfecto", {
   },
   createdAt: {
     type: DataTypes.DATE,
-    allowNull: false,
+    defaultValue: DataTypes.NOW,
   },
   updatedAt: {
     type: DataTypes.DATE,

@@ -23,18 +23,26 @@ export interface IEntradaContable {
   usuario: string;
   terminal: string;
   empresaId: number;
-  transaccionComercialId:number;
-  documentoId:number;
+  referenciaId:number;
+  transaccionId:number;
   detalle:Array<IEntradaContableDetalle> | null
   
   
 }
-
 export interface IEntradaContableDetalle {
   cuenta: string;
-  descripcionCuenta: string;
+  descripcion: string;
   debito: number;
   credito: number;
   tipoCuentaId:number;
   detalleImpuesto:string;
+}
+
+
+export interface IDataEntradaContable{
+  payload:string;
+  id:number;
+  total: number;
+  comentario:string;
+  detalle:any[];
 }

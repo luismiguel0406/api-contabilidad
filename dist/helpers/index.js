@@ -8,21 +8,21 @@ const COSTO = 5;
 const GASTO = 6;
 const AUMENTO = 1;
 const DISMINUCION = 2;
-function determinarEntradaContable(tipoCuenta, tipoEfecto, detalle) {
+function determinarEntradaContable(tipoCuenta, tipoEfecto, valor) {
     if (tipoEfecto === AUMENTO) {
         if (tipoCuenta === ACTIVO || tipoCuenta === GASTO) {
-            return { debito: detalle.valor, credito: 0.00 };
+            return { debito: valor, credito: 0.00 };
         }
         else if (tipoCuenta === PASIVO || tipoCuenta === CAPITAL || tipoCuenta === INGRESO) {
-            return { debito: 0.00, credito: detalle.valor };
+            return { debito: 0.00, credito: valor };
         }
     }
     else if (tipoEfecto === DISMINUCION) {
         if (tipoCuenta === ACTIVO || tipoCuenta === GASTO) {
-            return { debito: 0.00, credito: detalle.valor };
+            return { debito: 0.00, credito: valor };
         }
         else if (tipoCuenta === PASIVO || tipoCuenta === CAPITAL || tipoCuenta === INGRESO) {
-            return { debito: detalle.valor, credito: 0.00 };
+            return { debito: valor, credito: 0.00 };
         }
     }
     return { debito: 0.00, credito: 0.00 };

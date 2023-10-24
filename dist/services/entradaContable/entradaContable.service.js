@@ -29,9 +29,10 @@ class EntradaContableService {
         this._transaccionId = 0;
     }
     // 1- Otengo id de la transaccion en curso
-    createEntradaContable(payload, data) {
+    createEntradaContable(data) {
         var _a, e_1, _b, _c;
         return __awaiter(this, void 0, void 0, function* () {
+            const { payload, id, total, comentario, detalle } = data;
             const transaccion_service = new transaccion_service_1.default();
             const transaccion = yield transaccion_service.getTransaccion(payload);
             this._transaccionId = transaccion.id;
@@ -41,7 +42,6 @@ class EntradaContableService {
                 where: { transaccionId: this._transaccionId, estado: "1" }
             });
             // 3- Identificar los tipos de registro segun accion contable
-            const { detalle } = data;
             let nuevoDetalle = [];
             try {
                 for (var _d = true, detalle_1 = __asyncValues(detalle), detalle_1_1; detalle_1_1 = yield detalle_1.next(), _a = detalle_1_1.done, !_a; _d = true) {
@@ -49,10 +49,10 @@ class EntradaContableService {
                     _d = false;
                     let details = _c;
                     let detalleSalida = accionContable.filter(item => (item.tipoCuentaId === details.tipoCuentaId));
-                    // si hay mas de 1 tipo de cuenta igual dara error, ejemplo: 2 pasivos o 2 activos
                     const { tipoCuentaId, tipoEfectoId, tipoRegistroId, transaccionId } = detalleSalida[0];
-                    const determinacion = (0, helpers_1.default)(tipoCuentaId, tipoEfectoId, details);
-                    nuevoDetalle.push(Object.assign({ cuenta: details.cuenta, descripcion: details.descripcionCuenta }, determinacion));
+                    let { valor } = details;
+                    const determinacion = (0, helpers_1.default)(tipoCuentaId, tipoEfectoId, valor);
+                    nuevoDetalle.push(Object.assign({ cuenta: details.cuenta, descripcion: details.descripcion }, determinacion));
                 }
             }
             catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -64,19 +64,19 @@ class EntradaContableService {
             }
             // 4- Llenar la cabecera de la entrada contable, segun los datos que ingresan
             const dataEntrada = {
-                numero: 100,
-                debito: data.total,
-                credito: data.total,
-                comentario: '',
+                numero: 200,
+                debito: total,
+                credito: total,
+                comentario,
                 estado: true,
-                createdAt: new Date(),
+                referenciaId: id,
                 transaccionId: this._transaccionId,
-                documentoId: data.id,
                 empresaId: 1,
                 usuario: os_1.default.userInfo().username,
                 terminal: os_1.default.hostname(),
                 detalle: nuevoDetalle
             };
+            // 5 - C
             const entradaContable = yield entradaContable_model_1.default.create(dataEntrada);
             return entradaContable;
         });

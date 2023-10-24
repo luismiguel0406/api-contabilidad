@@ -57,8 +57,8 @@ const facturasPorPagar = connectionDB_1.default.define("facturaPorPagar", {
     },
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
-        allowNull: false,
-        defaultValue: new Date()
+        defaultValue: sequelize_1.DataTypes.NOW,
+        allowNull: false
     },
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,

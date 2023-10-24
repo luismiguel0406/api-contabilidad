@@ -55,8 +55,8 @@ const facturasPorPagar = conexion.define(
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: new Date()
+      defaultValue: DataTypes.NOW,
+      allowNull: false
     },
     updatedAt: {
       type: DataTypes.DATE,

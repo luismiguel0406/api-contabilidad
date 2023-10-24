@@ -34,3 +34,15 @@ export interface ICuentaContable {
   monedaId:number;
   empresaId: number;
 }
+export interface IMovimientoCuentas {
+  createdAt: Date;
+  cuenta:string;
+  tipoRegistroId:number;
+  monto:number;
+  descripcion:string;
+  usuario:string;
+  terminal:string;
+  referenciaId:number;
+  transaccionId:number;
+  saldoResultante:number;
+}

@@ -16,7 +16,7 @@ const tipoCuenta = connectionDB_1.default.define("tipoCuenta", {
     },
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
-        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW,
     },
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,

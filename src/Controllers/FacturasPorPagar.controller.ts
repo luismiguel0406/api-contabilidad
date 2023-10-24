@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { IEntradaContable } from "interfaces/entradaContable.interface";
+import { IDataEntradaContable, IEntradaContable } from "interfaces/entradaContable.interface";
 import EntradaContableService from "../services/entradaContable/entradaContable.service";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 import FacturasPorPagarService from "../services/facturacion/facturasPorPagar/facturasPorPagar.service";
@@ -37,9 +37,14 @@ export const postFacturaPorPagar = async (req: Request, res: Response) => {
     );
 
     //ENTRADA CONTABLE
-    const payload = 'FACTURA_POR_PAGAR';
-   
-    const entradaContable = await entradaContable_service.createEntradaContable(payload, factura);
+    const data:IDataEntradaContable = {
+     payload:'FACTURA_POR_PAGAR',
+     id: factura.id,
+     total:factura.total,
+     comentario: factura.comentario,
+     detalle: factura.detalle
+    }
+    const entradaContable = await entradaContable_service.createEntradaContable(data);
    
     const { statusCode, msg } = MsgRespuesta.created
     res.status(statusCode).json({ factura, entradaContable, Message: msg });

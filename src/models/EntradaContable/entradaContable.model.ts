@@ -28,18 +28,18 @@ const entradasContables = conexion.define(
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false,
+      defaultValue: DataTypes.NOW,
     },
     updatedAt: {
       type: DataTypes.DATE,
     },
-    transaccionId: {
+    referenciaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    documentoId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    transaccionId:{
+      type:DataTypes.INTEGER,
+      allowNull:false,
     },
     empresaId: {
       type: DataTypes.INTEGER,

@@ -30,16 +30,16 @@ const entradasContables = connectionDB_1.default.define("entradaContable", {
     },
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
-        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW,
     },
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
     },
-    transaccionId: {
+    referenciaId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    documentoId: {
+    transaccionId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
