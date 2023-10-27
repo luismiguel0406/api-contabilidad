@@ -13,19 +13,19 @@ export interface IAccionContable {
 export interface IEntradaContable {
   [index: number]:number;
   [index:symbol]:symbol;
-  noEntrada: number |string;
-  totalDebito: number;
-  totalCredito: number;
+  numero: number |string;
+  debito: number;
+  credito: number;
   comentario: string;
   estado: boolean;
-  createdAt: Date;
+  createdAt: Date | null;
   updatedAt: Date | null;
   usuario: string;
   terminal: string;
   empresaId: number;
   referenciaId:number;
   transaccionId:number;
-  detalle:Array<IEntradaContableDetalle> | null
+  detalle:Array<IEntradaContableDetalle>
   
   
 }
@@ -34,8 +34,8 @@ export interface IEntradaContableDetalle {
   descripcion: string;
   debito: number;
   credito: number;
-  tipoCuentaId:number;
-  detalleImpuesto:string;
+  // tipoCuentaId:number | null;
+  // detalleImpuesto:string;
 }
 
 

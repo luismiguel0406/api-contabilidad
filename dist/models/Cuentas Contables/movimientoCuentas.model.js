@@ -5,21 +5,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const os_1 = __importDefault(require("os"));
+const Transaccion_model_1 = __importDefault(require("../../models/Transaccion/Transaccion.model"));
+const cuentasContables_model_1 = __importDefault(require("./cuentasContables.model"));
+const tipoRegistro_model_1 = __importDefault(require("./tipoRegistro.model"));
+const tipoEfecto_model_1 = __importDefault(require("./tipoEfecto.model"));
 const movimientoCuentas = connectionDB_1.default.define("movimientoCuentas", {
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
         defaultValue: sequelize_1.DataTypes.NOW,
     },
-    cuenta: {
-        type: sequelize_1.DataTypes.STRING,
+    cuentaId: {
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
     tipoRegistroId: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
-    monto: {
+    tipoEfectoId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
+    },
+    valor: {
         type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
     },
@@ -32,7 +39,7 @@ const movimientoCuentas = connectionDB_1.default.define("movimientoCuentas", {
     },
     terminal: {
         type: sequelize_1.DataTypes.STRING,
-        defaultValue: os_1.default.hostname()
+        defaultValue: 'SA'
     },
     referenciaId: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -42,10 +49,19 @@ const movimientoCuentas = connectionDB_1.default.define("movimientoCuentas", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
-    saldoResultante: {
+    saldo: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     }
 }, { schema: "CUENTAS" });
+// --- ASOCIACIONES --- //
+Transaccion_model_1.default.hasMany(movimientoCuentas, { foreignKey: "transaccionId" });
+movimientoCuentas.belongsTo(Transaccion_model_1.default);
+cuentasContables_model_1.default.hasMany(movimientoCuentas, { foreignKey: "cuentaId" });
+movimientoCuentas.belongsTo(cuentasContables_model_1.default);
+tipoRegistro_model_1.default.hasMany(movimientoCuentas, { foreignKey: "tipoRegistroId" });
+movimientoCuentas.belongsTo(tipoRegistro_model_1.default);
+tipoEfecto_model_1.default.hasMany(movimientoCuentas, { foreignKey: "tipoEfectoId" });
+movimientoCuentas.belongsTo(tipoEfecto_model_1.default);
 exports.default = movimientoCuentas;
 //# sourceMappingURL=movimientoCuentas.model.js.map

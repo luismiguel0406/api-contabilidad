@@ -47,9 +47,10 @@ const postFacturaPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, func
             comentario: factura.comentario,
             detalle: factura.detalle
         };
-        const entradaContable = yield entradaContable_service.createEntradaContable(data);
+        const result = yield entradaContable_service.createEntradaContable(data);
+        const { entradaContable, movimientoCuenta } = result;
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
-        res.status(statusCode).json({ factura, entradaContable, Message: msg });
+        res.status(statusCode).json({ factura, entradaContable, movimientoCuenta, Message: msg });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

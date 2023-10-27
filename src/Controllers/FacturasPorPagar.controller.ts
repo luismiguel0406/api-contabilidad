@@ -3,9 +3,6 @@ import { IDataEntradaContable, IEntradaContable } from "interfaces/entradaContab
 import EntradaContableService from "../services/entradaContable/entradaContable.service";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 import FacturasPorPagarService from "../services/facturacion/facturasPorPagar/facturasPorPagar.service";
-import { generarDetalleEntradaContable } from "../helpers/detalleEntradaContable";
-import { IFacturasPorPagar } from "interfaces/facturasPorPagar.interface";
-import os from 'os'
 
 //-------TIPO FACTURAS POR PAGAR -----//
 
@@ -44,10 +41,11 @@ export const postFacturaPorPagar = async (req: Request, res: Response) => {
      comentario: factura.comentario,
      detalle: factura.detalle
     }
-    const entradaContable = await entradaContable_service.createEntradaContable(data);
+    const result = await entradaContable_service.createEntradaContable(data);
+    const { entradaContable, movimientoCuenta }= result;
    
     const { statusCode, msg } = MsgRespuesta.created
-    res.status(statusCode).json({ factura, entradaContable, Message: msg });
+    res.status(statusCode).json({ factura, entradaContable, movimientoCuenta, Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });

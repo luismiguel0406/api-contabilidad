@@ -1,6 +1,9 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
-import os from "os"
+import transaccion from "../../models/Transaccion/Transaccion.model";
+import cuentasContables from "./cuentasContables.model";
+import tipoRegistro from "./tipoRegistro.model";
+import tipoEfecto from "./tipoEfecto.model";
 
 const movimientoCuentas = conexion.define(
     "movimientoCuentas",
@@ -9,15 +12,19 @@ const movimientoCuentas = conexion.define(
         type:DataTypes.DATE,
         defaultValue: DataTypes.NOW,
        },
-       cuenta:{
-        type:DataTypes.STRING,
+       cuentaId:{
+        type:DataTypes.INTEGER,
         allowNull:false,
        },
        tipoRegistroId:{
-        type:DataTypes.NUMBER,
+        type:DataTypes.INTEGER,
         allowNull:false
        },
-       monto:{
+       tipoEfectoId:{
+        type:DataTypes.INTEGER,
+        allowNull:false
+       },
+       valor:{
         type:DataTypes.FLOAT,
         allowNull:false,
        },
@@ -30,7 +37,7 @@ const movimientoCuentas = conexion.define(
       },
       terminal: {
         type: DataTypes.STRING,
-        defaultValue:os.hostname()
+        defaultValue:'SA'
       },
       referenciaId:{
         type:DataTypes.INTEGER,
@@ -40,11 +47,25 @@ const movimientoCuentas = conexion.define(
         type:DataTypes.INTEGER,
         allowNull:false
       },
-      saldoResultante:{
+      saldo:{
         type:DataTypes.INTEGER,
         allowNull:false
       }
     },
     { schema: "CUENTAS" }
 );
-    export default movimientoCuentas;
+
+// --- ASOCIACIONES --- //
+transaccion.hasMany(movimientoCuentas, {foreignKey:"transaccionId"});
+movimientoCuentas.belongsTo(transaccion);
+
+cuentasContables.hasMany(movimientoCuentas, {foreignKey:"cuentaId"});
+movimientoCuentas.belongsTo(cuentasContables);
+
+tipoRegistro.hasMany(movimientoCuentas, {foreignKey:"tipoRegistroId"});
+movimientoCuentas.belongsTo(tipoRegistro);
+
+tipoEfecto.hasMany(movimientoCuentas, { foreignKey:"tipoEfectoId"});
+movimientoCuentas.belongsTo(tipoEfecto);
+
+export default movimientoCuentas;
