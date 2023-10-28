@@ -19,9 +19,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const os_1 = __importDefault(require("os"));
 const entradaContable_model_1 = __importDefault(require("../../models/EntradaContable/entradaContable.model"));
 const accionEntradaContable_model_1 = __importDefault(require("../../models/AccionEntradaContable/accionEntradaContable.model"));
+const movimientoCuentas_model_1 = __importDefault(require("../../models/Cuentas Contables/movimientoCuentas.model"));
 const transaccion_service_1 = __importDefault(require("../transaccion/transaccion.service"));
 const helpers_1 = __importDefault(require("../../helpers"));
 class EntradaContableService {
@@ -38,21 +38,38 @@ class EntradaContableService {
             this._transaccionId = transaccion === null || transaccion === void 0 ? void 0 : transaccion.id;
             // 2- Busco las acciones que se haran relativa a esta transaccion
             const accionContable = yield accionEntradaContable_model_1.default.findAll({
-                attributes: ["transaccionId", "tipoCuentaId", "tipoEfectoId", "tipoRegistroId"],
+                attributes: ["tipoCuentaId", "tipoEfectoId", "tipoRegistroId"],
                 where: { transaccionId: this._transaccionId, estado: "1" }
             });
             // 3- Identificar los tipos de registro segun accion contable
-            let nuevoDetalle;
+            let detalleEntrada = [];
             try {
                 for (var _d = true, detalle_1 = __asyncValues(detalle), detalle_1_1; detalle_1_1 = yield detalle_1.next(), _a = detalle_1_1.done, !_a; _d = true) {
                     _c = detalle_1_1.value;
                     _d = false;
                     let details = _c;
                     let detalleSalida = accionContable.filter(item => (item.tipoCuentaId === details.tipoCuentaId));
-                    const { tipoCuentaId, tipoEfectoId, tipoRegistroId, transaccionId } = detalleSalida[0];
-                    let { valor, cuentaId, descripcion } = details;
-                    const determinacion = (0, helpers_1.default)(tipoCuentaId, tipoEfectoId, valor);
-                    nuevoDetalle === null || nuevoDetalle === void 0 ? void 0 : nuevoDetalle.push(Object.assign({ cuenta: details.cuenta, descripcion: details.descripcion }, determinacion));
+                    const { tipoCuentaId, tipoEfectoId, tipoRegistroId } = detalleSalida[0];
+                    let { monto, cuentaId, numeroCuenta, descripcion } = details;
+                    const determinacion = (0, helpers_1.default)(tipoCuentaId, tipoEfectoId, monto);
+                    detalleEntrada.push(Object.assign({ cuentaId,
+                        numeroCuenta,
+                        descripcion }, determinacion));
+                    // 4- Registrar movimiento de cuenta
+                    let dataMovimientoCuenta = {
+                        createdAt: new Date(),
+                        cuentaContableId: cuentaId,
+                        tipoRegistroId,
+                        tipoEfectoId,
+                        monto,
+                        descripcion,
+                        referenciaId: id,
+                        transaccionId: this._transaccionId,
+                        saldo: Math.floor(Math.random() * 10000),
+                        usuario: 'SA',
+                        terminal: 'SA',
+                    };
+                    this._movimientoCuenta = yield movimientoCuentas_model_1.default.create(dataMovimientoCuenta);
                 }
             }
             catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -63,8 +80,9 @@ class EntradaContableService {
                 finally { if (e_1) throw e_1.error; }
             }
             // 5- Llenar la cabecera de la entrada contable, segun los datos que ingresan
+            this._detalleEntrada = detalleEntrada;
             let dataEntrada = {
-                numero: Math.floor(Math.random() * 100),
+                numero: Math.floor(Math.random() * 1000),
                 debito: total,
                 credito: total,
                 comentario,
@@ -74,9 +92,9 @@ class EntradaContableService {
                 updatedAt: null,
                 transaccionId: this._transaccionId,
                 empresaId: 1,
-                usuario: os_1.default.userInfo().username,
-                terminal: os_1.default.hostname(),
-                detalle: nuevoDetalle
+                usuario: 'SA',
+                terminal: 'SA',
+                detalle: this._detalleEntrada
             };
             // 6- Crear la entrada contable
             const entradaContable = yield entradaContable_model_1.default.create(dataEntrada);

@@ -29,8 +29,8 @@ export interface ICuentaContable {
   updatedAt: Date | null;
   usuario: string;
   terminal: string;
-  tipoCuentaContableId: number;
-  grupoCuentasContableId: number;
+  tipoCuentaId: number;
+  grupoCuentaId: number;
   monedaId:number;
   empresaId: number;
 }
@@ -38,10 +38,10 @@ export interface IMovimientoCuentas {
   [index:number]:number;
   [index:symbol]:symbol;
   createdAt: Date;
-  cuentaId:string;
+  cuentaContableId:string;
   tipoRegistroId:number;
   tipoEfectoId:number;
-  valor:number;
+  monto:number;
   descripcion:string;
   usuario:string;
   terminal:string;

@@ -37,11 +37,11 @@ const cuentasContables = connectionDB_1.default.define("cuentaContable", {
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
-    tipoCuentaContableId: {
+    tipoCuentaId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    grupoCuentasContableId: {
+    grupoCuentaId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
@@ -56,11 +56,11 @@ const cuentasContables = connectionDB_1.default.define("cuentaContable", {
 }, { schema: "CUENTAS" });
 //---- ASOCIACIONES -------//
 tipoCuenta_model_1.default.hasMany(cuentasContables, {
-    foreignKey: "tipoCuentaContableId",
+    foreignKey: "tipoCuentaId",
 });
 cuentasContables.belongsTo(tipoCuenta_model_1.default);
 grupoCuenta_model_1.default.hasMany(cuentasContables, {
-    foreignKey: "grupoCuentasContableId",
+    foreignKey: "grupoCuentaId",
 });
 cuentasContables.belongsTo(grupoCuenta_model_1.default);
 empresa_model_1.default.hasMany(cuentasContables, { foreignKey: "empresaId" });

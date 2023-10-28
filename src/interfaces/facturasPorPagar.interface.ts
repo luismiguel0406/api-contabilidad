@@ -41,9 +41,10 @@ export interface IFacturasPorPagar {
 export interface IDetalleFacturaPorPagar{
 
   cuentaId:number;
-  tipoCuentaId:number;
-  valor:number;
+  numeroCuenta:string;
+  tipoCuentaId:number; 
   descripcion:string;
+  monto:number;
   detalleImpuesto:Array<IDetalleImpuestos> | null;
 
 }

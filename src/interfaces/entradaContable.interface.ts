@@ -9,7 +9,13 @@ export interface IAccionContable {
   usuario: string;
   terminal: string;
 }
-
+export interface IEntradaContableDetalle {
+  cuentaId:number;
+  numeroCuenta: string;
+  descripcion: string;
+  debito: number;
+  credito: number;
+}
 export interface IEntradaContable {
   [index: number]:number;
   [index:symbol]:symbol;
@@ -26,23 +32,16 @@ export interface IEntradaContable {
   referenciaId:number;
   transaccionId:number;
   detalle:Array<IEntradaContableDetalle>
-  
-  
 }
-export interface IEntradaContableDetalle {
-  cuenta: string;
-  descripcion: string;
-  debito: number;
-  credito: number;
-  // tipoCuentaId:number | null;
-  // detalleImpuesto:string;
-}
-
-
 export interface IDataEntradaContable{
   payload:string;
   id:number;
   total: number;
   comentario:string;
   detalle:any[];
+}
+
+export interface IDeterminacion  {
+  credito: number;
+  debito: number;
 }

@@ -35,11 +35,11 @@ const cuentasContables = conexion.define(
     terminal: {
       type: DataTypes.STRING,
     },
-    tipoCuentaContableId: {
+    tipoCuentaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    grupoCuentasContableId: {
+    grupoCuentaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -58,12 +58,12 @@ const cuentasContables = conexion.define(
 //---- ASOCIACIONES -------//
 
 tipoCuenta.hasMany(cuentasContables, {
-  foreignKey: "tipoCuentaContableId",
+  foreignKey: "tipoCuentaId",
 });
 cuentasContables.belongsTo(tipoCuenta);
 
 grupoCuenta.hasMany(cuentasContables, {
-  foreignKey: "grupoCuentasContableId",
+  foreignKey: "grupoCuentaId",
 });
 cuentasContables.belongsTo(grupoCuenta);
 

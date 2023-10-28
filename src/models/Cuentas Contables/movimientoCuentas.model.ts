@@ -12,7 +12,7 @@ const movimientoCuentas = conexion.define(
         type:DataTypes.DATE,
         defaultValue: DataTypes.NOW,
        },
-       cuentaId:{
+       cuentaContableId:{
         type:DataTypes.INTEGER,
         allowNull:false,
        },
@@ -24,7 +24,7 @@ const movimientoCuentas = conexion.define(
         type:DataTypes.INTEGER,
         allowNull:false
        },
-       valor:{
+       monto:{
         type:DataTypes.FLOAT,
         allowNull:false,
        },
@@ -52,14 +52,14 @@ const movimientoCuentas = conexion.define(
         allowNull:false
       }
     },
-    { schema: "CUENTAS" }
+    { schema: "CUENTAS", timestamps:false }
 );
-
+movimientoCuentas.sync();
 // --- ASOCIACIONES --- //
 transaccion.hasMany(movimientoCuentas, {foreignKey:"transaccionId"});
 movimientoCuentas.belongsTo(transaccion);
 
-cuentasContables.hasMany(movimientoCuentas, {foreignKey:"cuentaId"});
+cuentasContables.hasMany(movimientoCuentas, {foreignKey:"cuentaContableId"});
 movimientoCuentas.belongsTo(cuentasContables);
 
 tipoRegistro.hasMany(movimientoCuentas, {foreignKey:"tipoRegistroId"});

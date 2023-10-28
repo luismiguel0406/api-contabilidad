@@ -14,7 +14,7 @@ const movimientoCuentas = connectionDB_1.default.define("movimientoCuentas", {
         type: sequelize_1.DataTypes.DATE,
         defaultValue: sequelize_1.DataTypes.NOW,
     },
-    cuentaId: {
+    cuentaContableId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
@@ -26,7 +26,7 @@ const movimientoCuentas = connectionDB_1.default.define("movimientoCuentas", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
-    valor: {
+    monto: {
         type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
     },
@@ -53,11 +53,12 @@ const movimientoCuentas = connectionDB_1.default.define("movimientoCuentas", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     }
-}, { schema: "CUENTAS" });
+}, { schema: "CUENTAS", timestamps: false });
+movimientoCuentas.sync();
 // --- ASOCIACIONES --- //
 Transaccion_model_1.default.hasMany(movimientoCuentas, { foreignKey: "transaccionId" });
 movimientoCuentas.belongsTo(Transaccion_model_1.default);
-cuentasContables_model_1.default.hasMany(movimientoCuentas, { foreignKey: "cuentaId" });
+cuentasContables_model_1.default.hasMany(movimientoCuentas, { foreignKey: "cuentaContableId" });
 movimientoCuentas.belongsTo(cuentasContables_model_1.default);
 tipoRegistro_model_1.default.hasMany(movimientoCuentas, { foreignKey: "tipoRegistroId" });
 movimientoCuentas.belongsTo(tipoRegistro_model_1.default);

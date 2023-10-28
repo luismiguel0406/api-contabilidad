@@ -13,5 +13,5 @@ export interface IImpuestos {
 
 export interface IDetalleImpuestos {
   impuestoId: number;
-  valor: number;
+  monto: number;
 }
