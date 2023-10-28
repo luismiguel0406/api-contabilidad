@@ -54,7 +54,7 @@ const movimientoCuentas = conexion.define(
     },
     { schema: "CUENTAS", timestamps:false }
 );
-movimientoCuentas.sync();
+
 // --- ASOCIACIONES --- //
 transaccion.hasMany(movimientoCuentas, {foreignKey:"transaccionId"});
 movimientoCuentas.belongsTo(transaccion);

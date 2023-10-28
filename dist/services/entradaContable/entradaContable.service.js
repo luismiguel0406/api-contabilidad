@@ -56,7 +56,7 @@ class EntradaContableService {
                         numeroCuenta,
                         descripcion }, determinacion));
                     // 4- Registrar movimiento de cuenta
-                    let dataMovimientoCuenta = {
+                    this._dataMovimientoCuenta.push({
                         createdAt: new Date(),
                         cuentaContableId: cuentaId,
                         tipoRegistroId,
@@ -68,8 +68,7 @@ class EntradaContableService {
                         saldo: Math.floor(Math.random() * 10000),
                         usuario: 'SA',
                         terminal: 'SA',
-                    };
-                    this._movimientoCuenta = yield movimientoCuentas_model_1.default.create(dataMovimientoCuenta);
+                    });
                 }
             }
             catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -79,9 +78,10 @@ class EntradaContableService {
                 }
                 finally { if (e_1) throw e_1.error; }
             }
+            this._movimientoCuenta = yield movimientoCuentas_model_1.default.bulkCreate(this._dataMovimientoCuenta);
             // 5- Llenar la cabecera de la entrada contable, segun los datos que ingresan
             this._detalleEntrada = detalleEntrada;
-            let dataEntrada = {
+            this._dataEntrada = {
                 numero: Math.floor(Math.random() * 1000),
                 debito: total,
                 credito: total,
@@ -97,7 +97,7 @@ class EntradaContableService {
                 detalle: this._detalleEntrada
             };
             // 6- Crear la entrada contable
-            const entradaContable = yield entradaContable_model_1.default.create(dataEntrada);
+            const entradaContable = yield entradaContable_model_1.default.create(this._dataEntrada);
             return { entradaContable, movimientoCuenta: this._movimientoCuenta };
         });
     }

@@ -8,8 +8,11 @@ import { IMovimientoCuentas } from 'interfaces/cuentaContable.interface';
 export default class EntradaContableService {
 
   private _transaccionId: number = 0;
-  private _movimientoCuenta!:any;
+  private _movimientoCuenta!:unknown;
   private _detalleEntrada!:IEntradaContableDetalle[];
+  private _dataMovimientoCuenta!:IMovimientoCuentas[];
+  private _dataEntrada!:IEntradaContable;
+  private _test:string = ''
 
     // 1- Obtengo id de la transaccion en curso
 
@@ -44,9 +47,9 @@ export default class EntradaContableService {
         descripcion,
         ...determinacion
       })
-
+this._test = 'Inicio'
   // 4- Registrar movimiento de cuenta
-  let dataMovimientoCuenta:IMovimientoCuentas = {
+  this._dataMovimientoCuenta.push({
     createdAt:new Date(),
     cuentaContableId:cuentaId,
     tipoRegistroId,
@@ -58,14 +61,15 @@ export default class EntradaContableService {
     saldo:Math.floor(Math.random() * 10000),
     usuario: 'SA',
     terminal: 'SA',
-  }
-  this._movimientoCuenta = await movimientoCuentasModel.create(dataMovimientoCuenta);
+  })
+}     
+this._test = 'final'
+this._movimientoCuenta = await movimientoCuentasModel.bulkCreate(this._dataMovimientoCuenta);
 
-    }     
     // 5- Llenar la cabecera de la entrada contable, segun los datos que ingresan
     this._detalleEntrada = detalleEntrada;
     
-   let dataEntrada:IEntradaContable = {
+   this._dataEntrada = {
      numero :Math.floor(Math.random() * 1000),
      debito:total,
      credito:total,
@@ -82,7 +86,7 @@ export default class EntradaContableService {
    }
 
   // 6- Crear la entrada contable
-    const entradaContable = await entradaContableModel.create(dataEntrada);
+    const entradaContable = await entradaContableModel.create(this._dataEntrada);
   
     return {entradaContable, movimientoCuenta :this._movimientoCuenta};
   }
