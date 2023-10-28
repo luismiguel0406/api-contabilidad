@@ -12,7 +12,6 @@ export default class EntradaContableService {
   private _detalleEntrada!:IEntradaContableDetalle[];
   private _dataMovimientoCuenta!:IMovimientoCuentas[];
   private _dataEntrada!:IEntradaContable;
-  private _test:string = ''
 
     // 1- Obtengo id de la transaccion en curso
 
@@ -32,14 +31,15 @@ export default class EntradaContableService {
     })
 
     // 3- Identificar los tipos de registro segun accion contable
-    let detalleEntrada = []
+    let detalleEntrada = [];    
+    this._dataMovimientoCuenta = [];
     for await(let details of detalle){
       let detalleSalida = accionContable.filter(item=>(item.tipoCuentaId === details.tipoCuentaId))
       const { tipoCuentaId, tipoEfectoId, tipoRegistroId } = detalleSalida[0];
       
       let { monto, cuentaId, numeroCuenta, descripcion } = details;
  
-      const determinacion:IDeterminacion = determinarEntradaContable(tipoCuentaId, tipoEfectoId, monto);
+      const determinacion = determinarEntradaContable(tipoCuentaId, tipoEfectoId, monto);
 
       detalleEntrada.push({
         cuentaId,
@@ -47,8 +47,9 @@ export default class EntradaContableService {
         descripcion,
         ...determinacion
       })
-this._test = 'Inicio'
+
   // 4- Registrar movimiento de cuenta
+
   this._dataMovimientoCuenta.push({
     createdAt:new Date(),
     cuentaContableId:cuentaId,
@@ -63,7 +64,7 @@ this._test = 'Inicio'
     terminal: 'SA',
   })
 }     
-this._test = 'final'
+
 this._movimientoCuenta = await movimientoCuentasModel.bulkCreate(this._dataMovimientoCuenta);
 
     // 5- Llenar la cabecera de la entrada contable, segun los datos que ingresan

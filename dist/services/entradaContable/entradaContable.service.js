@@ -43,6 +43,7 @@ class EntradaContableService {
             });
             // 3- Identificar los tipos de registro segun accion contable
             let detalleEntrada = [];
+            this._dataMovimientoCuenta = [];
             try {
                 for (var _d = true, detalle_1 = __asyncValues(detalle), detalle_1_1; detalle_1_1 = yield detalle_1.next(), _a = detalle_1_1.done, !_a; _d = true) {
                     _c = detalle_1_1.value;

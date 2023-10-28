@@ -54,7 +54,6 @@ const movimientoCuentas = connectionDB_1.default.define("movimientoCuentas", {
         allowNull: false
     }
 }, { schema: "CUENTAS", timestamps: false });
-movimientoCuentas.sync();
 // --- ASOCIACIONES --- //
 Transaccion_model_1.default.hasMany(movimientoCuentas, { foreignKey: "transaccionId" });
 movimientoCuentas.belongsTo(Transaccion_model_1.default);

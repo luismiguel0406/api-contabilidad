@@ -1,9 +1,10 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import empresas from "../Empresa/empresa.model";
 import conexion from "../../Database/connectionDB";
 import transaccion from "../Transaccion/Transaccion.model";
+import { IEntradaContable } from '../../interfaces/entradaContable.interface';
 
-const entradasContables = conexion.define(
+const entradasContables = conexion.define<Model<IEntradaContable>>(
   "entradaContable",
   {
     numero: {
@@ -58,9 +59,8 @@ const entradasContables = conexion.define(
     },
   },
   { schema: "DIARIO" }
-);
+)
 
-entradasContables.sync()
 
 empresas.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresas);

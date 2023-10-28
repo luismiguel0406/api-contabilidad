@@ -1,11 +1,12 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import conexion from "../../Database/connectionDB";
 import transaccion from "../../models/Transaccion/Transaccion.model";
 import cuentasContables from "./cuentasContables.model";
 import tipoRegistro from "./tipoRegistro.model";
 import tipoEfecto from "./tipoEfecto.model";
+import { IMovimientoCuentas } from "interfaces/cuentaContable.interface";
 
-const movimientoCuentas = conexion.define(
+const movimientoCuentas = conexion.define<Model<IMovimientoCuentas>>(
     "movimientoCuentas",
     {
        createdAt:{

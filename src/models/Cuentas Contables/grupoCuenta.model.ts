@@ -1,10 +1,11 @@
 import empresas from "../Empresa/empresa.model";
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import conexion from "../../Database/connectionDB";
 import moneda from "../Facturacion/moneda/moneda.model";
 import tipoCuenta from "./tipoCuenta.model";
+import { IGrupoCuentaContable } from "interfaces/cuentaContable.interface";
 
-const grupoCuenta = conexion.define(
+const grupoCuenta = conexion.define<Model<IGrupoCuentaContable>>(
   "grupoCuenta",
   {
     cuenta: {

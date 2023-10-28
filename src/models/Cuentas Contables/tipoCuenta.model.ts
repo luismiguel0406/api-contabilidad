@@ -1,7 +1,8 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import conexion from "../../Database/connectionDB";
+import { ITipoCuentaContable } from "interfaces/cuentaContable.interface";
 
-const tipoCuenta = conexion.define(
+const tipoCuenta = conexion.define<Model<ITipoCuentaContable>>(
   "tipoCuenta",
   {
     descripcion: {
