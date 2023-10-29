@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
-import { ITransaccion } from "interfaces/transaccion.interface";
 
 const transaccion =  conexion.define(
   "transaccion",
@@ -35,5 +34,4 @@ const transaccion =  conexion.define(
   { schema: "DIARIO" }
 );
 
-//transaccionesComerciales.sync({force:true})
 export default transaccion;

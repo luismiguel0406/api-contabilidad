@@ -4,9 +4,10 @@ import conexion from "../../Database/connectionDB";
 import tipoCuenta from "./tipoCuenta.model";
 import grupoCuenta from "./grupoCuenta.model";
 import moneda from "../../models/Facturacion/moneda/moneda.model";
-import { ICuentaContable } from "interfaces/cuentaContable.interface";
+import { TCuentaContable } from "types";
 
-const cuentasContables = conexion.define<Model<ICuentaContable>>(
+
+const cuentasContables = conexion.define<Model<TCuentaContable>>(
   "cuentaContable",
   {
     noCuenta: {

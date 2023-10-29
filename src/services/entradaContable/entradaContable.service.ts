@@ -3,19 +3,22 @@ import accionEntradaContableModel from "../../models/AccionEntradaContable/accio
 import movimientoCuentasModel from '../../models/Cuentas Contables/movimientoCuentas.model';
 import TransaccionService from "../transaccion/transaccion.service";
 import determinarEntradaContable from "../../helpers";
-import { IDataEntradaContable, IDeterminacion, IEntradaContable, IEntradaContableDetalle } from "interfaces/entradaContable.interface";
-import { IMovimientoCuentas } from 'interfaces/cuentaContable.interface';
+import { TMovimientoCuentas, 
+         TDataEntradaContable, 
+         TEntradaContable, 
+         TEntradaContableDetalle } from "types";
 export default class EntradaContableService {
 
   private _transaccionId: number = 0;
   private _movimientoCuenta!:unknown;
-  private _detalleEntrada!:IEntradaContableDetalle[];
-  private _dataMovimientoCuenta!:IMovimientoCuentas[];
-  private _dataEntrada!:IEntradaContable;
+  private _detalleEntrada!:TEntradaContableDetalle[];
+  private _dataMovimientoCuenta!:TMovimientoCuentas[];
+  private _dataEntrada!:TEntradaContable;
+  private _accionContable:any[]=[]
 
     // 1- Obtengo id de la transaccion en curso
 
-  async createEntradaContable(data:IDataEntradaContable) {
+  async createEntradaContable(data:TDataEntradaContable) {
 
       const { payload, id, total, comentario, detalle } = data;
 
@@ -25,23 +28,23 @@ export default class EntradaContableService {
   
     // 2- Busco las acciones que se haran relativa a esta transaccion
 
-    const accionContable =<Array<any>> await accionEntradaContableModel.findAll({
+    this._accionContable = <Array<any>> await accionEntradaContableModel.findAll({
       attributes:["tipoCuentaId", "tipoEfectoId", "tipoRegistroId"],
       where:{ transaccionId: this._transaccionId, estado:"1"}
     })
 
     // 3- Identificar los tipos de registro segun accion contable
-    let detalleEntrada = [];    
+    this._detalleEntrada  = [];    
     this._dataMovimientoCuenta = [];
     for await(let details of detalle){
-      let detalleSalida = accionContable.filter(item=>(item.tipoCuentaId === details.tipoCuentaId))
+      let detalleSalida = this._accionContable.filter(item=>(item.tipoCuentaId === details.tipoCuentaId))
       const { tipoCuentaId, tipoEfectoId, tipoRegistroId } = detalleSalida[0];
       
       let { monto, cuentaId, numeroCuenta, descripcion } = details;
  
       const determinacion = determinarEntradaContable(tipoCuentaId, tipoEfectoId, monto);
 
-      detalleEntrada.push({
+      this._detalleEntrada.push({
         cuentaId,
         numeroCuenta,
         descripcion,
@@ -68,7 +71,6 @@ export default class EntradaContableService {
 this._movimientoCuenta = await movimientoCuentasModel.bulkCreate(this._dataMovimientoCuenta);
 
     // 5- Llenar la cabecera de la entrada contable, segun los datos que ingresan
-    this._detalleEntrada = detalleEntrada;
     
    this._dataEntrada = {
      numero :Math.floor(Math.random() * 1000),

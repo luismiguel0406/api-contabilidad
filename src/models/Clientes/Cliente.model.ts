@@ -1,8 +1,9 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import conexion from "../../Database/connectionDB";
 import tipoCliente from "./tipoCliente.model";
+import { TCliente } from "types";
 
-const clientes = conexion.define(
+const clientes = conexion.define<Model<TCliente>>(
   "clientes",
   {
     nombre: {

@@ -4,9 +4,9 @@ import transaccion from "../../models/Transaccion/Transaccion.model";
 import cuentasContables from "./cuentasContables.model";
 import tipoRegistro from "./tipoRegistro.model";
 import tipoEfecto from "./tipoEfecto.model";
-import { IMovimientoCuentas } from "interfaces/cuentaContable.interface";
+import { TMovimientoCuentas } from "types";
 
-const movimientoCuentas = conexion.define<Model<IMovimientoCuentas>>(
+const movimientoCuentas = conexion.define<Model<TMovimientoCuentas>>(
     "movimientoCuentas",
     {
        createdAt:{

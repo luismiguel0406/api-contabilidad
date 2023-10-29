@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../Database/connectionDB";
-import Proveedores from "./Proveedores.model";
 
 const tipoProveedor = conexion.define(
   "tipoProveedor",

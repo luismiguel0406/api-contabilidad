@@ -1,4 +1,4 @@
-import { IDeterminacion } from "interfaces/entradaContable.interface";
+import { TDeterminacion } from "types";
 
 const ACTIVO = 1;
 const PASIVO = 2;
@@ -10,7 +10,7 @@ const GASTO = 6;
 const AUMENTO = 1;
 const DISMINUCION = 2;
 
-export default function determinarEntradaContable(tipoCuenta:number, tipoEfecto:number, monto:number ):IDeterminacion {
+export default function determinarEntradaContable(tipoCuenta:number, tipoEfecto:number, monto:number ):TDeterminacion {
     if (tipoEfecto === AUMENTO) {
         if (tipoCuenta === ACTIVO || tipoCuenta === GASTO) {
 
