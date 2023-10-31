@@ -10,7 +10,7 @@ const clientes_service = new ClientesService();
 export const getClientes = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const clientesResult:any = await clientes_service.getClientes(id);
+    const clientesResult:any = await clientes_service.getClientes(Number(id));
 
     if (Object.entries(clientesResult).length == 0 ) {
       const { statusCode, msg } = MsgRespuesta.notFound;
@@ -43,7 +43,7 @@ export const updateCliente = async (req: Request, res: Response) => {
 
    const { id } = req.params;
    const { body } = req;
-   await clientes_service.updateCliente(body, id);
+   await clientes_service.updateCliente(body, Number(id));
 
     const { statusCode, msg } = MsgRespuesta.Success;
     res.status(statusCode).json({ Message: msg });
@@ -74,7 +74,7 @@ export const deleteCliente = async (req: Request, res: Response) => {
 export const getTiposClientes = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const tipoClientesResult = await clientes_service.getTipoCliente(id);
+    const tipoClientesResult = await clientes_service.getTipoCliente(Number(id));
 
     if (tipoClientesResult === null) {
       const { statusCode, msg } = MsgRespuesta.notFound;
@@ -107,7 +107,7 @@ export const updateTipoCliente = async (req: Request, res: Response) => {
 
    const { id } = req.params;
    const { body } = req;
-   await clientes_service.updateTipoCliente(body, id);
+   await clientes_service.updateTipoCliente(body, Number(id));
 
     const { statusCode, msg } = MsgRespuesta.Success;
     res.status(statusCode).json({ Message: msg });
@@ -122,7 +122,7 @@ export const deleteTipoCliente = async (req: Request, res: Response) => {
   try {
 
    const { id } = req.params;
-   await clientes_service.deleteTipoCliente(id);
+   await clientes_service.deleteTipoCliente(Number(id));
 
     const { statusCode, msg } = MsgRespuesta.noContent;
     res.status(statusCode).json({ Message: msg });

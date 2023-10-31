@@ -67,7 +67,7 @@ class TiposProveedores {
     constructor() {
         this.tipoProveedoresArray = [
             {
-                tipoProveedor: "LOCAL",
+                descripcion: "LOCAL",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
@@ -75,7 +75,7 @@ class TiposProveedores {
                 terminal: "SA",
             },
             {
-                tipoProveedor: "EXTRANJERO",
+                descripcion: "EXTRANJERO",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
@@ -83,7 +83,7 @@ class TiposProveedores {
                 terminal: "SA",
             },
             {
-                tipoProveedor: "INFORMAL",
+                descripcion: "INFORMAL",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
@@ -986,42 +986,56 @@ class TipoCuentasContables {
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
+                usuario: 'SA',
+                terminal: 'SA'
             },
             {
                 descripcion: "PASIVOS",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
+                usuario: 'SA',
+                terminal: 'SA'
             },
             {
                 descripcion: "CAPITAL",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
+                usuario: 'SA',
+                terminal: 'SA'
             },
             {
                 descripcion: "INGRESOS",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
+                usuario: 'SA',
+                terminal: 'SA'
             },
             {
                 descripcion: "COSTOS",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
+                usuario: 'SA',
+                terminal: 'SA'
             },
             {
                 descripcion: "GASTOS",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
+                usuario: 'SA',
+                terminal: 'SA'
             },
             {
                 descripcion: "RESUMENES",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
+                usuario: 'SA',
+                terminal: 'SA'
             },
         ];
     }

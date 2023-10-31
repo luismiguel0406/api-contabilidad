@@ -7,11 +7,16 @@ const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const tipoCliente_model_1 = __importDefault(require("./tipoCliente.model"));
 const clientes = connectionDB_1.default.define("clientes", {
+    id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     nombre: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    RNC_Cedula: {
+    documento: {
         type: sequelize_1.DataTypes.STRING,
         unique: true,
         allowNull: false,
@@ -51,8 +56,8 @@ const clientes = connectionDB_1.default.define("clientes", {
         allowNull: false,
     },
 }, { schema: "CLIENTES" });
-//--- ASOCIACIONES---// 
-tipoCliente_model_1.default.hasMany(clientes, { foreignKey: 'tipoClienteId' });
+//--- ASOCIACIONES---//
+tipoCliente_model_1.default.hasMany(clientes, { foreignKey: "tipoClienteId" });
 clientes.belongsTo(tipoCliente_model_1.default);
 exports.default = clientes;
 //# sourceMappingURL=Cliente.model.js.map

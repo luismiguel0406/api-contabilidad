@@ -1,15 +1,21 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import conexion from "../../Database/connectionDB";
 import tipoProveedor from "./tipoProveedores.model";
+import { TProveedor } from "types";
 
-const Proveedores = conexion.define(
+const Proveedores = conexion.define<Model<TProveedor>>(
   "proveedor",
   {
+    id:{
+      type:DataTypes.INTEGER,
+      primaryKey:true,
+      autoIncrement:true
+    },
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    RNC_Cedula: {
+    documento: {
       type: DataTypes.STRING,
       allowNull: false,
       unique:true

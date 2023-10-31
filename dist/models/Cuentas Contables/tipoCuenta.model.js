@@ -21,6 +21,13 @@ const tipoCuenta = connectionDB_1.default.define("tipoCuenta", {
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
     },
+    usuario: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false
+    },
+    terminal: {
+        type: sequelize_1.DataTypes.STRING,
+    },
 }, { schema: "CUENTAS" });
 exports.default = tipoCuenta;
 //# sourceMappingURL=tipoCuenta.model.js.map

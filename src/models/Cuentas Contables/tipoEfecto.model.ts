@@ -1,7 +1,8 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import conexion from "../../Database/connectionDB";
+import { TTipoGenerico } from 'types';
 
-const tipoEfecto = conexion.define("tipoEfecto", {
+const tipoEfecto = conexion.define<Model<TTipoGenerico>>("tipoEfecto", {
   descripcion: {
     type: DataTypes.STRING(15),
     allowNull: false,

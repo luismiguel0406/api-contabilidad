@@ -18,6 +18,7 @@ export type TAccionEntradaContable = {
     credito: number;
   }
   export type TEntradaContable = {
+    id?:number;
     numero: number |string;
     debito: number;
     credito: number;

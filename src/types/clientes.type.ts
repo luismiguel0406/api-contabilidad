@@ -1,6 +1,7 @@
 export type TCliente = {
+    id?:number;
     nombre: string;
-    RNC_Cedula: string;
+    documento: string;
     direccion: string;
     pagaItbis: boolean;
     estado: boolean;
@@ -10,13 +11,4 @@ export type TCliente = {
     terminal: string;
     tipoContactoId: number;
     tipoClienteId: number;
-  }
-  
-  export type TTipoCliente ={
-    descripcion: string;
-    estado: boolean;
-    createdAt: Date;
-    updatedAt: Date | null;
-    usuario: string;
-    terminal: string;
   }

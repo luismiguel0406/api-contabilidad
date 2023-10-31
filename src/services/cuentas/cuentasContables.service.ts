@@ -1,9 +1,7 @@
 import tipoCuenta from "../../models/Cuentas Contables/tipoCuenta.model";
 import {
-  ICuentaContable,
-  IGrupoCuentaContable,
-  ITipoCuentaContable,
-} from "../../interfaces/cuentaContable.interface";
+  TCuentaContable, TGrupoCuentaContable, TTipoGenerico,
+} from "types";
 import grupoCuentaContableModel from "../../models/Cuentas Contables/grupoCuenta.model";
 import cuentasContables from "../../models/Cuentas Contables/cuentasContables.model";
 import grupoCuenta from "../../models/Cuentas Contables/grupoCuenta.model";
@@ -25,7 +23,7 @@ export default class CuentasContablesService {
                 required: true,
               },
             ],
-            where: { empresaId, estado: "1" },
+            where: { empresaId, estado: true },
           })
         : await cuentasContables.findOne({
             include: [
@@ -40,21 +38,21 @@ export default class CuentasContablesService {
                 required: true,
               },
             ],
-            where: { id, empresaId, estado: "1" },
+            where: { id, empresaId, estado: true },
           });
     return cuentaResult;
   }
 
-  async addCuentasContables(body: ICuentaContable) {
+  async addCuentasContables(body: TCuentaContable) {
     await cuentasContables.create(body);
   }
 
-  async updateCuentaContable(id: string, body: ICuentaContable) {
-    await cuentasContables.update(body, { where: { id, estado: "1" } });
+  async updateCuentaContable(id: string, body: TCuentaContable) {
+    await cuentasContables.update(body, { where: { id, estado: true } });
   }
 
   async deleteCuentaContable(id: string) {
-    await cuentasContables.update({ estado: "0" }, { where: { id } });
+    await cuentasContables.update({ estado: false }, { where: { id } });
   }
 
   //-------------GRUPO CUENTAS ---------------//
@@ -72,15 +70,15 @@ export default class CuentasContablesService {
     return cuentaResult;
   }
 
-  async addGrupoCuentaContable(body: IGrupoCuentaContable) {
+  async addGrupoCuentaContable(body: TGrupoCuentaContable) {
     await grupoCuentaContableModel.create(body);
   }
 
   async deleteGrupoCuentaContable(id: string) {
-    await grupoCuentaContableModel.update({ estado: "0" }, { where: { id } });
+    await grupoCuentaContableModel.update({ estado: false }, { where: { id } });
   }
 
-  async updateGrupoCuentaContable(body: IGrupoCuentaContable, id: string) {
+  async updateGrupoCuentaContable(body: TGrupoCuentaContable, id: string) {
     await grupoCuentaContableModel.update(body, { where: { id, estado: "1" } });
   }
 
@@ -98,15 +96,15 @@ export default class CuentasContablesService {
     return tipoCuentaResult;
   }
 
-  async addTipoCuentaContable(body: ITipoCuentaContable) {
+  async addTipoCuentaContable(body: TTipoGenerico) {
     await tipoCuenta.create(body);
   }
 
-  async updateTipoCuentaContable(body: ITipoCuentaContable, id: string) {
+  async updateTipoCuentaContable(body: TTipoGenerico, id: string) {
     await tipoCuenta.update(body, { where: { id, estado: "1" } });
   }
 
   async deleteTipoCuentaContable(id: string) {
-    await tipoCuenta.update({ estado: "0" }, { where: { id } });
+    await tipoCuenta.update({ estado: false}, { where: { id } });
   }
 }

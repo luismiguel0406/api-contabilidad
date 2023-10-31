@@ -20,7 +20,7 @@ const clientes_service = new Clientes_service_1.default();
 const getClientes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const clientesResult = yield clientes_service.getClientes(id);
+        const clientesResult = yield clientes_service.getClientes(Number(id));
         if (Object.entries(clientesResult).length == 0) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
@@ -51,7 +51,7 @@ const updateCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const { id } = req.params;
         const { body } = req;
-        yield clientes_service.updateCliente(body, id);
+        yield clientes_service.updateCliente(body, Number(id));
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
         res.status(statusCode).json({ Message: msg });
     }
@@ -78,7 +78,7 @@ exports.deleteCliente = deleteCliente;
 const getTiposClientes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const tipoClientesResult = yield clientes_service.getTipoCliente(id);
+        const tipoClientesResult = yield clientes_service.getTipoCliente(Number(id));
         if (tipoClientesResult === null) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
@@ -109,7 +109,7 @@ const updateTipoCliente = (req, res) => __awaiter(void 0, void 0, void 0, functi
     try {
         const { id } = req.params;
         const { body } = req;
-        yield clientes_service.updateTipoCliente(body, id);
+        yield clientes_service.updateTipoCliente(body, Number(id));
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
         res.status(statusCode).json({ Message: msg });
     }
@@ -122,7 +122,7 @@ exports.updateTipoCliente = updateTipoCliente;
 const deleteTipoCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        yield clientes_service.deleteTipoCliente(id);
+        yield clientes_service.deleteTipoCliente(Number(id));
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
         res.status(statusCode).json({ Message: msg });
     }

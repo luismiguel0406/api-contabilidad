@@ -55,7 +55,7 @@ export default class EntradaContableService {
 
   this._dataMovimientoCuenta.push({
     createdAt:new Date(),
-    cuentaContableId:cuentaId,
+    cuentaId,
     tipoRegistroId,
     tipoEfectoId,
     monto,
@@ -63,6 +63,7 @@ export default class EntradaContableService {
     referenciaId: id,
     transaccionId:this._transaccionId,
     saldo:Math.floor(Math.random() * 10000),
+    estado:true,
     usuario: 'SA',
     terminal: 'SA',
   })

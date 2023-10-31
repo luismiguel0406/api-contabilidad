@@ -3,15 +3,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const sequelize_1 = require("sequelize");
 const empresa_model_1 = __importDefault(require("../../Empresa/empresa.model"));
 const Proveedores_model_1 = __importDefault(require("../../Proveedores/Proveedores.model"));
-const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../../Database/connectionDB"));
 const medioDePago_model_1 = __importDefault(require("../medioDePago/medioDePago.model"));
 const moneda_model_1 = __importDefault(require("../moneda/moneda.model"));
 const gastos_model_1 = __importDefault(require("./Gastos/gastos.model"));
 const tiposFacturasPorPagar_model_1 = __importDefault(require("./tiposFacturasPorPagar/tiposFacturasPorPagar.model"));
 const facturasPorPagar = connectionDB_1.default.define("facturaPorPagar", {
+    id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     noFactura: {
         type: sequelize_1.DataTypes.STRING(50),
         allowNull: false,
@@ -58,7 +63,7 @@ const facturasPorPagar = connectionDB_1.default.define("facturaPorPagar", {
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
         defaultValue: sequelize_1.DataTypes.NOW,
-        allowNull: false
+        allowNull: false,
     },
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
@@ -87,7 +92,7 @@ const facturasPorPagar = connectionDB_1.default.define("facturaPorPagar", {
     monedaId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 1
+        defaultValue: 1,
     },
     medioDePagoId: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -100,12 +105,14 @@ const facturasPorPagar = connectionDB_1.default.define("facturaPorPagar", {
     },
     detalle: {
         type: sequelize_1.DataTypes.JSONB,
-        allowNull: false
-    }
+        allowNull: false,
+    },
 }, { schema: "FACTURACION" });
 facturasPorPagar.sync();
 //-------ASOCIACIONES-------//
-tiposFacturasPorPagar_model_1.default.hasMany(facturasPorPagar, { foreignKey: "tipoFacturasPorPagarId" });
+tiposFacturasPorPagar_model_1.default.hasMany(facturasPorPagar, {
+    foreignKey: "tipoFacturasPorPagarId",
+});
 facturasPorPagar.belongsTo(tiposFacturasPorPagar_model_1.default);
 empresa_model_1.default.hasMany(facturasPorPagar, { foreignKey: "empresaId" });
 facturasPorPagar.belongsTo(empresa_model_1.default);

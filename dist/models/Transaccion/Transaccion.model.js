@@ -33,6 +33,5 @@ const transaccion = connectionDB_1.default.define("transaccion", {
         type: sequelize_1.DataTypes.STRING,
     },
 }, { schema: "DIARIO" });
-//transaccionesComerciales.sync({force:true})
 exports.default = transaccion;
 //# sourceMappingURL=Transaccion.model.js.map

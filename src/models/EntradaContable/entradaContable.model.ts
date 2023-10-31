@@ -2,11 +2,16 @@ import { DataTypes, Model } from "sequelize";
 import empresas from "../Empresa/empresa.model";
 import conexion from "../../Database/connectionDB";
 import transaccion from "../Transaccion/Transaccion.model";
-import { IEntradaContable } from '../../interfaces/entradaContable.interface';
+import { TEntradaContable } from 'types';
 
-const entradasContables = conexion.define<Model<IEntradaContable>>(
+const entradasContables = conexion.define<Model<TEntradaContable>>(
   "entradaContable",
   {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey:true,
+      autoIncrement:true
+    },
     numero: {
       type: DataTypes.INTEGER,
       allowNull: false,

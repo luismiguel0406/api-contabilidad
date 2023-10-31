@@ -21,12 +21,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const entradaContable_model_1 = __importDefault(require("../../models/EntradaContable/entradaContable.model"));
 const accionEntradaContable_model_1 = __importDefault(require("../../models/AccionEntradaContable/accionEntradaContable.model"));
-const movimientoCuentas_model_1 = __importDefault(require("../../models/Cuentas Contables/movimientoCuentas.model"));
 const transaccion_service_1 = __importDefault(require("../transaccion/transaccion.service"));
 const helpers_1 = __importDefault(require("../../helpers"));
 class EntradaContableService {
     constructor() {
         this._transaccionId = 0;
+        this._accionContable = [];
     }
     // 1- Obtengo id de la transaccion en curso
     createEntradaContable(data) {
@@ -37,29 +37,29 @@ class EntradaContableService {
             const transaccion = yield transaccion_service.getTransaccion(payload);
             this._transaccionId = transaccion === null || transaccion === void 0 ? void 0 : transaccion.id;
             // 2- Busco las acciones que se haran relativa a esta transaccion
-            const accionContable = yield accionEntradaContable_model_1.default.findAll({
+            this._accionContable = (yield accionEntradaContable_model_1.default.findAll({
                 attributes: ["tipoCuentaId", "tipoEfectoId", "tipoRegistroId"],
                 where: { transaccionId: this._transaccionId, estado: "1" }
-            });
+            }));
             // 3- Identificar los tipos de registro segun accion contable
-            let detalleEntrada = [];
+            this._detalleEntrada = [];
             this._dataMovimientoCuenta = [];
             try {
                 for (var _d = true, detalle_1 = __asyncValues(detalle), detalle_1_1; detalle_1_1 = yield detalle_1.next(), _a = detalle_1_1.done, !_a; _d = true) {
                     _c = detalle_1_1.value;
                     _d = false;
                     let details = _c;
-                    let detalleSalida = accionContable.filter(item => (item.tipoCuentaId === details.tipoCuentaId));
+                    let detalleSalida = this._accionContable.filter(item => (item.tipoCuentaId === details.tipoCuentaId));
                     const { tipoCuentaId, tipoEfectoId, tipoRegistroId } = detalleSalida[0];
                     let { monto, cuentaId, numeroCuenta, descripcion } = details;
                     const determinacion = (0, helpers_1.default)(tipoCuentaId, tipoEfectoId, monto);
-                    detalleEntrada.push(Object.assign({ cuentaId,
+                    this._detalleEntrada.push(Object.assign({ cuentaId,
                         numeroCuenta,
                         descripcion }, determinacion));
                     // 4- Registrar movimiento de cuenta
                     this._dataMovimientoCuenta.push({
                         createdAt: new Date(),
-                        cuentaContableId: cuentaId,
+                        cuentaId,
                         tipoRegistroId,
                         tipoEfectoId,
                         monto,
@@ -67,6 +67,7 @@ class EntradaContableService {
                         referenciaId: id,
                         transaccionId: this._transaccionId,
                         saldo: Math.floor(Math.random() * 10000),
+                        estado: true,
                         usuario: 'SA',
                         terminal: 'SA',
                     });
@@ -79,9 +80,8 @@ class EntradaContableService {
                 }
                 finally { if (e_1) throw e_1.error; }
             }
-            this._movimientoCuenta = yield movimientoCuentas_model_1.default.bulkCreate(this._dataMovimientoCuenta);
+            //this._movimientoCuenta = await movimientoCuentasModel.bulkCreate(this._dataMovimientoCuenta);
             // 5- Llenar la cabecera de la entrada contable, segun los datos que ingresan
-            this._detalleEntrada = detalleEntrada;
             this._dataEntrada = {
                 numero: Math.floor(Math.random() * 1000),
                 debito: total,

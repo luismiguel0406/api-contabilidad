@@ -1,15 +1,21 @@
+import { DataTypes, Model } from "sequelize";
 import empresas from "../../Empresa/empresa.model";
 import Proveedores from "../../Proveedores/Proveedores.model";
-import { DataTypes } from "sequelize";
 import conexion from "../../../Database/connectionDB";
 import mediosDePago from "../medioDePago/medioDePago.model";
 import moneda from "../moneda/moneda.model";
 import tipoGasto from "./Gastos/gastos.model";
 import tipoFacturasPorPagar from "./tiposFacturasPorPagar/tiposFacturasPorPagar.model";
+import { TFacturasPorPagar } from "types";
 
-const facturasPorPagar = conexion.define(
+const facturasPorPagar = conexion.define<Model<TFacturasPorPagar>>(
   "facturaPorPagar",
   {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey:true,
+      autoIncrement:true
+    },
     noFactura: {
       type: DataTypes.STRING(50),
       allowNull: false,
@@ -56,7 +62,7 @@ const facturasPorPagar = conexion.define(
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
-      allowNull: false
+      allowNull: false,
     },
     updatedAt: {
       type: DataTypes.DATE,
@@ -85,7 +91,7 @@ const facturasPorPagar = conexion.define(
     monedaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 1
+      defaultValue: 1,
     },
     medioDePagoId: {
       type: DataTypes.INTEGER,
@@ -96,18 +102,20 @@ const facturasPorPagar = conexion.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    detalle:{
+    detalle: {
       type: DataTypes.JSONB,
-      allowNull:false
-    }
+      allowNull: false,
+    },
   },
   { schema: "FACTURACION" }
 );
 
-facturasPorPagar.sync()
+facturasPorPagar.sync();
 //-------ASOCIACIONES-------//
 
-tipoFacturasPorPagar.hasMany(facturasPorPagar, { foreignKey: "tipoFacturasPorPagarId" });
+tipoFacturasPorPagar.hasMany(facturasPorPagar, {
+  foreignKey: "tipoFacturasPorPagarId",
+});
 facturasPorPagar.belongsTo(tipoFacturasPorPagar);
 
 empresas.hasMany(facturasPorPagar, { foreignKey: "empresaId" });

@@ -1,4 +1,4 @@
-import { ICliente, ITipoCliente } from "../../interfaces/cliente.interface";
+import { TCliente, TTipoGenerico } from "types";
 import clientesModel from "../../models/Clientes/Cliente.model";
 import tiposClientesModel from "../../models/Clientes/tipoCliente.model";
 
@@ -6,50 +6,48 @@ export default class ClientesService {
   
   //----------------TIPO CLIENTE------------------//
 
-  async getTipoCliente(id: any = null) {
+  async getTipoCliente(id: number = 0) {
     const tipoClienteResult =
-      id === null
-        ? await tiposClientesModel.findAll({ where: { estado: "1" } })
-        : await tiposClientesModel.findOne({ where: { id, estado: "1" } });
+      id === 0
+        ? await tiposClientesModel.findAll({ where: { estado: true } })
+        : await tiposClientesModel.findOne({ where: { id, estado: true} });
 
     return tipoClienteResult;
   };
 
-  async addTipoCliente(body: ITipoCliente) {
-    await clientesModel.create(body);
+  async addTipoCliente(body: TTipoGenerico) {
+    await tiposClientesModel.create(body);
   };
 
-  async updateTipoCliente(body: ITipoCliente, id: string) {
-    await clientesModel.update(body, { where: { id }
+  async updateTipoCliente(body: TTipoGenerico, id: number) {
+    await tiposClientesModel.update(body, { where: { id }
     });
   };
 
-  async deleteTipoCliente(id: string) {
-    await clientesModel.update({ estadao: "0" }, { where: { id }
+  async deleteTipoCliente(id: number) {
+    await tiposClientesModel.update({ estado: false }, { where: { id }
     });
   };
 
   //--------------------CLIENTES--------------------------//
 
-  async getClientes(id: any = null) {
+  async getClientes(id: number = 0) {
     const clientesResult =
-      id === null
-        ? await clientesModel.findAll({ where: { estado: "1" } })
-        : await clientesModel.findOne({ where: { id, estado: "1" } });
+      id === 0
+        ? await clientesModel.findAll({ where: { estado: true } })
+        : await clientesModel.findOne({ where: { id, estado: true } });
     return clientesResult;
   };
 
-  async addCliente(body:ICliente ) {
-   
-    await clientesModel.create(body);
-    
+  async addCliente(body:TCliente ) {
+    await clientesModel.create(body);   
   };
 
-  async updateCliente(body: ICliente, id: string) {
-    await clientesModel.update(body, { where: { id, estado: "1" } });
+  async updateCliente(body: TCliente, id: number) {
+    await clientesModel.update(body, { where: { id, estado: true} });
   };
 
   async deleteCliente(id: string) {
-    await clientesModel.update({ estado: "0" }, { where: { id } });
+    await clientesModel.update({ estado: false }, { where: { id } });
   };
 }

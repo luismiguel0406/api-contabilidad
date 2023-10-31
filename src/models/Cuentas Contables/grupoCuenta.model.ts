@@ -8,6 +8,11 @@ import { TGrupoCuentaContable } from "types";
 const grupoCuenta = conexion.define<Model<TGrupoCuentaContable>>(
   "grupoCuenta",
   {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey:true,
+      autoIncrement:true
+    },
     cuenta: {
       type: DataTypes.STRING,
       allowNull: false,

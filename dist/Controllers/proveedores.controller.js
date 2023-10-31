@@ -63,7 +63,7 @@ exports.updateProveedores = updateProveedores;
 const deleteProveedor = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        yield proveedorers_service.deleteProveedor(id);
+        yield proveedorers_service.deleteProveedor(Number(id));
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
         res.status(statusCode).json({ Message: msg });
     }
@@ -77,7 +77,7 @@ exports.deleteProveedor = deleteProveedor;
 const getTipoProveedor = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const TipoProveedorResult = yield proveedorers_service.getTipoProveedor(id);
+        const TipoProveedorResult = yield proveedorers_service.getTipoProveedor(Number(id));
         if (TipoProveedorResult === null) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
@@ -110,7 +110,7 @@ const updateTipoProveedor = (req, res) => __awaiter(void 0, void 0, void 0, func
     try {
         const { id } = req.params;
         const { body } = req;
-        yield proveedorers_service.updateTipoProveedor(body, id);
+        yield proveedorers_service.updateTipoProveedor(body, Number(id));
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
         res.status(statusCode).json({ Message: msg });
     }

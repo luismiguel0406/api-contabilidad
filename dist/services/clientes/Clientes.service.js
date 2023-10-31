@@ -16,41 +16,41 @@ const Cliente_model_1 = __importDefault(require("../../models/Clientes/Cliente.m
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 class ClientesService {
     //----------------TIPO CLIENTE------------------//
-    getTipoCliente(id = null) {
+    getTipoCliente(id = 0) {
         return __awaiter(this, void 0, void 0, function* () {
-            const tipoClienteResult = id === null
-                ? yield tipoCliente_model_1.default.findAll({ where: { estado: "1" } })
-                : yield tipoCliente_model_1.default.findOne({ where: { id, estado: "1" } });
+            const tipoClienteResult = id === 0
+                ? yield tipoCliente_model_1.default.findAll({ where: { estado: true } })
+                : yield tipoCliente_model_1.default.findOne({ where: { id, estado: true } });
             return tipoClienteResult;
         });
     }
     ;
     addTipoCliente(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Cliente_model_1.default.create(body);
+            yield tipoCliente_model_1.default.create(body);
         });
     }
     ;
     updateTipoCliente(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Cliente_model_1.default.update(body, { where: { id }
+            yield tipoCliente_model_1.default.update(body, { where: { id }
             });
         });
     }
     ;
     deleteTipoCliente(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Cliente_model_1.default.update({ estadao: "0" }, { where: { id }
+            yield tipoCliente_model_1.default.update({ estado: false }, { where: { id }
             });
         });
     }
     ;
     //--------------------CLIENTES--------------------------//
-    getClientes(id = null) {
+    getClientes(id = 0) {
         return __awaiter(this, void 0, void 0, function* () {
-            const clientesResult = id === null
-                ? yield Cliente_model_1.default.findAll({ where: { estado: "1" } })
-                : yield Cliente_model_1.default.findOne({ where: { id, estado: "1" } });
+            const clientesResult = id === 0
+                ? yield Cliente_model_1.default.findAll({ where: { estado: true } })
+                : yield Cliente_model_1.default.findOne({ where: { id, estado: true } });
             return clientesResult;
         });
     }
@@ -63,13 +63,13 @@ class ClientesService {
     ;
     updateCliente(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Cliente_model_1.default.update(body, { where: { id, estado: "1" } });
+            yield Cliente_model_1.default.update(body, { where: { id, estado: true } });
         });
     }
     ;
     deleteCliente(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Cliente_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield Cliente_model_1.default.update({ estado: false }, { where: { id } });
         });
     }
     ;

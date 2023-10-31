@@ -1,8 +1,8 @@
 import { DataTypes, Model } from "sequelize";
 import conexion from "../../Database/connectionDB";
-import { TTipoCuentaContable } from "types";
+import { TTipoGenerico } from "types";
 
-const tipoCuenta = conexion.define<Model<TTipoCuentaContable>>(
+const tipoCuenta = conexion.define<Model<TTipoGenerico>>(
   "tipoCuenta",
   {
     descripcion: {
@@ -19,6 +19,13 @@ const tipoCuenta = conexion.define<Model<TTipoCuentaContable>>(
     },
     updatedAt: {
       type: DataTypes.DATE,
+    },
+    usuario: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    terminal: {
+      type: DataTypes.STRING,
     },
   },
   { schema: "CUENTAS" }

@@ -16,9 +16,9 @@ const Proveedores_model_1 = __importDefault(require("../../models/Proveedores/Pr
 const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedores/tipoProveedores.model"));
 class ProveedorService {
     //-------- TIPO PROVEEDOR --------//
-    getTipoProveedor(id = null) {
+    getTipoProveedor(id = 0) {
         return __awaiter(this, void 0, void 0, function* () {
-            const tipoProveedorResult = id === null
+            const tipoProveedorResult = id === 0
                 ? yield tipoProveedores_model_1.default.findAll({ where: { estado: "1" } })
                 : yield tipoProveedores_model_1.default.findOne({ where: { id, estado: "1" } });
             return tipoProveedorResult;
@@ -31,7 +31,7 @@ class ProveedorService {
     }
     deleteTipoProveedor(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoProveedores_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield tipoProveedores_model_1.default.update({ estado: false }, { where: { id } });
         });
     }
     updateTipoProveedor(body, id) {
@@ -48,8 +48,8 @@ class ProveedorService {
     getProveedores(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const proveedorResult = id === null
-                ? yield Proveedores_model_1.default.findAll({ where: { estado: "1" } })
-                : yield Proveedores_model_1.default.findOne({ where: { id, estado: "1" } });
+                ? yield Proveedores_model_1.default.findAll({ where: { estado: true } })
+                : yield Proveedores_model_1.default.findOne({ where: { id, estado: true } });
             return proveedorResult;
         });
     }
@@ -60,12 +60,12 @@ class ProveedorService {
     }
     updateProveedor(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Proveedores_model_1.default.update(body, { where: { id, estado: "1" } });
+            yield Proveedores_model_1.default.update(body, { where: { id, estado: false } });
         });
     }
     deleteProveedor(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Proveedores_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield Proveedores_model_1.default.update({ estado: false }, { where: { id } });
         });
     }
 }

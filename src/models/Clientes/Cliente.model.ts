@@ -6,11 +6,16 @@ import { TCliente } from "types";
 const clientes = conexion.define<Model<TCliente>>(
   "clientes",
   {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey:true,
+      autoIncrement:true
+    },
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    RNC_Cedula: {
+    documento: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
@@ -53,9 +58,9 @@ const clientes = conexion.define<Model<TCliente>>(
   { schema: "CLIENTES" }
 );
 
-//--- ASOCIACIONES---// 
+//--- ASOCIACIONES---//
 
-tipoCliente.hasMany(clientes,{foreignKey:'tipoClienteId'});
+tipoCliente.hasMany(clientes, { foreignKey: "tipoClienteId" });
 clientes.belongsTo(tipoCliente);
 
 export default clientes;

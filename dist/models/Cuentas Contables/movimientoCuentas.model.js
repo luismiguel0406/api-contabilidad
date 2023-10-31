@@ -10,21 +10,26 @@ const cuentasContables_model_1 = __importDefault(require("./cuentasContables.mod
 const tipoRegistro_model_1 = __importDefault(require("./tipoRegistro.model"));
 const tipoEfecto_model_1 = __importDefault(require("./tipoEfecto.model"));
 const movimientoCuentas = connectionDB_1.default.define("movimientoCuentas", {
+    id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
         defaultValue: sequelize_1.DataTypes.NOW,
     },
-    cuentaContableId: {
+    cuentaId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
     tipoRegistroId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
     },
     tipoEfectoId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
     },
     monto: {
         type: sequelize_1.DataTypes.FLOAT,
@@ -35,29 +40,33 @@ const movimientoCuentas = connectionDB_1.default.define("movimientoCuentas", {
     },
     usuario: {
         type: sequelize_1.DataTypes.STRING,
-        defaultValue: 'SA'
+        defaultValue: "SA",
     },
     terminal: {
         type: sequelize_1.DataTypes.STRING,
-        defaultValue: 'SA'
+        defaultValue: "SA",
+    },
+    estado: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        allowNull: false,
     },
     referenciaId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
     },
     transaccionId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
     },
     saldo: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
-    }
+        allowNull: false,
+    },
 }, { schema: "CUENTAS", timestamps: false });
 // --- ASOCIACIONES --- //
 Transaccion_model_1.default.hasMany(movimientoCuentas, { foreignKey: "transaccionId" });
 movimientoCuentas.belongsTo(Transaccion_model_1.default);
-cuentasContables_model_1.default.hasMany(movimientoCuentas, { foreignKey: "cuentaContableId" });
+cuentasContables_model_1.default.hasMany(movimientoCuentas, { foreignKey: "cuentaId" });
 movimientoCuentas.belongsTo(cuentasContables_model_1.default);
 tipoRegistro_model_1.default.hasMany(movimientoCuentas, { foreignKey: "tipoRegistroId" });
 movimientoCuentas.belongsTo(tipoRegistro_model_1.default);

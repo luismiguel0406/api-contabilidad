@@ -36,6 +36,7 @@ import empresas from "../../models/Empresa/empresa.model";
 import cuentasContables from "../../models/Cuentas Contables/cuentasContables.model";
 import tipoRegistro from "../../models/Cuentas Contables/tipoRegistro.model";
 import tipoEfecto from "../../models/Cuentas Contables/tipoEfecto.model";
+import { TTipoGenerico } from "types";
 
 export class Empresa {
   private _empresa: IEmpresa;
@@ -67,13 +68,13 @@ export class Empresa {
   }
 }
 export class TiposProveedores {
-  private tipoProveedoresArray: Array<ITipoPoveedor>;
+  private tipoProveedoresArray: Array<TTipoGenerico>;
 
   // AGREGO TIPO AL INICIO DEL PROGRAMA //
   constructor() {
     this.tipoProveedoresArray = [
       {
-        tipoProveedor: "LOCAL",
+        descripcion: "LOCAL",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
@@ -81,7 +82,7 @@ export class TiposProveedores {
         terminal: "SA",
       },
       {
-        tipoProveedor: "EXTRANJERO",
+        descripcion: "EXTRANJERO",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
@@ -89,7 +90,7 @@ export class TiposProveedores {
         terminal: "SA",
       },
       {
-        tipoProveedor: "INFORMAL",
+        descripcion: "INFORMAL",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
@@ -999,7 +1000,7 @@ export class TipoFacturasPorPagar {
 }
 
 export class TipoCuentasContables {
-  private tipoCuentaContableArray: Array<ITipoCuentaContable>;
+  private tipoCuentaContableArray: Array<TTipoGenerico>;
   constructor() {
     this.tipoCuentaContableArray = [
       {
@@ -1007,42 +1008,56 @@ export class TipoCuentasContables {
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
+        usuario:'SA',
+        terminal:'SA'
       },
       {
         descripcion: "PASIVOS",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
+        usuario:'SA',
+        terminal:'SA'
       },
       {
         descripcion: "CAPITAL",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
+        usuario:'SA',
+        terminal:'SA'
       },
       {
         descripcion: "INGRESOS",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
+        usuario:'SA',
+        terminal:'SA'
       },
       {
         descripcion: "COSTOS",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
+        usuario:'SA',
+        terminal:'SA'
       },
       {
         descripcion: "GASTOS",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
+        usuario:'SA',
+        terminal:'SA'
       },
       {
         descripcion: "RESUMENES",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
+        usuario:'SA',
+        terminal:'SA'
       },
     ];
   }

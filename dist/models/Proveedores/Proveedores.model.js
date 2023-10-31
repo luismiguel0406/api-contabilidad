@@ -7,11 +7,16 @@ const sequelize_1 = require("sequelize");
 const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
 const tipoProveedores_model_1 = __importDefault(require("./tipoProveedores.model"));
 const Proveedores = connectionDB_1.default.define("proveedor", {
+    id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     nombre: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    RNC_Cedula: {
+    documento: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
         unique: true

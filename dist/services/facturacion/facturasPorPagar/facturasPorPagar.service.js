@@ -20,10 +20,10 @@ class FacturasPorPagarService {
         return __awaiter(this, void 0, void 0, function* () {
             const FacturasPorPagar = id === null
                 ? yield facturasPorPagar_model_1.default.findAll({
-                    where: { empresaId, estado: "1" },
+                    where: { empresaId, estado: true },
                 })
                 : yield facturasPorPagar_model_1.default.findOne({
-                    where: { id, empresaId, estado: "1" },
+                    where: { id, empresaId, estado: true },
                 });
             return FacturasPorPagar;
         });
@@ -40,20 +40,15 @@ class FacturasPorPagarService {
     }
     deleteFacturasPorPagar(id, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield facturasPorPagar_model_1.default.update({ estado: "0" }, { where: { id, empresaId } });
-        });
-    }
-    updateFacturasPorPagar() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return "Las Facturas no se actualizan";
+            yield facturasPorPagar_model_1.default.update({ estado: false }, { where: { id, empresaId } });
         });
     }
     //------------TIPO FACTURAS POR PAGAR ----------//
     getTiposFactura(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const Tipofactura = id === null
-                ? yield tiposFacturasPorPagar_model_1.default.findAll({ where: { estado: "1" } })
-                : yield tiposFacturasPorPagar_model_1.default.findOne({ where: { id, estado: "1" } });
+                ? yield tiposFacturasPorPagar_model_1.default.findAll({ where: { estado: true } })
+                : yield tiposFacturasPorPagar_model_1.default.findOne({ where: { id, estado: true } });
             return Tipofactura;
         });
     }
@@ -67,14 +62,14 @@ class FacturasPorPagarService {
             yield tiposFacturasPorPagar_model_1.default.update(body, {
                 where: {
                     id,
-                    estado: "1",
+                    estado: true,
                 },
             });
         });
     }
     deleteTipoFacturas(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tiposFacturasPorPagar_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield tiposFacturasPorPagar_model_1.default.update({ estado: false }, { where: { id } });
         });
     }
 }

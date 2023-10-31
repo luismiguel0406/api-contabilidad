@@ -1,10 +1,5 @@
-export type TTipoCuentaContable = {
-    descripcion: string;
-    estado: boolean;
-    createdAt: Date;
-    updatedAt: Date | null;
-  }
   export type TGrupoCuentaContable = {
+    id?:number;
     cuenta: string;
     descripcion: string;
     estado: boolean;
@@ -16,6 +11,7 @@ export type TTipoCuentaContable = {
     monedaId: number;
   }
   export type TCuentaContable = {
+    id?:number;
     noCuenta: string;
     descripcion: string;
     estado: boolean;
@@ -29,12 +25,14 @@ export type TTipoCuentaContable = {
     empresaId: number;
   }
   export type TMovimientoCuentas = {
+    id?:number;
     createdAt: Date;
-    cuentaContableId:string;
+    cuentaId:number;
     tipoRegistroId:number;
     tipoEfectoId:number;
     monto:number;
     descripcion:string;
+    estado:boolean;
     usuario:string;
     terminal:string;
     referenciaId:number;

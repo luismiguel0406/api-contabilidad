@@ -1,10 +1,11 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import conexion from "../../Database/connectionDB";
+import { TTipoGenerico } from "types";
 
-const tipoProveedor = conexion.define(
+const tipoProveedor = conexion.define<Model<TTipoGenerico>>(
   "tipoProveedor",
   {
-    tipoProveedor: {
+    descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
     },

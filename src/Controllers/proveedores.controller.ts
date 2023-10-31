@@ -51,7 +51,7 @@ export const updateProveedores = async (req: Request, res: Response) => {
 export const deleteProveedor = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    await proveedorers_service.deleteProveedor(id);
+    await proveedorers_service.deleteProveedor(Number(id));
 
     const { statusCode, msg } = MsgRespuesta.noContent;
     res.status(statusCode).json({ Message: msg });
@@ -67,7 +67,7 @@ export const getTipoProveedor = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const TipoProveedorResult = await proveedorers_service.getTipoProveedor(id);
+    const TipoProveedorResult = await proveedorers_service.getTipoProveedor(Number(id));
     if (TipoProveedorResult === null) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
@@ -98,7 +98,7 @@ export const updateTipoProveedor = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { body } = req;
-    await proveedorers_service.updateTipoProveedor(body, id);
+    await proveedorers_service.updateTipoProveedor(body, Number(id));
 
     const { statusCode, msg } = MsgRespuesta.Success;
     res.status(statusCode).json({ Message: msg });

@@ -33,7 +33,7 @@ class CuentasContablesService {
                             required: true,
                         },
                     ],
-                    where: { empresaId, estado: "1" },
+                    where: { empresaId, estado: true },
                 })
                 : yield cuentasContables_model_1.default.findOne({
                     include: [
@@ -48,7 +48,7 @@ class CuentasContablesService {
                             required: true,
                         },
                     ],
-                    where: { id, empresaId, estado: "1" },
+                    where: { id, empresaId, estado: true },
                 });
             return cuentaResult;
         });
@@ -60,12 +60,12 @@ class CuentasContablesService {
     }
     updateCuentaContable(id, body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield cuentasContables_model_1.default.update(body, { where: { id, estado: "1" } });
+            yield cuentasContables_model_1.default.update(body, { where: { id, estado: true } });
         });
     }
     deleteCuentaContable(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield cuentasContables_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield cuentasContables_model_1.default.update({ estado: false }, { where: { id } });
         });
     }
     //-------------GRUPO CUENTAS ---------------//
@@ -89,7 +89,7 @@ class CuentasContablesService {
     }
     deleteGrupoCuentaContable(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield grupoCuenta_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield grupoCuenta_model_1.default.update({ estado: false }, { where: { id } });
         });
     }
     updateGrupoCuentaContable(body, id) {
@@ -122,7 +122,7 @@ class CuentasContablesService {
     }
     deleteTipoCuentaContable(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoCuenta_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield tipoCuenta_model_1.default.update({ estado: false }, { where: { id } });
         });
     }
 }
