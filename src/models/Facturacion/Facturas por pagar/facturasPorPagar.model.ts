@@ -110,7 +110,6 @@ const facturasPorPagar = conexion.define<Model<TFacturasPorPagar>>(
   { schema: "FACTURACION" }
 );
 
-facturasPorPagar.sync();
 //-------ASOCIACIONES-------//
 
 tipoFacturasPorPagar.hasMany(facturasPorPagar, {

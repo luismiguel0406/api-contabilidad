@@ -21,6 +21,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const entradaContable_model_1 = __importDefault(require("../../models/EntradaContable/entradaContable.model"));
 const accionEntradaContable_model_1 = __importDefault(require("../../models/AccionEntradaContable/accionEntradaContable.model"));
+const movimientoCuentas_model_1 = __importDefault(require("../../models/Cuentas Contables/movimientoCuentas.model"));
 const transaccion_service_1 = __importDefault(require("../transaccion/transaccion.service"));
 const helpers_1 = __importDefault(require("../../helpers"));
 class EntradaContableService {
@@ -59,6 +60,7 @@ class EntradaContableService {
                     // 4- Registrar movimiento de cuenta
                     this._dataMovimientoCuenta.push({
                         createdAt: new Date(),
+                        updatedAt: null,
                         cuentaId,
                         tipoRegistroId,
                         tipoEfectoId,
@@ -80,7 +82,7 @@ class EntradaContableService {
                 }
                 finally { if (e_1) throw e_1.error; }
             }
-            //this._movimientoCuenta = await movimientoCuentasModel.bulkCreate(this._dataMovimientoCuenta);
+            this._movimientoCuenta = yield movimientoCuentas_model_1.default.bulkCreate(this._dataMovimientoCuenta);
             // 5- Llenar la cabecera de la entrada contable, segun los datos que ingresan
             this._dataEntrada = {
                 numero: Math.floor(Math.random() * 1000),

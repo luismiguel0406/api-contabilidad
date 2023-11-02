@@ -9,7 +9,12 @@ import { TCuentaContable } from "types";
 
 const cuentasContables = conexion.define<Model<TCuentaContable>>(
   "cuentaContable",
-  {
+  {  
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey:true,
+      autoIncrement:true
+  },
     noCuenta: {
       type: DataTypes.STRING(25),
       allowNull: false,

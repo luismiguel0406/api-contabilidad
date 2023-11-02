@@ -10,6 +10,11 @@ const tipoCuenta_model_1 = __importDefault(require("./tipoCuenta.model"));
 const grupoCuenta_model_1 = __importDefault(require("./grupoCuenta.model"));
 const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda/moneda.model"));
 const cuentasContables = connectionDB_1.default.define("cuentaContable", {
+    id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     noCuenta: {
         type: sequelize_1.DataTypes.STRING(25),
         allowNull: false,

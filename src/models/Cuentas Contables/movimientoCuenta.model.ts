@@ -1,13 +1,13 @@
 import { DataTypes, Model } from "sequelize";
 import conexion from "../../Database/connectionDB";
-import transaccion from "../../models/Transaccion/Transaccion.model";
+import transaccion from "../Transaccion/Transaccion.model";
 import cuentasContables from "./cuentasContables.model";
 import tipoRegistro from "./tipoRegistro.model";
 import tipoEfecto from "./tipoEfecto.model";
 import { TMovimientoCuentas } from "types";
 
-const movimientoCuentas = conexion.define<Model<TMovimientoCuentas>>(
-  "movimientoCuentas",
+const movimientoCuenta = conexion.define<Model<TMovimientoCuentas>>(
+  "movimientoCuenta",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -17,6 +17,10 @@ const movimientoCuentas = conexion.define<Model<TMovimientoCuentas>>(
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
+      allowNull:false
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
     },
     cuentaId: {
       type: DataTypes.INTEGER,
@@ -62,21 +66,20 @@ const movimientoCuentas = conexion.define<Model<TMovimientoCuentas>>(
       allowNull: false,
     },
   },
-  { schema: "CUENTAS", timestamps: false }
+  { schema: "CUENTAS" }
 );
 
-
 // --- ASOCIACIONES --- //
-transaccion.hasMany(movimientoCuentas, { foreignKey: "transaccionId" });
-movimientoCuentas.belongsTo(transaccion);
+transaccion.hasMany(movimientoCuenta, { foreignKey: "transaccionId" });
+movimientoCuenta.belongsTo(transaccion);
 
-cuentasContables.hasMany(movimientoCuentas, { foreignKey: "cuentaId" });
-movimientoCuentas.belongsTo(cuentasContables);
+cuentasContables.hasMany(movimientoCuenta, { foreignKey: "cuentaId" });
+movimientoCuenta.belongsTo(cuentasContables);
 
-tipoRegistro.hasMany(movimientoCuentas, { foreignKey: "tipoRegistroId" });
-movimientoCuentas.belongsTo(tipoRegistro);
+tipoRegistro.hasMany(movimientoCuenta, { foreignKey: "tipoRegistroId" });
+movimientoCuenta.belongsTo(tipoRegistro);
 
-tipoEfecto.hasMany(movimientoCuentas, { foreignKey: "tipoEfectoId" });
-movimientoCuentas.belongsTo(tipoEfecto);
+tipoEfecto.hasMany(movimientoCuenta, { foreignKey: "tipoEfectoId" });
+movimientoCuenta.belongsTo(tipoEfecto);
 
-export default movimientoCuentas;
+export default movimientoCuenta;

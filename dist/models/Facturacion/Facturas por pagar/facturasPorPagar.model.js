@@ -108,7 +108,6 @@ const facturasPorPagar = connectionDB_1.default.define("facturaPorPagar", {
         allowNull: false,
     },
 }, { schema: "FACTURACION" });
-facturasPorPagar.sync();
 //-------ASOCIACIONES-------//
 tiposFacturasPorPagar_model_1.default.hasMany(facturasPorPagar, {
     foreignKey: "tipoFacturasPorPagarId",

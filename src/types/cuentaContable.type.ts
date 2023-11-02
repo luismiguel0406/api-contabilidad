@@ -27,6 +27,7 @@
   export type TMovimientoCuentas = {
     id?:number;
     createdAt: Date;
+    updatedAt:Date | null;
     cuentaId:number;
     tipoRegistroId:number;
     tipoEfectoId:number;

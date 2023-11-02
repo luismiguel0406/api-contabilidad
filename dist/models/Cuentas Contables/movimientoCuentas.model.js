@@ -19,6 +19,9 @@ const movimientoCuentas = connectionDB_1.default.define("movimientoCuentas", {
         type: sequelize_1.DataTypes.DATE,
         defaultValue: sequelize_1.DataTypes.NOW,
     },
+    updatedAt: {
+        type: sequelize_1.DataTypes.DATE
+    },
     cuentaId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
@@ -62,7 +65,7 @@ const movimientoCuentas = connectionDB_1.default.define("movimientoCuentas", {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-}, { schema: "CUENTAS", timestamps: false });
+}, { schema: "CUENTAS" });
 // --- ASOCIACIONES --- //
 Transaccion_model_1.default.hasMany(movimientoCuentas, { foreignKey: "transaccionId" });
 movimientoCuentas.belongsTo(Transaccion_model_1.default);
