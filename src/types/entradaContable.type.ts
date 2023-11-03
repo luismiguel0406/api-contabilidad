@@ -39,6 +39,8 @@ export type TAccionEntradaContable = {
     total: number;
     comentario:string;
     detalle:any[];
+    empresaId:number;
+    userId:number
   }
   
   export type TDeterminacion = {

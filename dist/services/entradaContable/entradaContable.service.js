@@ -33,7 +33,7 @@ class EntradaContableService {
     createEntradaContable(data) {
         var _a, e_1, _b, _c;
         return __awaiter(this, void 0, void 0, function* () {
-            const { payload, id, total, comentario, detalle } = data;
+            const { payload, id, total, comentario, detalle, empresaId, userId } = data;
             const transaccion_service = new transaccion_service_1.default();
             const transaccion = yield transaccion_service.getTransaccion(payload);
             this._transaccionId = transaccion === null || transaccion === void 0 ? void 0 : transaccion.id;
@@ -94,7 +94,7 @@ class EntradaContableService {
                 createdAt: new Date(),
                 updatedAt: null,
                 transaccionId: this._transaccionId,
-                empresaId: 1,
+                empresaId,
                 usuario: "SA",
                 terminal: "SA",
                 detalle: this._detalleEntrada,

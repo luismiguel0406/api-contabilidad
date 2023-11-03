@@ -45,7 +45,9 @@ const postFacturaPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, func
             id: factura.id,
             total: factura.total,
             comentario: factura.comentario,
-            detalle: factura.detalle
+            detalle: factura.detalle,
+            empresaId: Number(req.empresaId),
+            userId: Number(req.userId)
         };
         const result = yield entradaContable_service.createEntradaContable(data);
         const { entradaContable, movimientoCuenta } = result;

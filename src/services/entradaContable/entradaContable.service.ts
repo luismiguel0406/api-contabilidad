@@ -20,7 +20,7 @@ export default class EntradaContableService {
   // 1- Obtengo id de la transaccion en curso
 
   async createEntradaContable(data: TDataEntradaContable) {
-    const { payload, id, total, comentario, detalle } = data;
+    const { payload, id, total, comentario, detalle, empresaId, userId } = data;
 
     const transaccion_service = new TransaccionService();
     const transaccion: any = await transaccion_service.getTransaccion(payload);
@@ -94,7 +94,7 @@ export default class EntradaContableService {
       createdAt: new Date(),
       updatedAt: null,
       transaccionId: this._transaccionId,
-      empresaId: 1,
+      empresaId,
       usuario: "SA",
       terminal: "SA",
       detalle: this._detalleEntrada,
