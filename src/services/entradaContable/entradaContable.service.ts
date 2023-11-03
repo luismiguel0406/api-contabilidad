@@ -64,7 +64,7 @@ export default class EntradaContableService {
       this._dataMovimientoCuenta.push({
         createdAt: new Date(),
         updatedAt: null,
-        cuentaId,
+        cuentaContableId:cuentaId,
         tipoRegistroId,
         tipoEfectoId,
         monto,

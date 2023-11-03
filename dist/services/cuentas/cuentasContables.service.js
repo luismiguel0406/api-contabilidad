@@ -16,6 +16,7 @@ const tipoCuenta_model_1 = __importDefault(require("../../models/Cuentas Contabl
 const grupoCuenta_model_1 = __importDefault(require("../../models/Cuentas Contables/grupoCuenta.model"));
 const cuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/cuentasContables.model"));
 const grupoCuenta_model_2 = __importDefault(require("../../models/Cuentas Contables/grupoCuenta.model"));
+const movimientoCuenta_model_1 = __importDefault(require("../../models/Cuentas Contables/movimientoCuenta.model"));
 class CuentasContablesService {
     getCuentasContables(id = null, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -123,6 +124,12 @@ class CuentasContablesService {
     deleteTipoCuentaContable(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield tipoCuenta_model_1.default.update({ estado: false }, { where: { id } });
+        });
+    }
+    //--------------MOVIMIENTO CUENTAS CONTABLES-------------//
+    addMovimientoCuenta(body) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield movimientoCuenta_model_1.default.create(body);
         });
     }
 }

@@ -17,7 +17,7 @@ export default class TipoContactosService {
 
   async deleteTipoContacto(id: string) {
     await tiposContactosModel.update(
-      { estado: "0" },
+      { estado: false},
       {
         where: {
           id,

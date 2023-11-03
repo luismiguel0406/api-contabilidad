@@ -3,13 +3,15 @@ import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente"
 import CuentasContablesService from "../services/cuentas/cuentasContables.service";
 
 const cuentaContable_service = new CuentasContablesService();
+
 //--------- CUENTAS CONTABLES ----------//
 
 export const getCuentasContables = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { empresaId } = req;
-    const cuentasContables: any = await cuentaContable_service.getCuentasContables(id, empresaId);
+    const cuentasContables: any =
+      await cuentaContable_service.getCuentasContables(id, empresaId);
 
     if (Object.entries(cuentasContables).length === 0) {
       const { statusCode, msg } = MsgRespuesta.notFound;
@@ -106,5 +108,18 @@ export const getTiposCuentasContables = async (req: Request, res: Response) => {
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ Message: msg, error });
+  }
+};
+
+//------------MOVIMIENTO DE CUENTAS CONTABLES---------------//
+export const postMovimientoCuenta = async (req: Request, res: Response) => {
+  try {
+    const { body } = req;
+      await cuentaContable_service.addMovimientoCuenta(body);
+      const { statusCode, msg } = MsgRespuesta.created;
+    res.status(statusCode).json({ Message: msg });
+  } catch (error) {
+      const { statusCode, msg } = MsgRespuesta.badRequest;
+      res.status(statusCode).json({ Message: msg, error });
   }
 };

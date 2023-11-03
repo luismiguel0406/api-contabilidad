@@ -29,7 +29,7 @@ class TipoContactosService {
     }
     deleteTipoContacto(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoContactos_model_1.default.update({ estado: "0" }, {
+            yield tipoContactos_model_1.default.update({ estado: false }, {
                 where: {
                     id,
                 },

@@ -22,7 +22,7 @@ const movimientoCuenta = conexion.define<Model<TMovimientoCuentas>>(
     updatedAt: {
       type: DataTypes.DATE,
     },
-    cuentaId: {
+    cuentaContableId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -66,14 +66,14 @@ const movimientoCuenta = conexion.define<Model<TMovimientoCuentas>>(
       allowNull: false,
     },
   },
-  { schema: "CUENTAS" }
+  { schema: "CUENTAS", freezeTableName:true }
 );
 
 // --- ASOCIACIONES --- //
 transaccion.hasMany(movimientoCuenta, { foreignKey: "transaccionId" });
 movimientoCuenta.belongsTo(transaccion);
 
-cuentasContables.hasMany(movimientoCuenta, { foreignKey: "cuentaId" });
+cuentasContables.hasMany(movimientoCuenta, { foreignKey: "cuentaContableId" });
 movimientoCuenta.belongsTo(cuentasContables);
 
 tipoRegistro.hasMany(movimientoCuenta, { foreignKey: "tipoRegistroId" });

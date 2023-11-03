@@ -28,7 +28,7 @@
     id?:number;
     createdAt: Date;
     updatedAt:Date | null;
-    cuentaId:number;
+    cuentaContableId:number;
     tipoRegistroId:number;
     tipoEfectoId:number;
     monto:number;

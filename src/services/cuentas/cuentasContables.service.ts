@@ -1,10 +1,11 @@
 import tipoCuenta from "../../models/Cuentas Contables/tipoCuenta.model";
 import {
-  TCuentaContable, TGrupoCuentaContable, TTipoGenerico,
+  TCuentaContable, TGrupoCuentaContable, TTipoGenerico,TMovimientoCuentas
 } from "types";
 import grupoCuentaContableModel from "../../models/Cuentas Contables/grupoCuenta.model";
 import cuentasContables from "../../models/Cuentas Contables/cuentasContables.model";
 import grupoCuenta from "../../models/Cuentas Contables/grupoCuenta.model";
+import movimientoCuenta from "../../models/Cuentas Contables/movimientoCuenta.model";
 
 export default class CuentasContablesService {
   async getCuentasContables(id: any = null, empresaId: string) {
@@ -107,4 +108,12 @@ export default class CuentasContablesService {
   async deleteTipoCuentaContable(id: string) {
     await tipoCuenta.update({ estado: false}, { where: { id } });
   }
+
+  //--------------MOVIMIENTO CUENTAS CONTABLES-------------//
+
+    async addMovimientoCuenta (body:TMovimientoCuentas){
+         await movimientoCuenta.create(body);
+   }
+  
+
 }
