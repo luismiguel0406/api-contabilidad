@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const sequelize_1 = require("sequelize");
 const tipoCuenta_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoCuenta.model"));
 const grupoCuenta_model_1 = __importDefault(require("../../models/Cuentas Contables/grupoCuenta.model"));
 const cuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/cuentasContables.model"));
@@ -133,7 +134,7 @@ class CuentasContablesService {
             yield movimientoCuenta_model_1.default.create(body);
         });
     }
-    getMovimientoCuenta(cuentaContableId = 0) {
+    getMovimientoCuenta(cuentaContableId = 0, fechaInicio, fechaFin) {
         return __awaiter(this, void 0, void 0, function* () {
             const movimientoResult = yield movimientoCuenta_model_1.default.findAll({
                 include: [
@@ -151,8 +152,15 @@ class CuentasContablesService {
                     },
                 ],
                 where: cuentaContableId === 0
-                    ? { estado: true }
-                    : { cuentaContableId, estado: true },
+                    ? {
+                        estado: true,
+                        createdAt: { [sequelize_1.Op.between]: [fechaInicio, fechaFin] },
+                    }
+                    : {
+                        cuentaContableId,
+                        estado: true,
+                        createdAt: { [sequelize_1.Op.between]: [fechaInicio, fechaFin] },
+                    },
             });
             return movimientoResult;
         });

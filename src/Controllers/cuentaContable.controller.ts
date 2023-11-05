@@ -127,10 +127,10 @@ export const postMovimientoCuenta = async (req: Request, res: Response) => {
 
 export const getMovimientoCuenta = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id, fechaInicio, fechaFin } = req.params;
     let cuentaContableId = Number(id);
     const movimientoCuentas = await cuentaContable_service.getMovimientoCuenta(
-      cuentaContableId
+      cuentaContableId, fechaInicio, fechaFin
     );
 
     if (!movimientoCuentas) {

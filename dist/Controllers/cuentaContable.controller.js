@@ -125,9 +125,9 @@ const postMovimientoCuenta = (req, res) => __awaiter(void 0, void 0, void 0, fun
 exports.postMovimientoCuenta = postMovimientoCuenta;
 const getMovimientoCuenta = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.params;
+        const { id, fechaInicio, fechaFin } = req.params;
         let cuentaContableId = Number(id);
-        const movimientoCuentas = yield cuentaContable_service.getMovimientoCuenta(cuentaContableId);
+        const movimientoCuentas = yield cuentaContable_service.getMovimientoCuenta(cuentaContableId, fechaInicio, fechaFin);
         if (!movimientoCuentas) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });

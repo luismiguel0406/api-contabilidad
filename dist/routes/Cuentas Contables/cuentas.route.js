@@ -23,6 +23,6 @@ router.put(`${endPointCuentas}/${grupoCuenta}/:id`, cuentaContable_controller_1.
 router.delete(`${endPointCuentas}/${grupoCuenta}/:id`, cuentaContable_controller_1.deleteGrupoCuentasContables);
 // MOVIMIENTO //
 router.post(`${endPointCuentas}/${movimiento}`, cuentaContable_controller_1.postMovimientoCuenta);
-router.get(`${endPointCuentas}/${movimiento}/:id?`, cuentaContable_controller_1.getMovimientoCuenta);
+router.get(`${endPointCuentas}/${movimiento}/:id?/:fechaInicio?/:fechaFin?`, cuentaContable_controller_1.getMovimientoCuenta);
 exports.default = router;
 //# sourceMappingURL=cuentas.route.js.map

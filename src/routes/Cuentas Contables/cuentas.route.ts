@@ -38,6 +38,6 @@ router.delete(`${endPointCuentas}/${grupoCuenta}/:id`, deleteGrupoCuentasContabl
 // MOVIMIENTO //
 
 router.post(`${endPointCuentas}/${movimiento}`,postMovimientoCuenta);
-router.get(`${endPointCuentas}/${movimiento}/:id?`,getMovimientoCuenta);
+router.get(`${endPointCuentas}/${movimiento}/:id?/:fechaInicio?/:fechaFin?`,getMovimientoCuenta);
 export default router;
   

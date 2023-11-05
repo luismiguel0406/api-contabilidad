@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import tipoCuenta from "../../models/Cuentas Contables/tipoCuenta.model";
 import {
   TCuentaContable,
@@ -119,7 +120,11 @@ export default class CuentasContablesService {
     await movimientoCuenta.create(body);
   }
 
-  async getMovimientoCuenta(cuentaContableId: number[] | number = 0) {
+  async getMovimientoCuenta(
+    cuentaContableId: number[] | number = 0,
+    fechaInicio: string,
+    fechaFin: string
+  ) {
     const movimientoResult = await movimientoCuenta.findAll({
       include: [
         {
@@ -137,8 +142,15 @@ export default class CuentasContablesService {
       ],
       where:
         cuentaContableId === 0
-          ? { estado: true }
-          : { cuentaContableId, estado: true },
+          ? {
+              estado: true,
+              createdAt: { [Op.between]: [fechaInicio, fechaFin] },
+            }
+          : {
+              cuentaContableId,
+              estado: true,
+              createdAt: { [Op.between]: [fechaInicio, fechaFin] },
+            },
     });
 
     return movimientoResult;
