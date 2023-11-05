@@ -1,11 +1,15 @@
 import tipoCuenta from "../../models/Cuentas Contables/tipoCuenta.model";
 import {
-  TCuentaContable, TGrupoCuentaContable, TTipoGenerico,TMovimientoCuentas
+  TCuentaContable,
+  TGrupoCuentaContable,
+  TTipoGenerico,
+  TMovimientoCuentas,
 } from "types";
 import grupoCuentaContableModel from "../../models/Cuentas Contables/grupoCuenta.model";
 import cuentasContables from "../../models/Cuentas Contables/cuentasContables.model";
 import grupoCuenta from "../../models/Cuentas Contables/grupoCuenta.model";
 import movimientoCuenta from "../../models/Cuentas Contables/movimientoCuenta.model";
+import tipoEfecto from "../../models/Cuentas Contables/tipoEfecto.model";
 
 export default class CuentasContablesService {
   async getCuentasContables(id: any = null, empresaId: string) {
@@ -89,10 +93,10 @@ export default class CuentasContablesService {
     const tipoCuentaResult =
       id === null
         ? await tipoCuenta.findAll({
-            where: { estado: "1" },
+            where: { estado: true },
           })
         : await grupoCuentaContableModel.findOne({
-            where: { id, estado: "1" },
+            where: { id, estado: true },
           });
     return tipoCuentaResult;
   }
@@ -102,18 +106,41 @@ export default class CuentasContablesService {
   }
 
   async updateTipoCuentaContable(body: TTipoGenerico, id: string) {
-    await tipoCuenta.update(body, { where: { id, estado: "1" } });
+    await tipoCuenta.update(body, { where: { id, estado: true } });
   }
 
   async deleteTipoCuentaContable(id: string) {
-    await tipoCuenta.update({ estado: false}, { where: { id } });
+    await tipoCuenta.update({ estado: false }, { where: { id } });
   }
 
   //--------------MOVIMIENTO CUENTAS CONTABLES-------------//
 
-    async addMovimientoCuenta (body:TMovimientoCuentas){
-         await movimientoCuenta.create(body);
-   }
-  
+  async addMovimientoCuenta(body: TMovimientoCuentas) {
+    await movimientoCuenta.create(body);
+  }
 
+  async getMovimientoCuenta(cuentaContableId: number[] | number = 0) {
+    const movimientoResult = await movimientoCuenta.findAll({
+      include: [
+        {
+          model: cuentasContables,
+          required: true,
+          attributes: ["descripcion", ["noCuenta", "cuenta"]],
+          where: { estado: true },
+        },
+        {
+          model: tipoEfecto,
+          required: true,
+          attributes: ["descripcion"],
+          where: { estado: true },
+        },
+      ],
+      where:
+        cuentaContableId === 0
+          ? { estado: true }
+          : { cuentaContableId, estado: true },
+    });
+
+    return movimientoResult;
+  }
 }

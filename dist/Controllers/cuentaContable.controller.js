@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postMovimientoCuenta = exports.getTiposCuentasContables = exports.deleteGrupoCuentasContables = exports.updateGrupoCuentasContables = exports.getGrupoCuentasContables = exports.postGrupoCuentaContable = exports.getCuentasContables = void 0;
+exports.getMovimientoCuenta = exports.postMovimientoCuenta = exports.getTiposCuentasContables = exports.deleteGrupoCuentasContables = exports.updateGrupoCuentasContables = exports.getGrupoCuentasContables = exports.postGrupoCuentaContable = exports.getCuentasContables = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const cuentasContables_service_1 = __importDefault(require("../services/cuentas/cuentasContables.service"));
 const cuentaContable_service = new cuentasContables_service_1.default();
@@ -123,4 +123,21 @@ const postMovimientoCuenta = (req, res) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.postMovimientoCuenta = postMovimientoCuenta;
+const getMovimientoCuenta = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        let cuentaContableId = Number(id);
+        const movimientoCuentas = yield cuentaContable_service.getMovimientoCuenta(cuentaContableId);
+        if (!movimientoCuentas) {
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            return res.status(statusCode).json({ Message: msg });
+        }
+        res.json({ movimientoCuentas });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.getMovimientoCuenta = getMovimientoCuenta;
 //# sourceMappingURL=cuentaContable.controller.js.map

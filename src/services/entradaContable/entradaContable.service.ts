@@ -31,13 +31,14 @@ export default class EntradaContableService {
     this._accionContable = <Array<any>>await accionEntradaContableModel.findAll(
       {
         attributes: ["tipoCuentaId", "tipoEfectoId", "tipoRegistroId"],
-        where: { transaccionId: this._transaccionId, estado: "1" },
+        where: { transaccionId: this._transaccionId, estado: true },
       }
     );
 
     // 3- Identificar los tipos de registro segun accion contable
     this._detalleEntrada = [];
     this._dataMovimientoCuenta = [];
+
     for await (let details of detalle) {
       let detalleSalida = this._accionContable.filter(
         (item) => item.tipoCuentaId === details.tipoCuentaId
@@ -45,8 +46,8 @@ export default class EntradaContableService {
       const { tipoCuentaId, tipoEfectoId, tipoRegistroId } = detalleSalida[0];
 
       let { monto, cuentaId, numeroCuenta, descripcion } = details;
-
-      const determinacion = determinarEntradaContable(
+  
+      const { debito, credito } = determinarEntradaContable(
         tipoCuentaId,
         tipoEfectoId,
         monto
@@ -56,19 +57,20 @@ export default class EntradaContableService {
         cuentaId,
         numeroCuenta,
         descripcion,
-        ...determinacion,
+        debito,
+        credito
       });
 
       // 4- Registrar movimiento de cuenta
 
       this._dataMovimientoCuenta.push({
         createdAt: new Date(),
-        updatedAt: null,
         cuentaContableId:cuentaId,
         tipoRegistroId,
         tipoEfectoId,
-        monto,
-        descripcion,
+        debito,
+        credito,
+        descripcion: comentario,
         referenciaId: id,
         transaccionId: this._transaccionId,
         saldo: Math.floor(Math.random() * 10000),

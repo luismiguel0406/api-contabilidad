@@ -69,7 +69,7 @@ const getFacturasPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, func
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }
-        res.json({ FacturasPorPagar: facturasPorPagar });
+        res.json({ facturasPorPagar });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

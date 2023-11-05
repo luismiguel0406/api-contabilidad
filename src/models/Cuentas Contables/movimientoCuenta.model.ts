@@ -19,9 +19,6 @@ const movimientoCuenta = conexion.define<Model<TMovimientoCuentas>>(
       defaultValue: DataTypes.NOW,
       allowNull:false
     },
-    updatedAt: {
-      type: DataTypes.DATE,
-    },
     cuentaContableId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -34,7 +31,15 @@ const movimientoCuenta = conexion.define<Model<TMovimientoCuentas>>(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    monto: {
+    debito: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    credito: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    saldo: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
@@ -61,12 +66,9 @@ const movimientoCuenta = conexion.define<Model<TMovimientoCuentas>>(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    saldo: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+ 
   },
-  { schema: "CUENTAS", freezeTableName:true }
+  { schema: "CUENTAS", updatedAt:false }
 );
 
 // --- ASOCIACIONES --- //

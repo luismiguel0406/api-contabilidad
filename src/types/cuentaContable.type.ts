@@ -27,16 +27,17 @@
   export type TMovimientoCuentas = {
     id?:number;
     createdAt: Date;
-    updatedAt:Date | null;
     cuentaContableId:number;
     tipoRegistroId:number;
     tipoEfectoId:number;
-    monto:number;
+    debito:number;
+    credito:number;
+    saldo:number;
     descripcion:string;
     estado:boolean;
     usuario:string;
     terminal:string;
     referenciaId:number;
     transaccionId:number;
-    saldo:number;
+    
   }

@@ -17,6 +17,7 @@ const grupoCuenta_model_1 = __importDefault(require("../../models/Cuentas Contab
 const cuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/cuentasContables.model"));
 const grupoCuenta_model_2 = __importDefault(require("../../models/Cuentas Contables/grupoCuenta.model"));
 const movimientoCuenta_model_1 = __importDefault(require("../../models/Cuentas Contables/movimientoCuenta.model"));
+const tipoEfecto_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoEfecto.model"));
 class CuentasContablesService {
     getCuentasContables(id = null, empresaId) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -103,10 +104,10 @@ class CuentasContablesService {
         return __awaiter(this, void 0, void 0, function* () {
             const tipoCuentaResult = id === null
                 ? yield tipoCuenta_model_1.default.findAll({
-                    where: { estado: "1" },
+                    where: { estado: true },
                 })
                 : yield grupoCuenta_model_1.default.findOne({
-                    where: { id, estado: "1" },
+                    where: { id, estado: true },
                 });
             return tipoCuentaResult;
         });
@@ -118,7 +119,7 @@ class CuentasContablesService {
     }
     updateTipoCuentaContable(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoCuenta_model_1.default.update(body, { where: { id, estado: "1" } });
+            yield tipoCuenta_model_1.default.update(body, { where: { id, estado: true } });
         });
     }
     deleteTipoCuentaContable(id) {
@@ -130,6 +131,30 @@ class CuentasContablesService {
     addMovimientoCuenta(body) {
         return __awaiter(this, void 0, void 0, function* () {
             yield movimientoCuenta_model_1.default.create(body);
+        });
+    }
+    getMovimientoCuenta(cuentaContableId = 0) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const movimientoResult = yield movimientoCuenta_model_1.default.findAll({
+                include: [
+                    {
+                        model: cuentasContables_model_1.default,
+                        required: true,
+                        attributes: ["descripcion", ["noCuenta", "cuenta"]],
+                        where: { estado: true },
+                    },
+                    {
+                        model: tipoEfecto_model_1.default,
+                        required: true,
+                        attributes: ["descripcion"],
+                        where: { estado: true },
+                    },
+                ],
+                where: cuentaContableId === 0
+                    ? { estado: true }
+                    : { cuentaContableId, estado: true },
+            });
+            return movimientoResult;
         });
     }
 }

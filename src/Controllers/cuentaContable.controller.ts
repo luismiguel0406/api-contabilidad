@@ -112,14 +112,34 @@ export const getTiposCuentasContables = async (req: Request, res: Response) => {
 };
 
 //------------MOVIMIENTO DE CUENTAS CONTABLES---------------//
+
 export const postMovimientoCuenta = async (req: Request, res: Response) => {
   try {
     const { body } = req;
-      await cuentaContable_service.addMovimientoCuenta(body);
-      const { statusCode, msg } = MsgRespuesta.created;
+    await cuentaContable_service.addMovimientoCuenta(body);
+    const { statusCode, msg } = MsgRespuesta.created;
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
-      const { statusCode, msg } = MsgRespuesta.badRequest;
-      res.status(statusCode).json({ Message: msg, error });
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ Message: msg, error });
+  }
+};
+
+export const getMovimientoCuenta = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    let cuentaContableId = Number(id);
+    const movimientoCuentas = await cuentaContable_service.getMovimientoCuenta(
+      cuentaContableId
+    );
+
+    if (!movimientoCuentas) {
+      const { statusCode, msg } = MsgRespuesta.notFound;
+      return res.status(statusCode).json({ Message: msg });
+    }
+    res.json({ movimientoCuentas });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ Message: msg, error });
   }
 };

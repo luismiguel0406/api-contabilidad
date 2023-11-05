@@ -7,7 +7,8 @@ import {
   getTiposCuentasContables,
   postGrupoCuentaContable,
   updateGrupoCuentasContables,
-  postMovimientoCuenta
+  postMovimientoCuenta,
+  getMovimientoCuenta
 } from "../../Controllers/cuentaContable.controller";
 
 const router = Router();
@@ -37,5 +38,6 @@ router.delete(`${endPointCuentas}/${grupoCuenta}/:id`, deleteGrupoCuentasContabl
 // MOVIMIENTO //
 
 router.post(`${endPointCuentas}/${movimiento}`,postMovimientoCuenta);
+router.get(`${endPointCuentas}/${movimiento}/:id?`,getMovimientoCuenta);
 export default router;
   

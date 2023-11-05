@@ -40,7 +40,7 @@ class EntradaContableService {
             // 2- Busco las acciones que se haran relativa a esta transaccion
             this._accionContable = (yield accionEntradaContable_model_1.default.findAll({
                 attributes: ["tipoCuentaId", "tipoEfectoId", "tipoRegistroId"],
-                where: { transaccionId: this._transaccionId, estado: "1" },
+                where: { transaccionId: this._transaccionId, estado: true },
             }));
             // 3- Identificar los tipos de registro segun accion contable
             this._detalleEntrada = [];
@@ -53,19 +53,23 @@ class EntradaContableService {
                     let detalleSalida = this._accionContable.filter((item) => item.tipoCuentaId === details.tipoCuentaId);
                     const { tipoCuentaId, tipoEfectoId, tipoRegistroId } = detalleSalida[0];
                     let { monto, cuentaId, numeroCuenta, descripcion } = details;
-                    const determinacion = (0, helpers_1.default)(tipoCuentaId, tipoEfectoId, monto);
-                    this._detalleEntrada.push(Object.assign({ cuentaId,
+                    const { debito, credito } = (0, helpers_1.default)(tipoCuentaId, tipoEfectoId, monto);
+                    this._detalleEntrada.push({
+                        cuentaId,
                         numeroCuenta,
-                        descripcion }, determinacion));
+                        descripcion,
+                        debito,
+                        credito
+                    });
                     // 4- Registrar movimiento de cuenta
                     this._dataMovimientoCuenta.push({
                         createdAt: new Date(),
-                        updatedAt: null,
                         cuentaContableId: cuentaId,
                         tipoRegistroId,
                         tipoEfectoId,
-                        monto,
-                        descripcion,
+                        debito,
+                        credito,
+                        descripcion: comentario,
                         referenciaId: id,
                         transaccionId: this._transaccionId,
                         saldo: Math.floor(Math.random() * 10000),

@@ -67,7 +67,7 @@ export const getFacturasPorPagar = async (req: Request, res: Response) => {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
-    res.json({ FacturasPorPagar: facturasPorPagar });
+    res.json({ facturasPorPagar });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });
