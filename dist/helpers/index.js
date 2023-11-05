@@ -22,25 +22,25 @@ const DISMINUCION = 2;
 function determinarEntradaContable(tipoCuenta, tipoEfecto, monto) {
     if (tipoEfecto === AUMENTO) {
         if (tipoCuenta === ACTIVO || tipoCuenta === GASTO) {
-            return { debito: monto, credito: 0.0 };
+            return { debito: monto, credito: 0.00 };
         }
         else if (tipoCuenta === PASIVO ||
             tipoCuenta === CAPITAL ||
             tipoCuenta === INGRESO) {
-            return { debito: 0.0, credito: monto };
+            return { debito: 0.00, credito: monto };
         }
     }
     else if (tipoEfecto === DISMINUCION) {
         if (tipoCuenta === ACTIVO || tipoCuenta === GASTO) {
-            return { debito: 0.0, credito: monto };
+            return { debito: 0.00, credito: monto };
         }
         else if (tipoCuenta === PASIVO ||
             tipoCuenta === CAPITAL ||
             tipoCuenta === INGRESO) {
-            return { debito: monto, credito: 0.0 };
+            return { debito: monto, credito: 0.00 };
         }
     }
-    return { debito: 0.0, credito: 0.0 };
+    return { debito: 0.00, credito: 0.00 };
 }
 exports.default = determinarEntradaContable;
 //# sourceMappingURL=index.js.map
