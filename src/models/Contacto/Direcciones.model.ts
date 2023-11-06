@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 import clientes from "../Clientes/Cliente.model";
 import tiposContactos from "./tipoContactos.model";
 
@@ -41,12 +41,12 @@ const direcciones = conexion.define(
   { schema: "CONTACTOS" }
 );
 
-//--- ASOCIACIONES---// 
+//--- ASOCIACIONES---//
 
 clientes.hasMany(direcciones, { foreignKey: "clienteId" });
 direcciones.belongsTo(clientes);
 
-tiposContactos.hasMany(direcciones, {foreignKey:"tipoContactoId"});
+tiposContactos.hasMany(direcciones, { foreignKey: "tipoContactoId" });
 direcciones.belongsTo(tiposContactos);
 
 export default direcciones;

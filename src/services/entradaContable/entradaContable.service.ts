@@ -9,6 +9,7 @@ import {
   TEntradaContable,
   TEntradaContableDetalle,
 } from "types";
+import sequelizeConnection from "Database";
 export default class EntradaContableService {
   private _transaccionId: number = 0;
   private _movimientoCuenta!: unknown;
@@ -20,6 +21,11 @@ export default class EntradaContableService {
   // 1- Obtengo id de la transaccion en curso
 
   async createEntradaContable(data: TDataEntradaContable) {
+
+    await sequelizeConnection.transaction(async (t)=>{
+
+      
+    
     const { payload, id, total, comentario, detalle, empresaId, userId } = data;
 
     const transaccion_service = new TransaccionService();
@@ -81,7 +87,7 @@ export default class EntradaContableService {
     }
 
     this._movimientoCuenta = await movimientoCuentasModel.bulkCreate(
-      this._dataMovimientoCuenta
+      this._dataMovimientoCuenta,{transaction:t}
     );
 
     // 5- Llenar la cabecera de la entrada contable, segun los datos que ingresan
@@ -104,9 +110,11 @@ export default class EntradaContableService {
 
     // 6- Crear la entrada contable
     const entradaContable = await entradaContableModel.create(
-      this._dataEntrada
+      this._dataEntrada, {transaction: t}
     );
-
+    await t.commit();
     return { entradaContable, movimientoCuenta: this._movimientoCuenta };
+
+   })
   }
 }

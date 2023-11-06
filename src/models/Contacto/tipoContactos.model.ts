@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 import clientes from "../Clientes/Cliente.model";
 import Proveedores from "../Proveedores/Proveedores.model";
 import { TTipoGenerico } from "types";
@@ -28,10 +28,9 @@ const tiposContactos = conexion.define<Model<TTipoGenerico>>(
     },
     terminal: {
       type: DataTypes.STRING,
-    }
+    },
   },
   { schema: "CONTACTOS" }
-
 );
 
 //--------- ASOCIACIONES ---------//--verificar
@@ -39,8 +38,7 @@ const tiposContactos = conexion.define<Model<TTipoGenerico>>(
 tiposContactos.hasMany(clientes, { foreignKey: "tipoContactoId" });
 clientes.belongsTo(tiposContactos);
 
-tiposContactos.hasMany(Proveedores,{foreignKey:"tipoContactoId"})
-Proveedores.belongsTo(tiposContactos)
-
+tiposContactos.hasMany(Proveedores, { foreignKey: "tipoContactoId" });
+Proveedores.belongsTo(tiposContactos);
 
 export default tiposContactos;

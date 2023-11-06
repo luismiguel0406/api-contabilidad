@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 import { TTipoGenerico } from "types";
 
 const tipoProveedor = conexion.define<Model<TTipoGenerico>>(
@@ -29,7 +29,6 @@ const tipoProveedor = conexion.define<Model<TTipoGenerico>>(
     },
   },
   { schema: "PROVEEDORES" }
- 
 );
 
 export default tipoProveedor;

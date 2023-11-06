@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 
 const empresas = conexion.define(
   "empresa",
@@ -19,9 +19,9 @@ const empresas = conexion.define(
     sucursalId: {
       type: DataTypes.INTEGER,
     },
-    planId:{
-      type:DataTypes.INTEGER,
-      allowNull:false
+    planId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     estado: {
       type: DataTypes.BOOLEAN,
@@ -53,10 +53,10 @@ const empresas = conexion.define(
     terminal: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
   },
   { schema: "EMPRESA" }
 );
- 
+
 //empresas.sync()
 export default empresas;

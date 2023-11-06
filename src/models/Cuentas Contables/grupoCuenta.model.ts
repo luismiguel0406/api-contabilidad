@@ -1,6 +1,6 @@
 import empresas from "../Empresa/empresa.model";
 import { DataTypes, Model } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 import moneda from "../Facturacion/moneda/moneda.model";
 import tipoCuenta from "./tipoCuenta.model";
 import { TGrupoCuentaContable } from "types";
@@ -10,8 +10,8 @@ const grupoCuenta = conexion.define<Model<TGrupoCuentaContable>>(
   {
     id: {
       type: DataTypes.INTEGER,
-      primaryKey:true,
-      autoIncrement:true
+      primaryKey: true,
+      autoIncrement: true,
     },
     cuenta: {
       type: DataTypes.STRING,

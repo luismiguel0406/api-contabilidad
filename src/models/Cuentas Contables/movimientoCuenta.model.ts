@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 import transaccion from "../Transaccion/Transaccion.model";
 import cuentasContables from "./cuentasContables.model";
 import tipoRegistro from "./tipoRegistro.model";
@@ -17,7 +17,7 @@ const movimientoCuenta = conexion.define<Model<TMovimientoCuentas>>(
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
-      allowNull:false
+      allowNull: false,
     },
     cuentaContableId: {
       type: DataTypes.INTEGER,
@@ -66,9 +66,8 @@ const movimientoCuenta = conexion.define<Model<TMovimientoCuentas>>(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
- 
   },
-  { schema: "CUENTAS", updatedAt:false }
+  { schema: "CUENTAS", updatedAt: false }
 );
 
 // --- ASOCIACIONES --- //

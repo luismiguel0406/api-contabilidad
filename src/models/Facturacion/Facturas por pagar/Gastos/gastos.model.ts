@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import conexion from "../../../../Database/connectionDB";
+import conexion from "../../../../Database";
 
 const tipoGasto = conexion.define(
   "tipoGasto",
@@ -29,6 +29,5 @@ const tipoGasto = conexion.define(
   },
   { schema: "FACTURACION" }
 );
-
 
 export default tipoGasto;

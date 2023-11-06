@@ -1,7 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import empresas from "../../Empresa/empresa.model";
 import Proveedores from "../../Proveedores/Proveedores.model";
-import conexion from "../../../Database/connectionDB";
+import conexion from "../../../Database";
 import mediosDePago from "../medioDePago/medioDePago.model";
 import moneda from "../moneda/moneda.model";
 import tipoGasto from "./Gastos/gastos.model";
@@ -13,8 +13,8 @@ const facturasPorPagar = conexion.define<Model<TFacturasPorPagar>>(
   {
     id: {
       type: DataTypes.INTEGER,
-      primaryKey:true,
-      autoIncrement:true
+      primaryKey: true,
+      autoIncrement: true,
     },
     noFactura: {
       type: DataTypes.STRING(50),

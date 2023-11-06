@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import conexion from "../../../Database/connectionDB";
+import conexion from "../../../Database";
 
 const impuestos = conexion.define(
   "impuesto",
@@ -37,6 +37,5 @@ const impuestos = conexion.define(
   },
   { schema: "FACTURACION" }
 );
-
 
 export default impuestos;

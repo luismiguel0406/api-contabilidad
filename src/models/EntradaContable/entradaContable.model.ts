@@ -1,16 +1,16 @@
 import { DataTypes, Model } from "sequelize";
 import empresas from "../Empresa/empresa.model";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 import transaccion from "../Transaccion/Transaccion.model";
-import { TEntradaContable } from 'types';
+import { TEntradaContable } from "types";
 
 const entradasContables = conexion.define<Model<TEntradaContable>>(
   "entradaContable",
   {
     id: {
       type: DataTypes.INTEGER,
-      primaryKey:true,
-      autoIncrement:true
+      primaryKey: true,
+      autoIncrement: true,
     },
     numero: {
       type: DataTypes.INTEGER,
@@ -43,9 +43,9 @@ const entradasContables = conexion.define<Model<TEntradaContable>>(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    transaccionId:{
-      type:DataTypes.INTEGER,
-      allowNull:false,
+    transaccionId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     empresaId: {
       type: DataTypes.INTEGER,
@@ -64,8 +64,7 @@ const entradasContables = conexion.define<Model<TEntradaContable>>(
     },
   },
   { schema: "DIARIO" }
-)
-
+);
 
 empresas.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresas);

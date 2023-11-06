@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
-import conexion from "../../../Database/connectionDB";
-
+import conexion from "../../../Database";
 
 const moneda = conexion.define(
   "moneda",
@@ -33,8 +32,7 @@ const moneda = conexion.define(
       allowNull: false,
     },
   },
-  { schema: "FACTURACION"}
+  { schema: "FACTURACION" }
 );
-
 
 export default moneda;

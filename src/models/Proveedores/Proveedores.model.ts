@@ -1,15 +1,15 @@
 import { DataTypes, Model } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 import tipoProveedor from "./tipoProveedores.model";
 import { TProveedor } from "types";
 
 const Proveedores = conexion.define<Model<TProveedor>>(
   "proveedor",
   {
-    id:{
-      type:DataTypes.INTEGER,
-      primaryKey:true,
-      autoIncrement:true
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
     nombre: {
       type: DataTypes.STRING,
@@ -18,7 +18,7 @@ const Proveedores = conexion.define<Model<TProveedor>>(
     documento: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique:true
+      unique: true,
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -50,9 +50,9 @@ const Proveedores = conexion.define<Model<TProveedor>>(
   { schema: "PROVEEDORES" }
 );
 
-//--- ASOCIACIONES---// 
+//--- ASOCIACIONES---//
 
-tipoProveedor.hasMany(Proveedores, { foreignKey: "tipoProveedorId"});
+tipoProveedor.hasMany(Proveedores, { foreignKey: "tipoProveedorId" });
 Proveedores.belongsTo(tipoProveedor);
 
 export default Proveedores;

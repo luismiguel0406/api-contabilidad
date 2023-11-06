@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 import { TTipoGenerico } from "types";
 
 const tipoCliente = conexion.define<Model<TTipoGenerico>>(
@@ -29,8 +29,7 @@ const tipoCliente = conexion.define<Model<TTipoGenerico>>(
     },
   },
   {
-    schema: "CLIENTES"
-   
+    schema: "CLIENTES",
   }
 );
 

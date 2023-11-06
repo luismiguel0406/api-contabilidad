@@ -12,32 +12,31 @@ import {
 } from "../../Controllers/cuentaContable.controller";
 
 const router = Router();
-const endPointCuentas = "/api/cuentas";
 const cuentaContable = "cuentaContable";
 const tipoCuentas = "tipoCuentas";
 const grupoCuenta = "grupoCuentas";
 const movimiento ='movimiento'
 
 // TIPOS //
-router.get(`${endPointCuentas}/${tipoCuentas}/:id?`, getTiposCuentasContables);
+router.get(`api/cuentas/${tipoCuentas}/:id?`, getTiposCuentasContables);
 
 //GRUPOS//
 
-router.get(`${endPointCuentas}/${grupoCuenta}/:id?`, getGrupoCuentasContables);
-router.post(`${endPointCuentas}/${grupoCuenta}`, postGrupoCuentaContable);
-router.put(`${endPointCuentas}/${grupoCuenta}/:id`, updateGrupoCuentasContables);
-router.delete(`${endPointCuentas}/${grupoCuenta}/:id`, deleteGrupoCuentasContables);
+router.get(`api/cuentas/${grupoCuenta}/:id?`, getGrupoCuentasContables);
+router.post(`api/cuentas/${grupoCuenta}`, postGrupoCuentaContable);
+router.put(`api/cuentas/${grupoCuenta}/:id`, updateGrupoCuentasContables);
+router.delete(`api/cuentas/${grupoCuenta}/:id`, deleteGrupoCuentasContables);
 
 // CUENTAS //
 
-router.get(`${endPointCuentas}/${cuentaContable}/:id?`,ValidarToken,getCuentasContables );
-router.post(`${endPointCuentas}/${grupoCuenta}`, postGrupoCuentaContable);
-router.put(`${endPointCuentas}/${grupoCuenta}/:id`, updateGrupoCuentasContables);
-router.delete(`${endPointCuentas}/${grupoCuenta}/:id`, deleteGrupoCuentasContables);
+router.get(`api/cuentas/${cuentaContable}/:id?`,ValidarToken,getCuentasContables );
+router.post(`api/cuentas/${grupoCuenta}`, postGrupoCuentaContable);
+router.put(`api/cuentas/${grupoCuenta}/:id`, updateGrupoCuentasContables);
+router.delete(`api/cuentas/${grupoCuenta}/:id`, deleteGrupoCuentasContables);
 
 // MOVIMIENTO //
 
-router.post(`${endPointCuentas}/${movimiento}`,postMovimientoCuenta);
-router.get(`${endPointCuentas}/${movimiento}/:id?/:fechaInicio?/:fechaFin?`,getMovimientoCuenta);
+router.post(`api/cuentas/${movimiento}`,postMovimientoCuenta);
+router.get(`api/cuentas/${movimiento}/:id?/:fechaInicio?/:fechaFin?`,getMovimientoCuenta);
 export default router;
   

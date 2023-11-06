@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 import tipoCliente from "./tipoCliente.model";
 import { TCliente } from "types";
 
@@ -8,8 +8,8 @@ const clientes = conexion.define<Model<TCliente>>(
   {
     id: {
       type: DataTypes.INTEGER,
-      primaryKey:true,
-      autoIncrement:true
+      primaryKey: true,
+      autoIncrement: true,
     },
     nombre: {
       type: DataTypes.STRING,

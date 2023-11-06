@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 import { TTipoGenerico } from "types";
 
 const tipoCuenta = conexion.define<Model<TTipoGenerico>>(
@@ -22,7 +22,7 @@ const tipoCuenta = conexion.define<Model<TTipoGenerico>>(
     },
     usuario: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     terminal: {
       type: DataTypes.STRING,

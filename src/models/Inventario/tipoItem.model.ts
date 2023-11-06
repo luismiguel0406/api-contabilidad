@@ -1,10 +1,10 @@
 import { DataTypes } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 
 const tiposItem = conexion.define(
   "tipoItem",
   {
-     descripcion: {
+    descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
     },

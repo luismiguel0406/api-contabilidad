@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 
-const transaccion =  conexion.define(
+const transaccion = conexion.define(
   "transaccion",
   {
     descripcion: {

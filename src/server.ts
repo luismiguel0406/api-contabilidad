@@ -37,7 +37,7 @@ import tipoGastosRoutes from "./routes/facturacion/tipoGastos.route";
 import facturasPorpPagarRoutes from "./routes/facturasPorPagar/facturasPorPagar.route";
 import cors from "cors";
 import variablesEnv from "./config/index";
-import db from "./Database/connectionDB";
+import sequelizeConnection from "./Database";
 import helmet from "helmet";
 
 /*INICIALIZO EL SERVIDOR*/
@@ -65,7 +65,7 @@ class Server {
 
   async dbConnection() {
     try {
-      await db.authenticate();
+      await sequelizeConnection.authenticate();
       //await db.sync();
       console.log("Database CACTUS online.");
     } catch (error) {

@@ -1,10 +1,12 @@
 import tipoCuenta from "../Cuentas Contables/tipoCuenta.model";
 import transaccion from "../Transaccion/Transaccion.model";
 import { DataTypes, Model } from "sequelize";
-import conexion from "../../Database/connectionDB";
+import conexion from "../../Database";
 import { TAccionEntradaContable } from "types";
 
-const accionesEntradasContables = conexion.define<Model<TAccionEntradaContable>>(
+const accionesEntradasContables = conexion.define<
+  Model<TAccionEntradaContable>
+>(
   "accionEntradaContable",
   {
     transaccionId: {
