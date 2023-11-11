@@ -4,7 +4,7 @@ import {
   getTipoVentas,
   postTipoVenta,
   updateTipoVenta,
-} from "../../Controllers/tipoVentas.controller";
+} from "../../controllers/tipoVentas.controller";
 
 const router = Router();
 const endPointFacturacion = "/api/facturacion";

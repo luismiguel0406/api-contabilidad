@@ -1,7 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import empresas from "../../Empresa/empresa.model";
 import Proveedores from "../../Proveedores/Proveedores.model";
-import conexion from "../../../Database";
+import conexion from "../../../database";
 import mediosDePago from "../medioDePago/medioDePago.model";
 import moneda from "../moneda/moneda.model";
 import tipoGasto from "./Gastos/gastos.model";

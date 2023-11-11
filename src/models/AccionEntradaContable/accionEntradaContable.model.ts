@@ -1,7 +1,7 @@
 import tipoCuenta from "../Cuentas Contables/tipoCuenta.model";
 import transaccion from "../Transaccion/Transaccion.model";
 import { DataTypes, Model } from "sequelize";
-import conexion from "../../Database";
+import conexion from "../../database";
 import { TAccionEntradaContable } from "types";
 
 const accionesEntradasContables = conexion.define<

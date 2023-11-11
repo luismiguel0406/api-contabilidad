@@ -5,15 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
 const sequelize_1 = require("sequelize");
-const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
+const database_1 = __importDefault(require("../../database"));
 const tipoCuenta_model_1 = __importDefault(require("./tipoCuenta.model"));
 const grupoCuenta_model_1 = __importDefault(require("./grupoCuenta.model"));
 const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda/moneda.model"));
-const cuentasContables = connectionDB_1.default.define("cuentaContable", {
+const cuentasContables = database_1.default.define("cuentaContable", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
     noCuenta: {
         type: sequelize_1.DataTypes.STRING(25),

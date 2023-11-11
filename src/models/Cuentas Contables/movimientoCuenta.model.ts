@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import conexion from "../../Database";
+import conexion from "../../database";
 import transaccion from "../Transaccion/Transaccion.model";
 import cuentasContables from "./cuentasContables.model";
 import tipoRegistro from "./tipoRegistro.model";

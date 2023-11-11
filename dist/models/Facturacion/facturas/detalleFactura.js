@@ -4,10 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const connectionDB_1 = __importDefault(require("../../../Database/connectionDB"));
+const database_1 = __importDefault(require("../../../database"));
 const Item_model_1 = __importDefault(require("../../Inventario/Item.model"));
 const factura_model_1 = __importDefault(require("./factura.model"));
-const detallesFactura = connectionDB_1.default.define("detalleFactura", {
+const detallesFactura = database_1.default.define("detalleFactura", {
     facturaId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,

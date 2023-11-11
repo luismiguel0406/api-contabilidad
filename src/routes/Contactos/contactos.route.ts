@@ -16,7 +16,7 @@ import {
   updateDirecciones,
   updateTelefonos,
   updateTipoContactos,
-} from "../../Controllers/contactos.controller";
+} from "../../controllers/contactos.controller";
 
 const router = Router();
 const endPointContactos = "/api/Contactos";

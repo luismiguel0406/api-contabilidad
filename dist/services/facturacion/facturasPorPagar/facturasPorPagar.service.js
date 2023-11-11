@@ -28,10 +28,10 @@ class FacturasPorPagarService {
             return FacturasPorPagar;
         });
     }
-    addFacturasPorPagar(body) {
+    addFacturasPorPagar(body, transaction) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return yield facturasPorPagar_model_1.default.create(body);
+                return yield facturasPorPagar_model_1.default.create(body, { transaction });
             }
             catch (error) {
                 return error;

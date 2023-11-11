@@ -5,13 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
-const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
+const database_1 = __importDefault(require("../../database"));
 const Transaccion_model_1 = __importDefault(require("../Transaccion/Transaccion.model"));
-const entradasContables = connectionDB_1.default.define("entradaContable", {
+const entradasContables = database_1.default.define("entradaContable", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
     numero: {
         type: sequelize_1.DataTypes.INTEGER,

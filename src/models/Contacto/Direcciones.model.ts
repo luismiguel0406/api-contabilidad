@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import conexion from "../../Database";
+import conexion from "../../database";
 import clientes from "../Clientes/Cliente.model";
 import tiposContactos from "./tipoContactos.model";
 

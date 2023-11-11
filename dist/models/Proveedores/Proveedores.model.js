@@ -4,13 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
+const database_1 = __importDefault(require("../../database"));
 const tipoProveedores_model_1 = __importDefault(require("./tipoProveedores.model"));
-const Proveedores = connectionDB_1.default.define("proveedor", {
+const Proveedores = database_1.default.define("proveedor", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
     nombre: {
         type: sequelize_1.DataTypes.STRING,
@@ -19,7 +19,7 @@ const Proveedores = connectionDB_1.default.define("proveedor", {
     documento: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
     },
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
@@ -48,7 +48,7 @@ const Proveedores = connectionDB_1.default.define("proveedor", {
         allowNull: false,
     },
 }, { schema: "PROVEEDORES" });
-//--- ASOCIACIONES---// 
+//--- ASOCIACIONES---//
 tipoProveedores_model_1.default.hasMany(Proveedores, { foreignKey: "tipoProveedorId" });
 Proveedores.belongsTo(tipoProveedores_model_1.default);
 exports.default = Proveedores;

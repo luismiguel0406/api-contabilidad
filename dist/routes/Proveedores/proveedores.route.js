@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const proveedores_controller_1 = require("../../Controllers/proveedores.controller");
+const proveedores_controller_1 = require("../../controllers/proveedores.controller");
 const router = (0, express_1.Router)();
 const endPointProveedores = "/api/proveedores";
 const proveedor = "proveedor";

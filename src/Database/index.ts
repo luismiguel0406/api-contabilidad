@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import variablesEnv from "../config/index";
 
-const sequelizeConnection = new Sequelize(
+ const db = new Sequelize(
   `${variablesEnv.DB_NAME_LOCAL}`,
   `${variablesEnv.USER_LOCAL}`,
   `${variablesEnv.PASSWORD_LOCAL}`,
@@ -19,4 +19,4 @@ const sequelizeConnection = new Sequelize(
   }
 );
 
-export default sequelizeConnection;
+export default db;

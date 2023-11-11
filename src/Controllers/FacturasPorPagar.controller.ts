@@ -3,12 +3,12 @@ import { TDataEntradaContable } from "types";
 import EntradaContableService from "../services/entradaContable/entradaContable.service";
 import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
 import FacturasPorPagarService from "../services/facturacion/facturasPorPagar/facturasPorPagar.service";
+import sequelizeConnection from "../database";
 
 //-------TIPO FACTURAS POR PAGAR -----//
 
 const facturaPorPagar_service = new FacturasPorPagarService();
 const entradaContable_service = new EntradaContableService();
-
 
 export const getTipoFactura = async (req: Request, res: Response) => {
   try {
@@ -28,28 +28,38 @@ export const getTipoFactura = async (req: Request, res: Response) => {
 
 //------- FACTURAS POR PAGAR -------//
 export const postFacturaPorPagar = async (req: Request, res: Response) => {
+  const transaction = await sequelizeConnection.transaction();
   try {
     const factura: any = await facturaPorPagar_service.addFacturasPorPagar(
-      req.body
+      req.body,
+      transaction
     );
 
     //ENTRADA CONTABLE
-    const data:TDataEntradaContable = {
-     payload:'FACTURA_POR_PAGAR',
-     id: factura.id,
-     total:factura.total,
-     comentario: factura.comentario,
-     detalle: factura.detalle,
-     empresaId: Number(req.empresaId),
-     userId: Number(req.userId)
+    const data: TDataEntradaContable = {
+      payload: "FACTURA_POR_PAGAR",
+      id: factura.id,
+      total: factura.total,
+      comentario: factura.comentario,
+      detalle: factura.detalle,
+      empresaId: Number(req.empresaId),
+      userId: Number(req.userId),
+    };
+    const result = await entradaContable_service.createEntradaContable(
+      data,
+      transaction
+    );
+    const { entradaContable, movimientoCuenta } = result;
 
-    }
-    const result = await entradaContable_service.createEntradaContable(data);
-    const { entradaContable, movimientoCuenta }= result;
-   
-    const { statusCode, msg } = MsgRespuesta.created
-    res.status(statusCode).json({ factura, entradaContable, movimientoCuenta, Message: msg });
+    const { statusCode, msg } = MsgRespuesta.created;
+    res
+      .status(statusCode)
+      .json({ factura, entradaContable, movimientoCuenta, Message: msg });
+
+    transaction.commit();
   } catch (error) {
+    transaction.rollback();
+
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });
   }

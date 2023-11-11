@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const tipoRegistro = connectionDB_1.default.define("tipoRegistro", {
+const database_1 = __importDefault(require("../../database"));
+const tipoRegistro = database_1.default.define("tipoRegistro", {
     descripcion: {
         type: sequelize_1.DataTypes.STRING(10),
         allowNull: false,

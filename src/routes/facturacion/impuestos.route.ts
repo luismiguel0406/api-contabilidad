@@ -4,7 +4,7 @@ import {
   getImpuestos,
   postImpuesto,
   updateImpuesto,
-} from "../../Controllers/impuestos.controller";
+} from "../../controllers/impuestos.controller";
 
 const router = Router();
 

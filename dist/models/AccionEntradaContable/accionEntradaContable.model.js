@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tipoCuenta_model_1 = __importDefault(require("../Cuentas Contables/tipoCuenta.model"));
 const Transaccion_model_1 = __importDefault(require("../Transaccion/Transaccion.model"));
 const sequelize_1 = require("sequelize");
-const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const accionesEntradasContables = connectionDB_1.default.define("accionEntradaContable", {
+const database_1 = __importDefault(require("../../database"));
+const accionesEntradasContables = database_1.default.define("accionEntradaContable", {
     transaccionId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,

@@ -4,7 +4,7 @@ import {
   getMedioDePago,
   postMedioDePago,
   updateMedioDePago,
-} from "../../Controllers/medioDePago.controller";
+} from "../../controllers/medioDePago.controller";
 
 const router = Router();
 

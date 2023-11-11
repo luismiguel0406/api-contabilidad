@@ -37,7 +37,7 @@ import tipoGastosRoutes from "./routes/facturacion/tipoGastos.route";
 import facturasPorpPagarRoutes from "./routes/facturasPorPagar/facturasPorPagar.route";
 import cors from "cors";
 import variablesEnv from "./config/index";
-import sequelizeConnection from "./Database";
+import sequelizeConnection from "./database";
 import helmet from "helmet";
 
 /*INICIALIZO EL SERVIDOR*/

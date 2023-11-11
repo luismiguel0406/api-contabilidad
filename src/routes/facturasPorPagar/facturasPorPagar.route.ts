@@ -1,22 +1,29 @@
-import { getFacturasPorPagar, getTipoFactura, postFacturaPorPagar } from "../../Controllers/FacturasPorPagar.controller";
-import {Router} from "express";
+import {
+  getFacturasPorPagar,
+  getTipoFactura,
+  postFacturaPorPagar,
+} from "../../controllers/FacturasPorPagar.controller";
+import { Router } from "express";
 import { ValidarToken } from "../../lib/Token/jsonWebToken";
-
 
 const router = Router();
 
-const endPointFacturacion = '/api/facturacion';
+const endPointFacturacion = "/api/facturacion";
 const tipoFacturasPorPagar = "tipoFacturasPorPagar";
 const facturaPorPagar = "FacturaPorPagar";
 
 //-----------TIPO FACTURA------------//
-router.get(`${endPointFacturacion}/${tipoFacturasPorPagar}/:id?`,getTipoFactura);
+router.get(
+  `${endPointFacturacion}/${tipoFacturasPorPagar}/:id?`,
+  getTipoFactura
+);
 
 //----------- FACTURA POR PAGAR ------------//
-router.use(`${endPointFacturacion}/${facturaPorPagar}`,ValidarToken)
+router.use(`${endPointFacturacion}/${facturaPorPagar}`, ValidarToken);
 router.post(`${endPointFacturacion}/${facturaPorPagar}`, postFacturaPorPagar);
-router.get(`${endPointFacturacion}/${facturaPorPagar}/:id?`, getFacturasPorPagar);
+router.get(
+  `${endPointFacturacion}/${facturaPorPagar}/:id?`,
+  getFacturasPorPagar
+);
 
-
-
-export default  router;
+export default router;

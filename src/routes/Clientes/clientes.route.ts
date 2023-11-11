@@ -8,13 +8,13 @@ import {
   postTipoCliente,
   updateCliente,
   updateTipoCliente,
-} from "../../Controllers/clientes.controller";
+} from "../../controllers/clientes.controller";
 
 const router = Router();
 
 const endPointClientes = "/api/Clientes";
 const Cliente = "Cliente";
-const tipoCliente ="tipoCliente"
+const tipoCliente = "tipoCliente";
 
 router.get(`${endPointClientes}/${Cliente}/:id?`, getClientes);
 router.post(`${endPointClientes}/${Cliente}`, postCliente);

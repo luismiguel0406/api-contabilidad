@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import conexion from "../../Database";
+import conexion from "../../database";
 import clientes from "../Clientes/Cliente.model";
 import Proveedores from "../Proveedores/Proveedores.model";
 import { TTipoGenerico } from "types";

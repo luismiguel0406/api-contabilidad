@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import conexion from "../../Database";
+import conexion from "../../database";
 
 const empresas = conexion.define(
   "empresa",

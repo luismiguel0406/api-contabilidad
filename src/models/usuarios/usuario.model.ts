@@ -1,6 +1,6 @@
 import perfil from "../../models/Perfiles/perfil.model";
 import { DataTypes } from "sequelize";
-import conexion from "../../Database";
+import conexion from "../../database";
 import { Encryptar } from "../../lib/validaciones/encryptaPw";
 import empresas from "../Empresa/empresa.model";
 

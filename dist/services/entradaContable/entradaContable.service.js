@@ -30,7 +30,7 @@ class EntradaContableService {
         this._accionContable = [];
     }
     // 1- Obtengo id de la transaccion en curso
-    createEntradaContable(data) {
+    createEntradaContable(data, transaction) {
         var _a, e_1, _b, _c;
         return __awaiter(this, void 0, void 0, function* () {
             const { payload, id, total, comentario, detalle, empresaId, userId } = data;
@@ -86,7 +86,7 @@ class EntradaContableService {
                 }
                 finally { if (e_1) throw e_1.error; }
             }
-            this._movimientoCuenta = yield movimientoCuenta_model_1.default.bulkCreate(this._dataMovimientoCuenta);
+            this._movimientoCuenta = yield movimientoCuenta_model_1.default.bulkCreate(this._dataMovimientoCuenta, { transaction });
             // 5- Llenar la cabecera de la entrada contable, segun los datos que ingresan
             this._dataEntrada = {
                 numero: Math.floor(Math.random() * 1000),
@@ -104,7 +104,7 @@ class EntradaContableService {
                 detalle: this._detalleEntrada,
             };
             // 6- Crear la entrada contable
-            const entradaContable = yield entradaContable_model_1.default.create(this._dataEntrada);
+            const entradaContable = yield entradaContable_model_1.default.create(this._dataEntrada, { transaction });
             return { entradaContable, movimientoCuenta: this._movimientoCuenta };
         });
     }

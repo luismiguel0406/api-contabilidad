@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import empresas from "../Empresa/empresa.model";
-import conexion from "../../Database";
+import conexion from "../../database";
 import transaccion from "../Transaccion/Transaccion.model";
 import { TEntradaContable } from "types";
 

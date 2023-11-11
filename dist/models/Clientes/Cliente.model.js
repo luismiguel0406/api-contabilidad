@@ -4,13 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
+const database_1 = __importDefault(require("../../database"));
 const tipoCliente_model_1 = __importDefault(require("./tipoCliente.model"));
-const clientes = connectionDB_1.default.define("clientes", {
+const clientes = database_1.default.define("clientes", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
     nombre: {
         type: sequelize_1.DataTypes.STRING,

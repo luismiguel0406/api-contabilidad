@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
-const empresas = connectionDB_1.default.define("empresa", {
+const database_1 = __importDefault(require("../../database"));
+const empresas = database_1.default.define("empresa", {
     nombre: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
@@ -23,7 +23,7 @@ const empresas = connectionDB_1.default.define("empresa", {
     },
     planId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
     },
     estado: {
         type: sequelize_1.DataTypes.BOOLEAN,
@@ -55,7 +55,7 @@ const empresas = connectionDB_1.default.define("empresa", {
     terminal: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
-    }
+    },
 }, { schema: "EMPRESA" });
 //empresas.sync()
 exports.default = empresas;

@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const connectionDB_1 = __importDefault(require("../../../Database/connectionDB"));
+const database_1 = __importDefault(require("../../../database"));
 const tipoItem_model_1 = __importDefault(require("../../Inventario/tipoItem.model"));
-const tiposVenta = connectionDB_1.default.define("tipoVenta", {
+const tiposVenta = database_1.default.define("tipoVenta", {
     descripcion: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
@@ -34,7 +34,7 @@ const tiposVenta = connectionDB_1.default.define("tipoVenta", {
         type: sequelize_1.DataTypes.INTEGER,
     },
 }, { schema: "FACTURACION" });
-//--- ASOCIACIONES---// 
+//--- ASOCIACIONES---//
 tipoItem_model_1.default.hasMany(tiposVenta, { foreignKey: "tipoItemId" });
 tiposVenta.belongsTo(tipoItem_model_1.default);
 exports.default = tiposVenta;

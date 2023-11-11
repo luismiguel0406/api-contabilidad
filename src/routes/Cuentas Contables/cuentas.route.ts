@@ -8,14 +8,14 @@ import {
   postGrupoCuentaContable,
   updateGrupoCuentasContables,
   postMovimientoCuenta,
-  getMovimientoCuenta
-} from "../../Controllers/cuentaContable.controller";
+  getMovimientoCuenta,
+} from "../../controllers/cuentaContable.controller";
 
 const router = Router();
 const cuentaContable = "cuentaContable";
 const tipoCuentas = "tipoCuentas";
 const grupoCuenta = "grupoCuentas";
-const movimiento ='movimiento'
+const movimiento = "movimiento";
 
 // TIPOS //
 router.get(`api/cuentas/${tipoCuentas}/:id?`, getTiposCuentasContables);
@@ -29,14 +29,20 @@ router.delete(`api/cuentas/${grupoCuenta}/:id`, deleteGrupoCuentasContables);
 
 // CUENTAS //
 
-router.get(`api/cuentas/${cuentaContable}/:id?`,ValidarToken,getCuentasContables );
+router.get(
+  `api/cuentas/${cuentaContable}/:id?`,
+  ValidarToken,
+  getCuentasContables
+);
 router.post(`api/cuentas/${grupoCuenta}`, postGrupoCuentaContable);
 router.put(`api/cuentas/${grupoCuenta}/:id`, updateGrupoCuentasContables);
 router.delete(`api/cuentas/${grupoCuenta}/:id`, deleteGrupoCuentasContables);
 
 // MOVIMIENTO //
 
-router.post(`api/cuentas/${movimiento}`,postMovimientoCuenta);
-router.get(`api/cuentas/${movimiento}/:id?/:fechaInicio?/:fechaFin?`,getMovimientoCuenta);
+router.post(`api/cuentas/${movimiento}`, postMovimientoCuenta);
+router.get(
+  `api/cuentas/${movimiento}/:id?/:fechaInicio?/:fechaFin?`,
+  getMovimientoCuenta
+);
 export default router;
-  

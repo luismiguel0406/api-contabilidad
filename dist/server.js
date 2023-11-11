@@ -31,7 +31,7 @@ const tipoGastos_route_1 = __importDefault(require("./routes/facturacion/tipoGas
 const facturasPorPagar_route_1 = __importDefault(require("./routes/facturasPorPagar/facturasPorPagar.route"));
 const cors_1 = __importDefault(require("cors"));
 const index_1 = __importDefault(require("./config/index"));
-const connectionDB_1 = __importDefault(require("./Database/connectionDB"));
+const database_1 = __importDefault(require("./database"));
 const helmet_1 = __importDefault(require("helmet"));
 /*INICIALIZO EL SERVIDOR*/
 class Server {
@@ -53,7 +53,7 @@ class Server {
     dbConnection() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield connectionDB_1.default.authenticate();
+                yield database_1.default.authenticate();
                 //await db.sync();
                 console.log("Database CACTUS online.");
             }

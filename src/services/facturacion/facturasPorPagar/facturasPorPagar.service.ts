@@ -1,3 +1,4 @@
+import { Transaction } from "sequelize";
 import facturasPorPagar from "../../../models/Facturacion/Facturas por pagar/facturasPorPagar.model";
 import tipoFacturasPorPagar from "../../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model";
 import { TFacturasPorPagar, TTipoGenerico } from "types";
@@ -18,9 +19,9 @@ export default class FacturasPorPagarService {
     return FacturasPorPagar;
   }
 
-  async addFacturasPorPagar(body: TFacturasPorPagar) {
+  async addFacturasPorPagar(body: TFacturasPorPagar, transaction: Transaction) {
     try {
-      return await facturasPorPagar.create(body);           
+      return await facturasPorPagar.create(body, { transaction });
     } catch (error) {
       return error;
     }
@@ -28,7 +29,7 @@ export default class FacturasPorPagarService {
 
   async deleteFacturasPorPagar(id: string, empresaId: string) {
     await facturasPorPagar.update(
-      { estado: false},
+      { estado: false },
       { where: { id, empresaId } }
     );
   }
@@ -39,7 +40,7 @@ export default class FacturasPorPagarService {
     const Tipofactura =
       id === null
         ? await tipoFacturasPorPagar.findAll({ where: { estado: true } })
-        : await tipoFacturasPorPagar.findOne({ where: { id, estado: true} });
+        : await tipoFacturasPorPagar.findOne({ where: { id, estado: true } });
 
     return Tipofactura;
   }

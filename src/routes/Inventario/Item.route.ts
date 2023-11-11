@@ -8,7 +8,7 @@ import {
   postTipoItem,
   updateItem,
   updateTipoItem,
-} from "../../Controllers/item.controller";
+} from "../../controllers/item.controller";
 
 const router = Router();
 

@@ -1,6 +1,6 @@
 import empresas from "../Empresa/empresa.model";
 import { DataTypes, Model } from "sequelize";
-import conexion from "../../Database";
+import conexion from "../../database";
 import tipoCuenta from "./tipoCuenta.model";
 import grupoCuenta from "./grupoCuenta.model";
 import moneda from "../../models/Facturacion/moneda/moneda.model";

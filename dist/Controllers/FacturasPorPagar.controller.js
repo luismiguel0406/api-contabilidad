@@ -16,6 +16,7 @@ exports.getFacturasPorPagar = exports.postFacturaPorPagar = exports.getTipoFactu
 const entradaContable_service_1 = __importDefault(require("../services/entradaContable/entradaContable.service"));
 const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
 const facturasPorPagar_service_1 = __importDefault(require("../services/facturacion/facturasPorPagar/facturasPorPagar.service"));
+const database_1 = __importDefault(require("../database"));
 //-------TIPO FACTURAS POR PAGAR -----//
 const facturaPorPagar_service = new facturasPorPagar_service_1.default();
 const entradaContable_service = new entradaContable_service_1.default();
@@ -37,24 +38,29 @@ const getTipoFactura = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.getTipoFactura = getTipoFactura;
 //------- FACTURAS POR PAGAR -------//
 const postFacturaPorPagar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const transaction = yield database_1.default.transaction();
     try {
-        const factura = yield facturaPorPagar_service.addFacturasPorPagar(req.body);
+        const factura = yield facturaPorPagar_service.addFacturasPorPagar(req.body, transaction);
         //ENTRADA CONTABLE
         const data = {
-            payload: 'FACTURA_POR_PAGAR',
+            payload: "FACTURA_POR_PAGAR",
             id: factura.id,
             total: factura.total,
             comentario: factura.comentario,
             detalle: factura.detalle,
             empresaId: Number(req.empresaId),
-            userId: Number(req.userId)
+            userId: Number(req.userId),
         };
-        const result = yield entradaContable_service.createEntradaContable(data);
+        const result = yield entradaContable_service.createEntradaContable(data, transaction);
         const { entradaContable, movimientoCuenta } = result;
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
-        res.status(statusCode).json({ factura, entradaContable, movimientoCuenta, Message: msg });
+        res
+            .status(statusCode)
+            .json({ factura, entradaContable, movimientoCuenta, Message: msg });
+        transaction.commit();
     }
     catch (error) {
+        transaction.rollback();
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
         return res.status(statusCode).json({ Message: msg, error });
     }

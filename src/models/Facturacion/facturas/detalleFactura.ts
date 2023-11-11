@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import conexion from "../../../Database";
+import conexion from "../../../database";
 import item from "../../Inventario/Item.model";
 import facturas from "./factura.model";
 

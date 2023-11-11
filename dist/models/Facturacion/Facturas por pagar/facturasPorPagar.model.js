@@ -6,16 +6,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const empresa_model_1 = __importDefault(require("../../Empresa/empresa.model"));
 const Proveedores_model_1 = __importDefault(require("../../Proveedores/Proveedores.model"));
-const connectionDB_1 = __importDefault(require("../../../Database/connectionDB"));
+const database_1 = __importDefault(require("../../../database"));
 const medioDePago_model_1 = __importDefault(require("../medioDePago/medioDePago.model"));
 const moneda_model_1 = __importDefault(require("../moneda/moneda.model"));
 const gastos_model_1 = __importDefault(require("./Gastos/gastos.model"));
 const tiposFacturasPorPagar_model_1 = __importDefault(require("./tiposFacturasPorPagar/tiposFacturasPorPagar.model"));
-const facturasPorPagar = connectionDB_1.default.define("facturaPorPagar", {
+const facturasPorPagar = database_1.default.define("facturaPorPagar", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
     noFactura: {
         type: sequelize_1.DataTypes.STRING(50),

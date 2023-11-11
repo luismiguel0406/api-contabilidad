@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const contactos_controller_1 = require("../../Controllers/contactos.controller");
+const contactos_controller_1 = require("../../controllers/contactos.controller");
 const router = (0, express_1.Router)();
 const endPointContactos = "/api/Contactos";
 const Correos = "Correos";

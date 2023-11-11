@@ -4,13 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const connectionDB_1 = __importDefault(require("../../../Database/connectionDB"));
+const database_1 = __importDefault(require("../../../database"));
 const Cliente_model_1 = __importDefault(require("../../Clientes/Cliente.model"));
 const empresa_model_1 = __importDefault(require("../../Empresa/empresa.model"));
 const medioDePago_model_1 = __importDefault(require("../medioDePago/medioDePago.model"));
 const moneda_model_1 = __importDefault(require("../moneda/moneda.model"));
 const tipoVentas_model_1 = __importDefault(require("../ventas/tipoVentas.model"));
-const facturas = connectionDB_1.default.define("factura", {
+const facturas = database_1.default.define("factura", {
     noFactura: {
         type: sequelize_1.DataTypes.STRING(50),
         allowNull: false,

@@ -14,13 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const perfil_model_1 = __importDefault(require("../../models/Perfiles/perfil.model"));
 const sequelize_1 = require("sequelize");
-const connectionDB_1 = __importDefault(require("../../Database/connectionDB"));
+const database_1 = __importDefault(require("../../database"));
 const encryptaPw_1 = require("../../lib/validaciones/encryptaPw");
 const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
-const usuarios = connectionDB_1.default.define("usuario", {
+const usuarios = database_1.default.define("usuario", {
     nombreUsuario: {
         type: sequelize_1.DataTypes.STRING(50),
-        unique: true
+        unique: true,
     },
     contrasena: {
         type: sequelize_1.DataTypes.STRING,
@@ -50,7 +50,7 @@ const usuarios = connectionDB_1.default.define("usuario", {
     perfilId: {
         type: sequelize_1.DataTypes.INTEGER,
         // allowNull:false
-    }
+    },
 }, {
     schema: "USUARIOS",
 });
