@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteTipoCliente = exports.updateTipoCliente = exports.postTipoCliente = exports.getTiposClientes = exports.deleteCliente = exports.updateCliente = exports.postCliente = exports.getClientes = void 0;
-const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
+const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const Clientes_service_1 = __importDefault(require("../services/clientes/Clientes.service"));
 const clientes_service = new Clientes_service_1.default();
 //------------------------CLIENTE--------------------------//
@@ -84,7 +84,9 @@ const getTiposClientes = (req, res) => __awaiter(void 0, void 0, void 0, functio
             return res.status(statusCode).json({ Message: msg });
         }
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
-        res.status(statusCode).json({ TipoClientes: tipoClientesResult, Message: msg });
+        res
+            .status(statusCode)
+            .json({ TipoClientes: tipoClientesResult, Message: msg });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
+import { MsgRespuesta } from "../helpers/mensajesCliente/MensajesRespuestaCliente";
 
 import MonedaService from "../services/facturacion/monedas/monedas.service";
 

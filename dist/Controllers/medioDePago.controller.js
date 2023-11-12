@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteMedioDePago = exports.updateMedioDePago = exports.postMedioDePago = exports.getMedioDePago = void 0;
-const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
+const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const medioDePago_service_1 = __importDefault(require("../services/facturacion/medioDePago/medioDePago.service"));
 const medioDePago_service = new medioDePago_service_1.default();
 const getMedioDePago = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -25,7 +25,9 @@ const getMedioDePago = (req, res) => __awaiter(void 0, void 0, void 0, function*
             return res.status(statusCode).json({ Message: msg });
         }
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
-        res.status(statusCode).json({ MedioDePago: MedioDePagoResult, Message: msg });
+        res
+            .status(statusCode)
+            .json({ MedioDePago: MedioDePagoResult, Message: msg });
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.internalError;

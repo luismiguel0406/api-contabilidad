@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteTipoItem = exports.updateTipoItem = exports.postTipoItem = exports.getTipoItem = exports.deleteItem = exports.updateItem = exports.postItem = exports.getItem = void 0;
-const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
+const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const item_service_1 = __importDefault(require("../services/inventario/item.service"));
 const item_service = new item_service_1.default();
 //------------------ ITEM ----------------------//

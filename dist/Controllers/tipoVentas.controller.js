@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteTipoVenta = exports.updateTipoVenta = exports.postTipoVenta = exports.getTipoVentas = void 0;
-const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
+const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const tipoVentas_service_1 = require("../services/facturacion/tipoVentas/tipoVentas.service");
 const tipoVenta_service = new tipoVentas_service_1.TipoVentasService();
 const getTipoVentas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

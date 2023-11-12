@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
+import { MsgRespuesta } from "../helpers/mensajesCliente/MensajesRespuestaCliente";
 import CorreoService from "../services/contacto/correos.service";
-import  DireccionService  from "../services/contacto/direcciones.service";
+import DireccionService from "../services/contacto/direcciones.service";
 import TelefonoService from "../services/contacto/telefonos.service";
 import TipoContactosService from "../services/contacto/tipoContacto.service";
 
@@ -190,7 +190,7 @@ export const deleteDirecciones = async (req: Request, res: Response) => {
 
 //--------------------TIPOS CONTACTOS------------------------//
 
-const tipoContacto_Service=new TipoContactosService();
+const tipoContacto_Service = new TipoContactosService();
 
 export const getTipoContactos = async (req: Request, res: Response) => {
   try {

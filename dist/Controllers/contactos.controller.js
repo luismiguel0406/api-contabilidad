@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteTipoContactos = exports.updateTipoContactos = exports.postTipoContactos = exports.getTipoContactos = exports.deleteDirecciones = exports.updateDirecciones = exports.postDirecciones = exports.getDirecciones = exports.deleteTelefonos = exports.updateTelefonos = exports.postTelefonos = exports.getTelefonos = exports.deleteCorreos = exports.updateCorreos = exports.postCorreos = exports.getCorreos = void 0;
-const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
+const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const correos_service_1 = __importDefault(require("../services/contacto/correos.service"));
 const direcciones_service_1 = __importDefault(require("../services/contacto/direcciones.service"));
 const telefonos_service_1 = __importDefault(require("../services/contacto/telefonos.service"));

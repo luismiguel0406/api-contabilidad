@@ -4,6 +4,7 @@ import {
   deleteTipoProveedor,
   getProveedores,
   getTipoProveedor,
+  getTipoServicio,
   postProveedor,
   postTipoProveedor,
   updateProveedores,
@@ -11,23 +12,19 @@ import {
 } from "../../controllers/proveedores.controller";
 
 const router = Router();
-const endPointProveedores = "/api/proveedores";
-const proveedor = "proveedor";
-const tipoProveedor = "tipo";
 
 //PROVEEDORES
-router.get(`${endPointProveedores}/${proveedor}:id?`, getProveedores);
-router.post(`${endPointProveedores}/${proveedor}`, postProveedor);
-router.put(`${endPointProveedores}/${proveedor}/:id`, updateProveedores);
-router.delete(`${endPointProveedores}/${proveedor}/:id`, deleteProveedor);
+router.get(`/api/proveedores/proveedor:id?`, getProveedores);
+router.post(`/api/proveedores/proveedor`, postProveedor);
+router.put(`/api/proveedores/proveedor/:id`, updateProveedores);
+router.delete(`/api/proveedores/proveedor/:id`, deleteProveedor);
 
 //TIPO PROVEEDORES
-router.get(`${endPointProveedores}/${tipoProveedor}:id?`, getTipoProveedor);
-router.post(`${endPointProveedores}/${tipoProveedor}`, postTipoProveedor);
-router.put(`${endPointProveedores}/${tipoProveedor}/:id`, updateTipoProveedor);
-router.delete(
-  `${endPointProveedores}/${tipoProveedor}/:id`,
-  deleteTipoProveedor
-);
+router.get(`/api/proveedores/tipoProveedor/:id?`, getTipoProveedor);
+router.post(`/api/proveedores/tipoProveedor`, postTipoProveedor);
+router.put(`/api/proveedores/:id`, updateTipoProveedor);
+
+//TIPO SERVICIO
+router.get(`/api/proveedores/tipoServicio`,getTipoServicio);
 
 export default router;

@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getMovimientoCuenta = exports.postMovimientoCuenta = exports.getTiposCuentasContables = exports.deleteGrupoCuentasContables = exports.updateGrupoCuentasContables = exports.getGrupoCuentasContables = exports.postGrupoCuentaContable = exports.getCuentasContables = void 0;
-const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
+const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const cuentasContables_service_1 = __importDefault(require("../services/cuentas/cuentasContables.service"));
 const cuentaContable_service = new cuentasContables_service_1.default();
 //--------- CUENTAS CONTABLES ----------//

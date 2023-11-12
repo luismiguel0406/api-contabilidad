@@ -1,12 +1,16 @@
 import { Response, Request, NextFunction } from "express";
-import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
+import { MsgRespuesta } from "../helpers/mensajesCliente/MensajesRespuestaCliente";
 import { registrarToken } from "../lib/Token/jsonWebToken";
 import { validarContrasena } from "../lib/validaciones/encryptaPw";
 import UsuariosService from "../services/usuarios/usuarios.service";
 
 const usuario_service = new UsuariosService();
 
-export const RegistrarUsuario = async (req:Request, res:Response, next:NextFunction) => {
+export const RegistrarUsuario = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { email, empresaId } = req.body;
 
@@ -26,7 +30,6 @@ export const RegistrarUsuario = async (req:Request, res:Response, next:NextFunct
       Usuario: usuarioCreado.nombreUsuario,
       Empresa: usuarioCreado.empresaId,
       Email: usuarioCreado.email,
-      
     });
     next();
   } catch (error) {
@@ -35,7 +38,11 @@ export const RegistrarUsuario = async (req:Request, res:Response, next:NextFunct
   }
 };
 
-export const InicioSesionUsuario = async (req: Request, res: Response, next: NextFunction) => {
+export const InicioSesionUsuario = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { email, contrasena, empresaId } = req.body;
 
@@ -50,17 +57,20 @@ export const InicioSesionUsuario = async (req: Request, res: Response, next: Nex
       contrasena,
       usuario.contrasena
     );
-    if (!ContrasenaCorrecta){
-      const {statusCode, msg} = MsgRespuesta.badRequest;
-      return res.status(statusCode).json({ Message: `Usuario o contraseña invalida, ${msg}`});
+    if (!ContrasenaCorrecta) {
+      const { statusCode, msg } = MsgRespuesta.badRequest;
+      return res
+        .status(statusCode)
+        .json({ Message: `Usuario o contraseña invalida, ${msg}` });
     }
-    
+
     const Token: string = registrarToken(usuario.id, usuario.empresaId);
     res.header("auth-token", Token).json({
       Usuario: usuario.nombreUsuario,
       Empresa: usuario.empresaId,
       Email: usuario.email,
-      Message:`Bienvenid@ ${usuario.nombreUsuario}`});
+      Message: `Bienvenid@ ${usuario.nombreUsuario}`,
+    });
     next();
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;

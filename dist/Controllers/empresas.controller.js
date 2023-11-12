@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateEmpresa = exports.deleteEmpresa = exports.postEmpresa = exports.getEmpresa = void 0;
-const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
+const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const empresa_service_1 = __importDefault(require("../services/empresa/empresa.service"));
 const empresa_service = new empresa_service_1.default();
 const getEmpresa = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

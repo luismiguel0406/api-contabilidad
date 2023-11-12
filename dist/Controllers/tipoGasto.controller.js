@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTipoGastos = void 0;
-const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
+const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const tipoGastos_service_1 = __importDefault(require("../services/facturacion/facturasPorPagar/tipoGastos/tipoGastos.service"));
 const tipoGasto_service = new tipoGastos_service_1.default();
 const getTipoGastos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

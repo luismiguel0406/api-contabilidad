@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
+import { MsgRespuesta } from "../helpers/mensajesCliente/MensajesRespuestaCliente";
 import TipoComprobanteService from "../services/facturacion/comprobantes/comprobantes.service";
 
 const tipoComprobante_service = new TipoComprobanteService();

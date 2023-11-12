@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { TDataEntradaContable } from "types";
 import EntradaContableService from "../services/entradaContable/entradaContable.service";
-import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
+import { MsgRespuesta } from "../helpers/mensajesCliente/MensajesRespuestaCliente";
 import FacturasPorPagarService from "../services/facturacion/facturasPorPagar/facturasPorPagar.service";
 import sequelizeConnection from "../database";
 

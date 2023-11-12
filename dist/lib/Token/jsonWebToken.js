@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ValidarToken = exports.registrarToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const index_1 = __importDefault(require("../../config/index"));
-const MensajesRespuestaCliente_1 = require("../../helpers/MensajesError/MensajesRespuestaCliente");
+const MensajesRespuestaCliente_1 = require("../../helpers/mensajesCliente/MensajesRespuestaCliente");
 const registrarToken = (usuarioId, _empresaId) => {
     const token = jsonwebtoken_1.default.sign({ _id: usuarioId, _empresaId }, index_1.default.SECRET_KEY || "", {
         expiresIn: "12h",

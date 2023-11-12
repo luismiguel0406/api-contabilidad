@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
+import { MsgRespuesta } from "../helpers/mensajesCliente/MensajesRespuestaCliente";
 import empresaService from "../services/empresa/empresa.service";
 
 const empresa_service = new empresaService();
@@ -8,12 +8,12 @@ export const getEmpresa = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const empresaResultado:any = await empresa_service.getEmpresa(id);
+    const empresaResultado: any = await empresa_service.getEmpresa(id);
     if (Object.entries(empresaResultado).length === 0) {
       const { msg, statusCode } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
-    res.json({ Empresa: empresaResultado});
+    res.json({ Empresa: empresaResultado });
   } catch (error) {
     const { msg, statusCode } = MsgRespuesta.internalError;
     res.status(statusCode).json({ Message: msg, error });

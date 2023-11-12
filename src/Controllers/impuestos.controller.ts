@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
+import { MsgRespuesta } from "../helpers/mensajesCliente/MensajesRespuestaCliente";
 import ImpuestoService from "../services/facturacion/impuestos/impuesto.service";
 
 const impuesto_service = new ImpuestoService();

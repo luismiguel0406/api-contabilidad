@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteFactura = exports.addFactura = exports.getFacturas = void 0;
-const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
+const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const facturas_service_1 = __importDefault(require("../services/facturacion/facturas/facturas.service"));
 const facturas_service = new facturas_service_1.default();
 const getFacturas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

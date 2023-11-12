@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getFacturasPorPagar = exports.postFacturaPorPagar = exports.getTipoFactura = void 0;
 const entradaContable_service_1 = __importDefault(require("../services/entradaContable/entradaContable.service"));
-const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
+const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const facturasPorPagar_service_1 = __importDefault(require("../services/facturacion/facturasPorPagar/facturasPorPagar.service"));
 const database_1 = __importDefault(require("../database"));
 //-------TIPO FACTURAS POR PAGAR -----//

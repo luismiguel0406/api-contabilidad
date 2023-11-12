@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
+import { MsgRespuesta } from "../helpers/mensajesCliente/MensajesRespuestaCliente";
 import ClientesService from "../services/clientes/Clientes.service";
-
 
 const clientes_service = new ClientesService();
 
@@ -10,9 +9,9 @@ const clientes_service = new ClientesService();
 export const getClientes = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const clientesResult:any = await clientes_service.getClientes(Number(id));
+    const clientesResult: any = await clientes_service.getClientes(Number(id));
 
-    if (Object.entries(clientesResult).length == 0 ) {
+    if (Object.entries(clientesResult).length == 0) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
@@ -21,7 +20,7 @@ export const getClientes = async (req: Request, res: Response) => {
     res.status(statusCode).json({ Clientes: clientesResult, Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
-    res.status(statusCode).json({ Message: msg ,error});
+    res.status(statusCode).json({ Message: msg, error });
   }
 };
 
@@ -40,14 +39,12 @@ export const postCliente = async (req: Request, res: Response) => {
 
 export const updateCliente = async (req: Request, res: Response) => {
   try {
-
-   const { id } = req.params;
-   const { body } = req;
-   await clientes_service.updateCliente(body, Number(id));
+    const { id } = req.params;
+    const { body } = req;
+    await clientes_service.updateCliente(body, Number(id));
 
     const { statusCode, msg } = MsgRespuesta.Success;
     res.status(statusCode).json({ Message: msg });
-
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ Message: msg, error });
@@ -56,13 +53,11 @@ export const updateCliente = async (req: Request, res: Response) => {
 
 export const deleteCliente = async (req: Request, res: Response) => {
   try {
-
-   const { id } = req.params;
-   await clientes_service.deleteCliente(id);
+    const { id } = req.params;
+    await clientes_service.deleteCliente(id);
 
     const { statusCode, msg } = MsgRespuesta.noContent;
     res.status(statusCode).json({ Message: msg });
-
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ Message: msg, error });
@@ -74,14 +69,18 @@ export const deleteCliente = async (req: Request, res: Response) => {
 export const getTiposClientes = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const tipoClientesResult = await clientes_service.getTipoCliente(Number(id));
+    const tipoClientesResult = await clientes_service.getTipoCliente(
+      Number(id)
+    );
 
     if (tipoClientesResult === null) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
     const { statusCode, msg } = MsgRespuesta.Success;
-    res.status(statusCode).json({ TipoClientes: tipoClientesResult, Message: msg });
+    res
+      .status(statusCode)
+      .json({ TipoClientes: tipoClientesResult, Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ Message: msg, error });
@@ -90,9 +89,8 @@ export const getTiposClientes = async (req: Request, res: Response) => {
 
 export const postTipoCliente = async (req: Request, res: Response) => {
   try {
-    
-   const { body } = req;
-   await clientes_service.addTipoCliente(body);
+    const { body } = req;
+    await clientes_service.addTipoCliente(body);
 
     const { statusCode, msg } = MsgRespuesta.created;
     res.status(statusCode).json({ Message: msg });
@@ -104,14 +102,12 @@ export const postTipoCliente = async (req: Request, res: Response) => {
 
 export const updateTipoCliente = async (req: Request, res: Response) => {
   try {
-
-   const { id } = req.params;
-   const { body } = req;
-   await clientes_service.updateTipoCliente(body, Number(id));
+    const { id } = req.params;
+    const { body } = req;
+    await clientes_service.updateTipoCliente(body, Number(id));
 
     const { statusCode, msg } = MsgRespuesta.Success;
     res.status(statusCode).json({ Message: msg });
-
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ Message: msg, error });
@@ -120,19 +116,13 @@ export const updateTipoCliente = async (req: Request, res: Response) => {
 
 export const deleteTipoCliente = async (req: Request, res: Response) => {
   try {
-
-   const { id } = req.params;
-   await clientes_service.deleteTipoCliente(Number(id));
+    const { id } = req.params;
+    await clientes_service.deleteTipoCliente(Number(id));
 
     const { statusCode, msg } = MsgRespuesta.noContent;
     res.status(statusCode).json({ Message: msg });
-
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ Message: msg, error });
   }
 };
-
-
-
-

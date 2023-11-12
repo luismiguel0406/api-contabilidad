@@ -12,8 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTipoProveedor = exports.updateTipoProveedor = exports.postTipoProveedor = exports.getTipoProveedor = exports.deleteProveedor = exports.updateProveedores = exports.postProveedor = exports.getProveedores = void 0;
-const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
+exports.getTipoServicio = exports.deleteTipoProveedor = exports.updateTipoProveedor = exports.postTipoProveedor = exports.getTipoProveedor = exports.deleteProveedor = exports.updateProveedores = exports.postProveedor = exports.getProveedores = void 0;
+const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const proveedor_service_1 = __importDefault(require("../services/proveedor/proveedor.service"));
 //----------- PROVEEDORES--------------//
 const proveedorers_service = new proveedor_service_1.default();
@@ -133,4 +133,21 @@ const deleteTipoProveedor = (req, res) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.deleteTipoProveedor = deleteTipoProveedor;
+//------------ TIPO SERVICIO PROVEEDOR----------------//
+const getTipoServicio = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield proveedorers_service.getTipoServicio();
+        if (result.length === 0) {
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            return res.status(statusCode).json({ Message: msg });
+        }
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
+        res.status(statusCode).json({ tipoServicio: result, Message: msg });
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        return res.status(statusCode).json({ Message: msg, error });
+    }
+});
+exports.getTipoServicio = getTipoServicio;
 //# sourceMappingURL=proveedores.controller.js.map

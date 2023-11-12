@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
+import { MsgRespuesta } from "../helpers/mensajesCliente/MensajesRespuestaCliente";
 import FacturasService from "../services/facturacion/facturas/facturas.service";
 
 const facturas_service = new FacturasService();

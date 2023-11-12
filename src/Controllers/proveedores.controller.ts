@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
+import { MsgRespuesta } from "../helpers/mensajesCliente/MensajesRespuestaCliente";
 import ProveedorService from "../services/proveedor/proveedor.service";
 
 //----------- PROVEEDORES--------------//
@@ -9,13 +9,14 @@ export const getProveedores = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const ProveedoresResult:boolean | any = await proveedorers_service.getProveedores(id);
+    const ProveedoresResult: boolean | any =
+      await proveedorers_service.getProveedores(id);
     if (!ProveedoresResult) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
-    
-    return res.json({ Proveedores: ProveedoresResult});
+
+    return res.json({ Proveedores: ProveedoresResult });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });
@@ -67,7 +68,9 @@ export const getTipoProveedor = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const TipoProveedorResult = await proveedorers_service.getTipoProveedor(Number(id));
+    const TipoProveedorResult = await proveedorers_service.getTipoProveedor(
+      Number(id)
+    );
     if (TipoProveedorResult === null) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
@@ -120,3 +123,21 @@ export const deleteTipoProveedor = async (req: Request, res: Response) => {
     return res.status(statusCode).json({ Message: msg, error });
   }
 };
+
+//------------ TIPO SERVICIO PROVEEDOR----------------//
+
+export const getTipoServicio = async (req: Request, res: Response)=>{
+try {
+ const result =  await proveedorers_service.getTipoServicio();
+ if(result.length === 0){
+  const { statusCode, msg } = MsgRespuesta.notFound;
+  return res.status(statusCode).json({ Message: msg });
+ }
+ const { statusCode, msg } = MsgRespuesta.Success;
+ res.status(statusCode).json({ tipoServicio:result, Message: msg });
+
+} catch (error) {
+  const { statusCode, msg } = MsgRespuesta.badRequest;
+  return res.status(statusCode).json({ Message: msg, error });
+}
+}

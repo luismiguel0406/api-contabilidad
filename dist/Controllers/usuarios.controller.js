@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUsuario = exports.updateUsuario = exports.InicioSesionUsuario = exports.RegistrarUsuario = void 0;
-const MensajesRespuestaCliente_1 = require("../helpers/MensajesError/MensajesRespuestaCliente");
+const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const jsonWebToken_1 = require("../lib/Token/jsonWebToken");
 const encryptaPw_1 = require("../lib/validaciones/encryptaPw");
 const usuarios_service_1 = __importDefault(require("../services/usuarios/usuarios.service"));
@@ -57,14 +57,16 @@ const InicioSesionUsuario = (req, res, next) => __awaiter(void 0, void 0, void 0
         const ContrasenaCorrecta = yield (0, encryptaPw_1.validarContrasena)(contrasena, usuario.contrasena);
         if (!ContrasenaCorrecta) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
-            return res.status(statusCode).json({ Message: `Usuario o contraseña invalida, ${msg}` });
+            return res
+                .status(statusCode)
+                .json({ Message: `Usuario o contraseña invalida, ${msg}` });
         }
         const Token = (0, jsonWebToken_1.registrarToken)(usuario.id, usuario.empresaId);
         res.header("auth-token", Token).json({
             Usuario: usuario.nombreUsuario,
             Empresa: usuario.empresaId,
             Email: usuario.email,
-            Message: `Bienvenid@ ${usuario.nombreUsuario}`
+            Message: `Bienvenid@ ${usuario.nombreUsuario}`,
         });
         next();
     }

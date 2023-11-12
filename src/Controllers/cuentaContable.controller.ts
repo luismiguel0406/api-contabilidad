@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import { MsgRespuesta } from "../helpers/MensajesError/MensajesRespuestaCliente";
+import { MsgRespuesta } from "../helpers/mensajesCliente/MensajesRespuestaCliente";
 import CuentasContablesService from "../services/cuentas/cuentasContables.service";
 
 const cuentaContable_service = new CuentasContablesService();
@@ -130,7 +130,9 @@ export const getMovimientoCuenta = async (req: Request, res: Response) => {
     const { id, fechaInicio, fechaFin } = req.params;
     let cuentaContableId = Number(id);
     const movimientoCuentas = await cuentaContable_service.getMovimientoCuenta(
-      cuentaContableId, fechaInicio, fechaFin
+      cuentaContableId,
+      fechaInicio,
+      fechaFin
     );
 
     if (!movimientoCuentas) {
