@@ -9,10 +9,10 @@ router.post(`/api/proveedores/proveedor`, proveedores_controller_1.postProveedor
 router.put(`/api/proveedores/proveedor/:id`, proveedores_controller_1.updateProveedores);
 router.delete(`/api/proveedores/proveedor/:id`, proveedores_controller_1.deleteProveedor);
 //TIPO PROVEEDORES
-router.get(`/api/proveedores/tipoProveedor/:id?`, proveedores_controller_1.getTipoProveedor);
-router.post(`/api/proveedores/tipoProveedor`, proveedores_controller_1.postTipoProveedor);
-router.put(`/api/proveedores/:id`, proveedores_controller_1.updateTipoProveedor);
+router.get(`/api/proveedores/tipoProveedor`, proveedores_controller_1.getTipoProveedor);
 //TIPO SERVICIO
 router.get(`/api/proveedores/tipoServicio`, proveedores_controller_1.getTipoServicio);
+//TIPO DOCUMENTO
+router.get(`/api/proveedores/tipoDocumento`, proveedores_controller_1.getTipoDocumento);
 exports.default = router;
 //# sourceMappingURL=proveedores.route.js.map

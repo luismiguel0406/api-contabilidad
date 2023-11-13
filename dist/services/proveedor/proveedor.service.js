@@ -15,34 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Proveedores_model_1 = __importDefault(require("../../models/Proveedores/Proveedores.model"));
 const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedores/tipoProveedores.model"));
 const tipoServicio_model_1 = __importDefault(require("../../models/Proveedores/tipoServicio.model"));
+const tipoDocumento_model_1 = __importDefault(require("../../models/Proveedores/tipoDocumento.model"));
 class ProveedorService {
     //-------- TIPO PROVEEDOR --------//
-    getTipoProveedor(id = 0) {
+    getTipoProveedor() {
         return __awaiter(this, void 0, void 0, function* () {
-            const tipoProveedorResult = id === 0
-                ? yield tipoProveedores_model_1.default.findAll({ where: { estado: true } })
-                : yield tipoProveedores_model_1.default.findOne({ where: { id, estado: true } });
-            return tipoProveedorResult;
-        });
-    }
-    addTipoProveedor(body) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield tipoProveedores_model_1.default.create(body);
-        });
-    }
-    deleteTipoProveedor(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield tipoProveedores_model_1.default.update({ estado: false }, { where: { id } });
-        });
-    }
-    updateTipoProveedor(body, id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield tipoProveedores_model_1.default.update(body, {
-                where: {
-                    id,
-                    estado: "1",
-                },
+            const tipoProveedorResult = yield tipoProveedores_model_1.default.findAll({
+                where: { estado: true },
             });
+            return tipoProveedorResult;
         });
     }
     //--------- PROVEEDOR -----------//
@@ -72,8 +53,19 @@ class ProveedorService {
     //------------ TIPO SERVICIO PROVEEDOR----------------//
     getTipoServicio() {
         return __awaiter(this, void 0, void 0, function* () {
-            const tipoServicio = yield tipoServicio_model_1.default.findAll({ where: { estado: true } });
+            const tipoServicio = yield tipoServicio_model_1.default.findAll({
+                where: { estado: true },
+            });
             return tipoServicio;
+        });
+    }
+    //---------------- TIPO DOCUMENTO ---------------//
+    getTipoDocumento() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const tipoDocumento = yield tipoDocumento_model_1.default.findAll({
+                where: { estado: true },
+            });
+            return tipoDocumento;
         });
     }
 }

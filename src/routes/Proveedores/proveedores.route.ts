@@ -1,14 +1,12 @@
 import { Router } from "express";
 import {
   deleteProveedor,
-  deleteTipoProveedor,
   getProveedores,
+  getTipoDocumento,
   getTipoProveedor,
   getTipoServicio,
   postProveedor,
-  postTipoProveedor,
   updateProveedores,
-  updateTipoProveedor,
 } from "../../controllers/proveedores.controller";
 
 const router = Router();
@@ -20,11 +18,12 @@ router.put(`/api/proveedores/proveedor/:id`, updateProveedores);
 router.delete(`/api/proveedores/proveedor/:id`, deleteProveedor);
 
 //TIPO PROVEEDORES
-router.get(`/api/proveedores/tipoProveedor/:id?`, getTipoProveedor);
-router.post(`/api/proveedores/tipoProveedor`, postTipoProveedor);
-router.put(`/api/proveedores/:id`, updateTipoProveedor);
+router.get(`/api/proveedores/tipoProveedor`, getTipoProveedor);
 
 //TIPO SERVICIO
-router.get(`/api/proveedores/tipoServicio`,getTipoServicio);
+router.get(`/api/proveedores/tipoServicio`, getTipoServicio);
+
+//TIPO DOCUMENTO
+router.get(`/api/proveedores/tipoDocumento`, getTipoDocumento);
 
 export default router;
