@@ -20,12 +20,12 @@ const proveedorers_service = new proveedor_service_1.default();
 const getProveedores = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const ProveedoresResult = yield proveedorers_service.getProveedores(id);
-        if (!ProveedoresResult) {
+        const proveedoresResult = yield proveedorers_service.getProveedores(id);
+        if (!proveedoresResult) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ message: msg });
         }
-        return res.json({ Proveedores: ProveedoresResult });
+        res.json(proveedoresResult);
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;

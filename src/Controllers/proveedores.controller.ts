@@ -9,14 +9,14 @@ export const getProveedores = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const ProveedoresResult: boolean | any =
+    const proveedoresResult: boolean | any =
       await proveedorers_service.getProveedores(id);
-    if (!ProveedoresResult) {
+    if (!proveedoresResult) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ message: msg });
     }
 
-    return res.json({ Proveedores: ProveedoresResult });
+    res.json(proveedoresResult);
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ message: msg, error });

@@ -15,6 +15,9 @@ const tipoDocumento = database_1.default.define("tipoDocumento", {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
+    mascara: {
+        type: sequelize_1.DataTypes.STRING
+    },
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,

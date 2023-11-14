@@ -1,3 +1,5 @@
+import { TTipoGenerico } from "./tipoGenerico.type";
+
 export type TProveedor = {
     id?:number;
     nombre: string;
@@ -9,5 +11,9 @@ export type TProveedor = {
     tipoProveedorId: number;
     usuario: string;
     terminal: string;
+  }
+
+  export type TTipoDocumento = TTipoGenerico & {
+    mascara:string;
   }
   
