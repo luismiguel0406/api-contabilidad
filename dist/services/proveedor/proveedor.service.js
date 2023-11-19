@@ -16,6 +16,7 @@ const Proveedores_model_1 = __importDefault(require("../../models/Proveedores/Pr
 const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedores/tipoProveedores.model"));
 const tipoServicio_model_1 = __importDefault(require("../../models/Proveedores/tipoServicio.model"));
 const tipoDocumento_model_1 = __importDefault(require("../../models/Proveedores/tipoDocumento.model"));
+const entidadBancaria_model_1 = __importDefault(require("../../models/Proveedores/entidadBancaria.model"));
 class ProveedorService {
     //-------- TIPO PROVEEDOR --------//
     getTipoProveedor() {
@@ -66,6 +67,14 @@ class ProveedorService {
                 where: { estado: true },
             });
             return tipoDocumento;
+        });
+    }
+    getEntidadBancaria() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const entidadBancaria = yield entidadBancaria_model_1.default.findAll({
+                where: { estado: true },
+            });
+            return entidadBancaria;
         });
     }
 }

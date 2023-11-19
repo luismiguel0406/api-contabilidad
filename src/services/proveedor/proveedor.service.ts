@@ -3,6 +3,7 @@ import ProveedoresModel from "../../models/Proveedores/Proveedores.model";
 import tipoProveedorModel from "../../models/Proveedores/tipoProveedores.model";
 import tipoServicioModel from "../../models/Proveedores/tipoServicio.model";
 import tipoDocumentoModel from "../../models/Proveedores/tipoDocumento.model";
+import entidadBancariaModel from "../../models/Proveedores/entidadBancaria.model";
 
 export default class ProveedorService {
   //-------- TIPO PROVEEDOR --------//
@@ -53,5 +54,12 @@ export default class ProveedorService {
       where: { estado: true },
     });
     return tipoDocumento;
+  }
+
+  async getEntidadBancaria() {
+    const entidadBancaria = await entidadBancariaModel.findAll({
+      where: { estado: true },
+    });
+    return entidadBancaria;
   }
 }

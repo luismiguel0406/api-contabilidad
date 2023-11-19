@@ -16,10 +16,42 @@ const Proveedores = database_1.default.define("proveedor", {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
+    tipoDocumentoId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
+    tipoServicioId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
+    direccionId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
+    entidadBancariaId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
     documento: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
         unique: true,
+    },
+    telefono: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    email: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    numeroCuenta: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    infoAdicional: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
     },
     createdAt: {
         type: sequelize_1.DataTypes.DATE,

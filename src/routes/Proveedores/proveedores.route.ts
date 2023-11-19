@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   deleteProveedor,
+  getEntidadBancaria,
   getProveedores,
   getTipoDocumento,
   getTipoProveedor,
@@ -26,4 +27,6 @@ router.get(`/api/proveedores/tipoServicio`, getTipoServicio);
 //TIPO DOCUMENTO
 router.get(`/api/proveedores/tipoDocumento`, getTipoDocumento);
 
+//BANCOS
+router.get(`/api/proveedores/entidadBancaria`, getEntidadBancaria);
 export default router;

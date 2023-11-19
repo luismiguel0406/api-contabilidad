@@ -14,5 +14,7 @@ router.get(`/api/proveedores/tipoProveedor`, proveedores_controller_1.getTipoPro
 router.get(`/api/proveedores/tipoServicio`, proveedores_controller_1.getTipoServicio);
 //TIPO DOCUMENTO
 router.get(`/api/proveedores/tipoDocumento`, proveedores_controller_1.getTipoDocumento);
+//BANCOS
+router.get(`/api/proveedores/entidadBancaria`, proveedores_controller_1.getEntidadBancaria);
 exports.default = router;
 //# sourceMappingURL=proveedores.route.js.map

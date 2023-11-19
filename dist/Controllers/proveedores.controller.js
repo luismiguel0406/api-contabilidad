@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTipoDocumento = exports.getTipoServicio = exports.getTipoProveedor = exports.deleteProveedor = exports.updateProveedores = exports.postProveedor = exports.getProveedores = void 0;
+exports.getEntidadBancaria = exports.getTipoDocumento = exports.getTipoServicio = exports.getTipoProveedor = exports.deleteProveedor = exports.updateProveedores = exports.postProveedor = exports.getProveedores = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const proveedor_service_1 = __importDefault(require("../services/proveedor/proveedor.service"));
 //----------- PROVEEDORES--------------//
@@ -105,6 +105,7 @@ const getTipoServicio = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.getTipoServicio = getTipoServicio;
+//---------------- TIPO DOCUMENTO----------------//
 const getTipoDocumento = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield proveedorers_service.getTipoDocumento();
@@ -120,4 +121,20 @@ const getTipoDocumento = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getTipoDocumento = getTipoDocumento;
+//------------  ENTIDAD BANCARIA  ----------------//
+const getEntidadBancaria = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield proveedorers_service.getEntidadBancaria();
+        if (result.length === 0) {
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            return res.status(statusCode).json({ message: msg });
+        }
+        res.json(result);
+    }
+    catch (error) {
+        const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
+        return res.status(statusCode).json({ message: msg, error });
+    }
+});
+exports.getEntidadBancaria = getEntidadBancaria;
 //# sourceMappingURL=proveedores.controller.js.map

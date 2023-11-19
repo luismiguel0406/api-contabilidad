@@ -94,9 +94,27 @@ export const getTipoServicio = async (req: Request, res: Response) => {
   }
 };
 
+//---------------- TIPO DOCUMENTO----------------//
+
 export const getTipoDocumento = async (req: Request, res: Response) => {
   try {
     const result = await proveedorers_service.getTipoDocumento();
+    if (result.length === 0) {
+      const { statusCode, msg } = MsgRespuesta.notFound;
+      return res.status(statusCode).json({ message: msg });
+    }
+    res.json(result);
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    return res.status(statusCode).json({ message: msg, error });
+  }
+};
+
+//------------  ENTIDAD BANCARIA  ----------------//
+
+export const getEntidadBancaria = async (req: Request, res: Response) => {
+  try {
+    const result = await proveedorers_service.getEntidadBancaria();
     if (result.length === 0) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ message: msg });

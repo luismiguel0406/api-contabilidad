@@ -15,10 +15,42 @@ const Proveedores = conexion.define<Model<TProveedor>>(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    tipoDocumentoId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    tipoServicioId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    direccionId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    entidadBancariaId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     documento: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+    },
+    telefono: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    numeroCuenta: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    infoAdicional: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
