@@ -1,12 +1,24 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
-import clientes from "../Clientes/Cliente.model";
 import tiposContactos from "./tipoContactos.model";
+import { TDireccion } from "types";
 
-const direcciones = conexion.define(
+const direcciones = conexion.define<Model<TDireccion>>(
   "direccion",
   {
-    direccion: {
+    distrito: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    sector: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    calle: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    numeroEdificio: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -28,11 +40,9 @@ const direcciones = conexion.define(
     terminal: {
       type: DataTypes.STRING,
     },
-    clienteId: {
+    referenciaContactoId: {
       type: DataTypes.INTEGER,
-    },
-    proveedorId: {
-      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     tipoContactoId: {
       type: DataTypes.INTEGER,
@@ -43,9 +53,7 @@ const direcciones = conexion.define(
 
 //--- ASOCIACIONES---//
 
-clientes.hasMany(direcciones, { foreignKey: "clienteId" });
-direcciones.belongsTo(clientes);
-
+direcciones.sync({ alter: true });
 tiposContactos.hasMany(direcciones, { foreignKey: "tipoContactoId" });
 direcciones.belongsTo(tiposContactos);
 

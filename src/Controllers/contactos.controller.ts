@@ -133,7 +133,7 @@ export const getDirecciones = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const direccionesResult = await direcciones_service.getDirecciones(id);
+    const direccionesResult = await direcciones_service.getDireccion(id);
 
     if (direccionesResult === null) {
       const { statusCode, msg } = MsgRespuesta.notFound;
@@ -152,7 +152,7 @@ export const getDirecciones = async (req: Request, res: Response) => {
 export const postDirecciones = async (req: Request, res: Response) => {
   try {
     const { body } = req;
-    await direcciones_service.addDirecciones(body);
+    await direcciones_service.addDireccion(body);
     const { statusCode, msg } = MsgRespuesta.created;
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
@@ -165,7 +165,7 @@ export const updateDirecciones = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { body } = req;
-    await direcciones_service.updateDirecciones(body, id);
+    await direcciones_service.updateDireccion(body, id);
 
     const { statusCode, msg } = MsgRespuesta.Success;
     res.status(statusCode).json({ Message: msg });
