@@ -15,8 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getEntidadBancaria = exports.getTipoDocumento = exports.getTipoServicio = exports.getTipoProveedor = exports.deleteProveedor = exports.updateProveedores = exports.postProveedor = exports.getProveedores = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const proveedor_service_1 = __importDefault(require("../services/proveedor/proveedor.service"));
+const database_1 = __importDefault(require("../database"));
+const direcciones_service_1 = __importDefault(require("../services/contacto/direcciones.service"));
 //----------- PROVEEDORES--------------//
 const proveedorers_service = new proveedor_service_1.default();
+const direccion_service = new direcciones_service_1.default();
 const getProveedores = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
@@ -34,9 +37,13 @@ const getProveedores = (req, res) => __awaiter(void 0, void 0, void 0, function*
 });
 exports.getProveedores = getProveedores;
 const postProveedor = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const transaction = yield database_1.default.transaction();
     try {
         const { body } = req;
-        yield proveedorers_service.addProveedor(body);
+        const proveedor = yield proveedorers_service.addProveedor(body);
+        const { direccion } = body;
+        const bodyDireccion = Object.assign({ id: proveedor.id }, direccion);
+        yield direccion_service.addDireccion(bodyDireccion);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
         res.status(statusCode).json({ message: msg });
     }

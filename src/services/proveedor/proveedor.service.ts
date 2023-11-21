@@ -1,5 +1,5 @@
 import { TProveedor } from "types";
-import ProveedoresModel from "../../models/Proveedores/Proveedores.model";
+import ProveedoresModel from "../../models/Proveedores/proveedores.model";
 import tipoProveedorModel from "../../models/Proveedores/tipoProveedores.model";
 import tipoServicioModel from "../../models/Proveedores/tipoServicio.model";
 import tipoDocumentoModel from "../../models/Proveedores/tipoDocumento.model";
@@ -27,7 +27,8 @@ export default class ProveedorService {
   }
 
   async addProveedor(body: TProveedor) {
-    await ProveedoresModel.create(body);
+    const proveedor = await ProveedoresModel.create(body);
+    return proveedor;
   }
 
   async updateProveedor(body: TProveedor, id: string) {

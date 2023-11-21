@@ -5,10 +5,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../database"));
-const Cliente_model_1 = __importDefault(require("../Clientes/Cliente.model"));
 const tipoContactos_model_1 = __importDefault(require("./tipoContactos.model"));
 const direcciones = database_1.default.define("direccion", {
-    direccion: {
+    distrito: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    sector: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    calle: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    numeroEdificio: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
@@ -30,20 +41,16 @@ const direcciones = database_1.default.define("direccion", {
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
-    clienteId: {
+    referenciaContactoId: {
         type: sequelize_1.DataTypes.INTEGER,
-    },
-    proveedorId: {
-        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
     },
     tipoContactoId: {
         type: sequelize_1.DataTypes.INTEGER,
     },
 }, { schema: "CONTACTOS" });
 //--- ASOCIACIONES---//
-Cliente_model_1.default.hasMany(direcciones, { foreignKey: "clienteId" });
-direcciones.belongsTo(Cliente_model_1.default);
 tipoContactos_model_1.default.hasMany(direcciones, { foreignKey: "tipoContactoId" });
 direcciones.belongsTo(tipoContactos_model_1.default);
 exports.default = direcciones;
-//# sourceMappingURL=Direcciones.model.js.map
+//# sourceMappingURL=direcciones.model.js.map

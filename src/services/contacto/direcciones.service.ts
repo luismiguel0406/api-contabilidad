@@ -1,5 +1,5 @@
 import { TDireccion } from "types";
-import direccionesModel from "../../models/Contacto/Direcciones.model";
+import direccionesModel from "../../models/Contacto/direcciones.model";
 
 export default class DireccionService {
   async getDireccion(id: number) {
@@ -16,5 +16,9 @@ export default class DireccionService {
     await direccionesModel.update(body, {
       where: { id, estado: true },
     });
+  }
+
+  async deleteDireccion(id: number) {
+    await direccionesModel.update({ estado: false }, { where: { id } });
   }
 }

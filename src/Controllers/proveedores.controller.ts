@@ -1,9 +1,13 @@
 import { Response, Request } from "express";
 import { MsgRespuesta } from "../helpers/mensajesCliente/MensajesRespuestaCliente";
 import ProveedorService from "../services/proveedor/proveedor.service";
+import sequelizeConnection from "../database";
+import DireccionService from "../services/contacto/direcciones.service";
+import { TDireccion } from "types";
 
 //----------- PROVEEDORES--------------//
 const proveedorers_service = new ProveedorService();
+const direccion_service = new DireccionService();
 
 export const getProveedores = async (req: Request, res: Response) => {
   try {
@@ -24,9 +28,16 @@ export const getProveedores = async (req: Request, res: Response) => {
 };
 
 export const postProveedor = async (req: Request, res: Response) => {
+  const transaction = await sequelizeConnection.transaction();
   try {
     const { body } = req;
-    await proveedorers_service.addProveedor(body);
+
+    const proveedor: any = await proveedorers_service.addProveedor(body);
+    const { direccion } = body;
+
+    const bodyDireccion: TDireccion = { id: proveedor.id, ...direccion };
+    await direccion_service.addDireccion(bodyDireccion);
+
     const { statusCode, msg } = MsgRespuesta.created;
     res.status(statusCode).json({ message: msg });
   } catch (error) {

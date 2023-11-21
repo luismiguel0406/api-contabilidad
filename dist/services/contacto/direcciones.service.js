@@ -12,32 +12,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Direcciones_model_1 = __importDefault(require("../../models/Contacto/Direcciones.model"));
+const direcciones_model_1 = __importDefault(require("../../models/Contacto/direcciones.model"));
 class DireccionService {
-    getDirecciones(id = null) {
+    getDireccion(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const direccionesResult = id === null
-                ? yield Direcciones_model_1.default.findAll({ where: { estado: "1" } })
-                : yield Direcciones_model_1.default.findOne({ where: { id, estado: "1" } });
-            return direccionesResult;
+            const direccionResult = yield direcciones_model_1.default.findByPk(id);
+            return direccionResult;
         });
     }
-    addDirecciones(body) {
+    addDireccion(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Direcciones_model_1.default.create(body);
+            yield direcciones_model_1.default.create(body);
         });
     }
-    updateDirecciones(body, id) {
+    updateDireccion(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Direcciones_model_1.default.update(body, {
-                where: { id, estado: "1" }
+            yield direcciones_model_1.default.update(body, {
+                where: { id, estado: true },
             });
         });
     }
-    deleteDirecciones(id) {
+    deleteDireccion(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Direcciones_model_1.default.update({ estado: "0" }, { where: { id }
-            });
+            yield direcciones_model_1.default.update({ estado: false }, { where: { id } });
         });
     }
 }

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Proveedores_model_1 = __importDefault(require("../../models/Proveedores/Proveedores.model"));
+const proveedores_model_1 = __importDefault(require("../../models/Proveedores/proveedores.model"));
 const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedores/tipoProveedores.model"));
 const tipoServicio_model_1 = __importDefault(require("../../models/Proveedores/tipoServicio.model"));
 const tipoDocumento_model_1 = __importDefault(require("../../models/Proveedores/tipoDocumento.model"));
@@ -31,24 +31,25 @@ class ProveedorService {
     getProveedores(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const proveedorResult = id === null
-                ? yield Proveedores_model_1.default.findAll({ where: { estado: true } })
-                : yield Proveedores_model_1.default.findOne({ where: { id, estado: true } });
+                ? yield proveedores_model_1.default.findAll({ where: { estado: true } })
+                : yield proveedores_model_1.default.findOne({ where: { id, estado: true } });
             return proveedorResult;
         });
     }
     addProveedor(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Proveedores_model_1.default.create(body);
+            const proveedor = yield proveedores_model_1.default.create(body);
+            return proveedor;
         });
     }
     updateProveedor(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Proveedores_model_1.default.update(body, { where: { id, estado: false } });
+            yield proveedores_model_1.default.update(body, { where: { id, estado: false } });
         });
     }
     deleteProveedor(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Proveedores_model_1.default.update({ estado: false }, { where: { id } });
+            yield proveedores_model_1.default.update({ estado: false }, { where: { id } });
         });
     }
     //------------ TIPO SERVICIO PROVEEDOR----------------//

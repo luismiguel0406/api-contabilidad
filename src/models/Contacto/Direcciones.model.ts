@@ -53,7 +53,6 @@ const direcciones = conexion.define<Model<TDireccion>>(
 
 //--- ASOCIACIONES---//
 
-direcciones.sync({ alter: true });
 tiposContactos.hasMany(direcciones, { foreignKey: "tipoContactoId" });
 direcciones.belongsTo(tiposContactos);
 

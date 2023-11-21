@@ -141,7 +141,7 @@ const direcciones_service = new direcciones_service_1.default();
 const getDirecciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const direccionesResult = yield direcciones_service.getDirecciones(id);
+        const direccionesResult = yield direcciones_service.getDireccion(id);
         if (direccionesResult === null) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
@@ -160,7 +160,7 @@ exports.getDirecciones = getDirecciones;
 const postDirecciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { body } = req;
-        yield direcciones_service.addDirecciones(body);
+        yield direcciones_service.addDireccion(body);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
         res.status(statusCode).json({ Message: msg });
     }
@@ -174,7 +174,7 @@ const updateDirecciones = (req, res) => __awaiter(void 0, void 0, void 0, functi
     try {
         const { id } = req.params;
         const { body } = req;
-        yield direcciones_service.updateDirecciones(body, id);
+        yield direcciones_service.updateDireccion(body, id);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
         res.status(statusCode).json({ Message: msg });
     }

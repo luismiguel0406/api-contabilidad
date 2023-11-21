@@ -2,8 +2,11 @@ import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
 import tipoProveedor from "./tipoProveedores.model";
 import { TProveedor } from "types";
+import tipoDocumento from "./tipoDocumento.model";
+import tipoServicio from "./tipoServicio.model";
+import entidadBancaria from "./entidadBancaria.model";
 
-const Proveedores = conexion.define<Model<TProveedor>>(
+const proveedores = conexion.define<Model<TProveedor>>(
   "proveedor",
   {
     id: {
@@ -11,23 +14,11 @@ const Proveedores = conexion.define<Model<TProveedor>>(
       primaryKey: true,
       autoIncrement: true,
     },
-    nombre: {
-      type: DataTypes.STRING,
+    tipoProveedorId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     tipoDocumentoId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    tipoServicioId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    direccionId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    entidadBancariaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -35,6 +26,14 @@ const Proveedores = conexion.define<Model<TProveedor>>(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+    },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    tipoServicioId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     telefono: {
       type: DataTypes.STRING,
@@ -44,10 +43,23 @@ const Proveedores = conexion.define<Model<TProveedor>>(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    entidadBancariaId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    entidadBancariaOpcionalId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     numeroCuenta: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    numeroCuentaOpcional: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
     infoAdicional: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -70,21 +82,22 @@ const Proveedores = conexion.define<Model<TProveedor>>(
     terminal: {
       type: DataTypes.STRING,
     },
-    tipoContactoId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    tipoProveedorId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
   },
   { schema: "PROVEEDORES" }
 );
 
 //--- ASOCIACIONES---//
 
-tipoProveedor.hasMany(Proveedores, { foreignKey: "tipoProveedorId" });
-Proveedores.belongsTo(tipoProveedor);
+tipoProveedor.hasMany(proveedores, { foreignKey: "tipoProveedorId" });
+proveedores.belongsTo(tipoProveedor);
 
-export default Proveedores;
+tipoDocumento.hasMany(proveedores, { foreignKey: "tipoDocumentoId" });
+proveedores.belongsTo(tipoDocumento);
+
+tipoServicio.hasMany(proveedores, { foreignKey: "tipoServicioId" });
+proveedores.belongsTo(tipoServicio);
+
+entidadBancaria.hasMany(proveedores, { foreignKey: "entidadBancariaId" });
+proveedores.belongsTo(entidadBancaria);
+
+export default proveedores;

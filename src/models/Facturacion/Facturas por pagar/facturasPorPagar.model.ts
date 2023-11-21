@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import empresas from "../../Empresa/empresa.model";
-import Proveedores from "../../Proveedores/Proveedores.model";
+import proveedores from "../../Proveedores/proveedores.model";
 import conexion from "../../../database";
 import mediosDePago from "../medioDePago/medioDePago.model";
 import moneda from "../moneda/moneda.model";
@@ -120,8 +120,8 @@ facturasPorPagar.belongsTo(tipoFacturasPorPagar);
 empresas.hasMany(facturasPorPagar, { foreignKey: "empresaId" });
 facturasPorPagar.belongsTo(empresas);
 
-Proveedores.hasMany(facturasPorPagar, { foreignKey: "proveedorId" });
-facturasPorPagar.belongsTo(Proveedores);
+proveedores.hasMany(facturasPorPagar, { foreignKey: "proveedorId" });
+facturasPorPagar.belongsTo(proveedores);
 
 moneda.hasMany(facturasPorPagar, { foreignKey: "monedaId" });
 facturasPorPagar.belongsTo(moneda);

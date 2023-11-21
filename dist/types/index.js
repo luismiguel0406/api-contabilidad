@@ -21,4 +21,6 @@ __exportStar(require("./facturasPorPagar.type"), exports);
 __exportStar(require("./impuestos.type"), exports);
 __exportStar(require("./proveedor.type"), exports);
 __exportStar(require("./tipoGenerico.type"), exports);
+__exportStar(require("./comun.type"), exports);
+__exportStar(require("./contacto.type"), exports);
 //# sourceMappingURL=index.js.map
