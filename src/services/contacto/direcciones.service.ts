@@ -1,4 +1,5 @@
 import { TDireccion } from "types";
+import { Transaction } from "sequelize";
 import direccionesModel from "../../models/Contacto/direcciones.model";
 
 export default class DireccionService {
@@ -8,8 +9,8 @@ export default class DireccionService {
     return direccionResult;
   }
 
-  async addDireccion(body: TDireccion) {
-    await direccionesModel.create(body);
+  async addDireccion(body: TDireccion, transaction: Transaction) {
+    await direccionesModel.create(body, { transaction });
   }
 
   async updateDireccion(body: TDireccion, id: number) {

@@ -5,7 +5,7 @@ export default class TransaccionService {
     try {
       return await transaccion.findOne({
         attributes: ["id", "nombre"],
-        where: { payload, estado: "1" },
+        where: { payload, estado: true },
       });
     } catch (error) {
       return error;

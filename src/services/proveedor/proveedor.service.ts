@@ -1,4 +1,5 @@
 import { TProveedor } from "types";
+import { Transaction } from "sequelize";
 import ProveedoresModel from "../../models/Proveedores/proveedores.model";
 import tipoProveedorModel from "../../models/Proveedores/tipoProveedores.model";
 import tipoServicioModel from "../../models/Proveedores/tipoServicio.model";
@@ -26,8 +27,8 @@ export default class ProveedorService {
     return proveedorResult;
   }
 
-  async addProveedor(body: TProveedor) {
-    const proveedor = await ProveedoresModel.create(body);
+  async addProveedor(body: TProveedor, transaction: Transaction) {
+    const proveedor = await ProveedoresModel.create(body, { transaction });
     return proveedor;
   }
 

@@ -40,14 +40,16 @@ const postProveedor = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const transaction = yield database_1.default.transaction();
     try {
         const { body } = req;
-        const proveedor = yield proveedorers_service.addProveedor(body);
-        const { direccion } = body;
-        const bodyDireccion = Object.assign({ id: proveedor.id }, direccion);
-        yield direccion_service.addDireccion(bodyDireccion);
+        const { address, infoSupplier } = body;
+        const proveedor = yield proveedorers_service.addProveedor(infoSupplier, transaction);
+        const bodyDireccion = Object.assign({ referenciaContactoId: proveedor.id, tipoContactoId: 2 }, address);
+        yield direccion_service.addDireccion(bodyDireccion, transaction);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
         res.status(statusCode).json({ message: msg });
+        transaction.commit();
     }
     catch (error) {
+        transaction.rollback();
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
         return res.status(statusCode).json({ message: msg, error });
     }

@@ -36,9 +36,9 @@ class ProveedorService {
             return proveedorResult;
         });
     }
-    addProveedor(body) {
+    addProveedor(body, transaction) {
         return __awaiter(this, void 0, void 0, function* () {
-            const proveedor = yield proveedores_model_1.default.create(body);
+            const proveedor = yield proveedores_model_1.default.create(body, { transaction });
             return proveedor;
         });
     }

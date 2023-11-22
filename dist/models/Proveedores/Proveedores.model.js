@@ -67,6 +67,7 @@ const proveedores = database_1.default.define("proveedor", {
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW,
     },
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
@@ -74,6 +75,7 @@ const proveedores = database_1.default.define("proveedor", {
     estado: {
         type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: true,
     },
     usuario: {
         type: sequelize_1.DataTypes.STRING,
@@ -84,6 +86,7 @@ const proveedores = database_1.default.define("proveedor", {
     },
 }, { schema: "PROVEEDORES" });
 //--- ASOCIACIONES---//
+proveedores.sync();
 tipoProveedores_model_1.default.hasMany(proveedores, { foreignKey: "tipoProveedorId" });
 proveedores.belongsTo(tipoProveedores_model_1.default);
 tipoDocumento_model_1.default.hasMany(proveedores, { foreignKey: "tipoDocumentoId" });

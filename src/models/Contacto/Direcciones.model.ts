@@ -25,6 +25,7 @@ const direcciones = conexion.define<Model<TDireccion>>(
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
+      defaultValue: new Date(),
     },
     updatedAt: {
       type: DataTypes.DATE,
@@ -32,6 +33,7 @@ const direcciones = conexion.define<Model<TDireccion>>(
     estado: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: true,
     },
     usuario: {
       type: DataTypes.STRING,

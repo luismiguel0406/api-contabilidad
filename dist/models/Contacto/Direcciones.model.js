@@ -26,6 +26,7 @@ const direcciones = database_1.default.define("direccion", {
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
+        defaultValue: new Date(),
     },
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
@@ -33,6 +34,7 @@ const direcciones = database_1.default.define("direccion", {
     estado: {
         type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: true,
     },
     usuario: {
         type: sequelize_1.DataTypes.STRING,

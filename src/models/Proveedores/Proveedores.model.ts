@@ -67,6 +67,7 @@ const proveedores = conexion.define<Model<TProveedor>>(
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
+      defaultValue: DataTypes.NOW,
     },
     updatedAt: {
       type: DataTypes.DATE,
@@ -74,6 +75,7 @@ const proveedores = conexion.define<Model<TProveedor>>(
     estado: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: true,
     },
     usuario: {
       type: DataTypes.STRING,
@@ -87,7 +89,7 @@ const proveedores = conexion.define<Model<TProveedor>>(
 );
 
 //--- ASOCIACIONES---//
-
+proveedores.sync();
 tipoProveedor.hasMany(proveedores, { foreignKey: "tipoProveedorId" });
 proveedores.belongsTo(tipoProveedor);
 

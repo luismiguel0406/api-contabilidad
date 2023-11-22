@@ -6,6 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../database"));
 const entidadBancaria = database_1.default.define("entidadBancaria", {
+    id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
     descripcion: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
@@ -29,5 +34,6 @@ const entidadBancaria = database_1.default.define("entidadBancaria", {
         type: sequelize_1.DataTypes.STRING,
     },
 }, { schema: "PROVEEDORES" });
+entidadBancaria.sync();
 exports.default = entidadBancaria;
 //# sourceMappingURL=entidadBancaria.model.js.map

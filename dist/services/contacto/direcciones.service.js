@@ -20,9 +20,9 @@ class DireccionService {
             return direccionResult;
         });
     }
-    addDireccion(body) {
+    addDireccion(body, transaction) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield direcciones_model_1.default.create(body);
+            yield direcciones_model_1.default.create(body, { transaction });
         });
     }
     updateDireccion(body, id) {

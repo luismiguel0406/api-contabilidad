@@ -5,6 +5,11 @@ import { TTipoGenerico } from "types";
 const entidadBancaria = conexion.define<Model<TTipoGenerico>>(
   "entidadBancaria",
   {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -30,5 +35,5 @@ const entidadBancaria = conexion.define<Model<TTipoGenerico>>(
   },
   { schema: "PROVEEDORES" }
 );
-
+entidadBancaria.sync();
 export default entidadBancaria;

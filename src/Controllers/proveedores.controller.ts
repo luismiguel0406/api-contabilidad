@@ -31,16 +31,25 @@ export const postProveedor = async (req: Request, res: Response) => {
   const transaction = await sequelizeConnection.transaction();
   try {
     const { body } = req;
+    const { address, infoSupplier } = body;
 
-    const proveedor: any = await proveedorers_service.addProveedor(body);
-    const { direccion } = body;
+    const proveedor: any = await proveedorers_service.addProveedor(
+      infoSupplier,
+      transaction
+    );
 
-    const bodyDireccion: TDireccion = { id: proveedor.id, ...direccion };
-    await direccion_service.addDireccion(bodyDireccion);
+    const bodyDireccion: TDireccion = {
+      referenciaContactoId: proveedor.id,
+      tipoContactoId: 2,
+      ...address,
+    };
+    await direccion_service.addDireccion(bodyDireccion, transaction);
 
     const { statusCode, msg } = MsgRespuesta.created;
     res.status(statusCode).json({ message: msg });
+    transaction.commit();
   } catch (error) {
+    transaction.rollback();
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ message: msg, error });
   }

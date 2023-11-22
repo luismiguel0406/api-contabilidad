@@ -19,7 +19,7 @@ class TransaccionService {
             try {
                 return yield Transaccion_model_1.default.findOne({
                     attributes: ["id", "nombre"],
-                    where: { payload, estado: "1" },
+                    where: { payload, estado: true },
                 });
             }
             catch (error) {
