@@ -4,10 +4,8 @@ import { ItipoContacto } from "../../interfaces/contactos.interface";
 import {
   ICuentaContable,
   IGrupoCuentaContable,
-  ITipoCuentaContable,
 } from "../../interfaces/cuentaContable.interface";
 import { IMoneda } from "../../interfaces/moneda.interface";
-import { ITipoPoveedor } from "../../interfaces/proveedor.interface";
 import { ITipoItem } from "../../interfaces/Item.interface";
 import { ITipoVentas } from "../../interfaces/tipoVentas.interface";
 import tipoCliente from "../../models/Clientes/tipoCliente.model";
@@ -36,7 +34,7 @@ import empresas from "../../models/Empresa/empresa.model";
 import cuentasContables from "../../models/Cuentas Contables/cuentasContables.model";
 import tipoRegistro from "../../models/Cuentas Contables/tipoRegistro.model";
 import tipoEfecto from "../../models/Cuentas Contables/tipoEfecto.model";
-import { TTipoGenerico } from "types";
+import { TTipoGenerico, TTransaccion } from "types";
 
 export class Empresa {
   private _empresa: IEmpresa;
@@ -1008,56 +1006,56 @@ export class TipoCuentasContables {
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
-        usuario:'SA',
-        terminal:'SA'
+        usuario: "SA",
+        terminal: "SA",
       },
       {
         descripcion: "PASIVOS",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
-        usuario:'SA',
-        terminal:'SA'
+        usuario: "SA",
+        terminal: "SA",
       },
       {
         descripcion: "CAPITAL",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
-        usuario:'SA',
-        terminal:'SA'
+        usuario: "SA",
+        terminal: "SA",
       },
       {
         descripcion: "INGRESOS",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
-        usuario:'SA',
-        terminal:'SA'
+        usuario: "SA",
+        terminal: "SA",
       },
       {
         descripcion: "COSTOS",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
-        usuario:'SA',
-        terminal:'SA'
+        usuario: "SA",
+        terminal: "SA",
       },
       {
         descripcion: "GASTOS",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
-        usuario:'SA',
-        terminal:'SA'
+        usuario: "SA",
+        terminal: "SA",
       },
       {
         descripcion: "RESUMENES",
         estado: true,
         createdAt: new Date(),
         updatedAt: null,
-        usuario:'SA',
-        terminal:'SA'
+        usuario: "SA",
+        terminal: "SA",
       },
     ];
   }
@@ -1074,11 +1072,11 @@ export class TipoCuentasContables {
 
 export class TransaccionesComerciales {
   // No Va
-  private _transaccionesArray: Array<ITransaccion>;
+  private _transaccionesArray: Array<TTransaccion>;
   constructor() {
     this._transaccionesArray = [
       {
-        descripcion: "Apertura de capital",
+        nombre: "Apertura de capital",
         payload: "APERTURA_CAPITAL",
         estado: true,
         createdAt: new Date(),
@@ -1087,7 +1085,7 @@ export class TransaccionesComerciales {
         terminal: "SA",
       },
       {
-        descripcion: "Registro de facturas por pagar tipo gasto",
+        nombre: "Registro de facturas por pagar tipo gasto",
         payload: "REGISTRO_FACTURAS_POR_PAGAR",
         estado: true,
         createdAt: new Date(),
@@ -1096,7 +1094,7 @@ export class TransaccionesComerciales {
         terminal: "SA",
       },
       {
-        descripcion: "Aplicacion de credito ",
+        nombre: "Aplicacion de credito ",
         payload: "APLICACION_CREDITO",
         estado: true,
         createdAt: new Date(),
@@ -1105,7 +1103,7 @@ export class TransaccionesComerciales {
         terminal: "SA",
       },
       {
-        descripcion: "Aplicacion de pago a factura por pagar",
+        nombre: "Aplicacion de pago a factura por pagar",
         payload: "PAGO_FACTURA_POR_PAGAR",
         estado: true,
         createdAt: new Date(),
@@ -1114,7 +1112,7 @@ export class TransaccionesComerciales {
         terminal: "SA",
       },
       {
-        descripcion: "Ventas al contado",
+        nombre: "Ventas al contado",
         payload: "VENTA_CONTADO",
         estado: true,
         createdAt: new Date(),
@@ -1123,7 +1121,7 @@ export class TransaccionesComerciales {
         terminal: "SA",
       },
       {
-        descripcion: "Ventas a credito",
+        nombre: "Ventas a credito",
         payload: "VENTA_CREDITO",
         estado: true,
         createdAt: new Date(),
@@ -1132,7 +1130,7 @@ export class TransaccionesComerciales {
         terminal: "SA",
       },
       {
-        descripcion: "Gastos varios",
+        nombre: "Gastos varios",
         payload: "GASTOS_VARIOS",
         estado: true,
         createdAt: new Date(),

@@ -34,6 +34,5 @@ const entidadBancaria = database_1.default.define("entidadBancaria", {
         type: sequelize_1.DataTypes.STRING,
     },
 }, { schema: "PROVEEDORES" });
-entidadBancaria.sync();
 exports.default = entidadBancaria;
 //# sourceMappingURL=entidadBancaria.model.js.map

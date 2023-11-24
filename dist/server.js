@@ -54,7 +54,7 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield database_1.default.authenticate();
-                //await db.sync();
+                //await sequelizeConnection.sync({ alter: true });
                 console.log("Database CACTUS online.");
             }
             catch (error) {

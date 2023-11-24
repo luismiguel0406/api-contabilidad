@@ -50,7 +50,6 @@ const proveedores = database_1.default.define("proveedor", {
     },
     entidadBancariaOpcionalId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
     },
     numeroCuenta: {
         type: sequelize_1.DataTypes.STRING,
@@ -58,7 +57,6 @@ const proveedores = database_1.default.define("proveedor", {
     },
     numeroCuentaOpcional: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
     },
     infoAdicional: {
         type: sequelize_1.DataTypes.STRING,
@@ -86,14 +84,13 @@ const proveedores = database_1.default.define("proveedor", {
     },
 }, { schema: "PROVEEDORES" });
 //--- ASOCIACIONES---//
-proveedores.sync();
-tipoProveedores_model_1.default.hasMany(proveedores, { foreignKey: "tipoProveedorId" });
+tipoProveedores_model_1.default.hasMany(proveedores);
 proveedores.belongsTo(tipoProveedores_model_1.default);
-tipoDocumento_model_1.default.hasMany(proveedores, { foreignKey: "tipoDocumentoId" });
+tipoDocumento_model_1.default.hasMany(proveedores);
 proveedores.belongsTo(tipoDocumento_model_1.default);
-tipoServicio_model_1.default.hasMany(proveedores, { foreignKey: "tipoServicioId" });
+tipoServicio_model_1.default.hasMany(proveedores);
 proveedores.belongsTo(tipoServicio_model_1.default);
-entidadBancaria_model_1.default.hasMany(proveedores, { foreignKey: "entidadBancariaId" });
+entidadBancaria_model_1.default.hasMany(proveedores);
 proveedores.belongsTo(entidadBancaria_model_1.default);
 exports.default = proveedores;
 //# sourceMappingURL=proveedores.model.js.map

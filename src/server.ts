@@ -66,7 +66,7 @@ class Server {
   async dbConnection() {
     try {
       await sequelizeConnection.authenticate();
-      //await db.sync();
+      //await sequelizeConnection.sync({ alter: true });
       console.log("Database CACTUS online.");
     } catch (error) {
       console.log(`Error ${error}`);

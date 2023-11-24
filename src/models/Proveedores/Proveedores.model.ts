@@ -49,7 +49,6 @@ const proveedores = conexion.define<Model<TProveedor>>(
     },
     entidadBancariaOpcionalId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     numeroCuenta: {
       type: DataTypes.STRING,
@@ -57,9 +56,7 @@ const proveedores = conexion.define<Model<TProveedor>>(
     },
     numeroCuentaOpcional: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
-
     infoAdicional: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -89,17 +86,17 @@ const proveedores = conexion.define<Model<TProveedor>>(
 );
 
 //--- ASOCIACIONES---//
-proveedores.sync();
-tipoProveedor.hasMany(proveedores, { foreignKey: "tipoProveedorId" });
+
+tipoProveedor.hasMany(proveedores);
 proveedores.belongsTo(tipoProveedor);
 
-tipoDocumento.hasMany(proveedores, { foreignKey: "tipoDocumentoId" });
+tipoDocumento.hasMany(proveedores);
 proveedores.belongsTo(tipoDocumento);
 
-tipoServicio.hasMany(proveedores, { foreignKey: "tipoServicioId" });
+tipoServicio.hasMany(proveedores);
 proveedores.belongsTo(tipoServicio);
 
-entidadBancaria.hasMany(proveedores, { foreignKey: "entidadBancariaId" });
+entidadBancaria.hasMany(proveedores);
 proveedores.belongsTo(entidadBancaria);
 
 export default proveedores;

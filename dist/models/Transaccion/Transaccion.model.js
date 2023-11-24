@@ -6,7 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../database"));
 const transaccion = database_1.default.define("transaccion", {
-    descripcion: {
+    id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    nombre: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },

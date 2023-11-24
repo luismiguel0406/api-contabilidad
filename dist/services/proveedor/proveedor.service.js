@@ -28,9 +28,9 @@ class ProveedorService {
         });
     }
     //--------- PROVEEDOR -----------//
-    getProveedores(id = null) {
+    getProveedores(id = 0) {
         return __awaiter(this, void 0, void 0, function* () {
-            const proveedorResult = id === null
+            const proveedorResult = id === 0
                 ? yield proveedores_model_1.default.findAll({ where: { estado: true } })
                 : yield proveedores_model_1.default.findOne({ where: { id, estado: true } });
             return proveedorResult;

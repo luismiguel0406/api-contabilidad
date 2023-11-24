@@ -1,10 +1,16 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
+import { TTransaccion } from "types";
 
-const transaccion = conexion.define(
+const transaccion = conexion.define<Model<TTransaccion>>(
   "transaccion",
   {
-    descripcion: {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    nombre: {
       type: DataTypes.STRING,
       allowNull: false,
     },

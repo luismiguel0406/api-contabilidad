@@ -18,9 +18,9 @@ export default class ProveedorService {
 
   //--------- PROVEEDOR -----------//
 
-  async getProveedores(id: any = null) {
+  async getProveedores(id: number = 0) {
     const proveedorResult =
-      id === null
+      id === 0
         ? await ProveedoresModel.findAll({ where: { estado: true } })
         : await ProveedoresModel.findOne({ where: { id, estado: true } });
 

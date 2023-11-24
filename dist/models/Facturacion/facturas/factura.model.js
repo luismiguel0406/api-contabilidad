@@ -81,7 +81,6 @@ const facturas = database_1.default.define("factura", {
     medioDePagoId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 1,
     },
     tipoVentaId: {
         type: sequelize_1.DataTypes.INTEGER,

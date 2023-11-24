@@ -35,5 +35,5 @@ const entidadBancaria = conexion.define<Model<TTipoGenerico>>(
   },
   { schema: "PROVEEDORES" }
 );
-entidadBancaria.sync();
+
 export default entidadBancaria;

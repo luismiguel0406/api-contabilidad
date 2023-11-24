@@ -78,7 +78,6 @@ const facturasPorPagar = conexion.define<Model<TFacturasPorPagar>>(
     tipoFacturasPorPagarId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 1,
     },
     empresaId: {
       type: DataTypes.INTEGER,
@@ -91,12 +90,10 @@ const facturasPorPagar = conexion.define<Model<TFacturasPorPagar>>(
     monedaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 1,
     },
     medioDePagoId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 1,
     },
     tipoGastoId: {
       type: DataTypes.INTEGER,

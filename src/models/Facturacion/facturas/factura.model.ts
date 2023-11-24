@@ -79,7 +79,6 @@ const facturas = conexion.define(
     medioDePagoId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 1,
     },
     tipoVentaId: {
       type: DataTypes.INTEGER,

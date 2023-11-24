@@ -79,7 +79,6 @@ const facturasPorPagar = database_1.default.define("facturaPorPagar", {
     tipoFacturasPorPagarId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 1,
     },
     empresaId: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -92,12 +91,10 @@ const facturasPorPagar = database_1.default.define("facturaPorPagar", {
     monedaId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 1,
     },
     medioDePagoId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 1,
     },
     tipoGastoId: {
         type: sequelize_1.DataTypes.INTEGER,
