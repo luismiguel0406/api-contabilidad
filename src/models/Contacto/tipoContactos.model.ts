@@ -5,7 +5,7 @@ import proveedores from "../Proveedores/proveedores.model";
 import { TTipoGenerico } from "types";
 
 const tiposContactos = conexion.define<Model<TTipoGenerico>>(
-  "tipoContactos",
+  "tipoContacto",
   {
     descripcion: {
       type: DataTypes.STRING,
@@ -32,13 +32,5 @@ const tiposContactos = conexion.define<Model<TTipoGenerico>>(
   },
   { schema: "CONTACTOS" }
 );
-
-//--------- ASOCIACIONES ---------//--verificar
-
-tiposContactos.hasMany(clientes, { foreignKey: "tipoContactoId" });
-clientes.belongsTo(tiposContactos);
-
-tiposContactos.hasMany(proveedores, { foreignKey: "tipoContactoId" });
-proveedores.belongsTo(tiposContactos);
 
 export default tiposContactos;

@@ -14,7 +14,7 @@ export const getProveedores = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     const proveedoresResult: boolean | any =
-      await proveedorers_service.getProveedores(Number(id));
+      await proveedorers_service.getProveedores(id);
     if (!proveedoresResult) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ message: msg });

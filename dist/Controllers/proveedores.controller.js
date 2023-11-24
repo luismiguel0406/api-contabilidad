@@ -23,7 +23,7 @@ const direccion_service = new direcciones_service_1.default();
 const getProveedores = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const proveedoresResult = yield proveedorers_service.getProveedores(Number(id));
+        const proveedoresResult = yield proveedorers_service.getProveedores(id);
         if (!proveedoresResult) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ message: msg });

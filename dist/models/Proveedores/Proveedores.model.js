@@ -8,7 +8,6 @@ const database_1 = __importDefault(require("../../database"));
 const tipoProveedores_model_1 = __importDefault(require("./tipoProveedores.model"));
 const tipoDocumento_model_1 = __importDefault(require("./tipoDocumento.model"));
 const tipoServicio_model_1 = __importDefault(require("./tipoServicio.model"));
-const entidadBancaria_model_1 = __importDefault(require("./entidadBancaria.model"));
 const proveedores = database_1.default.define("proveedor", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -84,13 +83,11 @@ const proveedores = database_1.default.define("proveedor", {
     },
 }, { schema: "PROVEEDORES" });
 //--- ASOCIACIONES---//
-tipoProveedores_model_1.default.hasMany(proveedores);
+tipoProveedores_model_1.default.hasMany(proveedores, { foreignKey: "tipoProveedorId" });
 proveedores.belongsTo(tipoProveedores_model_1.default);
-tipoDocumento_model_1.default.hasMany(proveedores);
+tipoDocumento_model_1.default.hasMany(proveedores, { foreignKey: "tipoDocumentoId" });
 proveedores.belongsTo(tipoDocumento_model_1.default);
-tipoServicio_model_1.default.hasMany(proveedores);
+tipoServicio_model_1.default.hasMany(proveedores, { foreignKey: "tipoServicioId" });
 proveedores.belongsTo(tipoServicio_model_1.default);
-entidadBancaria_model_1.default.hasMany(proveedores);
-proveedores.belongsTo(entidadBancaria_model_1.default);
 exports.default = proveedores;
 //# sourceMappingURL=proveedores.model.js.map

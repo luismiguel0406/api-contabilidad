@@ -5,9 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../database"));
-const Cliente_model_1 = __importDefault(require("../Clientes/Cliente.model"));
-const proveedores_model_1 = __importDefault(require("../Proveedores/proveedores.model"));
-const tiposContactos = database_1.default.define("tipoContactos", {
+const tiposContactos = database_1.default.define("tipoContacto", {
     descripcion: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
@@ -31,10 +29,5 @@ const tiposContactos = database_1.default.define("tipoContactos", {
         type: sequelize_1.DataTypes.STRING,
     },
 }, { schema: "CONTACTOS" });
-//--------- ASOCIACIONES ---------//--verificar
-tiposContactos.hasMany(Cliente_model_1.default, { foreignKey: "tipoContactoId" });
-Cliente_model_1.default.belongsTo(tiposContactos);
-tiposContactos.hasMany(proveedores_model_1.default, { foreignKey: "tipoContactoId" });
-proveedores_model_1.default.belongsTo(tiposContactos);
 exports.default = tiposContactos;
 //# sourceMappingURL=tipoContactos.model.js.map

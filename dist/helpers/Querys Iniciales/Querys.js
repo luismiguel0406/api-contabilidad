@@ -986,56 +986,56 @@ class TipoCuentasContables {
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
-                usuario: 'SA',
-                terminal: 'SA'
+                usuario: "SA",
+                terminal: "SA",
             },
             {
                 descripcion: "PASIVOS",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
-                usuario: 'SA',
-                terminal: 'SA'
+                usuario: "SA",
+                terminal: "SA",
             },
             {
                 descripcion: "CAPITAL",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
-                usuario: 'SA',
-                terminal: 'SA'
+                usuario: "SA",
+                terminal: "SA",
             },
             {
                 descripcion: "INGRESOS",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
-                usuario: 'SA',
-                terminal: 'SA'
+                usuario: "SA",
+                terminal: "SA",
             },
             {
                 descripcion: "COSTOS",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
-                usuario: 'SA',
-                terminal: 'SA'
+                usuario: "SA",
+                terminal: "SA",
             },
             {
                 descripcion: "GASTOS",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
-                usuario: 'SA',
-                terminal: 'SA'
+                usuario: "SA",
+                terminal: "SA",
             },
             {
                 descripcion: "RESUMENES",
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: null,
-                usuario: 'SA',
-                terminal: 'SA'
+                usuario: "SA",
+                terminal: "SA",
             },
         ];
     }
@@ -1055,7 +1055,7 @@ class TransaccionesComerciales {
     constructor() {
         this._transaccionesArray = [
             {
-                descripcion: "Apertura de capital",
+                nombre: "Apertura de capital",
                 payload: "APERTURA_CAPITAL",
                 estado: true,
                 createdAt: new Date(),
@@ -1064,7 +1064,7 @@ class TransaccionesComerciales {
                 terminal: "SA",
             },
             {
-                descripcion: "Registro de facturas por pagar tipo gasto",
+                nombre: "Registro de facturas por pagar tipo gasto",
                 payload: "REGISTRO_FACTURAS_POR_PAGAR",
                 estado: true,
                 createdAt: new Date(),
@@ -1073,7 +1073,7 @@ class TransaccionesComerciales {
                 terminal: "SA",
             },
             {
-                descripcion: "Aplicacion de credito ",
+                nombre: "Aplicacion de credito ",
                 payload: "APLICACION_CREDITO",
                 estado: true,
                 createdAt: new Date(),
@@ -1082,7 +1082,7 @@ class TransaccionesComerciales {
                 terminal: "SA",
             },
             {
-                descripcion: "Aplicacion de pago a factura por pagar",
+                nombre: "Aplicacion de pago a factura por pagar",
                 payload: "PAGO_FACTURA_POR_PAGAR",
                 estado: true,
                 createdAt: new Date(),
@@ -1091,7 +1091,7 @@ class TransaccionesComerciales {
                 terminal: "SA",
             },
             {
-                descripcion: "Ventas al contado",
+                nombre: "Ventas al contado",
                 payload: "VENTA_CONTADO",
                 estado: true,
                 createdAt: new Date(),
@@ -1100,7 +1100,7 @@ class TransaccionesComerciales {
                 terminal: "SA",
             },
             {
-                descripcion: "Ventas a credito",
+                nombre: "Ventas a credito",
                 payload: "VENTA_CREDITO",
                 estado: true,
                 createdAt: new Date(),
@@ -1109,7 +1109,7 @@ class TransaccionesComerciales {
                 terminal: "SA",
             },
             {
-                descripcion: "Gastos varios",
+                nombre: "Gastos varios",
                 payload: "GASTOS_VARIOS",
                 estado: true,
                 createdAt: new Date(),

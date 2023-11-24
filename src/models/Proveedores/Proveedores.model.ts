@@ -87,16 +87,13 @@ const proveedores = conexion.define<Model<TProveedor>>(
 
 //--- ASOCIACIONES---//
 
-tipoProveedor.hasMany(proveedores);
+tipoProveedor.hasMany(proveedores, { foreignKey: "tipoProveedorId" });
 proveedores.belongsTo(tipoProveedor);
 
-tipoDocumento.hasMany(proveedores);
+tipoDocumento.hasMany(proveedores, { foreignKey: "tipoDocumentoId" });
 proveedores.belongsTo(tipoDocumento);
 
-tipoServicio.hasMany(proveedores);
+tipoServicio.hasMany(proveedores, { foreignKey: "tipoServicioId" });
 proveedores.belongsTo(tipoServicio);
-
-entidadBancaria.hasMany(proveedores);
-proveedores.belongsTo(entidadBancaria);
 
 export default proveedores;
