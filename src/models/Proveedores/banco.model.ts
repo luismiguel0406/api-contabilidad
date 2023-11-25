@@ -1,9 +1,10 @@
 import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
 import { TTipoGenerico } from "types";
+import proveedores from "./proveedores.model";
 
-const entidadBancaria = conexion.define<Model<TTipoGenerico>>(
-  "entidadBancaria",
+const bancos = conexion.define<Model<TTipoGenerico>>(
+  "banco",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -36,4 +37,4 @@ const entidadBancaria = conexion.define<Model<TTipoGenerico>>(
   { schema: "PROVEEDORES" }
 );
 
-export default entidadBancaria;
+export default bancos;

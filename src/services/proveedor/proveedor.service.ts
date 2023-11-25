@@ -4,7 +4,7 @@ import ProveedoresModel from "../../models/Proveedores/proveedores.model";
 import tipoProveedorModel from "../../models/Proveedores/tipoProveedores.model";
 import tipoServicioModel from "../../models/Proveedores/tipoServicio.model";
 import tipoDocumentoModel from "../../models/Proveedores/tipoDocumento.model";
-import entidadBancariaModel from "../../models/Proveedores/entidadBancaria.model";
+import entidadBancariaModel from "../../models/Proveedores/banco.model";
 
 export default class ProveedorService {
   //-------- TIPO PROVEEDOR --------//

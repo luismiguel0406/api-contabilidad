@@ -4,7 +4,7 @@ import tipoProveedor from "./tipoProveedores.model";
 import { TProveedor } from "types";
 import tipoDocumento from "./tipoDocumento.model";
 import tipoServicio from "./tipoServicio.model";
-import entidadBancaria from "./entidadBancaria.model";
+import bancos from "./banco.model";
 
 const proveedores = conexion.define<Model<TProveedor>>(
   "proveedor",
@@ -43,11 +43,11 @@ const proveedores = conexion.define<Model<TProveedor>>(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    entidadBancariaId: {
+    bancoId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    entidadBancariaOpcionalId: {
+    bancoOpcionalId: {
       type: DataTypes.INTEGER,
     },
     numeroCuenta: {
@@ -95,5 +95,8 @@ proveedores.belongsTo(tipoDocumento);
 
 tipoServicio.hasMany(proveedores, { foreignKey: "tipoServicioId" });
 proveedores.belongsTo(tipoServicio);
+
+bancos.hasMany(proveedores, { foreignKey: "bancoId" });
+proveedores.belongsTo(bancos);
 
 export default proveedores;

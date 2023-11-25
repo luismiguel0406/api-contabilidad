@@ -16,7 +16,7 @@ const proveedores_model_1 = __importDefault(require("../../models/Proveedores/pr
 const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedores/tipoProveedores.model"));
 const tipoServicio_model_1 = __importDefault(require("../../models/Proveedores/tipoServicio.model"));
 const tipoDocumento_model_1 = __importDefault(require("../../models/Proveedores/tipoDocumento.model"));
-const entidadBancaria_model_1 = __importDefault(require("../../models/Proveedores/entidadBancaria.model"));
+const banco_model_1 = __importDefault(require("../../models/Proveedores/banco.model"));
 class ProveedorService {
     //-------- TIPO PROVEEDOR --------//
     getTipoProveedor() {
@@ -72,7 +72,7 @@ class ProveedorService {
     }
     getEntidadBancaria() {
         return __awaiter(this, void 0, void 0, function* () {
-            const entidadBancaria = yield entidadBancaria_model_1.default.findAll({
+            const entidadBancaria = yield banco_model_1.default.findAll({
                 where: { estado: true },
             });
             return entidadBancaria;

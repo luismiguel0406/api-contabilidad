@@ -8,8 +8,8 @@ export type TProveedor = TComun & {
   tipoProveedorId: number;
   tipoDocumentoId: number;
   tipoServicioId: number;
-  entidadBancariaId: number;
-  entidadBancariaOpcionalId: number;
+  bancoId: number;
+  bancoOpcionalId: number;
   numeroCuenta: string;
   numeroCuentaOpcional: string;
   telefono: string;
