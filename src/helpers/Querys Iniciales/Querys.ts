@@ -14,7 +14,7 @@ import grupoCuenta from "../../models/Cuentas Contables/grupoCuenta.model";
 import tipoComprobantes from "../../models/Facturacion/comprobantes/tipoComprobante.model";
 import moneda from "../../models/Facturacion/moneda/moneda.model";
 import tiposItem from "../../models/Inventario/tipoItem.model";
-import tipoProveedor from "../../models/Proveedores/tipoProveedores.model";
+import typeSupplier from "../../models/suppliers/typeSupplier.model";
 import tiposVenta from "../../models/Facturacion/ventas/tipoVentas.model";
 import { IImpuestos } from "../../interfaces/impuestos.interface";
 import impuestos from "../../models/Facturacion/impuestos/impuestos.model";
@@ -34,7 +34,7 @@ import empresas from "../../models/Empresa/empresa.model";
 import cuentasContables from "../../models/Cuentas Contables/cuentasContables.model";
 import tipoRegistro from "../../models/Cuentas Contables/tipoRegistro.model";
 import tipoEfecto from "../../models/Cuentas Contables/tipoEfecto.model";
-import { TTipoGenerico, TTransaccion } from "types";
+import { TTypeGeneric, TTransaccion } from "types";
 
 export class Empresa {
   private _empresa: IEmpresa;
@@ -66,7 +66,7 @@ export class Empresa {
   }
 }
 export class TiposProveedores {
-  private tipoProveedoresArray: Array<TTipoGenerico>;
+  private tipoProveedoresArray: Array<TTypeGeneric>;
 
   // AGREGO TIPO AL INICIO DEL PROGRAMA //
   constructor() {
@@ -98,9 +98,9 @@ export class TiposProveedores {
     ];
   }
   InsertarTiposProveedores() {
-    tipoProveedor.afterSync("CreaTiposProveedores", async () => {
+    typeSupplier.afterSync("CreaTiposProveedores", async () => {
       try {
-        await tipoProveedor.bulkCreate(this.tipoProveedoresArray);
+        await typeSupplier.bulkCreate(this.tipoProveedoresArray);
       } catch (error) {
         console.error(`Error insertando tipos proveedores, ${error}`);
       }
@@ -998,7 +998,7 @@ export class TipoFacturasPorPagar {
 }
 
 export class TipoCuentasContables {
-  private tipoCuentaContableArray: Array<TTipoGenerico>;
+  private tipoCuentaContableArray: Array<TTypeGeneric>;
   constructor() {
     this.tipoCuentaContableArray = [
       {

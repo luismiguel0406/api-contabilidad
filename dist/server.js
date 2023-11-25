@@ -20,13 +20,13 @@ const comprobante_route_1 = __importDefault(require("./routes/facturacion/compro
 const empresa_route_1 = __importDefault(require("./routes/empresa/empresa.route"));
 const clientes_route_1 = __importDefault(require("./routes/Clientes/clientes.route"));
 const contactos_route_1 = __importDefault(require("./routes/Contactos/contactos.route"));
-const proveedores_route_1 = __importDefault(require("./routes/Proveedores/proveedores.route"));
+const suppliers_route_1 = __importDefault(require("./routes/suppliers/suppliers.route"));
 const Item_route_1 = __importDefault(require("./routes/Inventario/Item.route"));
 const tipoVenta_route_1 = __importDefault(require("./routes/facturacion/tipoVenta.route"));
 const impuestos_route_1 = __importDefault(require("./routes/facturacion/impuestos.route"));
 const medioDePagp_route_1 = __importDefault(require("./routes/facturacion/medioDePagp.route"));
 const factura_route_1 = __importDefault(require("./routes/facturacion/factura.route"));
-const usuarios_route_1 = __importDefault(require("./routes/Usuarios/usuarios.route"));
+const user_route_1 = __importDefault(require("./routes/user/user.route"));
 const tipoGastos_route_1 = __importDefault(require("./routes/facturacion/tipoGastos.route"));
 const facturasPorPagar_route_1 = __importDefault(require("./routes/facturasPorPagar/facturasPorPagar.route"));
 const cors_1 = __importDefault(require("cors"));
@@ -54,7 +54,7 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield database_1.default.authenticate();
-                //await sequelizeConnection.sync({ alter: true });
+                yield database_1.default.sync();
                 console.log("Database CACTUS online.");
             }
             catch (error) {
@@ -75,13 +75,13 @@ class Server {
         this.app.use(empresa_route_1.default);
         this.app.use(clientes_route_1.default);
         this.app.use(contactos_route_1.default);
-        this.app.use(proveedores_route_1.default);
+        this.app.use(suppliers_route_1.default);
         this.app.use(Item_route_1.default);
         this.app.use(tipoVenta_route_1.default);
         this.app.use(impuestos_route_1.default);
         this.app.use(medioDePagp_route_1.default);
         this.app.use(factura_route_1.default);
-        this.app.use(usuarios_route_1.default);
+        this.app.use(user_route_1.default);
         this.app.use(tipoGastos_route_1.default);
         this.app.use(facturasPorPagar_route_1.default);
         this.app.use("*", (req, res) => {

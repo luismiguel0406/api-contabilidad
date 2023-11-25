@@ -19,7 +19,7 @@ const grupoCuenta_model_1 = __importDefault(require("../../models/Cuentas Contab
 const tipoComprobante_model_1 = __importDefault(require("../../models/Facturacion/comprobantes/tipoComprobante.model"));
 const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda/moneda.model"));
 const tipoItem_model_1 = __importDefault(require("../../models/Inventario/tipoItem.model"));
-const tipoProveedores_model_1 = __importDefault(require("../../models/Proveedores/tipoProveedores.model"));
+const typeSupplier_model_1 = __importDefault(require("../../models/suppliers/typeSupplier.model"));
 const tipoVentas_model_1 = __importDefault(require("../../models/Facturacion/ventas/tipoVentas.model"));
 const impuestos_model_1 = __importDefault(require("../../models/Facturacion/impuestos/impuestos.model"));
 const medioDePago_model_1 = __importDefault(require("../../models/Facturacion/medioDePago/medioDePago.model"));
@@ -93,9 +93,9 @@ class TiposProveedores {
         ];
     }
     InsertarTiposProveedores() {
-        tipoProveedores_model_1.default.afterSync("CreaTiposProveedores", () => __awaiter(this, void 0, void 0, function* () {
+        typeSupplier_model_1.default.afterSync("CreaTiposProveedores", () => __awaiter(this, void 0, void 0, function* () {
             try {
-                yield tipoProveedores_model_1.default.bulkCreate(this.tipoProveedoresArray);
+                yield typeSupplier_model_1.default.bulkCreate(this.tipoProveedoresArray);
             }
             catch (error) {
                 console.error(`Error insertando tipos proveedores, ${error}`);

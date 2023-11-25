@@ -12,17 +12,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const perfil_model_1 = __importDefault(require("../../models/Perfiles/perfil.model"));
-const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../database"));
+const sequelize_1 = require("sequelize");
 const encryptaPw_1 = require("../../lib/validaciones/encryptaPw");
 const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
-const usuarios = database_1.default.define("usuario", {
-    nombreUsuario: {
+const perfil_model_1 = __importDefault(require("../../models/Perfiles/perfil.model"));
+const users = database_1.default.define("user", {
+    username: {
         type: sequelize_1.DataTypes.STRING(50),
         unique: true,
     },
-    contrasena: {
+    password: {
         type: sequelize_1.DataTypes.STRING,
     },
     email: {
@@ -32,7 +32,7 @@ const usuarios = database_1.default.define("usuario", {
             isEmail: true,
         },
     },
-    estado: {
+    state: {
         type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
     },
@@ -43,25 +43,24 @@ const usuarios = database_1.default.define("usuario", {
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
     },
-    empresaId: {
+    companyId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    perfilId: {
+    roleId: {
         type: sequelize_1.DataTypes.INTEGER,
-        // allowNull:false
     },
 }, {
     schema: "USUARIOS",
 });
-usuarios.beforeCreate((data) => __awaiter(void 0, void 0, void 0, function* () {
-    const encryptada = yield (0, encryptaPw_1.Encryptar)(data.contrasena);
-    data.contrasena = encryptada;
+users.beforeCreate((data) => __awaiter(void 0, void 0, void 0, function* () {
+    const encrypted = yield (0, encryptaPw_1.Encrypt)(data.password);
+    data.password = encrypted;
 }));
 //------- ASOCIACIONES -------//
-empresa_model_1.default.hasMany(usuarios, { foreignKey: "empresaId" });
-usuarios.belongsTo(empresa_model_1.default);
-perfil_model_1.default.hasMany(usuarios, { foreignKey: "perfilId" });
-usuarios.belongsTo(perfil_model_1.default);
-exports.default = usuarios;
+empresa_model_1.default.hasMany(users, { foreignKey: "companyId" });
+users.belongsTo(empresa_model_1.default);
+perfil_model_1.default.hasMany(users, { foreignKey: "roleId" });
+users.belongsTo(perfil_model_1.default);
+exports.default = users;
 //# sourceMappingURL=usuario.model.js.map

@@ -1,7 +1,7 @@
 import { Transaction } from "sequelize";
 import facturasPorPagar from "../../../models/Facturacion/Facturas por pagar/facturasPorPagar.model";
 import tipoFacturasPorPagar from "../../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model";
-import { TFacturasPorPagar, TTipoGenerico } from "types";
+import { TFacturasPorPagar, TTypeGeneric } from "types";
 
 export default class FacturasPorPagarService {
   //---------- FACTURAS POR PAGAR -------------//
@@ -45,11 +45,11 @@ export default class FacturasPorPagarService {
     return Tipofactura;
   }
 
-  async addTipoFactura(body: TTipoGenerico) {
+  async addTipoFactura(body: TTypeGeneric) {
     await tipoFacturasPorPagar.create(body);
   }
 
-  async updateTipoFacturas(body: TTipoGenerico, id: string) {
+  async updateTipoFacturas(body: TTypeGeneric, id: string) {
     await tipoFacturasPorPagar.update(body, {
       where: {
         id,

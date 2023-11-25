@@ -12,15 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validarContrasena = exports.Encryptar = void 0;
+exports.validPassword = exports.Encrypt = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const Encryptar = (password) => __awaiter(void 0, void 0, void 0, function* () {
+const Encrypt = (password) => __awaiter(void 0, void 0, void 0, function* () {
     const salt = yield bcrypt_1.default.genSalt(10);
     return yield bcrypt_1.default.hash(password, salt);
 });
-exports.Encryptar = Encryptar;
-const validarContrasena = (passwordIn, passwordDB) => __awaiter(void 0, void 0, void 0, function* () {
+exports.Encrypt = Encrypt;
+const validPassword = (passwordIn, passwordDB) => __awaiter(void 0, void 0, void 0, function* () {
     return yield bcrypt_1.default.compare(passwordIn, passwordDB);
 });
-exports.validarContrasena = validarContrasena;
+exports.validPassword = validPassword;
 //# sourceMappingURL=encryptaPw.js.map

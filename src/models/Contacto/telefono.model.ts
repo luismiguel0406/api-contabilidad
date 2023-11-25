@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../database";
 import clientes from "../Clientes/Cliente.model";
-import proveedores from "../Proveedores/proveedores.model";
+import suppliers from "../suppliers/suppliers.model";
 import tiposContactos from "./tipoContactos.model";
 
 const telefonos = conexion.define(
@@ -47,8 +47,8 @@ const telefonos = conexion.define(
 clientes.hasMany(telefonos, { foreignKey: "clienteId" });
 telefonos.belongsTo(clientes);
 
-proveedores.hasMany(telefonos, { foreignKey: "proveedorId" });
-telefonos.belongsTo(proveedores);
+suppliers.hasMany(telefonos, { foreignKey: "proveedorId" });
+telefonos.belongsTo(suppliers);
 
 tiposContactos.hasMany(telefonos, { foreignKey: "tipoContactoId" });
 telefonos.belongsTo(tiposContactos);

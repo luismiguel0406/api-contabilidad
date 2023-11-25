@@ -1,6 +1,6 @@
-import { TComun } from "./comun.type";
+import { TCommon } from "./common.type";
 
-export type TAccionEntradaContable = TComun & {
+export type TAccionEntradaContable = TCommon & {
   transaccionId: number;
   tipoCuentaId: number;
   tipoEfectoId: string;
@@ -14,7 +14,7 @@ export type TEntradaContableDetalle = {
   debito: number;
   credito: number;
 };
-export type TEntradaContable = TComun & {
+export type TEntradaContable = TCommon & {
   id?: number;
   numero: number | string;
   debito: number;
@@ -40,7 +40,7 @@ export type TDeterminacionMovimiento = {
   debito: number;
 };
 
-export type TTransaccion = TComun & {
+export type TTransaccion = TCommon & {
   id?: number;
   nombre: string;
   payload: string;

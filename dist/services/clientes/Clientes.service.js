@@ -24,27 +24,21 @@ class ClientesService {
             return tipoClienteResult;
         });
     }
-    ;
     addTipoCliente(body) {
         return __awaiter(this, void 0, void 0, function* () {
             yield tipoCliente_model_1.default.create(body);
         });
     }
-    ;
     updateTipoCliente(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoCliente_model_1.default.update(body, { where: { id }
-            });
+            yield tipoCliente_model_1.default.update(body, { where: { id } });
         });
     }
-    ;
     deleteTipoCliente(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoCliente_model_1.default.update({ estado: false }, { where: { id }
-            });
+            yield tipoCliente_model_1.default.update({ estado: false }, { where: { id } });
         });
     }
-    ;
     //--------------------CLIENTES--------------------------//
     getClientes(id = 0) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -54,25 +48,21 @@ class ClientesService {
             return clientesResult;
         });
     }
-    ;
     addCliente(body) {
         return __awaiter(this, void 0, void 0, function* () {
             yield Cliente_model_1.default.create(body);
         });
     }
-    ;
     updateCliente(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield Cliente_model_1.default.update(body, { where: { id, estado: true } });
         });
     }
-    ;
     deleteCliente(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield Cliente_model_1.default.update({ estado: false }, { where: { id } });
         });
     }
-    ;
 }
 exports.default = ClientesService;
 //# sourceMappingURL=Clientes.service.js.map

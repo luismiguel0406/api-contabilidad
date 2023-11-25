@@ -3,7 +3,7 @@ import tipoCuenta from "../../models/Cuentas Contables/tipoCuenta.model";
 import {
   TCuentaContable,
   TGrupoCuentaContable,
-  TTipoGenerico,
+  TTypeGeneric,
   TMovimientoCuentas,
 } from "types";
 import grupoCuentaContableModel from "../../models/Cuentas Contables/grupoCuenta.model";
@@ -102,11 +102,11 @@ export default class CuentasContablesService {
     return tipoCuentaResult;
   }
 
-  async addTipoCuentaContable(body: TTipoGenerico) {
+  async addTipoCuentaContable(body: TTypeGeneric) {
     await tipoCuenta.create(body);
   }
 
-  async updateTipoCuentaContable(body: TTipoGenerico, id: string) {
+  async updateTipoCuentaContable(body: TTypeGeneric, id: string) {
     await tipoCuenta.update(body, { where: { id, estado: true } });
   }
 

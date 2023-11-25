@@ -16,7 +16,7 @@ router.post(`api/cuentas/${grupoCuenta}`, cuentaContable_controller_1.postGrupoC
 router.put(`api/cuentas/${grupoCuenta}/:id`, cuentaContable_controller_1.updateGrupoCuentasContables);
 router.delete(`api/cuentas/${grupoCuenta}/:id`, cuentaContable_controller_1.deleteGrupoCuentasContables);
 // CUENTAS //
-router.get(`api/cuentas/${cuentaContable}/:id?`, jsonWebToken_1.ValidarToken, cuentaContable_controller_1.getCuentasContables);
+router.get(`api/cuentas/${cuentaContable}/:id?`, jsonWebToken_1.validToken, cuentaContable_controller_1.getCuentasContables);
 router.post(`api/cuentas/${grupoCuenta}`, cuentaContable_controller_1.postGrupoCuentaContable);
 router.put(`api/cuentas/${grupoCuenta}/:id`, cuentaContable_controller_1.updateGrupoCuentasContables);
 router.delete(`api/cuentas/${grupoCuenta}/:id`, cuentaContable_controller_1.deleteGrupoCuentasContables);

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ValidarToken } from "../../lib/Token/jsonWebToken";
+import { validToken } from "../../lib/Token/jsonWebToken";
 import {
   deleteGrupoCuentasContables,
   getCuentasContables,
@@ -31,7 +31,7 @@ router.delete(`api/cuentas/${grupoCuenta}/:id`, deleteGrupoCuentasContables);
 
 router.get(
   `api/cuentas/${cuentaContable}/:id?`,
-  ValidarToken,
+  validToken,
   getCuentasContables
 );
 router.post(`api/cuentas/${grupoCuenta}`, postGrupoCuentaContable);

@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const empresa_model_1 = __importDefault(require("../../Empresa/empresa.model"));
-const proveedores_model_1 = __importDefault(require("../../Proveedores/proveedores.model"));
+const suppliers_model_1 = __importDefault(require("../../suppliers/suppliers.model"));
 const database_1 = __importDefault(require("../../../database"));
 const medioDePago_model_1 = __importDefault(require("../medioDePago/medioDePago.model"));
 const moneda_model_1 = __importDefault(require("../moneda/moneda.model"));
@@ -112,8 +112,8 @@ tiposFacturasPorPagar_model_1.default.hasMany(facturasPorPagar, {
 facturasPorPagar.belongsTo(tiposFacturasPorPagar_model_1.default);
 empresa_model_1.default.hasMany(facturasPorPagar, { foreignKey: "empresaId" });
 facturasPorPagar.belongsTo(empresa_model_1.default);
-proveedores_model_1.default.hasMany(facturasPorPagar, { foreignKey: "proveedorId" });
-facturasPorPagar.belongsTo(proveedores_model_1.default);
+suppliers_model_1.default.hasMany(facturasPorPagar, { foreignKey: "proveedorId" });
+facturasPorPagar.belongsTo(suppliers_model_1.default);
 moneda_model_1.default.hasMany(facturasPorPagar, { foreignKey: "monedaId" });
 facturasPorPagar.belongsTo(moneda_model_1.default);
 medioDePago_model_1.default.hasMany(facturasPorPagar, { foreignKey: "medioDePagoId" });

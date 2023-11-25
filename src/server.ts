@@ -26,13 +26,13 @@ import ComprobantesRoutes from "./routes/facturacion/comprobante.route";
 import empresaRoutes from "./routes/empresa/empresa.route";
 import clientesRoutes from "./routes/Clientes/clientes.route";
 import contactosRoutes from "./routes/Contactos/contactos.route";
-import proveedoresRoutes from "./routes/Proveedores/proveedores.route";
+import suppliersRoutes from "./routes/suppliers/suppliers.route";
 import itemRoutes from "./routes/Inventario/Item.route";
 import tipoVentaRoutes from "./routes/facturacion/tipoVenta.route";
 import impuestosRoutes from "./routes/facturacion/impuestos.route";
 import medioDePagoRoutes from "./routes/facturacion/medioDePagp.route";
 import facturasRoutes from "./routes/facturacion/factura.route";
-import usuariosRoutes from "./routes/Usuarios/usuarios.route";
+import usersRoutes from "./routes/user/user.route";
 import tipoGastosRoutes from "./routes/facturacion/tipoGastos.route";
 import facturasPorpPagarRoutes from "./routes/facturasPorPagar/facturasPorPagar.route";
 import cors from "cors";
@@ -66,7 +66,7 @@ class Server {
   async dbConnection() {
     try {
       await sequelizeConnection.authenticate();
-      //await sequelizeConnection.sync({ alter: true });
+      await sequelizeConnection.sync();
       console.log("Database CACTUS online.");
     } catch (error) {
       console.log(`Error ${error}`);
@@ -86,13 +86,13 @@ class Server {
     this.app.use(empresaRoutes);
     this.app.use(clientesRoutes);
     this.app.use(contactosRoutes);
-    this.app.use(proveedoresRoutes);
+    this.app.use(suppliersRoutes);
     this.app.use(itemRoutes);
     this.app.use(tipoVentaRoutes);
     this.app.use(impuestosRoutes);
     this.app.use(medioDePagoRoutes);
     this.app.use(facturasRoutes);
-    this.app.use(usuariosRoutes);
+    this.app.use(usersRoutes);
     this.app.use(tipoGastosRoutes);
     this.app.use(facturasPorpPagarRoutes);
     this.app.use("*", (req: Request, res: Response) => {

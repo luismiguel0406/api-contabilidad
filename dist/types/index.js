@@ -19,8 +19,10 @@ __exportStar(require("./cuentaContable.type"), exports);
 __exportStar(require("./entradaContable.type"), exports);
 __exportStar(require("./facturasPorPagar.type"), exports);
 __exportStar(require("./impuestos.type"), exports);
-__exportStar(require("./proveedor.type"), exports);
-__exportStar(require("./tipoGenerico.type"), exports);
-__exportStar(require("./comun.type"), exports);
-__exportStar(require("./contacto.type"), exports);
+__exportStar(require("./supplier.type"), exports);
+__exportStar(require("./typeGeneric.type"), exports);
+__exportStar(require("./common.type"), exports);
+__exportStar(require("./contact.type"), exports);
+__exportStar(require("./user.type"), exports);
+__exportStar(require("./token.type"), exports);
 //# sourceMappingURL=index.js.map

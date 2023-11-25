@@ -1,9 +1,9 @@
 import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
 import tiposContactos from "./tipoContactos.model";
-import { TDireccion } from "types";
+import { TAddress } from "types";
 
-const direcciones = conexion.define<Model<TDireccion>>(
+const direcciones = conexion.define<Model<TAddress>>(
   "direccion",
   {
     distrito: {

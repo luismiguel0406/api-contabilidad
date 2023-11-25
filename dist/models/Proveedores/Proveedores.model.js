@@ -5,38 +5,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../database"));
-const tipoProveedores_model_1 = __importDefault(require("./tipoProveedores.model"));
-const tipoDocumento_model_1 = __importDefault(require("./tipoDocumento.model"));
+const typeSupplier_model_1 = __importDefault(require("./typeSupplier.model"));
+const typeDocument_model_1 = __importDefault(require("./typeDocument.model"));
 const tipoServicio_model_1 = __importDefault(require("./tipoServicio.model"));
-const banco_model_1 = __importDefault(require("./banco.model"));
-const proveedores = database_1.default.define("proveedor", {
+const banks_model_1 = __importDefault(require("./banks.model"));
+const suppliers = database_1.default.define("supplier", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    tipoProveedorId: {
+    typeSupplierId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    tipoDocumentoId: {
+    typeDocumentId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    documento: {
+    document: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
         unique: true,
     },
-    nombre: {
+    name: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    tipoServicioId: {
+    typeServiceId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    telefono: {
+    phone: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
@@ -44,21 +44,21 @@ const proveedores = database_1.default.define("proveedor", {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    bancoId: {
+    bankId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    bancoOpcionalId: {
+    bankOptionalId: {
         type: sequelize_1.DataTypes.INTEGER,
     },
-    numeroCuenta: {
+    accountNumber: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    numeroCuentaOpcional: {
+    accountNumberOptional: {
         type: sequelize_1.DataTypes.STRING,
     },
-    infoAdicional: {
+    info: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
@@ -70,12 +70,12 @@ const proveedores = database_1.default.define("proveedor", {
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
     },
-    estado: {
+    state: {
         type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,
     },
-    usuario: {
+    username: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
@@ -84,13 +84,13 @@ const proveedores = database_1.default.define("proveedor", {
     },
 }, { schema: "PROVEEDORES" });
 //--- ASOCIACIONES---//
-tipoProveedores_model_1.default.hasMany(proveedores, { foreignKey: "tipoProveedorId" });
-proveedores.belongsTo(tipoProveedores_model_1.default);
-tipoDocumento_model_1.default.hasMany(proveedores, { foreignKey: "tipoDocumentoId" });
-proveedores.belongsTo(tipoDocumento_model_1.default);
-tipoServicio_model_1.default.hasMany(proveedores, { foreignKey: "tipoServicioId" });
-proveedores.belongsTo(tipoServicio_model_1.default);
-banco_model_1.default.hasMany(proveedores, { foreignKey: "bancoId" });
-proveedores.belongsTo(banco_model_1.default);
-exports.default = proveedores;
+typeSupplier_model_1.default.hasMany(suppliers, { foreignKey: "typeSupplierId" });
+suppliers.belongsTo(typeSupplier_model_1.default);
+typeDocument_model_1.default.hasMany(suppliers, { foreignKey: "typeDocumentId" });
+suppliers.belongsTo(typeDocument_model_1.default);
+tipoServicio_model_1.default.hasMany(suppliers, { foreignKey: "typeServiceId" });
+suppliers.belongsTo(tipoServicio_model_1.default);
+banks_model_1.default.hasMany(suppliers, { foreignKey: "bankId" });
+suppliers.belongsTo(banks_model_1.default);
+exports.default = suppliers;
 //# sourceMappingURL=proveedores.model.js.map

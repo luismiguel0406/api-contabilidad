@@ -5,13 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../database"));
-const tipoServicio = database_1.default.define("tipoServicio", {
+const typeService = database_1.default.define("typeService", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    descripcion: {
+    description: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
@@ -22,11 +22,11 @@ const tipoServicio = database_1.default.define("tipoServicio", {
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
     },
-    estado: {
+    state: {
         type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
     },
-    usuario: {
+    username: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
@@ -34,5 +34,5 @@ const tipoServicio = database_1.default.define("tipoServicio", {
         type: sequelize_1.DataTypes.STRING,
     },
 }, { schema: "PROVEEDORES" });
-exports.default = tipoServicio;
+exports.default = typeService;
 //# sourceMappingURL=tipoServicio.model.js.map

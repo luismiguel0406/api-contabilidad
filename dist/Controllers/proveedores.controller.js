@@ -12,38 +12,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getEntidadBancaria = exports.getTipoDocumento = exports.getTipoServicio = exports.getTipoProveedor = exports.deleteProveedor = exports.updateProveedores = exports.postProveedor = exports.getProveedores = void 0;
+exports.getBank = exports.getTypeDocument = exports.getTypeService = exports.getTypeSupplier = exports.deleteSupplier = exports.updateSupplier = exports.postSupplier = exports.getSuppliers = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
-const proveedor_service_1 = __importDefault(require("../services/proveedor/proveedor.service"));
+const supplier_service_1 = __importDefault(require("../services/supplier/supplier.service"));
 const database_1 = __importDefault(require("../database"));
-const direcciones_service_1 = __importDefault(require("../services/contacto/direcciones.service"));
+const address_service_1 = __importDefault(require("../services/contacto/address.service"));
 //----------- PROVEEDORES--------------//
-const proveedorers_service = new proveedor_service_1.default();
-const direccion_service = new direcciones_service_1.default();
-const getProveedores = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const suppliers_service = new supplier_service_1.default();
+const address_service = new address_service_1.default();
+const getSuppliers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const proveedoresResult = yield proveedorers_service.getProveedores(id);
-        if (!proveedoresResult) {
+        const result = yield suppliers_service.getProveedores(id);
+        if (!result) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ message: msg });
         }
-        res.json(proveedoresResult);
+        res.json(result);
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
         return res.status(statusCode).json({ message: msg, error });
     }
 });
-exports.getProveedores = getProveedores;
-const postProveedor = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getSuppliers = getSuppliers;
+const postSupplier = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const transaction = yield database_1.default.transaction();
     try {
         const { body } = req;
         const { address, infoSupplier } = body;
-        const proveedor = yield proveedorers_service.addProveedor(infoSupplier, transaction);
-        const bodyDireccion = Object.assign({ referenciaContactoId: proveedor.id, tipoContactoId: 2 }, address);
-        yield direccion_service.addDireccion(bodyDireccion, transaction);
+        const supplier = yield suppliers_service.addProveedor(infoSupplier, transaction);
+        const bodyAddress = Object.assign({ referenceId: supplier.id, typeContactId: 2 }, address);
+        yield address_service.addDireccion(bodyAddress, transaction);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
         res.status(statusCode).json({ message: msg });
         transaction.commit();
@@ -54,12 +54,12 @@ const postProveedor = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         return res.status(statusCode).json({ message: msg, error });
     }
 });
-exports.postProveedor = postProveedor;
-const updateProveedores = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.postSupplier = postSupplier;
+const updateSupplier = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
         const { body } = req;
-        yield proveedorers_service.updateProveedor(body, id);
+        yield suppliers_service.updateSupplier(body, id);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
         res.status(statusCode).json({ message: msg });
     }
@@ -68,11 +68,11 @@ const updateProveedores = (req, res) => __awaiter(void 0, void 0, void 0, functi
         return res.status(statusCode).json({ message: msg, error });
     }
 });
-exports.updateProveedores = updateProveedores;
-const deleteProveedor = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.updateSupplier = updateSupplier;
+const deleteSupplier = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        yield proveedorers_service.deleteProveedor(Number(id));
+        yield suppliers_service.deleteSupplier(Number(id));
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
         res.status(statusCode).json({ message: msg });
     }
@@ -81,27 +81,27 @@ const deleteProveedor = (req, res) => __awaiter(void 0, void 0, void 0, function
         return res.status(statusCode).json({ message: msg, error });
     }
 });
-exports.deleteProveedor = deleteProveedor;
+exports.deleteSupplier = deleteSupplier;
 //---------TIPO PROVEEDORES --------//
-const getTipoProveedor = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getTypeSupplier = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const TipoProveedorResult = yield proveedorers_service.getTipoProveedor();
-        if (TipoProveedorResult === null) {
+        const result = yield suppliers_service.getTypeSupplier();
+        if (result.length === 0) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ message: msg });
         }
-        res.json(TipoProveedorResult);
+        res.json(result);
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
         return res.status(statusCode).json({ message: msg, error });
     }
 });
-exports.getTipoProveedor = getTipoProveedor;
+exports.getTypeSupplier = getTypeSupplier;
 //------------ TIPO SERVICIO PROVEEDOR----------------//
-const getTipoServicio = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getTypeService = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield proveedorers_service.getTipoServicio();
+        const result = yield suppliers_service.getTypeService();
         if (result.length === 0) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ message: msg });
@@ -113,11 +113,11 @@ const getTipoServicio = (req, res) => __awaiter(void 0, void 0, void 0, function
         return res.status(statusCode).json({ message: msg, error });
     }
 });
-exports.getTipoServicio = getTipoServicio;
+exports.getTypeService = getTypeService;
 //---------------- TIPO DOCUMENTO----------------//
-const getTipoDocumento = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getTypeDocument = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield proveedorers_service.getTipoDocumento();
+        const result = yield suppliers_service.getTypeDocument();
         if (result.length === 0) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ message: msg });
@@ -129,11 +129,11 @@ const getTipoDocumento = (req, res) => __awaiter(void 0, void 0, void 0, functio
         return res.status(statusCode).json({ message: msg, error });
     }
 });
-exports.getTipoDocumento = getTipoDocumento;
+exports.getTypeDocument = getTypeDocument;
 //------------  ENTIDAD BANCARIA  ----------------//
-const getEntidadBancaria = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getBank = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield proveedorers_service.getEntidadBancaria();
+        const result = yield suppliers_service.getBanks();
         if (result.length === 0) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ message: msg });
@@ -145,5 +145,5 @@ const getEntidadBancaria = (req, res) => __awaiter(void 0, void 0, void 0, funct
         return res.status(statusCode).json({ message: msg, error });
     }
 });
-exports.getEntidadBancaria = getEntidadBancaria;
+exports.getBank = getBank;
 //# sourceMappingURL=proveedores.controller.js.map

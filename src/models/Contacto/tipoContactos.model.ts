@@ -1,10 +1,10 @@
 import { Model, DataTypes } from "sequelize";
 import conexion from "../../database";
 import clientes from "../Clientes/Cliente.model";
-import proveedores from "../Proveedores/proveedores.model";
-import { TTipoGenerico } from "types";
+import suppliers from "../suppliers/suppliers.model";
+import { TTypeGeneric } from "types";
 
-const tiposContactos = conexion.define<Model<TTipoGenerico>>(
+const tiposContactos = conexion.define<Model<TTypeGeneric>>(
   "tipoContacto",
   {
     descripcion: {

@@ -12,33 +12,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const usuario_model_1 = __importDefault(require("../../models/usuarios/usuario.model"));
-class UsuariosService {
-    addUsuario(body) {
+const user_model_1 = __importDefault(require("../../models/user/user.model"));
+class UserService {
+    addUser(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield usuario_model_1.default.create(body);
+            return yield user_model_1.default.create(body);
         });
     }
-    getUsuario(email, empresaId) {
+    getUser(email, companyId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuarioResult = yield usuario_model_1.default.findOne({
-                where: { email, empresaId, estado: "1" },
+            const result = yield user_model_1.default.findOne({
+                where: { email, companyId, state: true },
             });
-            return usuarioResult;
+            return result;
         });
     }
-    updateUsuario(body, id, empresaId) {
+    updateUser(body, id, companyId) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield usuario_model_1.default.update(body, {
-                where: { id, empresaId, estado: "1" },
+            yield user_model_1.default.update(body, {
+                where: { id, companyId, state: true },
             });
         });
     }
-    deleteUsuario(id, empresaId) {
+    deleteUser(id, companyId) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield usuario_model_1.default.update({ estado: "0" }, { where: { id, empresaId } });
+            yield user_model_1.default.update({ state: false }, { where: { id, companyId } });
         });
     }
 }
-exports.default = UsuariosService;
+exports.default = UserService;
 //# sourceMappingURL=usuarios.service.js.map

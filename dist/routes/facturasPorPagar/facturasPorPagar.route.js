@@ -10,7 +10,7 @@ const facturaPorPagar = "FacturaPorPagar";
 //-----------TIPO FACTURA------------//
 router.get(`${endPointFacturacion}/${tipoFacturasPorPagar}/:id?`, FacturasPorPagar_controller_1.getTipoFactura);
 //----------- FACTURA POR PAGAR ------------//
-router.use(`${endPointFacturacion}/${facturaPorPagar}`, jsonWebToken_1.ValidarToken);
+router.use(`${endPointFacturacion}/${facturaPorPagar}`, jsonWebToken_1.validToken);
 router.post(`${endPointFacturacion}/${facturaPorPagar}`, FacturasPorPagar_controller_1.postFacturaPorPagar);
 router.get(`${endPointFacturacion}/${facturaPorPagar}/:id?`, FacturasPorPagar_controller_1.getFacturasPorPagar);
 exports.default = router;
