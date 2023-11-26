@@ -12,24 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
+const typeContacts_model_1 = __importDefault(require("../../models/Contacto/typeContacts.model"));
 class TipoContactosService {
     getTipoContactos(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const tipoContacto = id === null
-                ? yield tipoContactos_model_1.default.findAll({ where: { estado: "1" } })
-                : yield tipoContactos_model_1.default.findOne({ where: { id, estado: "1" } });
+                ? yield typeContacts_model_1.default.findAll({ where: { estado: "1" } })
+                : yield typeContacts_model_1.default.findOne({ where: { id, estado: "1" } });
             return tipoContacto;
         });
     }
     AddTipoContacto(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoContactos_model_1.default.create(body);
+            yield typeContacts_model_1.default.create(body);
         });
     }
     deleteTipoContacto(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoContactos_model_1.default.update({ estado: false }, {
+            yield typeContacts_model_1.default.update({ estado: false }, {
                 where: {
                     id,
                 },
@@ -38,7 +38,7 @@ class TipoContactosService {
     }
     updateTipoContacto(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoContactos_model_1.default.update(body, {
+            yield typeContacts_model_1.default.update(body, {
                 where: {
                     id,
                     estado: "1",

@@ -1,5 +1,5 @@
 import { ItipoContacto } from "../../interfaces/contactos.interface";
-import tiposContactosModel from "../../models/Contacto/tipoContactos.model";
+import tiposContactosModel from "../../models/Contacto/typeContacts.model";
 
 export default class TipoContactosService {
   async getTipoContactos(id: any = null) {
@@ -17,7 +17,7 @@ export default class TipoContactosService {
 
   async deleteTipoContacto(id: string) {
     await tiposContactosModel.update(
-      { estado: false},
+      { estado: false },
       {
         where: {
           id,

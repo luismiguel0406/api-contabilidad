@@ -43,7 +43,7 @@ const postSupplier = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const { address, infoSupplier } = body;
         const supplier = yield suppliers_service.addSupplier(infoSupplier, transaction);
         const bodyAddress = Object.assign({ referenceId: supplier.id, typeContactId: 2 }, address);
-        yield address_service.addDireccion(bodyAddress, transaction);
+        yield address_service.addAddress(bodyAddress, transaction);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
         res.status(statusCode).json({ message: msg });
         transaction.commit();

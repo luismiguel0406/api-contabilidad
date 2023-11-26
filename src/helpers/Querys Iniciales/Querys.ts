@@ -9,7 +9,7 @@ import { IMoneda } from "../../interfaces/moneda.interface";
 import { ITipoItem } from "../../interfaces/Item.interface";
 import { ITipoVentas } from "../../interfaces/tipoVentas.interface";
 import tipoCliente from "../../models/Clientes/tipoCliente.model";
-import tiposContactos from "../../models/Contacto/tipoContactos.model";
+import typeContacts from "../../models/Contacto/typeContacts.model";
 import grupoCuenta from "../../models/Cuentas Contables/grupoCuenta.model";
 import tipoComprobantes from "../../models/Facturacion/comprobantes/tipoComprobante.model";
 import moneda from "../../models/Facturacion/moneda/moneda.model";
@@ -149,9 +149,9 @@ export class TiposContactos {
   }
 
   InsertarTipoContactos() {
-    tiposContactos.afterSync("createTipoContactos", async () => {
+    typeContacts.afterSync("createTipoContactos", async () => {
       try {
-        await tiposContactos.bulkCreate(this.tipoContactosArray);
+        await typeContacts.bulkCreate(this.tipoContactosArray);
       } catch (error) {
         console.error(`Error insertando tipos contactos, ${error}`);
       }

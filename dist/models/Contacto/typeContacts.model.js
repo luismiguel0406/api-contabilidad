@@ -30,4 +30,4 @@ const typeContacts = database_1.default.define("typeContact", {
     },
 }, { schema: "CONTACTOS" });
 exports.default = typeContacts;
-//# sourceMappingURL=tipoContactos.model.js.map
+//# sourceMappingURL=typeContacts.model.js.map

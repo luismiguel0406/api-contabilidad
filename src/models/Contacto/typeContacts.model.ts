@@ -1,13 +1,11 @@
 import { Model, DataTypes } from "sequelize";
 import conexion from "../../database";
-import clientes from "../Clientes/Cliente.model";
-import suppliers from "../suppliers/suppliers.model";
 import { TTypeGeneric } from "types";
 
-const tiposContactos = conexion.define<Model<TTypeGeneric>>(
-  "tipoContacto",
+const typeContacts = conexion.define<Model<TTypeGeneric>>(
+  "typeContact",
   {
-    descripcion: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -18,11 +16,11 @@ const tiposContactos = conexion.define<Model<TTypeGeneric>>(
     updatedAt: {
       type: DataTypes.DATE,
     },
-    estado: {
+    state: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    usuario: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -33,4 +31,4 @@ const tiposContactos = conexion.define<Model<TTypeGeneric>>(
   { schema: "CONTACTOS" }
 );
 
-export default tiposContactos;
+export default typeContacts;

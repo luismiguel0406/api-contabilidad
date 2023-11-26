@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import conexion from "../../database";
 import clientes from "../Clientes/Cliente.model";
 import suppliers from "../suppliers/suppliers.model";
-import tiposContactos from "./tipoContactos.model";
+import typeContacts from "./typeContacts.model";
 
 const correos = conexion.define(
   "correo",
@@ -51,7 +51,7 @@ correos.belongsTo(clientes);
 suppliers.hasMany(correos, { foreignKey: "proveedorId" });
 correos.belongsTo(suppliers);
 
-tiposContactos.hasMany(correos, { foreignKey: "tipoContactoId" });
-correos.belongsTo(tiposContactos);
+typeContacts.hasMany(correos, { foreignKey: "tipoContactoId" });
+correos.belongsTo(typeContacts);
 
 export default correos;

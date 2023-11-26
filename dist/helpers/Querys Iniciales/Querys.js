@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TipoEfecto = exports.TipoMovimiento = exports.CuentasContables = exports.TransaccionesComerciales = exports.TipoCuentasContables = exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.GrupoCuentasContables = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = exports.Empresa = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
-const tipoContactos_model_1 = __importDefault(require("../../models/Contacto/tipoContactos.model"));
+const typeContacts_model_1 = __importDefault(require("../../models/Contacto/typeContacts.model"));
 const grupoCuenta_model_1 = __importDefault(require("../../models/Cuentas Contables/grupoCuenta.model"));
 const tipoComprobante_model_1 = __importDefault(require("../../models/Facturacion/comprobantes/tipoComprobante.model"));
 const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda/moneda.model"));
@@ -142,9 +142,9 @@ class TiposContactos {
         ];
     }
     InsertarTipoContactos() {
-        tipoContactos_model_1.default.afterSync("createTipoContactos", () => __awaiter(this, void 0, void 0, function* () {
+        typeContacts_model_1.default.afterSync("createTipoContactos", () => __awaiter(this, void 0, void 0, function* () {
             try {
-                yield tipoContactos_model_1.default.bulkCreate(this.tipoContactosArray);
+                yield typeContacts_model_1.default.bulkCreate(this.tipoContactosArray);
             }
             catch (error) {
                 console.error(`Error insertando tipos contactos, ${error}`);

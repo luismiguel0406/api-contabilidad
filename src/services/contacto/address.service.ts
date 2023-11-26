@@ -1,25 +1,25 @@
 import { TAddress } from "types";
 import { Transaction } from "sequelize";
-import direccionesModel from "../../models/Contacto/direcciones.model";
+import addressModel from "../../models/Contacto/address.model";
 
 export default class DireccionService {
-  async getDireccion(id: number) {
-    const direccionResult = await direccionesModel.findByPk(id);
+  async getAdress(id: number) {
+    const result = await addressModel.findByPk(id);
 
-    return direccionResult;
+    return result;
   }
 
-  async addDireccion(body: TAddress, transaction: Transaction) {
-    await direccionesModel.create(body, { transaction });
+  async addAddress(body: TAddress, transaction: Transaction) {
+    await addressModel.create(body, { transaction });
   }
 
-  async updateDireccion(body: TAddress, id: number) {
-    await direccionesModel.update(body, {
-      where: { id, estado: true },
+  async updateAddress(body: TAddress, id: number) {
+    await addressModel.update(body, {
+      where: { id, state: true },
     });
   }
 
-  async deleteDireccion(id: number) {
-    await direccionesModel.update({ estado: false }, { where: { id } });
+  async deleteAddress(id: number) {
+    await addressModel.update({ state: false }, { where: { id } });
   }
 }

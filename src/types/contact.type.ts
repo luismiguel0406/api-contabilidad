@@ -3,9 +3,9 @@ import { TCommon } from "./common.type";
 export type TAddress = TCommon & {
   id?: number;
   district: string;
-  section: string;
+  sector: string;
   street: string;
-  builtNumber: number;
+  buildingNumber: number;
   referenceId: number;
   typeContactId: number;
 };

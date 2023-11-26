@@ -12,29 +12,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const direcciones_model_1 = __importDefault(require("../../models/Contacto/direcciones.model"));
+const address_model_1 = __importDefault(require("../../models/Contacto/address.model"));
 class DireccionService {
-    getDireccion(id) {
+    getAdress(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const direccionResult = yield direcciones_model_1.default.findByPk(id);
-            return direccionResult;
+            const result = yield address_model_1.default.findByPk(id);
+            return result;
         });
     }
-    addDireccion(body, transaction) {
+    addAddress(body, transaction) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield direcciones_model_1.default.create(body, { transaction });
+            yield address_model_1.default.create(body, { transaction });
         });
     }
-    updateDireccion(body, id) {
+    updateAddress(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield direcciones_model_1.default.update(body, {
-                where: { id, estado: true },
+            yield address_model_1.default.update(body, {
+                where: { id, state: true },
             });
         });
     }
-    deleteDireccion(id) {
+    deleteAddress(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield direcciones_model_1.default.update({ estado: false }, { where: { id } });
+            yield address_model_1.default.update({ state: false }, { where: { id } });
         });
     }
 }

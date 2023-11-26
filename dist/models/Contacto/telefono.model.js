@@ -7,7 +7,7 @@ const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../database"));
 const Cliente_model_1 = __importDefault(require("../Clientes/Cliente.model"));
 const suppliers_model_1 = __importDefault(require("../suppliers/suppliers.model"));
-const tipoContactos_model_1 = __importDefault(require("./tipoContactos.model"));
+const typeContacts_model_1 = __importDefault(require("./typeContacts.model"));
 const telefonos = database_1.default.define("telefono", {
     telefono: {
         type: sequelize_1.DataTypes.STRING,
@@ -46,7 +46,7 @@ Cliente_model_1.default.hasMany(telefonos, { foreignKey: "clienteId" });
 telefonos.belongsTo(Cliente_model_1.default);
 suppliers_model_1.default.hasMany(telefonos, { foreignKey: "proveedorId" });
 telefonos.belongsTo(suppliers_model_1.default);
-tipoContactos_model_1.default.hasMany(telefonos, { foreignKey: "tipoContactoId" });
-telefonos.belongsTo(tipoContactos_model_1.default);
+typeContacts_model_1.default.hasMany(telefonos, { foreignKey: "tipoContactoId" });
+telefonos.belongsTo(typeContacts_model_1.default);
 exports.default = telefonos;
 //# sourceMappingURL=telefono.model.js.map

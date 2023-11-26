@@ -1,12 +1,12 @@
 import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
-import tiposContactos from "./tipoContactos.model";
+import typeContacts from "./typeContacts.model";
 import { TAddress } from "types";
 
-const direcciones = conexion.define<Model<TAddress>>(
-  "direccion",
+const address = conexion.define<Model<TAddress>>(
+  "address",
   {
-    distrito: {
+    district: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -14,11 +14,11 @@ const direcciones = conexion.define<Model<TAddress>>(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    calle: {
+    street: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    numeroEdificio: {
+    buildingNumber: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -30,23 +30,23 @@ const direcciones = conexion.define<Model<TAddress>>(
     updatedAt: {
       type: DataTypes.DATE,
     },
-    estado: {
+    state: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,
     },
-    usuario: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     terminal: {
       type: DataTypes.STRING,
     },
-    referenciaContactoId: {
+    referenceId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    tipoContactoId: {
+    typeContactId: {
       type: DataTypes.INTEGER,
     },
   },
@@ -55,7 +55,7 @@ const direcciones = conexion.define<Model<TAddress>>(
 
 //--- ASOCIACIONES---//
 
-tiposContactos.hasMany(direcciones, { foreignKey: "tipoContactoId" });
-direcciones.belongsTo(tiposContactos);
+typeContacts.hasMany(address, { foreignKey: "typeContactId" });
+address.belongsTo(typeContacts);
 
-export default direcciones;
+export default address;

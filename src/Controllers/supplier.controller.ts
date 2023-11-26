@@ -42,7 +42,7 @@ export const postSupplier = async (req: Request, res: Response) => {
       typeContactId: 2,
       ...address,
     };
-    await address_service.addDireccion(bodyAddress, transaction);
+    await address_service.addAddress(bodyAddress, transaction);
 
     const { statusCode, msg } = MsgRespuesta.created;
     res.status(statusCode).json({ message: msg });

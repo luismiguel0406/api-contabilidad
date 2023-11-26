@@ -55,4 +55,4 @@ const address = database_1.default.define("address", {
 typeContacts_model_1.default.hasMany(address, { foreignKey: "typeContactId" });
 address.belongsTo(typeContacts_model_1.default);
 exports.default = address;
-//# sourceMappingURL=direcciones.model.js.map
+//# sourceMappingURL=address.model.js.map
