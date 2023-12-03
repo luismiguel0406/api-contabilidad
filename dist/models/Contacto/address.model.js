@@ -7,8 +7,8 @@ const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../database"));
 const typeContacts_model_1 = __importDefault(require("./typeContacts.model"));
 const address = database_1.default.define("address", {
-    district: {
-        type: sequelize_1.DataTypes.STRING,
+    districtId: {
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
     sector: {

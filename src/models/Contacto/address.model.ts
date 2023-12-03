@@ -6,8 +6,8 @@ import { TAddress } from "types";
 const address = conexion.define<Model<TAddress>>(
   "address",
   {
-    district: {
-      type: DataTypes.STRING,
+    districtId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     sector: {

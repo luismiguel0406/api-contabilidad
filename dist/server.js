@@ -19,7 +19,7 @@ const moneda_route_1 = __importDefault(require("./routes/facturacion/moneda.rout
 const comprobante_route_1 = __importDefault(require("./routes/facturacion/comprobante.route"));
 const empresa_route_1 = __importDefault(require("./routes/empresa/empresa.route"));
 const clientes_route_1 = __importDefault(require("./routes/Clientes/clientes.route"));
-const contactos_route_1 = __importDefault(require("./routes/Contactos/contactos.route"));
+const territories_route_1 = __importDefault(require("./routes/Contactos/territories.route"));
 const suppliers_route_1 = __importDefault(require("./routes/suppliers/suppliers.route"));
 const Item_route_1 = __importDefault(require("./routes/Inventario/Item.route"));
 const tipoVenta_route_1 = __importDefault(require("./routes/facturacion/tipoVenta.route"));
@@ -74,7 +74,7 @@ class Server {
         this.app.use(comprobante_route_1.default);
         this.app.use(empresa_route_1.default);
         this.app.use(clientes_route_1.default);
-        this.app.use(contactos_route_1.default);
+        this.app.use(territories_route_1.default);
         this.app.use(suppliers_route_1.default);
         this.app.use(Item_route_1.default);
         this.app.use(tipoVenta_route_1.default);

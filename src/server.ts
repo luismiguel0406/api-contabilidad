@@ -25,7 +25,7 @@ import MonedasRoutes from "./routes/facturacion/moneda.route";
 import ComprobantesRoutes from "./routes/facturacion/comprobante.route";
 import empresaRoutes from "./routes/empresa/empresa.route";
 import clientesRoutes from "./routes/Clientes/clientes.route";
-import contactosRoutes from "./routes/Contactos/contactos.route";
+import contactosRoutes from "./routes/Contactos/territories.route";
 import suppliersRoutes from "./routes/suppliers/suppliers.route";
 import itemRoutes from "./routes/Inventario/Item.route";
 import tipoVentaRoutes from "./routes/facturacion/tipoVenta.route";
