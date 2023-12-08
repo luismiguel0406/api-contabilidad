@@ -19,10 +19,36 @@ export default class SupplierService {
   //--------- PROVEEDOR -----------//
 
   async getSuppliers(id: any = null) {
-    const result =
-      id === null
-        ? await supplierModel.findAll({ where: { state: true } })
-        : await supplierModel.findOne({ where: { id, state: true } });
+    const result = await supplierModel.findAll({
+      include: [
+        {
+          model: typeSupplierModel,
+          attributes: ["description"],
+          required: true,
+          where: { state: true },
+        },
+        {
+          model: typeDocumentModel,
+          attributes: ["description"],
+          required: true,
+          where: { state: true },
+        },
+        {
+          model: typeServiceModel,
+          attributes: ["description"],
+          required: true,
+          where: { state: true },
+        },
+        {
+          model: bankModel,
+          attributes: ["description"],
+          required: true,
+          where: { state: true },
+        },
+      ],
+
+      where: id === null ? { state: true } : { id, state: true },
+    });
 
     return result;
   }

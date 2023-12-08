@@ -30,9 +30,35 @@ class SupplierService {
     //--------- PROVEEDOR -----------//
     getSuppliers(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = id === null
-                ? yield suppliers_model_1.default.findAll({ where: { state: true } })
-                : yield suppliers_model_1.default.findOne({ where: { id, state: true } });
+            const result = yield suppliers_model_1.default.findAll({
+                include: [
+                    {
+                        model: typeSupplier_model_1.default,
+                        attributes: ["description"],
+                        required: true,
+                        where: { state: true },
+                    },
+                    {
+                        model: typeDocument_model_1.default,
+                        attributes: ["description"],
+                        required: true,
+                        where: { state: true },
+                    },
+                    {
+                        model: typeService_model_1.default,
+                        attributes: ["description"],
+                        required: true,
+                        where: { state: true },
+                    },
+                    {
+                        model: banks_model_1.default,
+                        attributes: ["description"],
+                        required: true,
+                        where: { state: true },
+                    },
+                ],
+                where: id === null ? { state: true } : { id, state: true },
+            });
             return result;
         });
     }

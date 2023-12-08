@@ -1,0 +1,162 @@
+[
+	{
+		"description": "Distrito Nacional",
+		"code": "01",
+		"identifier": "1001"
+	},
+	{
+		"description": "Azua",
+		"code": "02",
+		"identifier": "0502"
+	},
+	{
+		"description": "Baoruco",
+		"code": "03",
+		"identifier": "0603"
+	},
+	{
+		"description": "Barahona",
+		"code": "04",
+		"identifier": "0604"
+	},
+	{
+		"description": "Dajabón",
+		"code": "05",
+		"identifier": "0405"
+	},
+	{
+		"description": "Duarte",
+		"code": "06",
+		"identifier": "0306"
+	},
+	{
+		"description": "Elías Piña",
+		"code": "07",
+		"identifier": "0707"
+	},
+	{
+		"description": "El Seibo",
+		"code": "08",
+		"identifier": "0808"
+	},
+	{
+		"description": "Espaillat",
+		"code": "09",
+		"identifier": "0109"
+	},
+	{
+		"description": "Independencia",
+		"code": "10",
+		"identifier": "0610"
+	},
+	{
+		"description": "La Altagracia",
+		"code": "11",
+		"identifier": "0811"
+	},
+	{
+		"description": "La Romana",
+		"code": "12",
+		"identifier": "0812"
+	},
+	{
+		"description": "La Vega",
+		"code": "13",
+		"identifier": "0213"
+	},
+	{
+		"description": "María Trinidad Sánchez",
+		"code": "14",
+		"identifier": "0314"
+	},
+	{
+		"description": "Monte Cristi",
+		"code": "15",
+		"identifier": "0415"
+	},
+	{
+		"description": "Pedernales",
+		"code": "16",
+		"identifier": "0616"
+	},
+	{
+		"description": "Peravia",
+		"code": "17",
+		"identifier": "0517"
+	},
+	{
+		"description": "Puerto Plata",
+		"code": "18",
+		"identifier": "0118"
+	},
+	{
+		"description": "Hermanas Mirabal",
+		"code": "19",
+		"identifier": "0319"
+	},
+	{
+		"description": "Samaná",
+		"code": "20",
+		"identifier": "0320"
+	},
+	{
+		"description": "San Cristóbal",
+		"code": "21",
+		"identifier": "0521"
+	},
+	{
+		"description": "San Juan",
+		"code": "22",
+		"identifier": "0722"
+	},
+	{
+		"description": "San Pedro de Macorís",
+		"code": "23",
+		"identifier": "0923"
+	},
+	{
+		"description": "Sanchez Ramírez",
+		"code": "24",
+		"identifier": "0224"
+	},
+	{
+		"description": "Santiago",
+		"code": "25",
+		"identifier": "0125"
+	},
+	{
+		"description": "Santiago Rodríguez",
+		"code": "26",
+		"identifier": "0426"
+	},
+	{
+		"description": "Valverde",
+		"code": "27",
+		"identifier": "0427"
+	},
+	{
+		"description": "Monseñor Nouel",
+		"code": "28",
+		"identifier": "0228"
+	},
+	{
+		"description": "Monte Plata",
+		"code": "29",
+		"identifier": "0929"
+	},
+	{
+		"description": "Hato Mayor",
+		"code": "30",
+		"identifier": "0930"
+	},
+	{
+		"description": "San José de Ocoa",
+		"code": "31",
+		"identifier": "0531"
+	},
+	{
+		"description": "Santo Domingo",
+		"code": "32",
+		"identifier": "1032"
+	}
+]
