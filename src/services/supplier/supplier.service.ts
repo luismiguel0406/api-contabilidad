@@ -5,6 +5,7 @@ import typeSupplierModel from "../../models/suppliers/typeSupplier.model";
 import typeServiceModel from "../../models/suppliers/typeService.model";
 import typeDocumentModel from "../../models/suppliers/typeDocument.model";
 import bankModel from "../../models/suppliers/banks.model";
+import addressModel from "../../models/Contacto/address.model";
 
 export default class SupplierService {
   //-------- TIPO PROVEEDOR --------//
@@ -45,6 +46,12 @@ export default class SupplierService {
           required: true,
           where: { state: true },
         },
+        // {
+        //   model: addressModel,
+        //   attributes: ["districtId", "street", "sector", "buildingNumber"],
+
+        //   where: { typeContactId: TYPE_CONTACT_SUPPLIER, referenceId: id },
+        // },
       ],
 
       where: id === null ? { state: true } : { id, state: true },

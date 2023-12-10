@@ -13,21 +13,21 @@ import {
 const router = Router();
 
 //PROVEEDORES
-router.get(`/api/proveedores/proveedor:id?`, getSuppliers);
-router.post(`/api/proveedores/proveedor`, postSupplier);
-router.put(`/api/proveedores/proveedor/:id`, updateSupplier);
-router.delete(`/api/proveedores/proveedor/:id`, deleteSupplier);
+router.get(`/api/suppliers/supplier:id?`, getSuppliers);
+router.post(`/api/suppliers/supplier`, postSupplier);
+router.put(`/api/suppliers/supplier/:id`, updateSupplier);
+router.delete(`/api/suppliers/supplier/:id`, deleteSupplier);
 
 //TIPO PROVEEDORES
-router.get(`/api/proveedores/tipoProveedor`, getTypeSupplier);
+router.get(`/api/suppliers/typeSupplier`, getTypeSupplier);
 
 //TIPO SERVICIO
-router.get(`/api/proveedores/tipoServicio`, getTypeService);
+router.get(`/api/suppliers/typeService`, getTypeService);
 
 //TIPO DOCUMENTO
-router.get(`/api/proveedores/tipoDocumento`, getTypeDocument);
+router.get(`/api/suppliers/typeDocument`, getTypeDocument);
 
 //BANCOS
-router.get(`/api/proveedores/banco`, getBank);
+router.get(`/api/suppliers/bank`, getBank);
 
 export default router;

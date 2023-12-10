@@ -56,6 +56,11 @@ class SupplierService {
                         required: true,
                         where: { state: true },
                     },
+                    // {
+                    //   model: addressModel,
+                    //   attributes: ["districtId", "street", "sector", "buildingNumber"],
+                    //   where: { typeContactId: TYPE_CONTACT_SUPPLIER, referenceId: id },
+                    // },
                 ],
                 where: id === null ? { state: true } : { id, state: true },
             });

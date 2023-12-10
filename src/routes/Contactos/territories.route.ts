@@ -6,7 +6,7 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/api/territorios/provincias", getProvinces);
-router.post("/api/territorios/provincias", postProvinces);
+router.get("/api/territories/provinces", getProvinces);
+router.post("/api/territories/provinces", postProvinces);
 
 export default router;
