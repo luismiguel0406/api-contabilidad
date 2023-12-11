@@ -1,4 +1,5 @@
 import { TCommon } from "./common.type";
+import { TAddress } from "./contact.type";
 import { TTypeGeneric } from "./typeGeneric.type";
 
 export type TSupplier = TCommon & {
@@ -15,6 +16,7 @@ export type TSupplier = TCommon & {
   phone: string;
   email: string;
   info: string;
+  address: TAddress;
 };
 
 export type TTypeDocument = TTypeGeneric & {

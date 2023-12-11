@@ -15,16 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getBank = exports.getTypeDocument = exports.getTypeService = exports.getTypeSupplier = exports.deleteSupplier = exports.updateSupplier = exports.postSupplier = exports.getSuppliers = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const supplier_service_1 = __importDefault(require("../services/supplier/supplier.service"));
-const database_1 = __importDefault(require("../database"));
-const address_service_1 = __importDefault(require("../services/contacto/address.service"));
 //----------- PROVEEDORES--------------//
 const suppliers_service = new supplier_service_1.default();
-const address_service = new address_service_1.default();
 const getSuppliers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
         const result = yield suppliers_service.getSuppliers(id);
-        if (!result) {
+        if (Object.keys(result).length === 0) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ message: msg });
         }
@@ -37,19 +34,13 @@ const getSuppliers = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 });
 exports.getSuppliers = getSuppliers;
 const postSupplier = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const transaction = yield database_1.default.transaction();
     try {
         const { body } = req;
-        const { address, infoSupplier } = body;
-        const supplier = yield suppliers_service.addSupplier(infoSupplier, transaction);
-        const bodyAddress = Object.assign({ referenceId: supplier.id, typeContactId: 2 }, address);
-        yield address_service.addAddress(bodyAddress, transaction);
+        yield suppliers_service.addSupplier(body);
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.created;
         res.status(statusCode).json({ message: msg });
-        transaction.commit();
     }
     catch (error) {
-        transaction.rollback();
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
         return res.status(statusCode).json({ message: msg, error });
     }

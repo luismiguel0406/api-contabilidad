@@ -61,6 +61,9 @@ const suppliers = conexion.define<Model<TSupplier>>(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    address: {
+      type: DataTypes.JSONB,
+    },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,

@@ -1,11 +1,9 @@
 import { TSupplier } from "types";
-import { Transaction } from "sequelize";
 import supplierModel from "../../models/suppliers/suppliers.model";
 import typeSupplierModel from "../../models/suppliers/typeSupplier.model";
 import typeServiceModel from "../../models/suppliers/typeService.model";
 import typeDocumentModel from "../../models/suppliers/typeDocument.model";
 import bankModel from "../../models/suppliers/banks.model";
-import addressModel from "../../models/Contacto/address.model";
 
 export default class SupplierService {
   //-------- TIPO PROVEEDOR --------//
@@ -46,12 +44,6 @@ export default class SupplierService {
           required: true,
           where: { state: true },
         },
-        // {
-        //   model: addressModel,
-        //   attributes: ["districtId", "street", "sector", "buildingNumber"],
-
-        //   where: { typeContactId: TYPE_CONTACT_SUPPLIER, referenceId: id },
-        // },
       ],
 
       where: id === null ? { state: true } : { id, state: true },
@@ -60,8 +52,8 @@ export default class SupplierService {
     return result;
   }
 
-  async addSupplier(body: TSupplier, transaction: Transaction) {
-    const result = await supplierModel.create(body, { transaction });
+  async addSupplier(body: TSupplier) {
+    const result = await supplierModel.create(body);
     return result;
   }
 

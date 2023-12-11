@@ -1,13 +1,10 @@
 import { TCommon } from "./common.type";
 
-export type TAddress = TCommon & {
-  id?: number;
+export type TAddress = {
   districtId: number;
   sector: string;
   street: string;
   buildingNumber: number;
-  referenceId: number;
-  typeContactId: number;
 };
 
 export type TProvince = TCommon & {

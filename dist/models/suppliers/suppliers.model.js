@@ -62,6 +62,9 @@ const suppliers = database_1.default.define("supplier", {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
+    address: {
+        type: sequelize_1.DataTypes.JSONB,
+    },
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
