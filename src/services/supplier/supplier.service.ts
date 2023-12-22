@@ -58,7 +58,7 @@ export default class SupplierService {
   }
 
   async updateSupplier(body: TSupplier, id: string) {
-    await supplierModel.update(body, { where: { id, state: false } });
+    await supplierModel.update(body, { where: { id, state: true } });
   }
 
   async deleteSupplier(id: number) {

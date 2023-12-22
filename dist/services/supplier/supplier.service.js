@@ -70,7 +70,7 @@ class SupplierService {
     }
     updateSupplier(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield suppliers_model_1.default.update(body, { where: { id, state: false } });
+            yield suppliers_model_1.default.update(body, { where: { id, state: true } });
         });
     }
     deleteSupplier(id) {
