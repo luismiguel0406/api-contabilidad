@@ -68,8 +68,8 @@ export const login = async (
     const token: string = registerToken(user.id, user.roleId, user.compayId);
     res.cookie("token", token, {
       sameSite: "none",
-      secure: true,
-      httpOnly: false,
+      secure: false, //https = true
+      httpOnly: true,
     });
     next();
   } catch (error) {

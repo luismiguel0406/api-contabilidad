@@ -63,8 +63,8 @@ const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
         const token = (0, jsonWebToken_1.registerToken)(user.id, user.roleId, user.compayId);
         res.cookie("token", token, {
             sameSite: "none",
-            secure: true,
-            httpOnly: false,
+            secure: false,
+            httpOnly: true,
         });
         next();
     }
