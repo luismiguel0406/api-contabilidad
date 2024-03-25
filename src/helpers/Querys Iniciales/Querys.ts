@@ -12,14 +12,14 @@ import tipoCliente from "../../models/Clientes/tipoCliente.model";
 import typeContacts from "../../models/Contacto/typeContacts.model";
 import grupoCuenta from "../../models/Cuentas Contables/grupoCuenta.model";
 import tipoComprobantes from "../../models/Facturacion/comprobantes/tipoComprobante.model";
-import moneda from "../../models/Facturacion/moneda/moneda.model";
+import currency from "../../models/Facturacion/currency/currency.model";
 import tiposItem from "../../models/Inventario/tipoItem.model";
 import typeSupplier from "../../models/suppliers/typeSupplier.model";
 import tiposVenta from "../../models/Facturacion/ventas/tipoVentas.model";
 import { IImpuestos } from "../../interfaces/impuestos.interface";
 import impuestos from "../../models/Facturacion/impuestos/impuestos.model";
 import { IMedioDePago } from "../../interfaces/medioDePago.interface";
-import mediosDePago from "../../models/Facturacion/medioDePago/medioDePago.model";
+import mediosDePago from "../../models/Facturacion/PaymentMethod/paymentMethod.model";
 import { IPerfil } from "../../interfaces/perfil.interface";
 import perfil from "../../models/Perfiles/perfil.model";
 import { ITipoGasto } from "../../interfaces/gasto.interface";
@@ -221,8 +221,8 @@ export class Moneda {
 
   InsertarMonedas() {
     try {
-      moneda.afterSync("createMonedas", async () => {
-        await moneda.bulkCreate(this.monedaArray);
+      currency.afterSync("createMonedas", async () => {
+        await currency.bulkCreate(this.monedaArray);
       });
     } catch (error) {
       console.error(`Error insertando Monedas, ${error}`);

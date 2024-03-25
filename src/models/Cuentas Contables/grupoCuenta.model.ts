@@ -1,7 +1,7 @@
 import empresas from "../Empresa/empresa.model";
 import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
-import moneda from "../Facturacion/moneda/moneda.model";
+import currency from "../Facturacion/currency/currency.model";
 import tipoCuenta from "./tipoCuenta.model";
 import { TGrupoCuentaContable } from "types";
 
@@ -57,7 +57,7 @@ tipoCuenta.hasMany(grupoCuenta, {
 });
 grupoCuenta.belongsTo(tipoCuenta);
 
-moneda.hasMany(grupoCuenta, { foreignKey: "monedaId" });
-grupoCuenta.belongsTo(moneda);
+currency.hasMany(grupoCuenta, { foreignKey: "monedaId" });
+grupoCuenta.belongsTo(currency);
 
 export default grupoCuenta;

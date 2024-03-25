@@ -1,14 +1,15 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import conexion from "../../../database";
+import { TTypeGeneric } from "types";
 
-const mediosDePago = conexion.define(
-  "medioDePago",
+const paymentMethod = conexion.define<Model<TTypeGeneric>>(
+  "paymentMethod",
   {
-    descripcion: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    estado: {
+    state: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
@@ -19,7 +20,7 @@ const mediosDePago = conexion.define(
     updatedAt: {
       type: DataTypes.DATE,
     },
-    usuario: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -30,4 +31,4 @@ const mediosDePago = conexion.define(
   { schema: "FACTURACION" }
 );
 
-export default mediosDePago;
+export default paymentMethod;

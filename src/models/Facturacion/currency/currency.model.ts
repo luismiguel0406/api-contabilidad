@@ -1,18 +1,19 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import conexion from "../../../database";
+import { TCurrency } from "types";
 
-const moneda = conexion.define(
-  "moneda",
+const currency = conexion.define<Model<TCurrency>>(
+  "currency",
   {
-    descripcion: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    simbolo: {
+    symbol: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    estado: {
+    state: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
@@ -23,7 +24,7 @@ const moneda = conexion.define(
     updatedAt: {
       type: DataTypes.DATE,
     },
-    usuario: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -35,4 +36,4 @@ const moneda = conexion.define(
   { schema: "FACTURACION" }
 );
 
-export default moneda;
+export default currency;

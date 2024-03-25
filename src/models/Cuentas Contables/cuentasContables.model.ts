@@ -3,7 +3,7 @@ import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
 import tipoCuenta from "./tipoCuenta.model";
 import grupoCuenta from "./grupoCuenta.model";
-import moneda from "../../models/Facturacion/moneda/moneda.model";
+import currency from "../Facturacion/currency/currency.model";
 import { TCuentaContable } from "types";
 
 const cuentasContables = conexion.define<Model<TCuentaContable>>(
@@ -76,7 +76,7 @@ cuentasContables.belongsTo(grupoCuenta);
 empresas.hasMany(cuentasContables, { foreignKey: "empresaId" });
 cuentasContables.belongsTo(empresas);
 
-moneda.hasMany(cuentasContables, { foreignKey: "monedaId" });
-cuentasContables.belongsTo(moneda);
+currency.hasMany(cuentasContables, { foreignKey: "monedaId" });
+cuentasContables.belongsTo(currency);
 
 export default cuentasContables;

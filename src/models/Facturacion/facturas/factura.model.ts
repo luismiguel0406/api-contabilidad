@@ -2,8 +2,8 @@ import { DataTypes } from "sequelize";
 import conexion from "../../../database";
 import clientes from "../../Clientes/Cliente.model";
 import empresa from "../../Empresa/empresa.model";
-import mediosDePago from "../medioDePago/medioDePago.model";
-import moneda from "../moneda/moneda.model";
+import mediosDePago from "../PaymentMethod/paymentMethod.model";
+import currency from "../currency/currency.model";
 import tiposVenta from "../ventas/tipoVentas.model";
 
 const facturas = conexion.define(
@@ -93,8 +93,8 @@ const facturas = conexion.define(
 clientes.hasMany(facturas, { foreignKey: "clienteId" });
 facturas.belongsTo(clientes);
 
-moneda.hasMany(facturas, { foreignKey: "monedaId" });
-facturas.belongsTo(moneda);
+currency.hasMany(facturas, { foreignKey: "monedaId" });
+facturas.belongsTo(currency);
 
 empresa.hasMany(facturas, { foreignKey: "empresaId" });
 facturas.belongsTo(empresa);

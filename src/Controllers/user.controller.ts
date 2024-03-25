@@ -6,7 +6,7 @@ import UserService from "../services/users/user.service";
 
 const user_service = new UserService();
 
-export const RegisterUser = async (
+export const registerUser = async (
   req: Request,
   res: Response,
   next: NextFunction

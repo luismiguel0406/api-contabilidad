@@ -1,4 +1,4 @@
-import monedaModel from "../../../models/Facturacion/moneda/moneda.model";
+import monedaModel from "../../../models/Facturacion/currency/currency.model";
 import { IMoneda } from "../../../interfaces/moneda.interface";
 
 export default class MonedaService {
