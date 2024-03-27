@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import conexion from "../../../database";
-import tiposItem from "../../Inventario/tipoItem.model";
+import tiposItem from "../../Inventario/itemType.model";
 
 const tiposVenta = conexion.define(
   "tipoVenta",

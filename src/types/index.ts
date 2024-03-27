@@ -9,3 +9,4 @@ export * from "./common.type";
 export * from "./contact.type";
 export * from "./user.type";
 export * from "./token.type";
+export * from "./item.type";

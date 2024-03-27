@@ -95,6 +95,9 @@ const bills = conexion.define<Model<TBills>>(
     costCenter: {
       type: DataTypes.STRING,
     },
+    billDetailItems: {
+      type: DataTypes.JSONB,
+    },
   },
   { schema: "FACTURACION" }
 );

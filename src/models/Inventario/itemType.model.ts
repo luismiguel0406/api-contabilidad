@@ -1,14 +1,20 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
+import { TTypeGeneric } from "types";
 
-const tiposItem = conexion.define(
-  "tipoItem",
+const itemType = conexion.define<Model<TTypeGeneric>>(
+  "itemType",
   {
-    descripcion: {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    estado: {
+    state: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
@@ -19,7 +25,7 @@ const tiposItem = conexion.define(
     updatedAt: {
       type: DataTypes.DATE,
     },
-    usuario: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -30,4 +36,4 @@ const tiposItem = conexion.define(
   { schema: "INVENTARIO" }
 );
 
-export default tiposItem;
+export default itemType;

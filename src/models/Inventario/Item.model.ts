@@ -1,43 +1,51 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
-import tiposItem from "./tipoItem.model";
+import itemType from "./itemType.model";
+import { TItem } from "types";
 
-const item = conexion.define(
+const item = conexion.define<Model<TItem>>(
   "item",
   {
-    descripcion: {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    precioCompra: {
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    stock: {
+      type: DataTypes.NUMBER,
+      allowNull: false,
+      defaultValue: 0.0,
+    },
+    minimunStock: {
+      type: DataTypes.NUMBER,
+      allowNull: false,
+      defaultValue: 0.0,
+    },
+    unitPrice: {
       type: DataTypes.DECIMAL,
       allowNull: false,
       defaultValue: 0.0,
     },
-    precioVenta: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-      defaultValue: 0.0,
-    },
-    margenGanancia: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-      defaultValue: 0.0,
-    },
-    cantidad: {
+    cost: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0,
     },
-    cantidadMinima: {
+    itemTypeId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0,
     },
-    ubicacion: {
-      type: DataTypes.STRING,
+    accountId: {
+      type: DataTypes.INTEGER,
     },
-    estado: {
+    state: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
@@ -48,16 +56,12 @@ const item = conexion.define(
     updatedAt: {
       type: DataTypes.DATE,
     },
-    usuario: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     terminal: {
       type: DataTypes.STRING,
-    },
-    tipoItemId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
     },
   },
   { schema: "INVENTARIO" }
@@ -65,7 +69,7 @@ const item = conexion.define(
 
 //--- ASOCIACIONES---//
 
-tiposItem.hasMany(item, { foreignKey: "tipoItemId" });
-item.belongsTo(tiposItem);
+itemType.hasMany(item, { foreignKey: "itemTypeId" });
+item.belongsTo(itemType);
 
 export default item;

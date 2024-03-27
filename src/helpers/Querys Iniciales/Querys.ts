@@ -13,7 +13,7 @@ import typeContacts from "../../models/Contacto/typeContacts.model";
 import grupoCuenta from "../../models/Cuentas Contables/grupoCuenta.model";
 import tipoComprobantes from "../../models/Facturacion/comprobantes/tipoComprobante.model";
 import currency from "../../models/Facturacion/currency/currency.model";
-import tiposItem from "../../models/Inventario/tipoItem.model";
+import tiposItem from "../../models/Inventario/itemType.model";
 import typeSupplier from "../../models/suppliers/typeSupplier.model";
 import tiposVenta from "../../models/Facturacion/ventas/tipoVentas.model";
 import { IImpuestos } from "../../interfaces/impuestos.interface";

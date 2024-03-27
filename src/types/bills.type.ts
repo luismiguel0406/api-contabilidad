@@ -20,17 +20,18 @@ export type TBills = TCommon & {
   comments: string;
   currencyId: number;
   paymentMethodId: number;
+  billDetailItems: Array<TBillDetailItems>;
 };
 
 export type TCurrency = TTypeGeneric & {
   symbol: string;
 };
-//Next to demo
-/*export type TBillsDetails = {
-  cuentaId:number;
-  numeroCuenta:string;
-  tipoCuentaId:number; 
-  descripcion:string;
-  monto:number;
-  detalleImpuesto:Array<TDetalleImpuestos> | null;
-}*/
+
+export type TBillDetailItems = {
+  accountId: number;
+  accountNumber: string;
+  accountTypeId: number;
+  description: string;
+  amount: number;
+  detailTaxes: Array<any> | null;
+};

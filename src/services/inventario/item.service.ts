@@ -1,6 +1,6 @@
 import { IItem, ITipoItem } from "../../interfaces/Item.interface";
 import itemModel from "../../models/Inventario/Item.model";
-import tiposItemModel from "../../models/Inventario/tipoItem.model";
+import tiposItemModel from "../../models/Inventario/itemType.model";
 
 export default class ItemService {
   //---------- TIPO ITEM -----------//
