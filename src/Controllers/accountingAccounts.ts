@@ -1,36 +1,35 @@
 import { Response, Request } from "express";
 import { MsgRespuesta } from "../helpers/mensajesCliente/MensajesRespuestaCliente";
-import CuentasContablesService from "../services/cuentas/cuentasContables.service";
+import AccountingAccountService from "../services/accounts/accountingAccount.service";
 
-const cuentaContable_service = new CuentasContablesService();
+const accountingAccount_service = new AccountingAccountService();
 
 //--------- CUENTAS CONTABLES ----------//
 
-export const getCuentasContables = async (req: Request, res: Response) => {
+export const getAccountingAccounts = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { empresaId } = req;
-    const cuentasContables: any =
-      await cuentaContable_service.getCuentasContables(id, empresaId);
+    const { companyId } = req;
+    const accounts: any = await accountingAccount_service.getAccountingAccounts(
+      id,
+      companyId
+    );
 
-    if (Object.entries(cuentasContables).length === 0) {
+    if (Object.entries(accounts).length === 0) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
-    res.json({ cuentasContables });
+    res.json({ accounts });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });
   }
 };
 
-//CODES HERE
-
-//---------GRUPOS CUENTAS CONTABLES ----------//
-export const postGrupoCuentaContable = async (req: Request, res: Response) => {
+export const addAccountingAccount = async (req: Request, res: Response) => {
   try {
     const { body } = req;
-    await cuentaContable_service.addGrupoCuentaContable(body);
+    await accountingAccount_service.addAccountingAccount(body);
     const { statusCode, msg } = MsgRespuesta.created;
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
@@ -39,33 +38,44 @@ export const postGrupoCuentaContable = async (req: Request, res: Response) => {
   }
 };
 
-export const getGrupoCuentasContables = async (req: Request, res: Response) => {
+//CODES HERE
+
+//---------GRUPOS CUENTAS CONTABLES ----------//
+export const postAccountingGroups = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-
-    const grupoCuentaResult: any =
-      await cuentaContable_service.getGrupoCuentasContables(id);
-
-    if (Object.entries(grupoCuentaResult).length === 0) {
-      const { statusCode, msg } = MsgRespuesta.notFound;
-      return res.status(statusCode).json({ Message: msg });
-    }
-
-    res.json({ GrupoCuentas: grupoCuentaResult });
+    const { body } = req;
+    await accountingAccount_service.addAccountingGroups(body);
+    const { statusCode, msg } = MsgRespuesta.created;
+    res.status(statusCode).json({ Message: msg });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ Message: msg, error });
   }
 };
 
-export const updateGrupoCuentasContables = async (
-  req: Request,
-  res: Response
-) => {
+export const getAccountingGroups = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const result: any = await accountingAccount_service.getAccountingGroups(id);
+
+    if (Object.entries(result).length === 0) {
+      const { statusCode, msg } = MsgRespuesta.notFound;
+      return res.status(statusCode).json({ Message: msg });
+    }
+
+    res.json({ accountingGroups: result });
+  } catch (error) {
+    const { statusCode, msg } = MsgRespuesta.badRequest;
+    res.status(statusCode).json({ Message: msg, error });
+  }
+};
+
+export const updateAccountingGroups = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { body } = req;
-    await cuentaContable_service.updateGrupoCuentaContable(body, id);
+    await accountingAccount_service.updateAccountingGroups(body, id);
 
     const { statusCode, msg } = MsgRespuesta.Success;
     res.status(statusCode).json({ Message: msg });
@@ -75,13 +85,10 @@ export const updateGrupoCuentasContables = async (
   }
 };
 
-export const deleteGrupoCuentasContables = async (
-  req: Request,
-  res: Response
-) => {
+export const deleteAccountingGroups = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    await cuentaContable_service.deleteGrupoCuentaContable(id);
+    await accountingAccount_service.deleteAccountingGroups(id);
 
     const { statusCode, msg } = MsgRespuesta.noContent;
     res.status(statusCode).json({ Message: msg });
@@ -93,18 +100,17 @@ export const deleteGrupoCuentasContables = async (
 
 //---------TIPOS CUENTAS CONTABLES ----------//
 
-export const getTiposCuentasContables = async (req: Request, res: Response) => {
+export const getAccountTypes = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const tipoCuentaResult: any =
-      await cuentaContable_service.getTiposCuentaContable(id);
+    const result: any = await accountingAccount_service.getAccountType(id);
 
-    if (Object.entries(tipoCuentaResult).length === 0) {
+    if (Object.entries(result).length === 0) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
-    res.json({ TiposCuentas: tipoCuentaResult });
+    res.json({ accountTypes: result });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ Message: msg, error });
@@ -113,10 +119,10 @@ export const getTiposCuentasContables = async (req: Request, res: Response) => {
 
 //------------MOVIMIENTO DE CUENTAS CONTABLES---------------//
 
-export const postMovimientoCuenta = async (req: Request, res: Response) => {
+export const postMovementAccount = async (req: Request, res: Response) => {
   try {
     const { body } = req;
-    await cuentaContable_service.addMovimientoCuenta(body);
+    await accountingAccount_service.addMovementAccounts(body);
     const { statusCode, msg } = MsgRespuesta.created;
     res.status(statusCode).json({ Message: msg });
   } catch (error) {
@@ -125,21 +131,21 @@ export const postMovimientoCuenta = async (req: Request, res: Response) => {
   }
 };
 
-export const getMovimientoCuenta = async (req: Request, res: Response) => {
+export const getMovementAccount = async (req: Request, res: Response) => {
   try {
-    const { id, fechaInicio, fechaFin } = req.params;
-    let cuentaContableId = Number(id);
-    const movimientoCuentas = await cuentaContable_service.getMovimientoCuenta(
-      cuentaContableId,
-      fechaInicio,
-      fechaFin
+    const { id, startDate, endDate } = req.params;
+    let accountingAccountId = Number(id);
+    const result = await accountingAccount_service.getMovementAccounts(
+      accountingAccountId,
+      startDate,
+      endDate
     );
 
-    if (!movimientoCuentas) {
+    if (!result) {
       const { statusCode, msg } = MsgRespuesta.notFound;
       return res.status(statusCode).json({ Message: msg });
     }
-    res.json({ movimientoCuentas });
+    res.json({ movementAccount: result });
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ Message: msg, error });

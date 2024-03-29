@@ -1,9 +1,9 @@
-import transaccion from "../../models/Transaccion/Transaccion.model";
+import transaction from "../../models/Transaction/Transaction.model";
 
 export default class TransaccionService {
   async getTransaccion(payload: string = "") {
     try {
-      return await transaccion.findOne({
+      return await transaction.findOne({
         attributes: ["id", "nombre"],
         where: { payload, estado: true },
       });

@@ -1,5 +1,5 @@
 export * from "./clientes.type";
-export * from "./cuentaContable.type";
+export * from "./accounting.type";
 export * from "./entradaContable.type";
 export * from "./bills.type";
 export * from "./impuestos.type";

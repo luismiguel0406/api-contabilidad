@@ -1,10 +1,10 @@
 import entradaContableModel from "../../models/EntradaContable/entradaContable.model";
 import accionEntradaContableModel from "../../models/AccionEntradaContable/accionEntradaContable.model";
-import movimientoCuentasModel from "../../models/Cuentas Contables/movimientoCuenta.model";
+import movimientoCuentasModel from "../../models/AccountingAccount/movementAccount.model";
 import TransaccionService from "../transaccion/transaccion.service";
 import determinarEntradaContable from "../../helpers";
 import {
-  TMovimientoCuentas,
+  TMovementAccounts,
   TDataEntradaContable,
   TEntradaContable,
   TEntradaContableDetalle,
@@ -14,14 +14,16 @@ export default class EntradaContableService {
   private _transaccionId: number = 0;
   private _movimientoCuenta!: unknown;
   private _detalleEntrada!: TEntradaContableDetalle[];
-  private _dataMovimientoCuenta!: TMovimientoCuentas[];
+  private _dataMovimientoCuenta!: TMovementAccounts[];
   private _dataEntrada!: TEntradaContable;
   private _accionContable: any[] = [];
 
   // 1- Obtengo id de la transaccion en curso
 
-  async createEntradaContable(data: TDataEntradaContable, transaction:Transaction) {
-  
+  async createEntradaContable(
+    data: TDataEntradaContable,
+    transaction: Transaction
+  ) {
     const { payload, id, total, comentario, detalle, empresaId, userId } = data;
 
     const transaccion_service = new TransaccionService();
@@ -48,7 +50,7 @@ export default class EntradaContableService {
       const { tipoCuentaId, tipoEfectoId, tipoRegistroId } = detalleSalida[0];
 
       let { monto, cuentaId, numeroCuenta, descripcion } = details;
-  
+
       const { debito, credito } = determinarEntradaContable(
         tipoCuentaId,
         tipoEfectoId,
@@ -60,14 +62,14 @@ export default class EntradaContableService {
         numeroCuenta,
         descripcion,
         debito,
-        credito
+        credito,
       });
 
       // 4- Registrar movimiento de cuenta
 
       this._dataMovimientoCuenta.push({
         createdAt: new Date(),
-        cuentaContableId:cuentaId,
+        cuentaContableId: cuentaId,
         tipoRegistroId,
         tipoEfectoId,
         debito,
@@ -83,7 +85,8 @@ export default class EntradaContableService {
     }
 
     this._movimientoCuenta = await movimientoCuentasModel.bulkCreate(
-      this._dataMovimientoCuenta, { transaction }
+      this._dataMovimientoCuenta,
+      { transaction }
     );
 
     // 5- Llenar la cabecera de la entrada contable, segun los datos que ingresan
@@ -106,9 +109,10 @@ export default class EntradaContableService {
 
     // 6- Crear la entrada contable
     const entradaContable = await entradaContableModel.create(
-      this._dataEntrada, { transaction }
+      this._dataEntrada,
+      { transaction }
     );
-    
-    return { entradaContable, movimientoCuenta: this._movimientoCuenta }; 
+
+    return { entradaContable, movimientoCuenta: this._movimientoCuenta };
   }
 }

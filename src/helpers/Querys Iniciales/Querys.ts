@@ -10,7 +10,7 @@ import { ITipoItem } from "../../interfaces/Item.interface";
 import { ITipoVentas } from "../../interfaces/tipoVentas.interface";
 import tipoCliente from "../../models/Clientes/tipoCliente.model";
 import typeContacts from "../../models/Contacto/typeContacts.model";
-import grupoCuenta from "../../models/Cuentas Contables/grupoCuenta.model";
+import accountingGroup from "../../models/AccountingAccount/accountingGroup.model";
 import tipoComprobantes from "../../models/Facturacion/comprobantes/tipoComprobante.model";
 import currency from "../../models/Facturacion/currency/currency.model";
 import tiposItem from "../../models/Inventario/itemType.model";
@@ -26,15 +26,15 @@ import { ITipoGasto } from "../../interfaces/gasto.interface";
 import tipoGasto from "../../models/Facturacion/Facturas por pagar/Gastos/gastos.model";
 import { ITipoFacturasPorPagar } from "../../interfaces/facturasPorPagar.interface";
 import tipoFacturasPorPagar from "../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model";
-import tipoCuenta from "../../models/Cuentas Contables/tipoCuenta.model";
+import tipoCuenta from "../../models/AccountingAccount/accountType.model";
 import { ITransaccion } from "interfaces/transaccion.interface";
-import transaccion from "../../models/Transaccion/Transaccion.model";
+import transaction from "../../models/Transaction/Transaction.model";
 import { IEmpresa } from "interfaces/empresa.interface";
 import empresas from "../../models/Empresa/empresa.model";
-import cuentasContables from "../../models/Cuentas Contables/cuentasContables.model";
-import tipoRegistro from "../../models/Cuentas Contables/tipoRegistro.model";
-import tipoEfecto from "../../models/Cuentas Contables/tipoEfecto.model";
-import { TTypeGeneric, TTransaccion } from "types";
+import cuentasContables from "../../models/AccountingAccount/accountingAccount.model";
+import tipoRegistro from "../../models/AccountingAccount/registryType.model";
+import tipoEfecto from "../../models/AccountingAccount/effectType.model";
+import { TTypeGeneric, TTransaction } from "types";
 
 export class Empresa {
   private _empresa: IEmpresa;
@@ -415,8 +415,8 @@ export class GrupoCuentasContables {
   }
   InsertarGruposCuentasContable() {
     try {
-      grupoCuenta.afterSync("createGrupoCuentasContables", async () => {
-        await grupoCuenta.bulkCreate(this.grupoCuentaContableArray);
+      accountingGroup.afterSync("createGrupoCuentasContables", async () => {
+        await accountingGroup.bulkCreate(this.grupoCuentaContableArray);
       });
     } catch (error) {
       console.error(`Error insertando grupos Cuentas Contables, ${error}`);
@@ -1072,7 +1072,7 @@ export class TipoCuentasContables {
 
 export class TransaccionesComerciales {
   // No Va
-  private _transaccionesArray: Array<TTransaccion>;
+  private _transaccionesArray: Array<TTransaction>;
   constructor() {
     this._transaccionesArray = [
       {
@@ -1142,8 +1142,8 @@ export class TransaccionesComerciales {
   }
   InsertarTransaccionesComerciales() {
     try {
-      transaccion.afterSync("createTransacciones", async () => {
-        await transaccion.bulkCreate(this._transaccionesArray);
+      transaction.afterSync("createTransacciones", async () => {
+        await transaction.bulkCreate(this._transaccionesArray);
       });
     } catch (error) {
       return console.error(`Error al insertar transacciones, ${error}`);

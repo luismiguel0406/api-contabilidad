@@ -1,16 +1,16 @@
 import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
-import { TTransaccion } from "types";
+import { TTransaction } from "types";
 
-const transaccion = conexion.define<Model<TTransaccion>>(
-  "transaccion",
+const transaction = conexion.define<Model<TTransaction>>(
+  "transaction",
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    nombre: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -18,7 +18,7 @@ const transaccion = conexion.define<Model<TTransaccion>>(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    estado: {
+    state: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
@@ -29,7 +29,7 @@ const transaccion = conexion.define<Model<TTransaccion>>(
     updatedAt: {
       type: DataTypes.DATE,
     },
-    usuario: {
+    username: {
       type: DataTypes.STRING(25),
       allowNull: false,
     },
@@ -40,4 +40,4 @@ const transaccion = conexion.define<Model<TTransaccion>>(
   { schema: "DIARIO" }
 );
 
-export default transaccion;
+export default transaction;

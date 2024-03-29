@@ -1,7 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import empresas from "../Empresa/empresa.model";
 import conexion from "../../database";
-import transaccion from "../Transaccion/Transaccion.model";
+import transaction from "../Transaction/Transaction.model";
 import { TEntradaContable } from "types";
 
 const entradasContables = conexion.define<Model<TEntradaContable>>(
@@ -69,9 +69,9 @@ const entradasContables = conexion.define<Model<TEntradaContable>>(
 empresas.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresas);
 
-transaccion.hasMany(entradasContables, {
+transaction.hasMany(entradasContables, {
   foreignKey: "transaccionId",
 });
-entradasContables.belongsTo(transaccion);
+entradasContables.belongsTo(transaction);
 
 export default entradasContables;

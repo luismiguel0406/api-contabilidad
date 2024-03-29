@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const tipoCuenta_model_1 = __importDefault(require("../Cuentas Contables/tipoCuenta.model"));
-const Transaccion_model_1 = __importDefault(require("../Transaccion/Transaccion.model"));
+const accountType_model_1 = __importDefault(require("../AccountingAccount/accountType.model"));
+const Transaction_model_1 = __importDefault(require("../Transaction/Transaction.model"));
 const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../database"));
 const accionesEntradasContables = database_1.default.define("accionEntradaContable", {
@@ -44,11 +44,11 @@ const accionesEntradasContables = database_1.default.define("accionEntradaContab
     },
 }, { schema: "DIARIO" });
 //ASOCIACIONES//
-Transaccion_model_1.default.belongsToMany(tipoCuenta_model_1.default, {
+Transaction_model_1.default.belongsToMany(accountType_model_1.default, {
     through: "accionEntradaContable",
     foreignKey: "transaccionId",
 });
-tipoCuenta_model_1.default.belongsToMany(Transaccion_model_1.default, {
+accountType_model_1.default.belongsToMany(Transaction_model_1.default, {
     through: "accionEntradaContable",
     foreignKey: "tipoCuentaId",
 });

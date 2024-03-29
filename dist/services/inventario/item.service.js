@@ -13,20 +13,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Item_model_1 = __importDefault(require("../../models/Inventario/Item.model"));
-const tipoItem_model_1 = __importDefault(require("../../models/Inventario/tipoItem.model"));
+const itemType_model_1 = __importDefault(require("../../models/Inventario/itemType.model"));
 class ItemService {
     //---------- TIPO ITEM -----------//
     getTipoItem(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const tipoItemResult = id === null
-                ? yield tipoItem_model_1.default.findAll({ where: { estado: "1" } })
-                : yield tipoItem_model_1.default.findOne({ where: { id, estado: "1" } });
+                ? yield itemType_model_1.default.findAll({ where: { estado: "1" } })
+                : yield itemType_model_1.default.findOne({ where: { id, estado: "1" } });
             return tipoItemResult;
         });
     }
     updateTipoItem(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoItem_model_1.default.update(body, {
+            yield itemType_model_1.default.update(body, {
                 where: {
                     id,
                     estado: "1",
@@ -36,12 +36,12 @@ class ItemService {
     }
     deleteTipoItem(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoItem_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield itemType_model_1.default.update({ estado: "0" }, { where: { id } });
         });
     }
     addTipoItem(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield tipoItem_model_1.default.create(body);
+            yield itemType_model_1.default.create(body);
         });
     }
     //------------- ITEM --------------//

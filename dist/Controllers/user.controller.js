@@ -12,13 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUsuario = exports.updateUsuario = exports.login = exports.RegisterUser = void 0;
+exports.deleteUsuario = exports.updateUsuario = exports.login = exports.registerUser = void 0;
 const MensajesRespuestaCliente_1 = require("../helpers/mensajesCliente/MensajesRespuestaCliente");
 const jsonWebToken_1 = require("../lib/Token/jsonWebToken");
 const encryptaPw_1 = require("../lib/validaciones/encryptaPw");
 const user_service_1 = __importDefault(require("../services/users/user.service"));
 const user_service = new user_service_1.default();
-const RegisterUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const registerUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, companyId } = req.body;
         const isExists = yield user_service.getUser(email, companyId);
@@ -42,7 +42,7 @@ const RegisterUser = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
         return res.status(statusCode).json({ Message: msg, error });
     }
 });
-exports.RegisterUser = RegisterUser;
+exports.registerUser = registerUser;
 const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password, companyId } = req.body;

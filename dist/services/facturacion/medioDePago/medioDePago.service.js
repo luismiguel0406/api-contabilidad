@@ -12,19 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const medioDePago_model_1 = __importDefault(require("../../../models/Facturacion/medioDePago/medioDePago.model"));
+const paymentMethod_model_1 = __importDefault(require("../../../models/Facturacion/PaymentMethod/paymentMethod.model"));
 class MedioDePagoService {
     getMedioDePago(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const medioDePagoResult = id === null
-                ? yield medioDePago_model_1.default.findAll({ where: { estado: "1" } })
-                : yield medioDePago_model_1.default.findOne({ where: { id, estado: "1" } });
+                ? yield paymentMethod_model_1.default.findAll({ where: { estado: "1" } })
+                : yield paymentMethod_model_1.default.findOne({ where: { id, estado: "1" } });
             return medioDePagoResult;
         });
     }
     updateMedioDePago(id, body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield medioDePago_model_1.default.update(body, {
+            yield paymentMethod_model_1.default.update(body, {
                 where: {
                     id,
                     estado: "1",
@@ -34,14 +34,14 @@ class MedioDePagoService {
     }
     deleteMedioDePago(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield medioDePago_model_1.default.update({ estado: "0" }, {
+            yield paymentMethod_model_1.default.update({ estado: "0" }, {
                 where: { id },
             });
         });
     }
     addMedioDePago(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield medioDePago_model_1.default.create(body);
+            yield paymentMethod_model_1.default.create(body);
         });
     }
 }

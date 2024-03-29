@@ -2,14 +2,14 @@ import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
 import { TTypeGeneric } from "types";
 
-const tipoEfecto = conexion.define<Model<TTypeGeneric>>(
-  "tipoEfecto",
+const accountType = conexion.define<Model<TTypeGeneric>>(
+  "accountType",
   {
-    descripcion: {
-      type: DataTypes.STRING(15),
+    description: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    estado: {
+    state: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
@@ -20,16 +20,15 @@ const tipoEfecto = conexion.define<Model<TTypeGeneric>>(
     updatedAt: {
       type: DataTypes.DATE,
     },
-    usuario: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     terminal: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
   },
   { schema: "CUENTAS" }
 );
 
-export default tipoEfecto;
+export default accountType;

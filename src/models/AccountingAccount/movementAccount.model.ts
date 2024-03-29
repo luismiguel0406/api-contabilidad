@@ -1,13 +1,13 @@
 import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
-import transaccion from "../Transaccion/Transaccion.model";
-import cuentasContables from "./cuentasContables.model";
-import tipoRegistro from "./tipoRegistro.model";
-import tipoEfecto from "./tipoEfecto.model";
-import { TMovimientoCuentas } from "types";
+import transaction from "../Transaction/Transaction.model";
+import accountingAccount from "./accountingAccount.model";
+import registryType from "./registryType.model";
+import effectType from "./effectType.model";
+import { TMovementAccounts } from "types";
 
-const movimientoCuenta = conexion.define<Model<TMovimientoCuentas>>(
-  "movimientoCuenta",
+const movementAccount = conexion.define<Model<TMovementAccounts>>(
+  "movementAccount",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -19,34 +19,34 @@ const movimientoCuenta = conexion.define<Model<TMovimientoCuentas>>(
       defaultValue: DataTypes.NOW,
       allowNull: false,
     },
-    cuentaContableId: {
+    accountingAccountId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    tipoRegistroId: {
+    registryTypeId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    tipoEfectoId: {
+    effectTypeId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    debito: {
+    debit: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    credito: {
+    credit: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    saldo: {
+    balance: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    descripcion: {
+    comment: {
       type: DataTypes.STRING,
     },
-    usuario: {
+    username: {
       type: DataTypes.STRING,
       defaultValue: "SA",
     },
@@ -54,15 +54,15 @@ const movimientoCuenta = conexion.define<Model<TMovimientoCuentas>>(
       type: DataTypes.STRING,
       defaultValue: "SA",
     },
-    estado: {
+    state: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    referenciaId: {
+    referenceId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    transaccionId: {
+    transactionId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -71,16 +71,18 @@ const movimientoCuenta = conexion.define<Model<TMovimientoCuentas>>(
 );
 
 // --- ASOCIACIONES --- //
-transaccion.hasMany(movimientoCuenta, { foreignKey: "transaccionId" });
-movimientoCuenta.belongsTo(transaccion);
+transaction.hasMany(movementAccount, { foreignKey: "transactionId" });
+movementAccount.belongsTo(transaction);
 
-cuentasContables.hasMany(movimientoCuenta, { foreignKey: "cuentaContableId" });
-movimientoCuenta.belongsTo(cuentasContables);
+accountingAccount.hasMany(movementAccount, {
+  foreignKey: "accountingAccountId",
+});
+movementAccount.belongsTo(accountingAccount);
 
-tipoRegistro.hasMany(movimientoCuenta, { foreignKey: "tipoRegistroId" });
-movimientoCuenta.belongsTo(tipoRegistro);
+registryType.hasMany(movementAccount, { foreignKey: "registryTypeId" });
+movementAccount.belongsTo(registryType);
 
-tipoEfecto.hasMany(movimientoCuenta, { foreignKey: "tipoEfectoId" });
-movimientoCuenta.belongsTo(tipoEfecto);
+effectType.hasMany(movementAccount, { foreignKey: "effectTypeId" });
+movementAccount.belongsTo(effectType);
 
-export default movimientoCuenta;
+export default movementAccount;

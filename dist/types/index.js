@@ -15,9 +15,9 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./clientes.type"), exports);
-__exportStar(require("./cuentaContable.type"), exports);
+__exportStar(require("./accounting.type"), exports);
 __exportStar(require("./entradaContable.type"), exports);
-__exportStar(require("./facturasPorPagar.type"), exports);
+__exportStar(require("./bills.type"), exports);
 __exportStar(require("./impuestos.type"), exports);
 __exportStar(require("./supplier.type"), exports);
 __exportStar(require("./typeGeneric.type"), exports);
@@ -25,4 +25,5 @@ __exportStar(require("./common.type"), exports);
 __exportStar(require("./contact.type"), exports);
 __exportStar(require("./user.type"), exports);
 __exportStar(require("./token.type"), exports);
+__exportStar(require("./item.type"), exports);
 //# sourceMappingURL=index.js.map

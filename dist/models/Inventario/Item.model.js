@@ -5,41 +5,48 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../database"));
-const tipoItem_model_1 = __importDefault(require("./tipoItem.model"));
+const itemType_model_1 = __importDefault(require("./itemType.model"));
 const item = database_1.default.define("item", {
-    descripcion: {
+    id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    name: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    precioCompra: {
+    description: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    stock: {
+        type: sequelize_1.DataTypes.NUMBER,
+        allowNull: false,
+        defaultValue: 0.0,
+    },
+    minimunStock: {
+        type: sequelize_1.DataTypes.NUMBER,
+        allowNull: false,
+        defaultValue: 0.0,
+    },
+    unitPrice: {
         type: sequelize_1.DataTypes.DECIMAL,
         allowNull: false,
         defaultValue: 0.0,
     },
-    precioVenta: {
-        type: sequelize_1.DataTypes.DECIMAL,
-        allowNull: false,
-        defaultValue: 0.0,
-    },
-    margenGanancia: {
-        type: sequelize_1.DataTypes.DECIMAL,
-        allowNull: false,
-        defaultValue: 0.0,
-    },
-    cantidad: {
+    cost: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 0,
     },
-    cantidadMinima: {
+    itemTypeId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
     },
-    ubicacion: {
-        type: sequelize_1.DataTypes.STRING,
+    accountId: {
+        type: sequelize_1.DataTypes.INTEGER,
     },
-    estado: {
+    state: {
         type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
     },
@@ -50,20 +57,16 @@ const item = database_1.default.define("item", {
     updatedAt: {
         type: sequelize_1.DataTypes.DATE,
     },
-    usuario: {
+    username: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     terminal: {
         type: sequelize_1.DataTypes.STRING,
     },
-    tipoItemId: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
 }, { schema: "INVENTARIO" });
 //--- ASOCIACIONES---//
-tipoItem_model_1.default.hasMany(item, { foreignKey: "tipoItemId" });
-item.belongsTo(tipoItem_model_1.default);
+itemType_model_1.default.hasMany(item, { foreignKey: "itemTypeId" });
+item.belongsTo(itemType_model_1.default);
 exports.default = item;
 //# sourceMappingURL=Item.model.js.map

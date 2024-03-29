@@ -15,23 +15,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TipoEfecto = exports.TipoMovimiento = exports.CuentasContables = exports.TransaccionesComerciales = exports.TipoCuentasContables = exports.TipoFacturasPorPagar = exports.Tipogasto = exports.Perfiles = exports.MediosDePago = exports.Impuestos = exports.TipoVenta = exports.TiposItem = exports.TiposComprobantes = exports.GrupoCuentasContables = exports.Moneda = exports.TiposClientes = exports.TiposContactos = exports.TiposProveedores = exports.Empresa = void 0;
 const tipoCliente_model_1 = __importDefault(require("../../models/Clientes/tipoCliente.model"));
 const typeContacts_model_1 = __importDefault(require("../../models/Contacto/typeContacts.model"));
-const grupoCuenta_model_1 = __importDefault(require("../../models/Cuentas Contables/grupoCuenta.model"));
+const accountingGroup_model_1 = __importDefault(require("../../models/AccountingAccount/accountingGroup.model"));
 const tipoComprobante_model_1 = __importDefault(require("../../models/Facturacion/comprobantes/tipoComprobante.model"));
-const moneda_model_1 = __importDefault(require("../../models/Facturacion/moneda/moneda.model"));
-const tipoItem_model_1 = __importDefault(require("../../models/Inventario/tipoItem.model"));
+const currency_model_1 = __importDefault(require("../../models/Facturacion/currency/currency.model"));
+const itemType_model_1 = __importDefault(require("../../models/Inventario/itemType.model"));
 const typeSupplier_model_1 = __importDefault(require("../../models/suppliers/typeSupplier.model"));
 const tipoVentas_model_1 = __importDefault(require("../../models/Facturacion/ventas/tipoVentas.model"));
 const impuestos_model_1 = __importDefault(require("../../models/Facturacion/impuestos/impuestos.model"));
-const medioDePago_model_1 = __importDefault(require("../../models/Facturacion/medioDePago/medioDePago.model"));
+const paymentMethod_model_1 = __importDefault(require("../../models/Facturacion/PaymentMethod/paymentMethod.model"));
 const perfil_model_1 = __importDefault(require("../../models/Perfiles/perfil.model"));
 const gastos_model_1 = __importDefault(require("../../models/Facturacion/Facturas por pagar/Gastos/gastos.model"));
 const tiposFacturasPorPagar_model_1 = __importDefault(require("../../models/Facturacion/Facturas por pagar/tiposFacturasPorPagar/tiposFacturasPorPagar.model"));
-const tipoCuenta_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoCuenta.model"));
-const Transaccion_model_1 = __importDefault(require("../../models/Transaccion/Transaccion.model"));
+const accountType_model_1 = __importDefault(require("../../models/AccountingAccount/accountType.model"));
+const Transaction_model_1 = __importDefault(require("../../models/Transaction/Transaction.model"));
 const empresa_model_1 = __importDefault(require("../../models/Empresa/empresa.model"));
-const cuentasContables_model_1 = __importDefault(require("../../models/Cuentas Contables/cuentasContables.model"));
-const tipoRegistro_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoRegistro.model"));
-const tipoEfecto_model_1 = __importDefault(require("../../models/Cuentas Contables/tipoEfecto.model"));
+const accountingAccount_model_1 = __importDefault(require("../../models/AccountingAccount/accountingAccount.model"));
+const registryType_model_1 = __importDefault(require("../../models/AccountingAccount/registryType.model"));
+const effectType_model_1 = __importDefault(require("../../models/AccountingAccount/effectType.model"));
 class Empresa {
     constructor() {
         this._empresa = {
@@ -211,8 +211,8 @@ class Moneda {
     }
     InsertarMonedas() {
         try {
-            moneda_model_1.default.afterSync("createMonedas", () => __awaiter(this, void 0, void 0, function* () {
-                yield moneda_model_1.default.bulkCreate(this.monedaArray);
+            currency_model_1.default.afterSync("createMonedas", () => __awaiter(this, void 0, void 0, function* () {
+                yield currency_model_1.default.bulkCreate(this.monedaArray);
             }));
         }
         catch (error) {
@@ -404,8 +404,8 @@ class GrupoCuentasContables {
     }
     InsertarGruposCuentasContable() {
         try {
-            grupoCuenta_model_1.default.afterSync("createGrupoCuentasContables", () => __awaiter(this, void 0, void 0, function* () {
-                yield grupoCuenta_model_1.default.bulkCreate(this.grupoCuentaContableArray);
+            accountingGroup_model_1.default.afterSync("createGrupoCuentasContables", () => __awaiter(this, void 0, void 0, function* () {
+                yield accountingGroup_model_1.default.bulkCreate(this.grupoCuentaContableArray);
             }));
         }
         catch (error) {
@@ -553,8 +553,8 @@ class TiposItem {
     }
     InsertarTipoItem() {
         try {
-            tipoItem_model_1.default.afterSync("createTipoItem", () => __awaiter(this, void 0, void 0, function* () {
-                yield tipoItem_model_1.default.bulkCreate(this.tipoItemArray);
+            itemType_model_1.default.afterSync("createTipoItem", () => __awaiter(this, void 0, void 0, function* () {
+                yield itemType_model_1.default.bulkCreate(this.tipoItemArray);
             }));
         }
         catch (error) {
@@ -793,8 +793,8 @@ class MediosDePago {
     }
     InsertarMediosDePago() {
         try {
-            medioDePago_model_1.default.afterSync("createMediosDePago", () => __awaiter(this, void 0, void 0, function* () {
-                yield medioDePago_model_1.default.bulkCreate(this.medioDePagoArray);
+            paymentMethod_model_1.default.afterSync("createMediosDePago", () => __awaiter(this, void 0, void 0, function* () {
+                yield paymentMethod_model_1.default.bulkCreate(this.medioDePagoArray);
             }));
         }
         catch (error) {
@@ -1041,8 +1041,8 @@ class TipoCuentasContables {
     }
     InsertarTipoCuentasContables() {
         try {
-            tipoCuenta_model_1.default.afterSync("createTiposCuenta", () => __awaiter(this, void 0, void 0, function* () {
-                yield tipoCuenta_model_1.default.bulkCreate(this.tipoCuentaContableArray);
+            accountType_model_1.default.afterSync("createTiposCuenta", () => __awaiter(this, void 0, void 0, function* () {
+                yield accountType_model_1.default.bulkCreate(this.tipoCuentaContableArray);
             }));
         }
         catch (error) {
@@ -1121,8 +1121,8 @@ class TransaccionesComerciales {
     }
     InsertarTransaccionesComerciales() {
         try {
-            Transaccion_model_1.default.afterSync("createTransacciones", () => __awaiter(this, void 0, void 0, function* () {
-                yield Transaccion_model_1.default.bulkCreate(this._transaccionesArray);
+            Transaction_model_1.default.afterSync("createTransacciones", () => __awaiter(this, void 0, void 0, function* () {
+                yield Transaction_model_1.default.bulkCreate(this._transaccionesArray);
             }));
         }
         catch (error) {
@@ -1177,8 +1177,8 @@ class CuentasContables {
     }
     InsertarCuentas() {
         try {
-            cuentasContables_model_1.default.afterSync("createCuentasContables", () => __awaiter(this, void 0, void 0, function* () {
-                yield cuentasContables_model_1.default.bulkCreate(this._cuenntaArray);
+            accountingAccount_model_1.default.afterSync("createCuentasContables", () => __awaiter(this, void 0, void 0, function* () {
+                yield accountingAccount_model_1.default.bulkCreate(this._cuenntaArray);
             }));
         }
         catch (error) {
@@ -1210,8 +1210,8 @@ class TipoMovimiento {
     }
     InsertarTipoMovimiento() {
         try {
-            tipoRegistro_model_1.default.afterSync("Insertar movimientos", () => __awaiter(this, void 0, void 0, function* () {
-                yield tipoRegistro_model_1.default.bulkCreate(this._movimientos);
+            registryType_model_1.default.afterSync("Insertar movimientos", () => __awaiter(this, void 0, void 0, function* () {
+                yield registryType_model_1.default.bulkCreate(this._movimientos);
             }));
         }
         catch (error) {
@@ -1243,8 +1243,8 @@ class TipoEfecto {
     }
     insertarTipoEfecto() {
         try {
-            tipoEfecto_model_1.default.afterSync("insertar efectos", () => __awaiter(this, void 0, void 0, function* () {
-                yield tipoEfecto_model_1.default.bulkCreate(this._efectos);
+            effectType_model_1.default.afterSync("insertar efectos", () => __awaiter(this, void 0, void 0, function* () {
+                yield effectType_model_1.default.bulkCreate(this._efectos);
             }));
         }
         catch (error) {

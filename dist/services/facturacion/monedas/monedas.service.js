@@ -12,19 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const moneda_model_1 = __importDefault(require("../../../models/Facturacion/moneda/moneda.model"));
+const currency_model_1 = __importDefault(require("../../../models/Facturacion/currency/currency.model"));
 class MonedaService {
     getMoneda(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const MonedaResult = id === null
-                ? yield moneda_model_1.default.findAll({ where: { estado: "1" } })
-                : yield moneda_model_1.default.findOne({ where: { id, estado: "1" } });
+                ? yield currency_model_1.default.findAll({ where: { estado: "1" } })
+                : yield currency_model_1.default.findOne({ where: { id, estado: "1" } });
             return MonedaResult;
         });
     }
     updateMoneda(id, body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield moneda_model_1.default.update(body, {
+            yield currency_model_1.default.update(body, {
                 where: {
                     id,
                     estado: "1",
@@ -34,14 +34,14 @@ class MonedaService {
     }
     deleteMoneda(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield moneda_model_1.default.update({ estado: "0" }, {
+            yield currency_model_1.default.update({ estado: "0" }, {
                 where: { id },
             });
         });
     }
     addMoneda(body) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield moneda_model_1.default.create(body);
+            yield currency_model_1.default.create(body);
         });
     }
 }

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const empresa_model_1 = __importDefault(require("../Empresa/empresa.model"));
 const database_1 = __importDefault(require("../../database"));
-const Transaccion_model_1 = __importDefault(require("../Transaccion/Transaccion.model"));
+const Transaction_model_1 = __importDefault(require("../Transaction/Transaction.model"));
 const entradasContables = database_1.default.define("entradaContable", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -66,9 +66,9 @@ const entradasContables = database_1.default.define("entradaContable", {
 }, { schema: "DIARIO" });
 empresa_model_1.default.hasMany(entradasContables, { foreignKey: "empresaId" });
 entradasContables.belongsTo(empresa_model_1.default);
-Transaccion_model_1.default.hasMany(entradasContables, {
+Transaction_model_1.default.hasMany(entradasContables, {
     foreignKey: "transaccionId",
 });
-entradasContables.belongsTo(Transaccion_model_1.default);
+entradasContables.belongsTo(Transaction_model_1.default);
 exports.default = entradasContables;
 //# sourceMappingURL=entradaContable.model.js.map

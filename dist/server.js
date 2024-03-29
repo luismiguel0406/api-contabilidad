@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const Querys_1 = require("./helpers/Querys Iniciales/Querys");
-const cuentas_route_1 = __importDefault(require("./routes/Cuentas Contables/cuentas.route"));
+const accountingAccounts_route_1 = __importDefault(require("./routes/accounts/accountingAccounts.route"));
 const moneda_route_1 = __importDefault(require("./routes/facturacion/moneda.route"));
 const comprobante_route_1 = __importDefault(require("./routes/facturacion/comprobante.route"));
 const empresa_route_1 = __importDefault(require("./routes/empresa/empresa.route"));
@@ -54,7 +54,7 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield database_1.default.authenticate();
-                //await sequelizeConnection.sync();
+                // await sequelizeConnection.sync();
                 console.log("Database CACTUS online.");
             }
             catch (error) {
@@ -69,7 +69,7 @@ class Server {
     }
     /* RUTAS PARA CONSULTA */
     routes() {
-        this.app.use(cuentas_route_1.default);
+        this.app.use(accountingAccounts_route_1.default);
         this.app.use(moneda_route_1.default);
         this.app.use(comprobante_route_1.default);
         this.app.use(empresa_route_1.default);

@@ -2,14 +2,14 @@ import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
 import { TTypeGeneric } from "types";
 
-const tipoRegistro = conexion.define<Model<TTypeGeneric>>(
-  "tipoRegistro",
+const registryType = conexion.define<Model<TTypeGeneric>>(
+  "registryType",
   {
-    descripcion: {
+    description: {
       type: DataTypes.STRING(10),
       allowNull: false,
     },
-    estado: {
+    state: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
@@ -20,7 +20,7 @@ const tipoRegistro = conexion.define<Model<TTypeGeneric>>(
     updatedAt: {
       type: DataTypes.DATE,
     },
-    usuario: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -31,4 +31,4 @@ const tipoRegistro = conexion.define<Model<TTypeGeneric>>(
   { schema: "CUENTAS" }
 );
 
-export default tipoRegistro;
+export default registryType;

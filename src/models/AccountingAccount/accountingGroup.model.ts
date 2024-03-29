@@ -1,27 +1,26 @@
-import empresas from "../Empresa/empresa.model";
 import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
 import currency from "../Facturacion/currency/currency.model";
-import tipoCuenta from "./tipoCuenta.model";
-import { TGrupoCuentaContable } from "types";
+import accountType from "./accountType.model";
+import { TAccountingGroup } from "types";
 
-const grupoCuenta = conexion.define<Model<TGrupoCuentaContable>>(
-  "grupoCuenta",
+const accountingGroup = conexion.define<Model<TAccountingGroup>>(
+  "accountingGroup",
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    cuenta: {
+    accountNumber: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    descripcion: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    estado: {
+    state: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
@@ -32,18 +31,18 @@ const grupoCuenta = conexion.define<Model<TGrupoCuentaContable>>(
     updatedAt: {
       type: DataTypes.DATE,
     },
-    usuario: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     terminal: {
       type: DataTypes.STRING,
     },
-    tipoCuentaContableId: {
+    accountTypeId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    monedaId: {
+    currencyId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -52,12 +51,12 @@ const grupoCuenta = conexion.define<Model<TGrupoCuentaContable>>(
 );
 // --- ASOCIACIONES --- //
 
-tipoCuenta.hasMany(grupoCuenta, {
-  foreignKey: "tipoCuentaContableId",
+accountType.hasMany(accountingGroup, {
+  foreignKey: "accountTypeId",
 });
-grupoCuenta.belongsTo(tipoCuenta);
+accountingGroup.belongsTo(accountType);
 
-currency.hasMany(grupoCuenta, { foreignKey: "monedaId" });
-grupoCuenta.belongsTo(currency);
+currency.hasMany(accountingGroup, { foreignKey: "currencyId" });
+accountingGroup.belongsTo(currency);
 
-export default grupoCuenta;
+export default accountingGroup;

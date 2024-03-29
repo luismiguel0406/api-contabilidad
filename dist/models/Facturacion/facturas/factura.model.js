@@ -7,8 +7,8 @@ const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../../database"));
 const Cliente_model_1 = __importDefault(require("../../Clientes/Cliente.model"));
 const empresa_model_1 = __importDefault(require("../../Empresa/empresa.model"));
-const medioDePago_model_1 = __importDefault(require("../medioDePago/medioDePago.model"));
-const moneda_model_1 = __importDefault(require("../moneda/moneda.model"));
+const paymentMethod_model_1 = __importDefault(require("../PaymentMethod/paymentMethod.model"));
+const currency_model_1 = __importDefault(require("../currency/currency.model"));
 const tipoVentas_model_1 = __importDefault(require("../ventas/tipoVentas.model"));
 const facturas = database_1.default.define("factura", {
     noFactura: {
@@ -90,12 +90,12 @@ const facturas = database_1.default.define("factura", {
 //--- ASOCIACIONES---//
 Cliente_model_1.default.hasMany(facturas, { foreignKey: "clienteId" });
 facturas.belongsTo(Cliente_model_1.default);
-moneda_model_1.default.hasMany(facturas, { foreignKey: "monedaId" });
-facturas.belongsTo(moneda_model_1.default);
+currency_model_1.default.hasMany(facturas, { foreignKey: "monedaId" });
+facturas.belongsTo(currency_model_1.default);
 empresa_model_1.default.hasMany(facturas, { foreignKey: "empresaId" });
 facturas.belongsTo(empresa_model_1.default);
-medioDePago_model_1.default.hasMany(facturas, { foreignKey: "medioDePagoId" });
-facturas.belongsTo(medioDePago_model_1.default);
+paymentMethod_model_1.default.hasMany(facturas, { foreignKey: "medioDePagoId" });
+facturas.belongsTo(paymentMethod_model_1.default);
 tipoVentas_model_1.default.hasMany(facturas, { foreignKey: "tipoVentaId" });
 facturas.belongsTo(tipoVentas_model_1.default);
 exports.default = facturas;

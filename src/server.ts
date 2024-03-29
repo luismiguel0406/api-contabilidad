@@ -20,7 +20,7 @@ import {
   TipoMovimiento,
   TipoEfecto,
 } from "./helpers/Querys Iniciales/Querys";
-import CuentasRoutes from "./routes/Cuentas Contables/cuentas.route";
+import CuentasRoutes from "./routes/accounts/accountingAccounts.route";
 import MonedasRoutes from "./routes/facturacion/moneda.route";
 import ComprobantesRoutes from "./routes/facturacion/comprobante.route";
 import empresaRoutes from "./routes/empresa/empresa.route";
@@ -66,7 +66,7 @@ class Server {
   async dbConnection() {
     try {
       await sequelizeConnection.authenticate();
-      //await sequelizeConnection.sync();
+      // await sequelizeConnection.sync();
       console.log("Database CACTUS online.");
     } catch (error) {
       console.log(`Error ${error}`);

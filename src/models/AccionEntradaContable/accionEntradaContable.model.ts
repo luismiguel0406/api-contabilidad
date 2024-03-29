@@ -1,5 +1,5 @@
-import tipoCuenta from "../Cuentas Contables/tipoCuenta.model";
-import transaccion from "../Transaccion/Transaccion.model";
+import tipoCuenta from "../AccountingAccount/accountType.model";
+import transaction from "../Transaction/Transaction.model";
 import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
 import { TAccionEntradaContable } from "types";
@@ -49,11 +49,11 @@ const accionesEntradasContables = conexion.define<
 
 //ASOCIACIONES//
 
-transaccion.belongsToMany(tipoCuenta, {
+transaction.belongsToMany(tipoCuenta, {
   through: "accionEntradaContable",
   foreignKey: "transaccionId",
 });
-tipoCuenta.belongsToMany(transaccion, {
+tipoCuenta.belongsToMany(transaction, {
   through: "accionEntradaContable",
   foreignKey: "tipoCuentaId",
 });

@@ -1,28 +1,28 @@
-import empresas from "../Empresa/empresa.model";
+//import empresas from "../Empresa/empresa.model";
 import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
-import tipoCuenta from "./tipoCuenta.model";
-import grupoCuenta from "./grupoCuenta.model";
+import accountType from "./accountType.model";
+import accountingGroup from "./accountingGroup.model";
 import currency from "../Facturacion/currency/currency.model";
-import { TCuentaContable } from "types";
+import { TAccountingAccount } from "types";
 
-const cuentasContables = conexion.define<Model<TCuentaContable>>(
-  "cuentaContable",
+const accountingAccount = conexion.define<Model<TAccountingAccount>>(
+  "accountingAccount",
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    noCuenta: {
+    accountNumber: {
       type: DataTypes.STRING(25),
       allowNull: false,
     },
-    descripcion: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    estado: {
+    state: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
@@ -34,26 +34,25 @@ const cuentasContables = conexion.define<Model<TCuentaContable>>(
       type: DataTypes.DATE,
       allowNull: false,
     },
-    usuario: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     terminal: {
       type: DataTypes.STRING,
     },
-    tipoCuentaId: {
+    accountTypeId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    grupoCuentaId: {
+    accountingGroupId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    empresaId: {
+    companyId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
-    monedaId: {
+    currencyId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -63,20 +62,20 @@ const cuentasContables = conexion.define<Model<TCuentaContable>>(
 
 //---- ASOCIACIONES -------//
 
-tipoCuenta.hasMany(cuentasContables, {
-  foreignKey: "tipoCuentaId",
+accountType.hasMany(accountingAccount, {
+  foreignKey: "accountTypeId",
 });
-cuentasContables.belongsTo(tipoCuenta);
+accountingAccount.belongsTo(accountType);
 
-grupoCuenta.hasMany(cuentasContables, {
-  foreignKey: "grupoCuentaId",
+accountingGroup.hasMany(accountingAccount, {
+  foreignKey: "accountingGroupId",
 });
-cuentasContables.belongsTo(grupoCuenta);
+accountingAccount.belongsTo(accountingGroup);
 
-empresas.hasMany(cuentasContables, { foreignKey: "empresaId" });
-cuentasContables.belongsTo(empresas);
+/*empresas.hasMany(accountingAccount, { foreignKey: "empresaId" });
+accountingAccount.belongsTo(empresas);*/
 
-currency.hasMany(cuentasContables, { foreignKey: "monedaId" });
-cuentasContables.belongsTo(currency);
+currency.hasMany(accountingAccount, { foreignKey: "currencyId" });
+accountingAccount.belongsTo(currency);
 
-export default cuentasContables;
+export default accountingAccount;

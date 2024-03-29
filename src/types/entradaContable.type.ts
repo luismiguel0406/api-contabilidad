@@ -40,8 +40,8 @@ export type TDeterminacionMovimiento = {
   debito: number;
 };
 
-export type TTransaccion = TCommon & {
+export type TTransaction = TCommon & {
   id?: number;
-  nombre: string;
+  name: string;
   payload: string;
 };
