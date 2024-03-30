@@ -25,6 +25,7 @@ const accountingAccount = conexion.define<Model<TAccountingAccount>>(
     state: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: true,
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -32,7 +33,6 @@ const accountingAccount = conexion.define<Model<TAccountingAccount>>(
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false,
     },
     username: {
       type: DataTypes.STRING,
@@ -40,9 +40,6 @@ const accountingAccount = conexion.define<Model<TAccountingAccount>>(
     },
     terminal: {
       type: DataTypes.STRING,
-    },
-    accountTypeId: {
-      type: DataTypes.INTEGER,
     },
     accountingGroupId: {
       type: DataTypes.INTEGER,
@@ -61,18 +58,10 @@ const accountingAccount = conexion.define<Model<TAccountingAccount>>(
 
 //---- ASOCIACIONES -------//
 
-accountType.hasMany(accountingAccount, {
-  foreignKey: "accountTypeId",
-});
-accountingAccount.belongsTo(accountType);
-
 accountingGroup.hasMany(accountingAccount, {
   foreignKey: "accountingGroupId",
 });
 accountingAccount.belongsTo(accountingGroup);
-
-/*empresas.hasMany(accountingAccount, { foreignKey: "empresaId" });
-accountingAccount.belongsTo(empresas);*/
 
 currency.hasMany(accountingAccount, { foreignKey: "currencyId" });
 accountingAccount.belongsTo(currency);

@@ -23,7 +23,7 @@ const getAccountingAccounts = (req, res) => __awaiter(void 0, void 0, void 0, fu
         //const { companyId } = req;
         const accounts = yield accountingAccount_service.getAccountingAccounts(id);
         if (Object.entries(accounts).length === 0) {
-            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
             return res.status(statusCode).json({ Message: msg });
         }
         res.json({ accounts });
@@ -67,7 +67,7 @@ const getAccountingGroups = (req, res) => __awaiter(void 0, void 0, void 0, func
         const { id } = req.params;
         const result = yield accountingAccount_service.getAccountingGroups(id);
         if (Object.entries(result).length === 0) {
-            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
             return res.status(statusCode).json({ Message: msg });
         }
         res.json(result);
@@ -111,7 +111,7 @@ const getAccountTypes = (req, res) => __awaiter(void 0, void 0, void 0, function
         const { id } = req.params;
         const result = yield accountingAccount_service.getAccountType(id);
         if (Object.entries(result).length === 0) {
-            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
             return res.status(statusCode).json({ Message: msg });
         }
         res.json({ accountTypes: result });
@@ -142,7 +142,7 @@ const getMovementAccount = (req, res) => __awaiter(void 0, void 0, void 0, funct
         let accountingAccountId = Number(id);
         const result = yield accountingAccount_service.getMovementAccounts(accountingAccountId, startDate, endDate);
         if (!result) {
-            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
             return res.status(statusCode).json({ Message: msg });
         }
         res.json({ movementAccount: result });

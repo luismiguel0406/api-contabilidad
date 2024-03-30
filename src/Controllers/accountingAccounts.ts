@@ -15,7 +15,7 @@ export const getAccountingAccounts = async (req: Request, res: Response) => {
     );
 
     if (Object.entries(accounts).length === 0) {
-      const { statusCode, msg } = MsgRespuesta.notFound;
+      const { statusCode, msg } = MsgRespuesta.noContent;
       return res.status(statusCode).json({ Message: msg });
     }
     res.json({ accounts });
@@ -59,7 +59,7 @@ export const getAccountingGroups = async (req: Request, res: Response) => {
     const result: any = await accountingAccount_service.getAccountingGroups(id);
 
     if (Object.entries(result).length === 0) {
-      const { statusCode, msg } = MsgRespuesta.notFound;
+      const { statusCode, msg } = MsgRespuesta.noContent;
       return res.status(statusCode).json({ Message: msg });
     }
 
@@ -106,7 +106,7 @@ export const getAccountTypes = async (req: Request, res: Response) => {
     const result: any = await accountingAccount_service.getAccountType(id);
 
     if (Object.entries(result).length === 0) {
-      const { statusCode, msg } = MsgRespuesta.notFound;
+      const { statusCode, msg } = MsgRespuesta.noContent;
       return res.status(statusCode).json({ Message: msg });
     }
     res.json({ accountTypes: result });
@@ -141,7 +141,7 @@ export const getMovementAccount = async (req: Request, res: Response) => {
     );
 
     if (!result) {
-      const { statusCode, msg } = MsgRespuesta.notFound;
+      const { statusCode, msg } = MsgRespuesta.noContent;
       return res.status(statusCode).json({ Message: msg });
     }
     res.json({ movementAccount: result });

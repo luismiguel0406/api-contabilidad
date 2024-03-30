@@ -12,7 +12,6 @@ export type TAccountingAccount = TCommon & {
   id?: number;
   accountNumber: string;
   description: string;
-  accountTypeId: number;
   accountingGroupId: number;
   currencyId: number;
   companyId?: number;
