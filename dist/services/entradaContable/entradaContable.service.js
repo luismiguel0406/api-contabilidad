@@ -22,7 +22,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const entradaContable_model_1 = __importDefault(require("../../models/EntradaContable/entradaContable.model"));
 const accionEntradaContable_model_1 = __importDefault(require("../../models/AccionEntradaContable/accionEntradaContable.model"));
 const movementAccount_model_1 = __importDefault(require("../../models/AccountingAccount/movementAccount.model"));
-const transaccion_service_1 = __importDefault(require("../transaccion/transaccion.service"));
+const transaction_service_1 = __importDefault(require("../transaction/transaction.service"));
 const helpers_1 = __importDefault(require("../../helpers"));
 class EntradaContableService {
     constructor() {
@@ -34,7 +34,7 @@ class EntradaContableService {
         var _a, e_1, _b, _c;
         return __awaiter(this, void 0, void 0, function* () {
             const { payload, id, total, comentario, detalle, empresaId, userId } = data;
-            const transaccion_service = new transaccion_service_1.default();
+            const transaccion_service = new transaction_service_1.default();
             const transaccion = yield transaccion_service.getTransaction(payload);
             this._transaccionId = transaccion === null || transaccion === void 0 ? void 0 : transaccion.id;
             // 2- Busco las acciones que se haran relativa a esta transaccion
