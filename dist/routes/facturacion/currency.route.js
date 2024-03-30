@@ -3,6 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const currency_controller_1 = require("../../controllers/currency.controller");
 const router = (0, express_1.Router)();
-router.get(`api/invoice/currency/:id?`, currency_controller_1.getCurrency);
+router.get(`/api/invoice/currency/:id?`, currency_controller_1.getCurrency);
 exports.default = router;
-//# sourceMappingURL=moneda.route.js.map
+//# sourceMappingURL=currency.route.js.map

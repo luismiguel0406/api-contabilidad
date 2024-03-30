@@ -4,7 +4,7 @@ const express_1 = require("express");
 const supplier_controller_1 = require("../../controllers/supplier.controller");
 const router = (0, express_1.Router)();
 //PROVEEDORES
-router.get(`/api/suppliers/supplier:id?`, supplier_controller_1.getSuppliers);
+router.get(`/api/suppliers/supplier/:id?`, supplier_controller_1.getSuppliers);
 router.post(`/api/suppliers/supplier`, supplier_controller_1.postSupplier);
 router.put(`/api/suppliers/supplier/:id`, supplier_controller_1.updateSupplier);
 router.delete(`/api/suppliers/supplier/:id`, supplier_controller_1.deleteSupplier);

@@ -1,7 +1,7 @@
 import entradaContableModel from "../../models/EntradaContable/entradaContable.model";
 import accionEntradaContableModel from "../../models/AccionEntradaContable/accionEntradaContable.model";
 import movimientoCuentasModel from "../../models/AccountingAccount/movementAccount.model";
-import TransaccionService from "../transaccion/transaccion.service";
+import TransactionService from "../transaction/transaction.service";
 import determinarEntradaContable from "../../helpers";
 import {
   TMovementAccounts,
@@ -26,8 +26,8 @@ export default class EntradaContableService {
   ) {
     const { payload, id, total, comentario, detalle, empresaId, userId } = data;
 
-    const transaccion_service = new TransaccionService();
-    const transaccion: any = await transaccion_service.getTransaccion(payload);
+    const transaccion_service = new TransactionService();
+    const transaccion: any = await transaccion_service.getTransaction(payload);
     this._transaccionId = transaccion?.id;
 
     // 2- Busco las acciones que se haran relativa a esta transaccion

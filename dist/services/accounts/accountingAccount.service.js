@@ -19,7 +19,7 @@ const accountingGroup_model_1 = __importDefault(require("../../models/Accounting
 const movementAccount_model_1 = __importDefault(require("../../models/AccountingAccount/movementAccount.model"));
 const effectType_model_1 = __importDefault(require("../../models/AccountingAccount/effectType.model"));
 class AccountingAccountService {
-    getAccountingAccounts(id = null, companyId) {
+    getAccountingAccounts(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = id === null
                 ? yield accountingAccount_model_1.default.findAll({
@@ -35,7 +35,7 @@ class AccountingAccountService {
                             required: true,
                         },
                     ],
-                    where: { companyId, state: true },
+                    where: { state: true },
                 })
                 : yield accountingAccount_model_1.default.findOne({
                     include: [
@@ -50,7 +50,7 @@ class AccountingAccountService {
                             required: true,
                         },
                     ],
-                    where: { id, companyId, state: true },
+                    where: { id, state: true },
                 });
             return result;
         });
@@ -73,15 +73,15 @@ class AccountingAccountService {
     //-------------GRUPO CUENTAS ---------------//
     getAccountingGroups(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            const cuentaResult = id === null
+            const result = id === null
                 ? yield accountingGroup_model_1.default.findAll({
                     where: { state: true },
-                    order: ["cuenta"],
+                    order: ["accountNumber"],
                 })
                 : yield accountingGroup_model_1.default.findOne({
                     where: { id, state: true },
                 });
-            return cuentaResult;
+            return result;
         });
     }
     addAccountingGroups(body) {
@@ -102,14 +102,16 @@ class AccountingAccountService {
     //-------------TIPO CUENTAS ---------------//
     getAccountType(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            const tipoCuentaResult = id === null
+            const result = id === null
                 ? yield accountType_model_1.default.findAll({
+                    attributes: ["id", "description", "state"],
                     where: { state: true },
                 })
                 : yield accountingGroup_model_1.default.findOne({
+                    attributes: ["id", "description", "state"],
                     where: { id, state: true },
                 });
-            return tipoCuentaResult;
+            return result;
         });
     }
     addAccountType(body) {

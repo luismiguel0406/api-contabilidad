@@ -35,7 +35,7 @@ class EntradaContableService {
         return __awaiter(this, void 0, void 0, function* () {
             const { payload, id, total, comentario, detalle, empresaId, userId } = data;
             const transaccion_service = new transaccion_service_1.default();
-            const transaccion = yield transaccion_service.getTransaccion(payload);
+            const transaccion = yield transaccion_service.getTransaction(payload);
             this._transaccionId = transaccion === null || transaccion === void 0 ? void 0 : transaccion.id;
             // 2- Busco las acciones que se haran relativa a esta transaccion
             this._accionContable = (yield accionEntradaContable_model_1.default.findAll({

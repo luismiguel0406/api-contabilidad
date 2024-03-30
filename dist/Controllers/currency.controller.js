@@ -25,7 +25,7 @@ const getCurrency = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             return res.status(statusCode).json({ Message: msg });
         }
         const { statusCode } = MensajesRespuestaCliente_1.MsgRespuesta.Success;
-        res.status(statusCode).json({ currency: result });
+        res.status(statusCode).json(result);
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.internalError;
@@ -33,4 +33,4 @@ const getCurrency = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.getCurrency = getCurrency;
-//# sourceMappingURL=moneda.controller.js.map
+//# sourceMappingURL=currency.controller.js.map

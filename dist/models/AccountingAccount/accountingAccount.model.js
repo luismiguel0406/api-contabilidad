@@ -44,7 +44,6 @@ const accountingAccount = database_1.default.define("accountingAccount", {
     },
     accountTypeId: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
     },
     accountingGroupId: {
         type: sequelize_1.DataTypes.INTEGER,

@@ -20,8 +20,8 @@ import {
   TipoMovimiento,
   TipoEfecto,
 } from "./helpers/Querys Iniciales/Querys";
-import CuentasRoutes from "./routes/accounts/accountingAccounts.route";
-import MonedasRoutes from "./routes/facturacion/moneda.route";
+import AccountingAccountsRoutes from "./routes/accounts/accountingAccounts.route";
+import MonedasRoutes from "./routes/facturacion/currency.route";
 import ComprobantesRoutes from "./routes/facturacion/comprobante.route";
 import empresaRoutes from "./routes/empresa/empresa.route";
 import clientesRoutes from "./routes/Clientes/clientes.route";
@@ -80,7 +80,7 @@ class Server {
   }
   /* RUTAS PARA CONSULTA */
   routes() {
-    this.app.use(CuentasRoutes);
+    this.app.use(AccountingAccountsRoutes);
     this.app.use(MonedasRoutes);
     this.app.use(ComprobantesRoutes);
     this.app.use(empresaRoutes);

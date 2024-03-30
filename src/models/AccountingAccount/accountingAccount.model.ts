@@ -43,7 +43,6 @@ const accountingAccount = conexion.define<Model<TAccountingAccount>>(
     },
     accountTypeId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     accountingGroupId: {
       type: DataTypes.INTEGER,

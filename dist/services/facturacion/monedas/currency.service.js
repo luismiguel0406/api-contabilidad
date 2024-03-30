@@ -24,4 +24,4 @@ class CurrencyService {
     }
 }
 exports.default = CurrencyService;
-//# sourceMappingURL=monedas.service.js.map
+//# sourceMappingURL=currency.service.js.map

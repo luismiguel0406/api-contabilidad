@@ -1,11 +1,11 @@
 import transaction from "../../models/Transaction/Transaction.model";
 
-export default class TransaccionService {
-  async getTransaccion(payload: string = "") {
+export default class TransactionService {
+  async getTransaction(payload: string = "") {
     try {
       return await transaction.findOne({
         attributes: ["id", "nombre"],
-        where: { payload, estado: true },
+        where: { payload, state: true },
       });
     } catch (error) {
       return error;

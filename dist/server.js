@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const Querys_1 = require("./helpers/Querys Iniciales/Querys");
 const accountingAccounts_route_1 = __importDefault(require("./routes/accounts/accountingAccounts.route"));
-const moneda_route_1 = __importDefault(require("./routes/facturacion/moneda.route"));
+const currency_route_1 = __importDefault(require("./routes/facturacion/currency.route"));
 const comprobante_route_1 = __importDefault(require("./routes/facturacion/comprobante.route"));
 const empresa_route_1 = __importDefault(require("./routes/empresa/empresa.route"));
 const clientes_route_1 = __importDefault(require("./routes/Clientes/clientes.route"));
@@ -70,7 +70,7 @@ class Server {
     /* RUTAS PARA CONSULTA */
     routes() {
         this.app.use(accountingAccounts_route_1.default);
-        this.app.use(moneda_route_1.default);
+        this.app.use(currency_route_1.default);
         this.app.use(comprobante_route_1.default);
         this.app.use(empresa_route_1.default);
         this.app.use(clientes_route_1.default);

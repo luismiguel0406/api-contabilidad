@@ -14,14 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const currency_model_1 = __importDefault(require("../../../models/Facturacion/currency/currency.model"));
 class CurrencyService {
-    getMoneda(id = null) {
+    getCurrency(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = id === null
-                ? yield currency_model_1.default.findAll({ where: { state: true } })
-                : yield currency_model_1.default.findOne({ where: { id, state: true } });
+                ? yield currency_model_1.default.findAll({
+                    attributes: ["id", "description", "symbol", "state"],
+                    where: { state: true },
+                })
+                : yield currency_model_1.default.findOne({
+                    attributes: ["id", "description", "symbol", "state"],
+                    where: { id, state: true },
+                });
             return result;
         });
     }
 }
 exports.default = CurrencyService;
-//# sourceMappingURL=monedas.service.js.map
+//# sourceMappingURL=currency.service.js.map

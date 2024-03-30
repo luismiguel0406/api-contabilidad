@@ -13,7 +13,7 @@ import {
 const router = Router();
 
 //PROVEEDORES
-router.get(`/api/suppliers/supplier:id?`, getSuppliers);
+router.get(`/api/suppliers/supplier/:id?`, getSuppliers);
 router.post(`/api/suppliers/supplier`, postSupplier);
 router.put(`/api/suppliers/supplier/:id`, updateSupplier);
 router.delete(`/api/suppliers/supplier/:id`, deleteSupplier);

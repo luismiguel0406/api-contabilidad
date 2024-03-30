@@ -13,7 +13,7 @@ import movementAccountModel from "../../models/AccountingAccount/movementAccount
 import effectTypeModel from "../../models/AccountingAccount/effectType.model";
 
 export default class AccountingAccountService {
-  async getAccountingAccounts(id: any = null, companyId: string) {
+  async getAccountingAccounts(id: any = null) {
     const result =
       id === null
         ? await accountingAccountModel.findAll({
@@ -29,7 +29,7 @@ export default class AccountingAccountService {
                 required: true,
               },
             ],
-            where: { companyId, state: true },
+            where: { state: true },
           })
         : await accountingAccountModel.findOne({
             include: [
@@ -44,7 +44,7 @@ export default class AccountingAccountService {
                 required: true,
               },
             ],
-            where: { id, companyId, state: true },
+            where: { id, state: true },
           });
     return result;
   }
@@ -64,16 +64,16 @@ export default class AccountingAccountService {
   //-------------GRUPO CUENTAS ---------------//
 
   async getAccountingGroups(id: any = null) {
-    const cuentaResult =
+    const result =
       id === null
         ? await accountingGroupModel.findAll({
             where: { state: true },
-            order: ["cuenta"],
+            order: ["accountNumber"],
           })
         : await accountingGroupModel.findOne({
             where: { id, state: true },
           });
-    return cuentaResult;
+    return result;
   }
 
   async addAccountingGroups(body: TAccountingGroup) {
@@ -91,15 +91,17 @@ export default class AccountingAccountService {
   //-------------TIPO CUENTAS ---------------//
 
   async getAccountType(id: any = null) {
-    const tipoCuentaResult =
+    const result =
       id === null
         ? await accountTypeModel.findAll({
+            attributes: ["id", "description", "state"],
             where: { state: true },
           })
         : await accountingGroupModel.findOne({
+            attributes: ["id", "description", "state"],
             where: { id, state: true },
           });
-    return tipoCuentaResult;
+    return result;
   }
 
   async addAccountType(body: TTypeGeneric) {

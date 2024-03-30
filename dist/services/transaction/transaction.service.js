@@ -12,16 +12,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const currency_model_1 = __importDefault(require("../../../models/Facturacion/currency/currency.model"));
-class CurrencyService {
-    getMoneda(id = null) {
+const Transaction_model_1 = __importDefault(require("../../models/Transaction/Transaction.model"));
+class TransactionService {
+    getTransaction(payload = "") {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = id === null
-                ? yield currency_model_1.default.findAll({ where: { state: true } })
-                : yield currency_model_1.default.findOne({ where: { id, state: true } });
-            return result;
+            try {
+                return yield Transaction_model_1.default.findOne({
+                    attributes: ["id", "nombre"],
+                    where: { payload, state: true },
+                });
+            }
+            catch (error) {
+                return error;
+            }
         });
     }
 }
-exports.default = CurrencyService;
-//# sourceMappingURL=monedas.service.js.map
+exports.default = TransactionService;
+//# sourceMappingURL=transaction.service.js.map

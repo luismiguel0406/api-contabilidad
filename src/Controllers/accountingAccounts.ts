@@ -9,10 +9,9 @@ const accountingAccount_service = new AccountingAccountService();
 export const getAccountingAccounts = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { companyId } = req;
+    //const { companyId } = req;
     const accounts: any = await accountingAccount_service.getAccountingAccounts(
-      id,
-      companyId
+      id
     );
 
     if (Object.entries(accounts).length === 0) {
@@ -64,7 +63,7 @@ export const getAccountingGroups = async (req: Request, res: Response) => {
       return res.status(statusCode).json({ Message: msg });
     }
 
-    res.json({ accountingGroups: result });
+    res.json(result);
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     res.status(statusCode).json({ Message: msg, error });

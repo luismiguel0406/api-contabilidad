@@ -15,29 +15,29 @@ import {
 const router = Router();
 
 // TIPOS //
-router.get(`api/accounts/accountTypes/:id?`, getAccountTypes);
+router.get(`/api/accounts/accountTypes/:id?`, getAccountTypes);
 
 //GRUPOS//
 
-router.get(`api/accounts/accountGroups/:id?`, getAccountingGroups);
-router.post(`api/accounts/accountGroups`, postAccountingGroups);
-router.put(`api/accounts/accountGroups/:id`, updateAccountingGroups);
-router.delete(`api/accounts/accountGroups/:id`, deleteAccountingGroups);
+router.get(`/api/accounts/accountingGroups/:id?`, getAccountingGroups);
+router.post(`/api/accounts/accountingGroups`, postAccountingGroups);
+router.put(`/api/accounts/accountingGroups/:id`, updateAccountingGroups);
+router.delete(`/api/accounts/accountingGroups/:id`, deleteAccountingGroups);
 
 // CUENTAS //
 
 router.get(
-  `api/accounts/accountingAccount/:id?`,
-  validToken,
+  `/api/accounts/accountingAccount/:id?`,
+  // validToken,
   getAccountingAccounts
 );
-router.post(`api/accounts/accountingAccount`, addAccountingAccount);
+router.post(`/api/accounts/accountingAccount`, addAccountingAccount);
 
 // MOVIMIENTO //
 
-router.post(`api/accounts/movementAccount`, postMovementAccount);
+router.post(`/api/accounts/movementAccount`, postMovementAccount);
 router.get(
-  `api/accounts/movementAccount/:id?/:fechaInicio?/:fechaFin?`,
+  `/api/accounts/movementAccount/:id?/:startDate?/:endDate?`,
   getMovementAccount
 );
 export default router;

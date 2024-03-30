@@ -20,8 +20,8 @@ const accountingAccount_service = new accountingAccount_service_1.default();
 const getAccountingAccounts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const { companyId } = req;
-        const accounts = yield accountingAccount_service.getAccountingAccounts(id, companyId);
+        //const { companyId } = req;
+        const accounts = yield accountingAccount_service.getAccountingAccounts(id);
         if (Object.entries(accounts).length === 0) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
@@ -70,7 +70,7 @@ const getAccountingGroups = (req, res) => __awaiter(void 0, void 0, void 0, func
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
             return res.status(statusCode).json({ Message: msg });
         }
-        res.json({ accountingGroups: result });
+        res.json(result);
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
