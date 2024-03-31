@@ -16,40 +16,26 @@ const Item_model_1 = __importDefault(require("../../models/Inventario/Item.model
 const itemType_model_1 = __importDefault(require("../../models/Inventario/itemType.model"));
 class ItemService {
     //---------- TIPO ITEM -----------//
-    getTipoItem(id = null) {
+    getItemType(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            const tipoItemResult = id === null
-                ? yield itemType_model_1.default.findAll({ where: { estado: "1" } })
-                : yield itemType_model_1.default.findOne({ where: { id, estado: "1" } });
-            return tipoItemResult;
-        });
-    }
-    updateTipoItem(body, id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield itemType_model_1.default.update(body, {
-                where: {
-                    id,
-                    estado: "1",
-                },
-            });
-        });
-    }
-    deleteTipoItem(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield itemType_model_1.default.update({ estado: "0" }, { where: { id } });
-        });
-    }
-    addTipoItem(body) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield itemType_model_1.default.create(body);
+            const result = id === null
+                ? yield itemType_model_1.default.findAll({
+                    attributes: ["id", "description"],
+                    where: { state: true },
+                })
+                : yield itemType_model_1.default.findOne({
+                    attributes: ["id", "description"],
+                    where: { id, state: true },
+                });
+            return result;
         });
     }
     //------------- ITEM --------------//
     getItem(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const itemResult = id === null
-                ? yield Item_model_1.default.findAll({ where: { estado: "1" } })
-                : yield Item_model_1.default.findOne({ where: { id, estado: "1" } });
+                ? yield Item_model_1.default.findAll({ where: { state: true } })
+                : yield Item_model_1.default.findOne({ where: { id, state: true } });
             return itemResult;
         });
     }
@@ -58,14 +44,14 @@ class ItemService {
             yield Item_model_1.default.update(body, {
                 where: {
                     id,
-                    estado: "1",
+                    state: true,
                 },
             });
         });
     }
     deleteItem(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Item_model_1.default.update({ estado: "0" }, { where: { id } });
+            yield Item_model_1.default.update({ state: false }, { where: { id } });
         });
     }
     addItem(body) {

@@ -1,33 +1,22 @@
-import { IItem, ITipoItem } from "../../interfaces/Item.interface";
+import { TItem, TTypeGeneric } from "types";
 import itemModel from "../../models/Inventario/Item.model";
-import tiposItemModel from "../../models/Inventario/itemType.model";
+import itemTypeModel from "../../models/Inventario/itemType.model";
 
 export default class ItemService {
   //---------- TIPO ITEM -----------//
 
-  async getTipoItem(id: any = null) {
-    const tipoItemResult =
+  async getItemType(id: any = null) {
+    const result =
       id === null
-        ? await tiposItemModel.findAll({ where: { estado: "1" } })
-        : await tiposItemModel.findOne({ where: { id, estado: "1" } });
-    return tipoItemResult;
-  }
-
-  async updateTipoItem(body: ITipoItem, id: string) {
-    await tiposItemModel.update(body, {
-      where: {
-        id,
-        estado: "1",
-      },
-    });
-  }
-
-  async deleteTipoItem(id: string) {
-    await tiposItemModel.update({ estado: "0" }, { where: { id } });
-  }
-
-  async addTipoItem(body: ITipoItem) {
-    await tiposItemModel.create(body);
+        ? await itemTypeModel.findAll({
+            attributes: ["id", "description"],
+            where: { state: true },
+          })
+        : await itemTypeModel.findOne({
+            attributes: ["id", "description"],
+            where: { id, state: true },
+          });
+    return result;
   }
 
   //------------- ITEM --------------//
@@ -35,25 +24,25 @@ export default class ItemService {
   async getItem(id: any = null) {
     const itemResult =
       id === null
-        ? await itemModel.findAll({ where: { estado: "1" } })
-        : await itemModel.findOne({ where: { id, estado: "1" } });
+        ? await itemModel.findAll({ where: { state: true } })
+        : await itemModel.findOne({ where: { id, state: true } });
     return itemResult;
   }
 
-  async updateItem(body: IItem, id: string) {
+  async updateItem(body: TItem, id: string) {
     await itemModel.update(body, {
       where: {
         id,
-        estado: "1",
+        state: true,
       },
     });
   }
 
   async deleteItem(id: string) {
-    await itemModel.update({ estado: "0" }, { where: { id } });
+    await itemModel.update({ state: false }, { where: { id } });
   }
 
-  async addItem(body: IItem) {
+  async addItem(body: TItem) {
     await itemModel.create(body);
   }
 }

@@ -1,30 +1,21 @@
 import { Router } from "express";
 import {
   deleteItem,
-  deleteTipoItem,
   getItem,
-  getTipoItem,
+  getItemType,
   postItem,
-  postTipoItem,
   updateItem,
-  updateTipoItem,
 } from "../../controllers/item.controller";
 
 const router = Router();
 
-const endPointInventario = "/api/inventario";
-const item = "item";
-const tipoItem = "tipoItem";
 //-----------ITEM------------//
-router.get(`${endPointInventario}/${item}/:id?`, getItem);
-router.post(`${endPointInventario}/${item}`, postItem);
-router.put(`${endPointInventario}/${item}/:id`, updateItem);
-router.delete(`${endPointInventario}/${item}/:id`, deleteItem);
+router.get(`/api/inventory/item/:id?`, getItem);
+router.post(`/api/inventory/item`, postItem);
+router.put(`/api/inventory/item/:id`, updateItem);
+router.delete(`/api/inventory/item/:id`, deleteItem);
 
 //------TIPO ITEM--------//
-router.get(`${endPointInventario}/${tipoItem}/:id?`, getTipoItem);
-router.post(`${endPointInventario}/${tipoItem}`, postTipoItem);
-router.put(`${endPointInventario}/${tipoItem}/:id`, updateTipoItem);
-router.delete(`${endPointInventario}/${tipoItem}/:id`, deleteTipoItem);
+router.get(`/api/inventory/itemType/:id?`, getItemType);
 
 export default router;
