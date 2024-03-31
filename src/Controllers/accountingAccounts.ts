@@ -10,15 +10,15 @@ export const getAccountingAccounts = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     //const { companyId } = req;
-    const accounts: any = await accountingAccount_service.getAccountingAccounts(
+    const result: any = await accountingAccount_service.getAccountingAccounts(
       id
     );
 
-    if (Object.entries(accounts).length === 0) {
+    if (Object.entries(result).length === 0) {
       const { statusCode, msg } = MsgRespuesta.noContent;
       return res.status(statusCode).json({ Message: msg });
     }
-    res.json({ accounts });
+    res.json(result);
   } catch (error) {
     const { statusCode, msg } = MsgRespuesta.badRequest;
     return res.status(statusCode).json({ Message: msg, error });

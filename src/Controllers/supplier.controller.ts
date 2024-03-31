@@ -11,7 +11,7 @@ export const getSuppliers = async (req: Request, res: Response) => {
 
     const result = await suppliers_service.getSuppliers(id);
     if (Object.keys(result).length === 0) {
-      const { statusCode, msg } = MsgRespuesta.notFound;
+      const { statusCode, msg } = MsgRespuesta.noContent;
       return res.status(statusCode).json({ message: msg });
     }
 
@@ -67,7 +67,7 @@ export const getTypeSupplier = async (req: Request, res: Response) => {
   try {
     const result = await suppliers_service.getTypeSupplier();
     if (result.length === 0) {
-      const { statusCode, msg } = MsgRespuesta.notFound;
+      const { statusCode, msg } = MsgRespuesta.noContent;
       return res.status(statusCode).json({ message: msg });
     }
     res.json(result);
@@ -83,7 +83,7 @@ export const getTypeService = async (req: Request, res: Response) => {
   try {
     const result = await suppliers_service.getTypeService();
     if (result.length === 0) {
-      const { statusCode, msg } = MsgRespuesta.notFound;
+      const { statusCode, msg } = MsgRespuesta.noContent;
       return res.status(statusCode).json({ message: msg });
     }
     res.json(result);
@@ -99,7 +99,7 @@ export const getTypeDocument = async (req: Request, res: Response) => {
   try {
     const result = await suppliers_service.getTypeDocument();
     if (result.length === 0) {
-      const { statusCode, msg } = MsgRespuesta.notFound;
+      const { statusCode, msg } = MsgRespuesta.noContent;
       return res.status(statusCode).json({ message: msg });
     }
     res.json(result);
@@ -115,7 +115,7 @@ export const getBank = async (req: Request, res: Response) => {
   try {
     const result = await suppliers_service.getBanks();
     if (result.length === 0) {
-      const { statusCode, msg } = MsgRespuesta.notFound;
+      const { statusCode, msg } = MsgRespuesta.noContent;
       return res.status(statusCode).json({ message: msg });
     }
     res.json(result);

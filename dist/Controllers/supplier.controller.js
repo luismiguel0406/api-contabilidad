@@ -22,7 +22,7 @@ const getSuppliers = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const { id } = req.params;
         const result = yield suppliers_service.getSuppliers(id);
         if (Object.keys(result).length === 0) {
-            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
             return res.status(statusCode).json({ message: msg });
         }
         res.json(result);
@@ -78,7 +78,7 @@ const getTypeSupplier = (req, res) => __awaiter(void 0, void 0, void 0, function
     try {
         const result = yield suppliers_service.getTypeSupplier();
         if (result.length === 0) {
-            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
             return res.status(statusCode).json({ message: msg });
         }
         res.json(result);
@@ -94,7 +94,7 @@ const getTypeService = (req, res) => __awaiter(void 0, void 0, void 0, function*
     try {
         const result = yield suppliers_service.getTypeService();
         if (result.length === 0) {
-            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
             return res.status(statusCode).json({ message: msg });
         }
         res.json(result);
@@ -110,7 +110,7 @@ const getTypeDocument = (req, res) => __awaiter(void 0, void 0, void 0, function
     try {
         const result = yield suppliers_service.getTypeDocument();
         if (result.length === 0) {
-            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
             return res.status(statusCode).json({ message: msg });
         }
         res.json(result);
@@ -126,7 +126,7 @@ const getBank = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield suppliers_service.getBanks();
         if (result.length === 0) {
-            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
             return res.status(statusCode).json({ message: msg });
         }
         res.json(result);

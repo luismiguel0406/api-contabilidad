@@ -20,7 +20,7 @@ const getProvinces = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     try {
         const result = yield territories_service.getProvinces();
         if (!result) {
-            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.notFound;
+            const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
             return res.status(statusCode).json({ message: msg });
         }
         res.json(result);

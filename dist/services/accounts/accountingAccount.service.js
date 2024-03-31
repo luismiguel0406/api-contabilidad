@@ -18,6 +18,7 @@ const accountingAccount_model_1 = __importDefault(require("../../models/Accounti
 const accountingGroup_model_1 = __importDefault(require("../../models/AccountingAccount/accountingGroup.model"));
 const movementAccount_model_1 = __importDefault(require("../../models/AccountingAccount/movementAccount.model"));
 const effectType_model_1 = __importDefault(require("../../models/AccountingAccount/effectType.model"));
+const currency_model_1 = __importDefault(require("../../models/Facturacion/currency/currency.model"));
 class AccountingAccountService {
     getAccountingAccounts(id = null) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -26,11 +27,18 @@ class AccountingAccountService {
                     include: [
                         {
                             model: accountingGroup_model_1.default,
-                            attributes: ["description"],
+                            attributes: ["description", "accountNumber", "accountTypeId"],
                             required: true,
+                            include: [
+                                {
+                                    model: accountType_model_1.default,
+                                    attributes: ["description"],
+                                    required: true,
+                                },
+                            ],
                         },
                         {
-                            model: accountType_model_1.default,
+                            model: currency_model_1.default,
                             attributes: ["description"],
                             required: true,
                         },
@@ -41,13 +49,15 @@ class AccountingAccountService {
                     include: [
                         {
                             model: accountingGroup_model_1.default,
-                            attributes: ["description"],
+                            attributes: ["description", "accountTypeId"],
                             required: true,
-                        },
-                        {
-                            model: accountType_model_1.default,
-                            attributes: ["description"],
-                            required: true,
+                            include: [
+                                {
+                                    model: accountType_model_1.default,
+                                    attributes: ["id", "description"],
+                                    required: true,
+                                },
+                            ],
                         },
                     ],
                     where: { id, state: true },

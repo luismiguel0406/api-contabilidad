@@ -9,5 +9,5 @@ export type TItem = TCommon & {
   unitPrice: number;
   cost?: number;
   itemTypeId: number;
-  accountId: number;
+  accountingAccountId: number;
 };

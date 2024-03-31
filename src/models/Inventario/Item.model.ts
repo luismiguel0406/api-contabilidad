@@ -2,6 +2,7 @@ import { DataTypes, Model } from "sequelize";
 import conexion from "../../database";
 import itemType from "./itemType.model";
 import { TItem } from "types";
+import accountingAccount from "../../models/AccountingAccount/accountingAccount.model";
 
 const item = conexion.define<Model<TItem>>(
   "item",
@@ -20,14 +21,14 @@ const item = conexion.define<Model<TItem>>(
       allowNull: false,
     },
     stock: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0.0,
     },
     minimunStock: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 0.0,
+      defaultValue: 0,
     },
     unitPrice: {
       type: DataTypes.DECIMAL,
@@ -42,7 +43,7 @@ const item = conexion.define<Model<TItem>>(
     itemTypeId: {
       type: DataTypes.INTEGER,
     },
-    accountId: {
+    accountingAccountId: {
       type: DataTypes.INTEGER,
     },
     state: {
@@ -71,5 +72,8 @@ const item = conexion.define<Model<TItem>>(
 
 itemType.hasMany(item, { foreignKey: "itemTypeId" });
 item.belongsTo(itemType);
+
+itemType.hasMany(accountingAccount, { foreignKey: "accountingAccountId" });
+accountingAccount.belongsTo(itemType);
 
 export default item;

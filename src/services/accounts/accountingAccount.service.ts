@@ -11,6 +11,7 @@ import accountingAccountModel from "../../models/AccountingAccount/accountingAcc
 import accountingGroupModel from "../../models/AccountingAccount/accountingGroup.model";
 import movementAccountModel from "../../models/AccountingAccount/movementAccount.model";
 import effectTypeModel from "../../models/AccountingAccount/effectType.model";
+import currencyModel from "../../models/Facturacion/currency/currency.model";
 
 export default class AccountingAccountService {
   async getAccountingAccounts(id: any = null) {
@@ -20,11 +21,18 @@ export default class AccountingAccountService {
             include: [
               {
                 model: accountingGroupModel,
-                attributes: ["description"],
+                attributes: ["description", "accountNumber", "accountTypeId"],
                 required: true,
+                include: [
+                  {
+                    model: accountTypeModel,
+                    attributes: ["description"],
+                    required: true,
+                  },
+                ],
               },
               {
-                model: accountTypeModel,
+                model: currencyModel,
                 attributes: ["description"],
                 required: true,
               },
@@ -35,13 +43,15 @@ export default class AccountingAccountService {
             include: [
               {
                 model: accountingGroupModel,
-                attributes: ["description"],
+                attributes: ["description", "accountTypeId"],
                 required: true,
-              },
-              {
-                model: accountTypeModel,
-                attributes: ["description"],
-                required: true,
+                include: [
+                  {
+                    model: accountTypeModel,
+                    attributes: ["id", "description"],
+                    required: true,
+                  },
+                ],
               },
             ],
             where: { id, state: true },

@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../../database"));
 const itemType_model_1 = __importDefault(require("./itemType.model"));
+const accountingAccount_model_1 = __importDefault(require("../../models/AccountingAccount/accountingAccount.model"));
 const item = database_1.default.define("item", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -21,14 +22,14 @@ const item = database_1.default.define("item", {
         allowNull: false,
     },
     stock: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 0.0,
     },
     minimunStock: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 0.0,
+        defaultValue: 0,
     },
     unitPrice: {
         type: sequelize_1.DataTypes.DECIMAL,
@@ -43,7 +44,7 @@ const item = database_1.default.define("item", {
     itemTypeId: {
         type: sequelize_1.DataTypes.INTEGER,
     },
-    accountId: {
+    accountingAccountId: {
         type: sequelize_1.DataTypes.INTEGER,
     },
     state: {
@@ -68,5 +69,7 @@ const item = database_1.default.define("item", {
 //--- ASOCIACIONES---//
 itemType_model_1.default.hasMany(item, { foreignKey: "itemTypeId" });
 item.belongsTo(itemType_model_1.default);
+itemType_model_1.default.hasMany(accountingAccount_model_1.default, { foreignKey: "accountingAccountId" });
+accountingAccount_model_1.default.belongsTo(itemType_model_1.default);
 exports.default = item;
 //# sourceMappingURL=Item.model.js.map

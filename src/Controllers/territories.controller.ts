@@ -8,7 +8,7 @@ export const getProvinces = async (req: Request, res: Response) => {
   try {
     const result = await territories_service.getProvinces();
     if (!result) {
-      const { statusCode, msg } = MsgRespuesta.notFound;
+      const { statusCode, msg } = MsgRespuesta.noContent;
       return res.status(statusCode).json({ message: msg });
     }
     res.json(result);

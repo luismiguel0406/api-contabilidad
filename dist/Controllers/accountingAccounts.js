@@ -21,12 +21,12 @@ const getAccountingAccounts = (req, res) => __awaiter(void 0, void 0, void 0, fu
     try {
         const { id } = req.params;
         //const { companyId } = req;
-        const accounts = yield accountingAccount_service.getAccountingAccounts(id);
-        if (Object.entries(accounts).length === 0) {
+        const result = yield accountingAccount_service.getAccountingAccounts(id);
+        if (Object.entries(result).length === 0) {
             const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.noContent;
             return res.status(statusCode).json({ Message: msg });
         }
-        res.json({ accounts });
+        res.json(result);
     }
     catch (error) {
         const { statusCode, msg } = MensajesRespuestaCliente_1.MsgRespuesta.badRequest;
