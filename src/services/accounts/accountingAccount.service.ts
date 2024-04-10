@@ -53,6 +53,11 @@ export default class AccountingAccountService {
                   },
                 ],
               },
+              {
+                model: currencyModel,
+                attributes: ["description"],
+                required: true,
+              },
             ],
             where: { id, state: true },
           });

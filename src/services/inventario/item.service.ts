@@ -24,8 +24,26 @@ export default class ItemService {
   async getItem(id: any = null) {
     const itemResult =
       id === null
-        ? await itemModel.findAll({ where: { state: true } })
-        : await itemModel.findOne({ where: { id, state: true } });
+        ? await itemModel.findAll({
+            include: [
+              {
+                model: itemTypeModel,
+                attributes: ["description", "id"],
+                required: true,
+              },
+            ],
+            where: { state: true },
+          })
+        : await itemModel.findOne({
+            include: [
+              {
+                model: itemTypeModel,
+                attributes: ["description", "id"],
+                required: true,
+              },
+            ],
+            where: { id, state: true },
+          });
     return itemResult;
   }
 
